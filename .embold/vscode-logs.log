@@ -1,0 +1,98 @@
+2025-12-28 10:54:55 info: Congratulations, your extension "Embold" is now active!
+2025-12-28 10:54:55 info: ************* init ****************
+2025-12-28 10:54:55 info: tempDirectory : /Users/momenelshamy/.cursor/extensions/embold-vscode.embold-0.3.0/temp
+2025-12-28 10:54:56 info: Extraction complete for source: /Users/momenelshamy/.cursor/extensions/embold-vscode.embold-0.3.0/resources/embold-scanner-archive.zip, destination: /Users/momenelshamy/.cursor/extensions/embold-vscode.embold-0.3.0/temp
+2025-12-28 10:54:56 info: Extension installed on machine OS : darwin
+2025-12-28 10:54:56 info: Fetched the issues from DB
+2025-12-28 10:54:56 info: Java version installed on machine : 
+openjdk version "19.0.1" 2022-10-18
+OpenJDK Runtime Environment Temurin-19.0.1+10 (build 19.0.1+10)
+OpenJDK 64-Bit Server VM Temurin-19.0.1+10 (build 19.0.1+10, mixed mode)
+
+2025-12-28 10:54:56 info: Java installed on machine.
+2025-12-28 10:54:56 info: Embold extension version response:{"hasSupport":false,"version":"0.2.1","changeNotes":"<div> <p>Release Date: 30 Apr, 2025 <br><span>Bug fixes and improvements.</span></p> </div>"}
+2025-12-28 10:54:56 info: Current installed embold extension version : 0.3.0
+2025-12-28 10:54:56 info: Latest embold extension version on marketplace : 0.2.1
+2025-12-28 10:54:56 info: Current extension version: 0.3.0
+2025-12-28 10:54:56 info: Stored extension version: 0.3.0
+2025-12-28 10:54:56 info: No new installation or upgrade detected. Skipping plugin activation tracking.
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:56:49 info: Row(s) deleted
+2025-12-28 10:57:26 info: Row(s) deleted
+2025-12-28 10:58:19 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:12 info: Row(s) deleted
+2025-12-28 10:59:15 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 10:59:21 info: Row(s) deleted
+2025-12-28 11:09:42 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:13:30 info: Row(s) deleted
+2025-12-28 11:17:36 info: Row(s) deleted
+2025-12-28 11:18:44 info: Row(s) deleted
+2025-12-28 11:19:25 info: Row(s) deleted
+2025-12-28 11:19:25 info: Row(s) deleted
+2025-12-28 11:19:25 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted
+2025-12-28 11:19:26 info: Row(s) deleted

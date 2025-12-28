@@ -1,0 +1,9 @@
+{
+    "token": {
+       "colorPrimary": "#107634",
+       "colorPrimaryHover": "#EECD15",
+       "colorPrimaryText": "#000000",
+       "borderRadius": 6,
+       "fontFamily": "Parkinsans, sans-serif"
+    }
+ }

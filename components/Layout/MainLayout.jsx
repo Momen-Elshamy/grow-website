@@ -1,11 +1,12 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import { Layout } from "antd";
 export default function MainLayout({ children }) {
    return (
-      <div>
+      <Layout style={{ margin: '0 auto'}}>
          <Header />
-         {children}
+         <Layout.Content>{children}</Layout.Content>
          <Footer />
-      </div>
+      </Layout>
    );
 }

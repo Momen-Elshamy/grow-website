@@ -62,7 +62,7 @@ export default function Header() {
                   <Button
                      type="primary"
                      size="large"
-                     className={styles.ctaButton}
+                     className="ctaButton"
                      icon={<i className="fi fi-rr-arrow-small-right" style={{ order: 1 }}></i>}
                      iconPosition="end"
                   >
@@ -70,7 +70,7 @@ export default function Header() {
                   </Button>
                </Link>
 
-               <Button className={styles.mobileMenuBtn} type="text" icon={<i className="fi fi-rr-menu-burger"></i>} />
+               <Button className="mobileMenuBtn" type="text" icon={<i className="fi fi-rr-menu-burger"></i>} />
             </div>
          </div>
       </header>

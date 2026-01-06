@@ -81,8 +81,8 @@
 }
 
 .aboutButton {
-  background-color: white;
-  color: #107634;
+  background-color: transparent;
+  color: white;
   border-color: white;
 }
 .aboutButton:hover {
@@ -151,11 +151,6 @@
     padding: 0 20px;
   }
 
-  .buttonsContainer {
-    flex-direction: column;
-    gap: 12px;
-  }
-
   .navButton {
     display: none;
   }
@@ -186,6 +181,11 @@
 
   .contentCol {
     padding: 0 16px;
+  }
+  .buttonsContainer {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 150px;
   }
 }
 

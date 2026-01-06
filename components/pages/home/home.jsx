@@ -1,8 +1,11 @@
-import { Button } from "antd";
+import Hero from "./Hero";
+import Services from "./Services";
+
 export default function Home() {
-   return (
-   <>
-   <Button type="primary">Home</Button>
-   </>
-)
+  return (
+    <>
+      <Hero />
+      <Services />
+    </>
+  );
 }

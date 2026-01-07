@@ -1,8 +1,10 @@
-import { Button } from "antd";
+import CommitmentSection from "./CommitmentSection";
+
 export default function Home() {
-   return (
-   <>
-   <Button type="primary">Home</Button>
-   </>
-)
+
+  return (
+    <>
+      <CommitmentSection />
+    </>
+  );
 }

@@ -1,4 +1,4 @@
-import CommitmentSection from "./CommitmentSection";
+import CommitmentSection from "./NewsSection";
 
 export default function Home() {
 

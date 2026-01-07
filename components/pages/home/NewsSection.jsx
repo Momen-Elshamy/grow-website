@@ -3,7 +3,7 @@ import { Button, Row, Col, Modal, Flex } from "antd";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Uicons from "@/components/UI/Uicons";
-import styles from "./CommitmentSection.module.css";
+import styles from "./NewsSection.module.css";
 
 const COMMITMENT_DEFAULTS = {
   videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",

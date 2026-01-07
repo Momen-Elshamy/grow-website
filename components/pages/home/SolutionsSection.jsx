@@ -82,7 +82,7 @@ const AgricultureProcess = () => {
             <Flex align="center" gap="small">
               <Uicons icon="fi-rr-leaf" className={styles.leafIcon} />
               <Text className={styles.subtitle}>
-                See how it works with easy steps for our agriculture process
+              Simple Steps. Powerful Agricultural Solutions.
               </Text>
             </Flex>
             <Title level={2} className={styles.mainTitle}>

@@ -6,7 +6,7 @@ import Uicons from "@/components/UI/Uicons";
 import styles from "./NewsSection.module.css";
 
 const COMMITMENT_DEFAULTS = {
-  videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  videoUrl: "https://www.youtube.com/embed/vDMwdqtipeI?feature=oembed&mode=opaque&loop=1&autoplay=1&controls=1&mute=0&rel=0&modestbranding=0",
   mainImage: "/images/news/banner-video.webp",
   tagline: "Insights, News, and Updates on Sustainable Agriculture.",
   heading:

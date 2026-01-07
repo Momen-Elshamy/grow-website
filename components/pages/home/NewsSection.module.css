@@ -141,10 +141,10 @@
 }
 
 .features {
-  margin: 32px 0;
+  margin: 24px 0;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 16px;
 }
 
 .featureItem {
@@ -188,7 +188,7 @@
 .actions {
   display: flex;
   gap: 20px;
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .btn {

@@ -176,8 +176,8 @@
   margin-bottom: 24px;
   flex: 1;
   display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
-  line-clamp: 3 !important;
+  -webkit-line-clamp: 4 !important;
+  line-clamp: 4 !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -220,10 +220,6 @@
 
   .mainTitle {
     font-size: 28px;
-  }
-
-  .serviceCard {
-    margin-bottom: 60px;
   }
 
   .cardContentWrapper {

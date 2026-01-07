@@ -1,11 +1,13 @@
-import { Button } from "antd";
+import Hero from "./Hero";
+import Services from "./Services";
 import SolutionsSection from "./SolutionsSection";
-import AgricultureProcess from "./SolutionsSection";
 
 export default function Home() {
   return (
     <>
-      <SolutionsSection />
+        <Hero />
+        <Services />
+        <SolutionsSection />
     </>
   );
 }

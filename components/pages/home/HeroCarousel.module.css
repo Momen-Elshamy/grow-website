@@ -1,0 +1,197 @@
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.carousel {
+  height: 100vh;
+}
+.carousel :global(.slick-dots li button) {
+  background-color: #FFFFFF !important;
+  opacity: 0.5 !important;
+  transition: all 0.3s ease !important;
+}
+.carousel :global(.slick-dots li.slick-active button) {
+  background-color: #E9E7E7 !important; /* Changed from grey to red */
+  opacity: 1 !important;
+}
+/* Specific override for Ant Design's inner active dot styling */
+.carousel :global(.slick-dots li.slick-active::after) {
+  background: #e9e7e7 !important;
+}
+.slideContainer {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+.contentRow {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.contentCol {
+  padding: 0 140px;
+  color: white;
+  max-width: 100%;
+}
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  color: white;
+}
+.description {
+  font-size: 18px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+  color: white;
+  max-width: 800px;
+}
+.buttonsContainer {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.aboutButton {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+}
+.aboutButton:hover {
+  color: white !important;
+  background-color: #107634 !important;
+  border: none !important;
+}
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.navButton:hover {
+  background: transparent;
+  transform: translateY(-50%) scale(1.2);
+}
+.navButtonLeft {
+  left: 20px;
+}
+.navButtonRight {
+  right: 20px;
+}
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .contentCol {
+    padding: 0 80px;
+  }
+}
+@media (max-width: 1024px) {
+  .contentCol {
+    padding: 0 60px;
+  }
+  .title {
+    font-size: 40px;
+  }
+  .description {
+    font-size: 17px;
+  }
+}
+@media (max-width: 768px) {
+  .title {
+    font-size: 32px;
+  }
+  .description {
+    font-size: 16px;
+    max-width: 100% !important;
+  }
+  .contentCol {
+    padding: 0 20px;
+    width: 100%;
+  }
+  .navButton {
+    display: none;
+  }
+  
+}
+@media (max-width: 480px) {
+  .heroContainer {
+    min-height: 600px;
+    height: auto;
+  }
+  .carousel {
+    min-height: 600px;
+    height: auto;
+  }
+  .slideContainer {
+    min-height: 600px;
+    height: auto;
+    padding: 80px 0;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .contentCol {
+    padding: 0 16px;
+    margin-top: 140px;
+    width: 100%;
+  }
+  
+  .buttonsContainer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+  }
+  
+  .buttonsContainer > :global(*),
+  .buttonsContainer :global(button),
+  .buttonsContainer :global(.ant-btn),
+  .buttonsContainer :global(.ant-btn-large),
+  .buttonsContainer :global(.ant-btn-primary),
+  .contentCol .buttonsContainer :global(button),
+  .contentCol .buttonsContainer :global(.ant-btn) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+    flex-grow: 1 !important;
+  }
+  
+  .contentCol .aboutButton,
+  .buttonsContainer .aboutButton {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}

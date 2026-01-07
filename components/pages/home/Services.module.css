@@ -1,0 +1,250 @@
+.servicesContainer {
+  position: relative;
+  width: 100%;
+  padding: 120px 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.servicesContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%; /* Image covers 50% of the section height */
+  background-image: linear-gradient(to bottom, rgba(253, 253, 245, 0.92), rgba(255, 255, 255, 0.85)), url('/images/services/bg-services.webp');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.servicesWrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.headerSection {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.subtitle {
+  color: #107634;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.mainTitle {
+  color: #0d2e1a;
+  font-size: 42px;
+  font-weight: 700;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  line-height: 1.2;
+}
+
+.leafIconContainer {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 40px;
+}
+
+.carousel {
+  width: 100%;
+}
+
+.carousel :global(.slick-dots li) {
+  /* width: 40px !important; */
+  margin: 0 4px !important;
+}
+
+.carousel :global(.slick-dots li button) {
+  /* width: 40px !important;
+  height: 6px !important; */
+  border-radius: 3px !important;
+  background-color: #107634 !important;
+  opacity: 0.3 !important;
+  transition: all 0.3s ease !important;
+}
+
+.carousel :global(.slick-dots li.slick-active button) {
+  opacity: 1 !important;
+  background-color: #107634 !important;
+}
+
+.carousel :global(.slick-track) {
+  display: flex !important;
+  align-items: stretch;
+}
+
+.carousel :global(.slick-slide) {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel :global(.slick-slide > div) {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.carouselSlide {
+  padding: 20px 15px 60px; /* Space for dots and icon overlap */
+  display: flex !important;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.serviceCard {
+  position: relative;
+  width: 100%;
+  max-width: 380px; /* Centered fixed width for consistent looks */
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  height: 100%;
+}
+
+.serviceImageContainer {
+  width: 100%;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  flex-shrink: 0;
+}
+
+.serviceImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.serviceCard:hover .serviceImage {
+  transform: scale(1.05);
+}
+
+.cardContentWrapper {
+  position: relative;
+  margin-top: -100px;
+  display: flex;
+  /* justify-content: center; */
+  z-index: 2;
+  width: 100%;
+  flex: 1;
+}
+
+.serviceContent {
+  background: white;
+  padding: 40px 25px 30px;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1;
+}
+
+.serviceTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0d2e1a;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.serviceDescription {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4 !important;
+  line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.serviceButton {
+  width: fit-content;
+}
+
+.serviceButton:hover {
+  background-color: #107634 !important;
+  border-color: #107634 !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .servicesWrapper {
+    padding: 0 24px;
+  }
+  
+  .mainTitle {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .serviceImageContainer {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicesContainer {
+    padding: 80px 0;
+  }
+
+  .servicesWrapper {
+    padding: 0 16px;
+  }
+
+  .mainTitle {
+    font-size: 28px;
+  }
+
+  .cardContentWrapper {
+    margin-top: -80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .servicesContainer {
+    padding: 60px 0;
+  }
+
+  .mainTitle {
+    font-size: 24px;
+  }
+
+  .serviceImageContainer {
+    height: 250px;
+  }
+
+  .serviceContent {
+    padding: 35px 20px 25px;
+  }
+
+  .serviceTitle {
+    font-size: 18px;
+  }
+}

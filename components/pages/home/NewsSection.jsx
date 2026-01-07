@@ -27,7 +27,7 @@ const COMMITMENT_DEFAULTS = {
   ],
 };
 
-export default function CommitmentSection({
+export default function NewsSection({
   videoUrl = COMMITMENT_DEFAULTS.videoUrl,
   mainImage = COMMITMENT_DEFAULTS.mainImage,
   tagline = COMMITMENT_DEFAULTS.tagline,

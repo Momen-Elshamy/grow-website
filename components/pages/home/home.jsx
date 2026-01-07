@@ -1,10 +1,10 @@
-import CommitmentSection from "./NewsSection";
+import NewsSection from "./NewsSection";
 
 export default function Home() {
 
   return (
     <>
-      <CommitmentSection />
+      <NewsSection />
     </>
   );
 }

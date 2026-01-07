@@ -1,0 +1,180 @@
+.infoHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    padding: 1.1rem 2rem;
+    box-shadow: inset 0 8px 28px -8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.iconsContainer {
+    border-right: 2px solid #E0E0E0;
+}
+.iconsContainer:last-child {
+    border-right: none;
+}
+.iconBox {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #F1EEEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 auto;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.iconsContainer {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.infoText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 22px;
+}
+.text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    padding-bottom: 6px;
+}
+.info {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+.iconsContainerLeft {
+    justify-content: space-evenly !important;
+    align-items: center !important;
+}
+.iconsWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px;
+}
+/* Mobile Layout */
+.mobileLayout {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+}
+.mobileInfoItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+.mobileIconsWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 0.5rem;
+}
+.socialIcon {
+    padding-top: 4px;
+}
+@media (max-width: 430px) {
+    .info {
+        font-size: 12px;
+    }
+    .text {
+        font-size: 12px;
+        padding-bottom: 2px !important;
+    }
+    .infoIcon {
+        font-size: 22px !important;
+    }
+    .desktopRow {
+        display: none !important;
+    }
+    .mobileLayout {
+        display: flex;
+    }
+    .infoHeader {
+        padding: 1rem;
+        position: fixed;
+        top: 0;
+    }
+    .iconBox {
+        width: 36px;
+        height: 36px;
+    }
+    .infoText {
+        gap: 20px !important;
+    }
+}
+@media (min-width: 430px) and (max-width: 991px) {
+   .text {
+    font-size: 12px !important;
+   }
+   .info {
+    font-size: 12px !important;
+   }
+   .infoIcon {
+    font-size: 20px !important;
+   }
+   .iconBox {
+    width: 32px;
+    height: 32px;
+   }
+   .socialIcon {
+    font-size: 16px !important;
+   }
+   .desktopRow {
+    flex-wrap: wrap !important;
+   }
+   .desktopRow :global(.ant-col:nth-child(2)),
+   .desktopRow :global(.ant-col:nth-child(3)) {
+    order: 1;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    border-right: 2px solid #E0E0E0 !important;
+   }
+   .desktopRow :global(.ant-col:nth-child(3)) {
+    border-right: none !important;
+   }
+   .iconsContainerLeft {
+    order: 2;
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    border-right: none !important;
+    border-top: 2px solid #E0E0E0 !important;
+    margin-top: 1rem !important;
+    padding-top: 1rem !important;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+   }
+}
+@media (min-width: 991px) and (max-width: 1220px) {
+   .text {
+    font-size: 12px !important;
+   }
+   .info {
+    font-size: 12px !important;
+   }
+   .infoIcon {
+    font-size: 24px !important;
+   }
+   .iconBox {
+    width: 36px;
+    height: 36px;
+   }
+   .socialIcon {
+    font-size: 18px !important;
+   }
+}

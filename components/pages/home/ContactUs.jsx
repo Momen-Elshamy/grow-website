@@ -89,19 +89,41 @@ export default function ContactUs() {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      const response = await axios.post("/api/send-email", values);
+      // 👇 CHANGE THIS EMAIL TO YOUR EMAIL - THAT'S IT! NO SIGNUP NEEDED!
+      const YOUR_EMAIL = "mayarmohamed775@gmail.com";
 
-      message.success(
-        "Form submitted successfully! We'll get back to you soon."
+      const response = await axios.post(
+        `https://formsubmit.co/ajax/${YOUR_EMAIL}`,
+        {
+          name: values.name,
+          email: values.email,
+          company: values.company,
+          phone: values.phone,
+          propertySize: values.propertySize,
+          aiIntegration: values.aiIntegration,
+          message: values.message,
+          _replyto: values.email, // Replies go to form submitter
+          _subject: `New Contact Form Submission from ${values.name}`,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
       );
-      form.resetFields();
+
+      if (response.status === 200) {
+        message.success(
+          "Form submitted successfully! We'll get back to you soon."
+        );
+        form.resetFields();
+      } else {
+        throw new Error("Failed to send email");
+      }
     } catch (error) {
       console.error("Error:", error);
-      const errorMessage =
-        error.response?.data?.message ||
-        error.message ||
-        "Failed to send email. Please try again.";
-      message.error(errorMessage);
+      message.error("Failed to send email. Please try again.");
     } finally {
       setLoading(false);
     }

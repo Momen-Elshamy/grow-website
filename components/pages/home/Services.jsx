@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Uicons from "@/components/UI/Uicons";
 import ServiceCarousel from "./ServiceCarousel";
 import styles from "./Services.module.css";
@@ -57,6 +58,16 @@ export default function Services() {
 
   return (
     <div className={styles.servicesContainer}>
+      <div className={styles.backgroundWrapper}>
+        <Image
+          src="/images/services/bg-services.webp"
+          alt="Services Background"
+          fill
+          className={styles.backgroundImage}
+          priority={false}
+        />
+        <div className={styles.backgroundOverlay} />
+      </div>
       <div className={styles.servicesWrapper}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}

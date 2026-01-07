@@ -7,21 +7,31 @@
   justify-content: center;
   align-items: center;
   background-color: #fff;
+  overflow: hidden;
 }
 
-.servicesContainer::before {
-  content: "";
+.backgroundWrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 60%; /* Image covers 50% of the section height */
-  background-image: linear-gradient(to bottom, rgba(253, 253, 245, 0.92), rgba(255, 255, 255, 0.85)), url('/images/services/bg-services.webp');
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+  height: 60%; /* Image covers 60% of the section height */
   z-index: -1;
   pointer-events: none;
+}
+
+.backgroundImage {
+  object-fit: cover;
+}
+
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(253, 253, 245, 0.92), rgba(255, 255, 255, 0.85));
+  z-index: 1;
 }
 
 .servicesWrapper {
@@ -29,6 +39,8 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
+  z-index: 2;
 }
 
 .headerSection {

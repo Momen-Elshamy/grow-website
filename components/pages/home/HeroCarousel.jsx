@@ -1,5 +1,6 @@
 import { Carousel, Flex, Button } from "antd";
 import { useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
@@ -53,10 +54,14 @@ export default function CarouselComponent() {
       >
         {carouselImages.map((slide, index) => (
           <div key={slide.id}>
-            <div
-              className={styles.slideContainer}
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
+            <div className={styles.slideContainer}>
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                className={styles.backgroundImage}
+              />
               {/* Overlay for better text readability */}
               <div className={styles.overlay} />
 

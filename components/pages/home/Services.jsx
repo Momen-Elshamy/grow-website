@@ -1,7 +1,6 @@
-import { Carousel, Row, Col, Flex } from "antd";
-import Image from "next/image";
-import CustomButton from "@/components/UI/Button";
+import { motion } from "framer-motion";
 import Uicons from "@/components/UI/Uicons";
+import ServiceCarousel from "./ServiceCarousel";
 import styles from "./Services.module.css";
 
 export default function Services() {
@@ -49,7 +48,7 @@ export default function Services() {
     {
       id: 6,
       image: "/images/Hero/background1.jpg",
-      icon: "fi-rr-seedling",
+      icon: "fi-rr-seed seedling",
       title: "Organic Certification",
       description:
         "Expert guidance through the organic certification process, ensuring your farm meets all standards and requirements for organic production.",
@@ -59,7 +58,13 @@ export default function Services() {
   return (
     <div className={styles.servicesContainer}>
       <div className={styles.servicesWrapper}>
-        <div className={styles.headerSection}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className={styles.headerSection}
+        >
           <p className={styles.subtitle}>
             Let's start your farming journey together!
           </p>
@@ -76,66 +81,9 @@ export default function Services() {
               style={{ transform: "scaleX(-1)" }}
             />
           </div>
-        </div>
-        <Carousel
-          dots={true}
-          autoplay
-          infinite={false}
-          slidesToShow={3}
-          slidesToScroll={3}
-          className={`${styles.carousel} services-carousel`}
-          responsive={[
-            {
-              breakpoint: 900,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-              },
-            },
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-              },
-            },
-            {
-              breakpoint: 500,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
-            },
-          ]}
-        >
-          {services.map((service) => (
-            <div key={service.id} className={styles.carouselSlide}>
-              <div className={styles.serviceCard}>
-                <div className={styles.serviceImageContainer}>
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    width={400}
-                    height={300}
-                    className={styles.serviceImage}
-                  />
-                </div>
+        </motion.div>
 
-                <div className={styles.cardContentWrapper}>
-                  <div className={styles.serviceContent}>
-                    <h3 className={styles.serviceTitle}>{service.title}</h3>
-                    <p className={styles.serviceDescription}>
-                      {service.description}
-                    </p>
-                    <CustomButton className={styles.serviceButton}>
-                      Explore More
-                    </CustomButton>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Carousel>
+        <ServiceCarousel services={services} />
       </div>
     </div>
   );

@@ -10,9 +10,11 @@
 /* Responsive */
 @media (max-width: 768px) {
   .heroWrapper {
-    flex-direction: column;
-    gap: 32px;
-    margin-bottom: 0px;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    margin-bottom: 0px !important;
+    gap: 32px !important;
   }
 }
 

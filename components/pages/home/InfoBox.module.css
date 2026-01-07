@@ -110,15 +110,15 @@
 
 @media (max-width: 768px) {
   .infoBox {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    transform: none;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
     border-radius: 24px;
     max-width: calc(100% - 32px);
     width: calc(100% - 32px);
-    margin: 60px auto 40px;
+    margin: 40px auto 40px !important;
     padding: 60px 24px 24px;
   }
 

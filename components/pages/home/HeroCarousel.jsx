@@ -1,8 +1,9 @@
 import { Carousel, Flex, Button } from "antd";
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
-import styles from "./Carousel.module.css";
+import styles from "./HeroCarousel.module.css";
 
 export default function CarouselComponent() {
   const carouselRef = useRef(null);
@@ -50,7 +51,7 @@ export default function CarouselComponent() {
         effect="fade"
         className={styles.carousel}
       >
-        {carouselImages.map((slide) => (
+        {carouselImages.map((slide, index) => (
           <div key={slide.id}>
             <div
               className={styles.slideContainer}
@@ -66,13 +67,47 @@ export default function CarouselComponent() {
                 justify="flex-start"
               >
                 <div className={styles.contentCol}>
-                  <h1 className={styles.title}>{slide.title}</h1>
-                  <p className={styles.description}>{slide.description}</p>
-                  <div className={styles.buttonsContainer}>
-                    <CustomButton>Explore Our Services</CustomButton>
-                    <Button size="large" className={styles.aboutButton}>
-                      About Us
-                    </Button>
+                  <div key={`content-${slide.id}`}>
+                    <motion.h1
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className={styles.title}
+                    >
+                      {slide.title}
+                    </motion.h1>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: "easeOut",
+                      }}
+                      className={styles.description}
+                    >
+                      {slide.description}
+                    </motion.p>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.4,
+                        ease: "easeOut",
+                      }}
+                      className={styles.buttonsContainer}
+                    >
+                      <CustomButton>Explore Our Services</CustomButton>
+                      <Button size="large" className={styles.aboutButton}>
+                        About Us
+                      </Button>
+                    </motion.div>
                   </div>
                 </div>
               </Flex>

@@ -1,4 +1,4 @@
-import CarouselComponent from "./Carousel";
+import CarouselComponent from "./HeroCarousel";
 import InfoBox from "./InfoBox";
 import styles from "./Hero.module.css";
 

@@ -158,15 +158,19 @@
 
 @media (max-width: 480px) {
   .heroContainer {
-    min-height: 70vh;
+    min-height: 500px;
+    height: auto;
   }
 
   .carousel {
-    min-height: 70vh;
+    min-height: 500px;
+    height: auto;
   }
 
   .slideContainer {
-    min-height: 70vh;
+    min-height: 500px;
+    height: auto;
+    padding: 80px 0;
   }
 
   .title {
@@ -181,11 +185,11 @@
 
   .contentCol {
     padding: 0 16px;
+    margin-top: 60px;
   }
   .buttonsContainer {
     flex-direction: column;
     gap: 12px;
-    padding-top: 150px;
   }
 }
 

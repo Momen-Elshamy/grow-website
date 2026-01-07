@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 60%; /* Image covers 50% of the section height */
-  background-image: linear-gradient(to bottom, rgba(253, 253, 245, 0.92), rgba(255, 255, 255, 0.85)), url('/images/services/bg-serives.webp');
+  background-image: linear-gradient(to bottom, rgba(253, 253, 245, 0.92), rgba(255, 255, 255, 0.85)), url('/images/services/bg-services.webp');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;

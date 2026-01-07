@@ -12,21 +12,21 @@ export default function CarouselComponent() {
   const carouselImages = [
     {
       id: 1,
-      image: "/images/Hero/background1.jpg", // Replace with your image path
+      image: "/images/hero/background1.jpg", // Replace with your image path
       title: "Shaping A Future For Eco Farming & New Agriculture!",
       description:
         "Our Agriculture businesses deliver agronomic advice, services, and inputs to livestock, fruit, and vegetables. We also supply smart chain solutions to all businesses in all the primary food production fields.",
     },
     {
       id: 2,
-      image: "/images/Hero/background2.webp", // Replace with your image path
+      image: "/images/hero/background2.webp", // Replace with your image path
       title: "Sustainable Agriculture Solutions",
       description:
         "Techniques that prioritize health of our land and customers within the regional agricultural market.",
     },
     {
       id: 3,
-      image: "/images/Hero/background1.jpg", // Replace with your image path
+      image: "/images/hero/background1.jpg", // Replace with your image path
       title: "100% Organic Products",
       description:
         "Delivering sustainable agriculture solutions for a better future.",

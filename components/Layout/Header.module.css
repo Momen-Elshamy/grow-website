@@ -238,7 +238,7 @@
 @media (max-width: 991px) {
   .header {
     position: fixed;
-    top: 134px ;
+    top: 144px ;
     height: auto;
     padding: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -261,6 +261,6 @@
 }
 @media (max-width: 430px) {
   .header {
-    top: 210px;
+    top: 225px;
   }
 }

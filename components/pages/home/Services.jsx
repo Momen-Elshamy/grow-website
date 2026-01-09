@@ -8,7 +8,7 @@ export default function Services() {
   const services = [
     {
       id: 1,
-      image: "/images/hero/background1.jpg",
+      image: "/images/hero/background-1.jpg",
       icon: "fi-rr-shopping-bag",
       title: "Seed Supply and Distribution",
       description:
@@ -16,7 +16,7 @@ export default function Services() {
     },
     {
       id: 2,
-      image: "/images/hero/background1.jpg",
+      image: "/images/hero/background-1.jpg",
       icon: "fi-rr-house-tree",
       title: "Soil Health and Management",
       description:
@@ -24,7 +24,7 @@ export default function Services() {
     },
     {
       id: 3,
-      image: "/images/hero/background1.jpg",
+      image: "/images/hero/background-1.jpg",
       icon: "fi-rr-faucet",
       title: "Crop Irrigation Management",
       description:
@@ -32,7 +32,7 @@ export default function Services() {
     },
     {
       id: 4,
-      image: "/images/hero/background1.jpg",
+      image: "/images/hero/background-1.jpg",
       icon: "fi-rr-chart-line-up",
       title: "Yield Analysis",
       description:
@@ -40,7 +40,7 @@ export default function Services() {
     },
     {
       id: 5,
-      image: "/images/hero/background1.jpg",
+      image: "/images/hero/background-1.jpg",
       icon: "fi-rr-droplet",
       title: "Irrigation Management",
       description:
@@ -48,7 +48,7 @@ export default function Services() {
     },
     {
       id: 6,
-      image: "/images/hero/background1.jpg",
+      image: "/images/hero/background-1.jpg",
       icon: "fi-rr-seed seedling",
       title: "Organic Certification",
       description:
@@ -60,7 +60,7 @@ export default function Services() {
     <div className={styles.servicesContainer}>
       <div className={styles.backgroundWrapper}>
         <Image
-          src="/images/services/bg-services.webp"
+          src="/images/services/background-services.webp"
           alt="Services Background"
           fill
           className={styles.backgroundImage}

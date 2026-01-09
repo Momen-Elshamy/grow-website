@@ -86,7 +86,7 @@
 .contactButton {
   background-color: #eecd15 !important;
   border-color: #eecd15 !important;
-  color: #000 !important;
+  color: #0b2414 !important;
   align-items: center;
 }
 
@@ -131,14 +131,14 @@
 }
 
 .rightTitle {
-  color: #000 !important;
+  color: #0b2414 !important;
   font-size: 24px !important;
   font-weight: 700 !important;
   margin-bottom: 24px !important;
 }
 
 .rightParagraph {
-  color: #333 !important;
+  color: #0b2414 !important;
   font-size: 16px !important;
   margin-bottom: 40px !important;
   max-width: 300px;
@@ -152,7 +152,7 @@
 .navButton {
   background: transparent !important;
   border: 1px solid #000 !important;
-  color: #000 !important;
+  color: #0b2414 !important;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -58,12 +58,16 @@ const MissionRightContent = ({ currentContent, handlePrev, handleNext }) => {
 
         <div className={styles.navigation}>
           <Button
-            icon={<Uicons icon="fi-rr-angle-left" size="16px" color="black" />}
+            icon={
+              <Uicons icon="fi-rr-angle-left" size="16px" color="#0b2414" />
+            }
             className={styles.navButton}
             onClick={handlePrev}
           />
           <Button
-            icon={<Uicons icon="fi-rr-angle-right" size="16px" color="black" />}
+            icon={
+              <Uicons icon="fi-rr-angle-right" size="16px" color="#0b2414" />
+            }
             className={styles.navButton}
             onClick={handleNext}
           />

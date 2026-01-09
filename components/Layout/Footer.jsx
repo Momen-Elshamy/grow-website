@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Row, Col, Button } from "antd";
+import Image from "next/image";
 import styles from "./Footer.module.css";
 import Uicons from "../UI/Uicons";
 
@@ -105,7 +106,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.graphicContainer}>
-        <img src="/images/footergraphic.svg" alt="" className={styles.footerGraphic} />
+        <Image src="/images/footergraphic.svg" alt="" className={styles.footerGraphic} width={1920} height={400} />
       </div>
 
       <div className={styles.bottom}>

@@ -70,7 +70,7 @@ export default function NewsSection({
         className={styles.container}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
         variants={containerVariants}
       >
         <motion.div className={styles.tagline} variants={leftVariants}>
@@ -98,6 +98,7 @@ export default function NewsSection({
                   className={styles.overlayCard}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false }}
                   transition={{ delay: 0.5, duration: 0.5 }}
                 >
                   <Flex vertical justify="center" align="center">
@@ -120,6 +121,7 @@ export default function NewsSection({
                 className={styles.decorativeText}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false }}
                 transition={{ delay: 0.7, duration: 0.8 }}
               >
                 Quality Crops

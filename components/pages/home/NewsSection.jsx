@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { Button, Row, Col, Modal, Flex } from "antd";
+import { Row, Col, Modal, Flex } from "antd";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./NewsSection.module.css";
 
 const COMMITMENT_DEFAULTS = {
-  videoUrl: "https://www.youtube.com/embed/vDMwdqtipeI?feature=oembed&mode=opaque&loop=1&autoplay=1&controls=1&mute=0&rel=0&modestbranding=0",
+  videoUrl:
+    "https://www.youtube.com/embed/vDMwdqtipeI?feature=oembed&mode=opaque&loop=1&autoplay=1&controls=1&mute=0&rel=0&modestbranding=0",
   mainImage: "/images/news/banner-video.webp",
   tagline: "Insights, News, and Updates on Sustainable Agriculture.",
   heading:
@@ -165,19 +167,18 @@ export default function NewsSection({
               </div>
 
               <motion.div className={styles.actions} variants={rightVariants}>
-                <Button type="primary" className={styles.btn} size="large">
-                  More About Us{" "}
-                  <Uicons
-                    icon="fi-rr-arrow-small-right"
-                    style={{ marginLeft: "8px", order: 1 }}
-                  />
-                </Button>
-                <Button
-                  className={`${styles.btn} ${styles.secondaryBtn} `}
-                  size="large"
+                <CustomButton
+                  className={styles.btn}
+                  icon="fi-rr-arrow-small-right"
+                >
+                  More About Us
+                </CustomButton>
+                <CustomButton
+                  className={`${styles.btn} ${styles.secondaryBtn}`}
+                  icon={null}
                 >
                   Contact Us
-                </Button>
+                </CustomButton>
               </motion.div>
             </div>
           </Col>

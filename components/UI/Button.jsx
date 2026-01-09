@@ -4,12 +4,15 @@ import Uicons from "./Uicons";
 export default function CustomButton({
   children,
   icon = "fi-rr-arrow-right",
+  iconColor = "white",
+  style,
   ...props
 }) {
   return (
     <Button
       type="primary"
       size="large"
+      style={{ padding: "24px", ...style }}
       {...props}
     >
       {children}
@@ -17,7 +20,12 @@ export default function CustomButton({
         <Uicons
           icon={icon}
           size="16px"
-          style={{ color: "white", display: "flex", alignItems: "center", justifyContent: "center" }}
+          style={{
+            color: iconColor,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         />
       )}
     </Button>

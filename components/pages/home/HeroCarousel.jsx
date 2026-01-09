@@ -14,7 +14,7 @@ export default function CarouselComponent() {
     {
       id: 1,
       image: "/images/hero/background-1.jpg", // Replace with your image path
-      title: "Shaping.. A Future For Eco Farming & New Agriculture!",
+      title: "Shaping..1 A Future For Eco Farming & New Agriculture!",
       description:
         "Our Agriculture businesses deliver agronomic advice, services, and inputs to livestock, fruit, and vegetables. We also supply smart chain solutions to all businesses in all the primary food production fields.",
     },

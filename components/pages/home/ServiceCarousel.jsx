@@ -73,6 +73,7 @@ export default function ServiceCarousel({ services }) {
                 alt={service.title}
                 fill
                 className={styles.serviceImage}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </motion.div>
 

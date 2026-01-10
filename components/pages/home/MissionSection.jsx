@@ -58,6 +58,7 @@ const MissionSection = () => {
           fill
           className={styles.backgroundImage}
           priority={false}
+          sizes="100vw"
         />
         <div className={styles.backgroundOverlay} />
       </div>

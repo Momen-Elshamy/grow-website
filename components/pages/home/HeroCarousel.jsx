@@ -61,6 +61,7 @@ export default function CarouselComponent() {
                 fill
                 priority={index === 0}
                 className={styles.backgroundImage}
+                sizes="100vw"
               />
               {/* Overlay for better text readability */}
               <div className={styles.overlay} />

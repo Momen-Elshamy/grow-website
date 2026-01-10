@@ -55,16 +55,13 @@ export default function CarouselComponent() {
         {carouselImages.map((slide, index) => (
           <div key={slide.id}>
             <div className={styles.slideContainer}>
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={slide.image}
-                  alt={slide.title}
-                  fill
-                  priority={index === 0}
-                  className={styles.backgroundImage}
-                  sizes="100vw"
-                />
-              </div>
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                className={styles.backgroundImage}
+              />
               {/* Overlay for better text readability */}
               <div className={styles.overlay} />
 

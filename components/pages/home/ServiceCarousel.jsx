@@ -68,15 +68,12 @@ export default function ServiceCarousel({ services }) {
               transition={{ duration: 0.6 }}
               className={styles.serviceImageContainer}
             >
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className={styles.serviceImage}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
+              <Image
+                src={service.image}
+                alt={service.title}
+                fill
+                className={styles.serviceImage}
+              />
             </motion.div>
 
             <div className={styles.cardContentWrapper}>

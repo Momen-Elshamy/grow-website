@@ -1,4 +1,4 @@
-import { Carousel, Flex, Button } from "antd";
+import { Carousel, Flex } from "antd";
 import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -109,9 +109,9 @@ export default function CarouselComponent() {
                       className={styles.buttonsContainer}
                     >
                       <CustomButton>Explore Our Services</CustomButton>
-                      <Button size="large" className={styles.aboutButton}>
+                      <CustomButton className={styles.aboutButton} icon={null}>
                         About Us
-                      </Button>
+                      </CustomButton>
                     </motion.div>
                   </div>
                 </div>

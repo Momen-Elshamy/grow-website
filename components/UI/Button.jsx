@@ -12,7 +12,7 @@ export default function CustomButton({
     <Button
       type="primary"
       size="large"
-      style={{ fontWeight: 500, ...style }}
+      style={{ padding: "24px", fontWeight: 500, ...style }}
       {...props}
     >
       {children}

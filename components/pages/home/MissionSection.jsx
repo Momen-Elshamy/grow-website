@@ -52,13 +52,16 @@ const MissionSection = () => {
   return (
     <section className={styles.missionSection}>
       <div className={styles.backgroundWrapper}>
-        <Image
-          src="/images/services/background-services.webp"
-          alt="Mission Background"
-          fill
-          className={styles.backgroundImage}
-          priority={false}
-        />
+        <div className={styles.imageWrapper}>
+          <Image
+            src="/images/services/background-services.webp"
+            alt="Mission Background"
+            fill
+            className={styles.backgroundImage}
+            priority={false}
+            sizes="100vw"
+          />
+        </div>
         <div className={styles.backgroundOverlay} />
       </div>
       <div className={styles.container}>

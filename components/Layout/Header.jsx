@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button, Dropdown, Drawer, Menu } from "antd";
 import { useRouter } from "next/router";
 import { navLinks } from "../../_data/navigation";
+import Uicons from "../UI/Uicons";
 import styles from "./Header.module.css";
 export default function Header() {
    const [scrolled, setScrolled] = useState(false);
@@ -75,7 +76,7 @@ export default function Header() {
                            >
                               <span className={styles.linkText}>{link.name}</span>
                               <span className={styles.iconWrapper}>
-                                 <i className="fi fi-rr-angle-small-down"></i>
+                                 <Uicons icon="fi-rr-angle-small-down" />
                               </span>
                            </div>
                         );
@@ -118,7 +119,7 @@ export default function Header() {
                      <Button
                         type="primary"
                         className="ctaButton"
-                        icon={<i className="fi fi-rr-arrow-small-right" style={{ order: 1 }}></i>}
+                        icon={<Uicons icon="fi-rr-arrow-small-right" style={{ order: 1 }} />}
                         iconPosition="end"
                      >
                         Contact Us
@@ -128,7 +129,7 @@ export default function Header() {
                      className="mobileMenuBtn"
                      type="text"
                      onClick={toggleMobileMenu}
-                     icon={<i style={{ color: "#062A1A"}} className={mobileMenuOpen ? "fi fi-rr-cross" : "fi fi-rr-menu-burger"}></i>}
+                     icon={<Uicons icon={mobileMenuOpen ? "fi-rr-cross" : "fi-rr-menu-burger"} color="#062A1A" />}
                   />
                </div>
             </div>
@@ -155,7 +156,7 @@ export default function Header() {
                   type="text"
                   className={styles.mobileCloseBtn}
                   onClick={closeMobileMenu}
-                  icon={<i className="fi fi-rr-cross"></i>}
+                  icon={<Uicons icon="fi-rr-cross" />}
                />
             </div>
             <Menu
@@ -171,7 +172,7 @@ export default function Header() {
                   <Button
                      type="primary"
                      className="ctaButton"
-                     icon={<i className="fi fi-rr-arrow-small-right" style={{ order: 1 }}></i>}
+                     icon={<Uicons icon="fi-rr-arrow-small-right" style={{ order: 1 }} />}
                      iconPosition="end"
                      block
                   >

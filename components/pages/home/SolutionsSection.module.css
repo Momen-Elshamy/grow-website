@@ -1,0 +1,196 @@
+.container {
+  padding: 80px 0;
+  margin: 0 auto;
+  width: 100%;
+}
+.containerInner {
+  padding: 0 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  margin-bottom: 60px;
+  max-width: 800px;
+}
+
+.leafIcon {
+  color: #107634;
+  font-size: 1.2rem;
+}
+
+.subtitle {
+  color: #107634;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.mainTitle {
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  color: #0b3d1b !important;
+  margin-top: 10px !important;
+}
+.customSteps :global(.ant-steps-item-icon) {
+  margin-inline-end: 24px !important;
+  flex-shrink: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.customSteps :global(.ant-steps-item-container) {
+  padding-bottom: 60px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.customSteps :global(.ant-steps-item-content) {
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.customSteps :global(.ant-steps-item-tail) {
+  inset-inline-start: 30px !important;
+  top: 60px !important;
+  height: calc(100% - 60px) !important;
+  padding: 0 !important;
+}
+
+.customSteps :global(.ant-steps-item-tail::after),
+.customSteps :global(.ant-steps-item-rail) {
+  border-color: rgb(193, 189, 189) !important;
+  background-color: rgb(193, 189, 189) !important;
+}
+
+.stepIcon {
+  width: 50px !important;
+  height: 33px !important;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  color: #333;
+  font-size: 1rem;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Style for the active/highlighted step icon and line */
+.customSteps :global(.ant-steps-item-process) .stepIcon,
+.customSteps :global(.ant-steps-item-finish) .stepIcon {
+    background-color: #EECD15;
+    border-color: #EECD15;
+    font-weight: 500;
+}
+
+/* Yellow line segment for finished and active steps */
+.customSteps :global(.ant-steps-item-finish) :global(.ant-steps-item-tail::after),
+.customSteps :global(.ant-steps-item-process) :global(.ant-steps-item-tail::after),
+.customSteps :global(.ant-steps-item-finish) :global(.ant-steps-item-rail),
+.customSteps :global(.ant-steps-item-process) :global(.ant-steps-item-rail) {
+    background: #EECD15 !important;
+    background-color: #EECD15 !important;
+    border-color: #EECD15 !important;
+}
+
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0b3d1b;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stepDescription {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 400px;
+  display: block;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mainImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.overlayCard {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border-radius: 12px;
+  width: calc(100% - 40px);
+  max-width: 300px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+.iconBox {
+  width: 100px;
+  background-color: #EECD15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+.overlayTextWrapper {
+  padding: 20px ;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.overlayText {
+  font-size: 1rem;
+  font-weight: 500 !important;
+  color: #0b3d1b;
+  line-height: 1.3;
+  margin: 0 !important;
+}
+
+@media (max-width: 991px) {
+  .mainTitle {
+    font-size: 1.25rem !important;
+  }
+  .stepTitle {
+    font-size: 1.1rem;
+  }
+  .stepDescription {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .leafIcon {
+    font-size: 0.8rem;
+  }
+  .subtitle {
+    font-size: 0.7rem;
+  }
+}

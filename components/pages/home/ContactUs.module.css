@@ -105,9 +105,8 @@
 /* Right Column Styles - White Form Background */
 .formContainer {
   background-color: #ffffff;
-  padding: 56px;
+  padding: 40px 32px 16px;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   height: 100%;
 }
 
@@ -152,7 +151,11 @@
 }
 
 .contactForm .input::placeholder {
-  color: #c9c9c9 !important;
+  color: #939393 !important;
+}
+
+.contactForm .ant-select .ant-select-selection-placeholder {
+  color: #939393 !important;
 }
 
 .contactForm .input,
@@ -186,7 +189,7 @@
 }
 .contactForm textarea::placeholder {
   font-size: 16px !important;
-  color: #c9c9c9 !important;
+  color: #939393 !important;
 }
 
 .selectOption {
@@ -194,8 +197,10 @@
   background-color: white !important;
 }
 
-.selectOption:hover {
-  background-color: #1967d2 !important;
+.selectOption:hover,
+.ant-select-item-option:hover,
+.ant-select-item-option-active {
+  background-color: #107634 !important;
   color: white !important;
 }
 

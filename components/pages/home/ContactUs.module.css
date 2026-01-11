@@ -125,7 +125,7 @@
 
 .contactForm input,
 .contactForm .select {
-  height: 66px;
+  height: 56px;
 }
 
 .contactForm .select i {
@@ -152,14 +152,29 @@
 }
 
 .contactForm .input::placeholder {
-  color: #2d583c !important;
+  color: #2d3c58 !important;
 }
 
 .contactForm .input,
 .contactForm .select,
 .contactForm .textarea {
   background-color: #ffffff !important;
+  border: 1px solid #00843d !important;
+}
+
+.contactForm .input,
+contactForm .textarea {
   color: #2d583c !important;
+}
+
+.contactForm .select {
+  color: #2d3c58 !important;
+}
+
+.contactForm .input:hover,
+.contactForm .select:hover,
+.contactForm .textarea:hover {
+  border-color: #f3c800 !important;
 }
 .contactForm .input,
 .contactForm .select {
@@ -167,11 +182,11 @@
 }
 
 .contactForm .selectOption {
-  color: #2d583c !important;
+  color: #2d3c58 !important;
 }
 .contactForm textarea::placeholder {
   font-size: 16px !important;
-  color: #2d583c !important;
+  color: #2d3c58 !important;
 }
 
 .selectOption {
@@ -186,7 +201,7 @@
 
 .select:not(.ant-select-disabled):hover .selectOption {
   background-color: transparent !important;
-  color: #2d583c !important;
+  color: #2d3c58 !important;
 }
 
 /* Responsive Design */

@@ -71,8 +71,7 @@ export default function ServiceCarousel({ services }) {
               <Image
                 src={service.image}
                 alt={service.title}
-                width={400}
-                height={300}
+                fill
                 className={styles.serviceImage}
               />
             </motion.div>

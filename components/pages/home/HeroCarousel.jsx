@@ -1,5 +1,6 @@
-import { Carousel, Flex, Button } from "antd";
+import { Carousel, Flex } from "antd";
 import { useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
@@ -12,21 +13,21 @@ export default function CarouselComponent() {
   const carouselImages = [
     {
       id: 1,
-      image: "/images/hero/background1.jpg", // Replace with your image path
+      image: "/images/hero/background-1.jpg", // Replace with your image path
       title: "Shaping A Future For Eco Farming & New Agriculture!",
       description:
         "Our Agriculture businesses deliver agronomic advice, services, and inputs to livestock, fruit, and vegetables. We also supply smart chain solutions to all businesses in all the primary food production fields.",
     },
     {
       id: 2,
-      image: "/images/hero/background2.webp", // Replace with your image path
+      image: "/images/hero/background-2.webp", // Replace with your image path
       title: "Sustainable Agriculture Solutions",
       description:
         "Techniques that prioritize health of our land and customers within the regional agricultural market.",
     },
     {
       id: 3,
-      image: "/images/hero/background1.jpg", // Replace with your image path
+      image: "/images/hero/background-1.jpg", // Replace with your image path
       title: "100% Organic Products",
       description:
         "Delivering sustainable agriculture solutions for a better future.",
@@ -53,10 +54,14 @@ export default function CarouselComponent() {
       >
         {carouselImages.map((slide, index) => (
           <div key={slide.id}>
-            <div
-              className={styles.slideContainer}
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
+            <div className={styles.slideContainer}>
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                className={styles.backgroundImage}
+              />
               {/* Overlay for better text readability */}
               <div className={styles.overlay} />
 
@@ -104,9 +109,9 @@ export default function CarouselComponent() {
                       className={styles.buttonsContainer}
                     >
                       <CustomButton>Explore Our Services</CustomButton>
-                      <Button size="large" className={styles.aboutButton}>
+                      <CustomButton className={styles.aboutButton} icon={null}>
                         About Us
-                      </Button>
+                      </CustomButton>
                     </motion.div>
                   </div>
                 </div>

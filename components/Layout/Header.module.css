@@ -63,12 +63,14 @@
   box-sizing: border-box;
 }
 :global(.ant-dropdown-open) .dropdownTrigger,
-.dropdownTrigger:global(.ant-dropdown-open) {
+.dropdownTrigger:global(.ant-dropdown-open),
+.dropdownTrigger:hover {
   color: #00843D !important;
   background: rgba(0, 132, 61, 0.03) !important;
   border-top: 4px solid #00843D !important;
 }
-:global(.ant-dropdown-open) .dropdownTrigger .linkText {
+:global(.ant-dropdown-open) .dropdownTrigger .linkText,
+.dropdownTrigger:hover .linkText {
   color: #00843D !important;
 }
 .navLink:hover,
@@ -95,28 +97,46 @@
   display: block;
   line-height: normal;
 }
+.dropdownOverlay {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.dropdownOverlay :global(.ant-dropdown) {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
 .dropdownOverlay :global(.ant-dropdown-menu) {
-  padding: 8px !important;
-  border-radius: 12px !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  border-radius: 10px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
   background-color: #FFFFFF !important;
+  pointer-events: auto !important;
+  overflow: hidden !important;
+  min-width: 200px !important;
 }
 .dropdownOverlay :global(.ant-dropdown-menu-item) {
-  /* border-radius: 8px !important; */
-  padding: 4px 8px !important;
+  padding: 12px 20px !important;
   font-weight: 500 !important;
-  color: #4A4A4A !important;
+  color: #083b1a !important;
   transition: all 0.2s ease !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  margin: 0 !important;
+}
+.dropdownOverlay :global(.ant-dropdown-menu-item:last-child) {
+  border-bottom: none !important;
 }
 .dropdownOverlay :global(.ant-dropdown-menu-item .ant-dropdown-menu-title-content) {
   color: inherit !important;
 }
 .dropdownOverlay :global(.ant-dropdown-menu-item:hover) {
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: transparent !important;
 }
 .dropdownOverlay :global(.ant-dropdown-menu-item:hover .ant-dropdown-menu-title-content) {
-  color: #00843D !important;
+  color: #107634 !important;
 }
 .dropdownOverlay :global(.ant-dropdown-menu-item-active),
 .dropdownOverlay :global(.ant-dropdown-menu-item-selected),

@@ -92,9 +92,11 @@ export default function Header() {
                                     )
                                  }))
                               }}
-                              placement="bottom"
+                              placement="bottomLeft"
                               overlayClassName={styles.dropdownOverlay}
-                              trigger={['click']}
+                              trigger={['hover', 'click']}
+                              mouseEnterDelay={0.1}
+                              mouseLeaveDelay={0.1}
                            >
                               {dropdownTrigger}
                            </Dropdown>

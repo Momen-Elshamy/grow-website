@@ -382,7 +382,7 @@ export default function ContactUs() {
                             border: "none",
                           }}
                           styles={{
-                            placeholder: { color: "#2d583c" },
+                            placeholder: { color: "#c9c9c9" },
                           }}
                         >
                           <Option value="500" className={styles.selectOption}>
@@ -426,7 +426,7 @@ export default function ContactUs() {
                             border: "none",
                           }}
                           styles={{
-                            placeholder: { color: "#2d583c" },
+                            placeholder: { color: "#c9c9c9" },
                           }}
                         >
                           <Option

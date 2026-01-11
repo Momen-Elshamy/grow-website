@@ -3,6 +3,7 @@ import MissionSection from "./MissionSection";
 import NewsSection from "./NewsSection";
 import Services from "./Services";
 import SolutionsSection from "./SolutionsSection";
+import ContactUs from "./ContactUs";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <Services />
         <SolutionsSection />
         <MissionSection />
+        <ContactUs />
     </>
   );
 }

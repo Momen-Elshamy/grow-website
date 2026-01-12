@@ -68,7 +68,7 @@
     min-width: 0;
 }
 .text {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     color: #666;
     margin: 0;
@@ -76,7 +76,7 @@
     line-height: 1.2;
 }
 .info {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #000;
     margin: 0;

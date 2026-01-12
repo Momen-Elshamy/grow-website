@@ -127,7 +127,7 @@
 }
 
 .carouselSlide {
-  padding: 20px 15px 60px; /* Space for dots and icon overlap */
+  padding: 20px 8px 60px; /* Space for dots and icon overlap */
   display: flex !important;
   justify-content: center;
   width: 100%;

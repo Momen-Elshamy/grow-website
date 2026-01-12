@@ -114,7 +114,7 @@ const AgricultureProcess = () => {
                       {step.description}
                     </span>
                   ),
-                  icon: <div className={styles.stepIcon}>0{index + 1}</div>,
+                  icon: <div className={styles.stepIcon}>{index + 1}</div>,
                 }))}
                 className={styles.customSteps}
               />

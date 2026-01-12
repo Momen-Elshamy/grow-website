@@ -15,14 +15,14 @@ const CoursesCarousel = ({ data = [] }) => {
     swipe: false,
     touchMove: false,
     centerMode: true,
-    centerPadding: "10%",
+    centerPadding: "15%",
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "5%",
+          centerPadding: "10%",
         },
       },
       {

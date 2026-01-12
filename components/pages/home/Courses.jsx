@@ -18,7 +18,7 @@ const COURSES_DATA = [
     id: 2,
     image: "/images/courses/project-5.webp",
     tags: ["Agriculture", "Greenhouse"],
-    title: "Controlled environment in agriculture growing hype",
+    title: "Controlled environment in agriculture growing",
     description:
       "Discover the latest trends in climate-controlled greenhouses for sustainable year-round production.",
   },

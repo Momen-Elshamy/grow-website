@@ -75,7 +75,7 @@
   border-radius: 15px;
   overflow: hidden;
   position: relative;
-  height: 550px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -251,7 +251,7 @@
 
 @media (max-width: 900px) {
   .card {
-    height: 500px;
+    height: 400px;
   }
 }
 
@@ -263,7 +263,7 @@
     font-size: 28px;
   }
   .card {
-    height: 480px;
+    height: 380px;
   }
   .contentWrapper {
     padding: 20px 60px 20px 20px;
@@ -277,9 +277,7 @@
   .heading {
     font-size: 24px !important;
   }
-  .card {
-    height: 450px;
-  }
+
   .cardTitle {
     font-size: 18px;
   }

@@ -22,7 +22,7 @@ const CoursesCarousel = ({ data = [] }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          centerPadding: "10%",
+          centerPadding: "5%",
         },
       },
       {

@@ -17,27 +17,36 @@ export default function Footer() {
                 Grow
               </Link>
               <p className={styles.description}>
-                Our commitment is to help farmers have the technologies they need to protect the crops and empowering the future of food production!
+                Our commitment is to help farmers have the technologies they
+                need to protect the crops and empowering the future of food
+                production!
               </p>
               <div className={styles.socials}>
-                <Button 
-                  type="primary" 
+                <Button
+                  type="primary"
                   shape="default"
-                  icon={<Uicons icon="fi-brands-facebook" />} 
+                  icon={<Uicons icon="fi-brands-facebook" />}
                   aria-label="Facebook"
                   href="#"
                 />
-                <Button 
-                  type="primary" 
+                <Button
+                  type="primary"
                   shape="default"
-                  icon={<Uicons icon="fi-brands-twitter-alt" />} 
-                  aria-label="X"
+                  icon={<Uicons icon="fi-brands-instagram" />}
+                  aria-label="Instagram"
                   href="#"
                 />
-                <Button 
-                  type="primary" 
+                <Button
+                  type="primary"
                   shape="default"
-                  icon={<Uicons icon="fi-brands-linkedin" />} 
+                  icon={<Uicons icon="fi-brands-youtube" />}
+                  aria-label="YouTube"
+                  href="#"
+                />
+                <Button
+                  type="primary"
+                  shape="default"
+                  icon={<Uicons icon="fi-brands-linkedin" />}
                   aria-label="LinkedIn"
                   href="#"
                 />
@@ -49,11 +58,45 @@ export default function Footer() {
             <div className={styles.column}>
               <h4>About</h4>
               <ul className={styles.links}>
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/farmers">Our Farmers</Link></li>
-                <li><Link href="/products">Our Products</Link></li>
-                <li><Link href="/contact">Contact Us</Link></li>
-                <li><Link href="/careers">Careers</Link></li>
+                <li>
+                  <Link href="/about#values">Our Values</Link>
+                </li>
+                <li>
+                  <Link href="/about#mission">Vision & Mission</Link>
+                </li>
+                <li>
+                  <Link href="/about#experts">Meet Our Experts</Link>
+                </li>
+                <li>
+                  <Link href="/contact">Contact Us</Link>
+                </li>
+              </ul>
+            </div>
+          </Col>
+
+          <Col xs={12} sm={12} md={6} lg={4} xl={4}>
+            <div className={styles.column}>
+              <h4>Solutions</h4>
+              <ul className={styles.links}>
+                <li>
+                  <Link href="/solutions#operation">Farm Operation</Link>
+                </li>
+                <li>
+                  <Link href="/solutions#frp">
+                    Farm Resource Planning solution "FRP"
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/solutions#water">Water Management</Link>
+                </li>
+                <li>
+                  <Link href="/solutions#training">Human Capital Training</Link>
+                </li>
+                <li>
+                  <Link href="/solutions#commercial">
+                    Commercial Management
+                  </Link>
+                </li>
               </ul>
             </div>
           </Col>
@@ -62,25 +105,28 @@ export default function Footer() {
             <div className={styles.column}>
               <h4>Services</h4>
               <ul className={styles.links}>
-                <li><Link href="/services/seed">Seed Distribution</Link></li>
-                <li><Link href="/services/soil">Soil Management</Link></li>
-                <li><Link href="/services/irrigation">Irrigation Management</Link></li>
-                <li><Link href="/services/reports">Detailed Field Reports</Link></li>
-                <li><Link href="/services/planning">Crop Rotation Planning</Link></li>
-                <li><Link href="/services/mapping">Soil Texture Mapping</Link></li>
-              </ul>
-            </div>
-          </Col>
-
-          <Col xs={12} sm={12} md={6} lg={4} xl={4}>
-            <div className={styles.column}>
-              <h4>Resources</h4>
-              <ul className={styles.links}>
-                <li><Link href="/news">News & Media</Link></li>
-                <li><Link href="/how-it-works">How It Works</Link></li>
-                <li><Link href="/pricing">Pricing Plans</Link></li>
-                <li><Link href="/faqs">Help & FAQs</Link></li>
-                <li><Link href="/awards">Awards</Link></li>
+                <li>
+                  <Link href="/services#consultancy">
+                    Technical Consultancy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services#lab">Lab analysis</Link>
+                </li>
+                <li>
+                  <Link href="/services#training">Course</Link>
+                </li>
+                <li>
+                  <Link href="/services#irrigation">Engineering</Link>
+                </li>
+                <li>
+                  <Link href="/services#optimization">
+                    Revision and optimization
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services#remote-sensing">Remote sensing</Link>
+                </li>
               </ul>
             </div>
           </Col>
@@ -90,14 +136,15 @@ export default function Footer() {
               <h4>Quick Contact</h4>
               <div className={styles.contactInfo}>
                 <p className={styles.contactItem}>
-                  2307 Beverley Rd Brooklyn, <br />
-                  New York, United States.
+                  Smart village, linx building, office A105
                 </p>
                 <p className={styles.contactItem}>
-                  <Link href="mailto:contact@grow.com">contact@grow.com</Link>
+                  <Link href="mailto:info@growegypt.com">
+                    info@growegypt.com
+                  </Link>
                 </p>
                 <p className={`${styles.contactItem} ${styles.phone}`}>
-                  +2 011 6114 5741
+                  01080200887
                 </p>
               </div>
             </div>
@@ -106,18 +153,31 @@ export default function Footer() {
       </div>
 
       <div className={styles.graphicContainer}>
-        <Image src="/images/footergraphic.svg" alt="" className={styles.footerGraphic} width={1920} height={400} />
+        <Image
+          src="/images/footergraphic.svg"
+          alt=""
+          className={styles.footerGraphic}
+          width={1920}
+          height={400}
+        />
       </div>
 
       <div className={styles.bottom}>
         <div className={`${styles.container} ${styles.bottomContainer}`}>
           <p className={styles.copyright}>
-            ©{currentYear} <span>Grow</span>, All Rights Reserved. With Love by premastlab.com
+            ©{currentYear} <span>Grow</span>, All Rights Reserved. With Love by
+            premastlab.com
           </p>
           <ul className={styles.bottomLinks}>
-            <li><Link href="/terms">Terms & Conditions</Link></li>
-            <li><Link href="/privacy">Privacy Policy</Link></li>
-            <li><Link href="/sitemap">Sitemap</Link></li>
+            <li>
+              <Link href="/terms">Terms & Conditions</Link>
+            </li>
+            <li>
+              <Link href="/privacy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link href="/sitemap">Sitemap</Link>
+            </li>
           </ul>
         </div>
       </div>

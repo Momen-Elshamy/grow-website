@@ -5,19 +5,19 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const { name, email, company, phone, propertySize, aiIntegration, message } =
-    req.body;
+  const {
+    name,
+    email,
+    company,
+    phone,
+    propertySize,
+    services,
+    courses,
+    message,
+  } = req.body;
 
   // Validate required fields
-  if (
-    !name ||
-    !email ||
-    !company ||
-    !phone ||
-    !propertySize ||
-    !aiIntegration ||
-    !message
-  ) {
+  if (!name || !email || !company || !phone || !message) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
@@ -33,18 +33,10 @@ export default async function handler(req, res) {
 
   // Format property size for display
   const propertySizeLabels = {
-    small: "Small (0-5 hectares)",
-    medium: "Medium (5-20 hectares)",
-    large: "Large (20-50 hectares)",
-    xlarge: "Extra Large (50+ hectares)",
-  };
-
-  // Format AI integration for display
-  const aiIntegrationLabels = {
-    basic: "Basic AI Integration",
-    advanced: "Advanced AI Solutions",
-    custom: "Custom AI Development",
-    consultation: "AI Consultation",
+    small: "Small (0-5 Acre)",
+    medium: "Medium (5-20 Acre)",
+    large: "Large (20-50 Acre)",
+    xlarge: "Extra Large (50+ Acre)",
   };
 
   // Email content
@@ -63,12 +55,23 @@ export default async function handler(req, res) {
           <p style="margin: 10px 0;"><strong style="color: #083b1a;">Email:</strong> ${email}</p>
           <p style="margin: 10px 0;"><strong style="color: #083b1a;">Company:</strong> ${company}</p>
           <p style="margin: 10px 0;"><strong style="color: #083b1a;">Phone:</strong> ${phone}</p>
-          <p style="margin: 10px 0;"><strong style="color: #083b1a;">Property Size:</strong> ${
-            propertySizeLabels[propertySize] || propertySize
-          }</p>
-          <p style="margin: 10px 0;"><strong style="color: #083b1a;">AI Integration:</strong> ${
-            aiIntegrationLabels[aiIntegration] || aiIntegration
-          }</p>
+          ${
+            propertySize
+              ? `<p style="margin: 10px 0;"><strong style="color: #083b1a;">Property Size:</strong> ${
+                  propertySizeLabels[propertySize] || propertySize
+                }</p>`
+              : ""
+          }
+          ${
+            services
+              ? `<p style="margin: 10px 0;"><strong style="color: #083b1a;">Services:</strong> ${services}</p>`
+              : ""
+          }
+          ${
+            courses
+              ? `<p style="margin: 10px 0;"><strong style="color: #083b1a;">Course:</strong> ${courses}</p>`
+              : ""
+          }
         </div>
         <div style="margin-top: 20px;">
           <h3 style="color: #083b1a;">Message:</h3>
@@ -85,8 +88,13 @@ export default async function handler(req, res) {
       Email: ${email}
       Company: ${company}
       Phone: ${phone}
-      Property Size: ${propertySizeLabels[propertySize] || propertySize}
-      AI Integration: ${aiIntegrationLabels[aiIntegration] || aiIntegration}
+      ${
+        propertySize
+          ? `Property Size: ${propertySizeLabels[propertySize] || propertySize}`
+          : ""
+      }
+      ${services ? `Services: ${services}` : ""}
+      ${courses ? `Course: ${courses}` : ""}
       
       Message:
       ${message}

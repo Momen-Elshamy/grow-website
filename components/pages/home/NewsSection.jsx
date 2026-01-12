@@ -12,7 +12,7 @@ const COMMITMENT_DEFAULTS = {
   mainImage: "/images/news/banner-video.webp",
   tagline: "Insights, News, and Updates on Sustainable Agriculture.",
   heading:
-    "Our commitment is to produce quality crops and empowering the future of food production!",
+    "Discover expert insights, industry news, and updates.",
   features: [
     {
       icon: "fi fi-rr-farm",

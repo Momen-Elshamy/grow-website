@@ -9,7 +9,7 @@ export default function Services() {
       id: 1,
       image: "/images/hero/background-1.jpg",
       icon: "fi-rr-shopping-bag",
-      title: "Seed Supply and Distribution",
+      title: "Technical Consultancy",
       description:
         "We have dedicated resources that will meet your huge seed storage and all distribution needs to assure a ready seed supply on tim...",
     },
@@ -17,7 +17,7 @@ export default function Services() {
       id: 2,
       image: "/images/hero/background-1.jpg",
       icon: "fi-rr-house-tree",
-      title: "Soil Health and Management",
+      title: "Lab analysis/Eurofins",
       description:
         "Soil health refers to the soil's capacity to function as vital living ecosystem that lead to a huge productivity system success for your farm.",
     },
@@ -25,7 +25,7 @@ export default function Services() {
       id: 3,
       image: "/images/hero/background-1.jpg",
       icon: "fi-rr-faucet",
-      title: "Crop Irrigation Management",
+      title: "Training Course",
       description:
         "Water is a precious resource for humanity and it makes sense to optimize it's use by technology and scheduling water applied to a field.",
     },
@@ -33,7 +33,7 @@ export default function Services() {
       id: 4,
       image: "/images/hero/background-1.jpg",
       icon: "fi-rr-chart-line-up",
-      title: "Yield Analysis",
+      title: "Engineering & design of Irrigation and drainage systems",
       description:
         "Comprehensive yield analysis to help you understand crop performance and optimize your farming strategies for maximum productivity.",
     },
@@ -41,7 +41,8 @@ export default function Services() {
       id: 5,
       image: "/images/hero/background-1.jpg",
       icon: "fi-rr-droplet",
-      title: "Irrigation Management",
+      title:
+        "Revision, Re-engineering and optimization of existing water systems",
       description:
         "Smart irrigation solutions that help you manage water resources efficiently and ensure optimal crop growth throughout the season.",
     },
@@ -49,7 +50,7 @@ export default function Services() {
       id: 6,
       image: "/images/hero/background-1.jpg",
       icon: "fi-rr-seed seedling",
-      title: "Organic Certification",
+      title: "Remote sensing",
       description:
         "Expert guidance through the organic certification process, ensuring your farm meets all standards and requirements for organic production.",
     },
@@ -69,12 +70,9 @@ export default function Services() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className={styles.headerSection}
         >
-          <p className={styles.subtitle}>
-            Let's start your farming journey together!
-          </p>
+          <p className={styles.subtitle}>Our Core Services</p>
           <h2 className={styles.mainTitle}>
-            Innovative solutions for agriculture optimal crops growth & soil
-            health.
+            Professional Agricultural Services
           </h2>
           <div className={styles.leafIconContainer}>
             <Uicons icon="fi-rr-leaf" size="20px" color="#107634" />

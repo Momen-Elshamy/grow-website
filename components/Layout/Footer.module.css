@@ -37,8 +37,36 @@
 
 .socials {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.socials :global(.ant-btn) {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 45px !important;
+  height: 45px !important;
+  padding: 0 !important;
+  background: #107634 !important;
+  border: none !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.socials :global(.ant-btn:hover) {
+  background: #EECD15 !important;
+  transform: translateY(-3px);
+}
+
+.socials :global(.ant-btn i) {
+  font-size: 20px !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1 !important;
+  margin: 0 !important;
 }
 
 .column h4 {

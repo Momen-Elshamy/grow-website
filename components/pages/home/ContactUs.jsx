@@ -5,6 +5,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import styles from "./ContactUs.module.css";
 import Uicons from "@/components/UI/Uicons";
+import CustomButton from "@/components/UI/Button";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -100,7 +101,8 @@ export default function ContactUs() {
           company: values.company,
           phone: values.phone,
           propertySize: values.propertySize,
-          aiIntegration: values.aiIntegration,
+          services: values.services,
+          courses: values.courses,
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
@@ -175,12 +177,12 @@ export default function ContactUs() {
                   whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
                   <div className={styles.iconWrapper}>
-                    <Uicons icon="fi-rr-envelope" />
+                    <Uicons icon="fi-rr-newsletter-subscribe" />
                   </div>
                   <div className={styles.contactDetails}>
                     <h3 className={styles.contactTitle}>Quick Contact</h3>
-                    <p className={styles.contactText}>Agritec@7oroof.com</p>
-                    <p className={styles.contactText}>+2 011 6114 5741</p>
+                    <p className={styles.contactText}>info@growegypt.com</p>
+                    <p className={styles.contactText}>01080200887</p>
                   </div>
                 </motion.div>
 
@@ -193,12 +195,12 @@ export default function ContactUs() {
                   whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 >
                   <div className={styles.iconWrapper}>
-                    <Uicons icon="fi-rr-marker" />
+                    <Uicons icon="fi-rr-land-layer-location" />
                   </div>
                   <div className={styles.contactDetails}>
                     <h3 className={styles.contactTitle}>Our Location</h3>
                     <p className={styles.contactText}>
-                      Great Kings 2307 Beverley Road, Brooklyn, NY 145784
+                      Smart village, linx building, office A105
                     </p>
                   </div>
                 </motion.div>
@@ -367,13 +369,12 @@ export default function ContactUs() {
                         name="propertySize"
                         rules={[
                           {
-                            required: true,
-                            message: "Please select property size",
+                            required: false,
                           },
                         ]}
                       >
                         <Select
-                          placeholder="Property size (hectares)"
+                          placeholder="Property size (Acre)"
                           size="large"
                           suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                           className={styles.select}
@@ -386,38 +387,37 @@ export default function ContactUs() {
                           }}
                         >
                           <Option value="500" className={styles.selectOption}>
-                            500 hectares
+                            500 Acre
                           </Option>
                           <Option value="1000" className={styles.selectOption}>
-                            1000 hectares
+                            1000 Acre
                           </Option>
                           <Option value="2000" className={styles.selectOption}>
-                            2000 hectares
+                            2000 Acre
                           </Option>
                           <Option value="4000" className={styles.selectOption}>
-                            4000 hectares
+                            4000 Acre
                           </Option>
                           <Option value="8000" className={styles.selectOption}>
-                            8000 hectares
+                            8000 Acre
                           </Option>
                           <Option value="10000" className={styles.selectOption}>
-                            10000 hectares
+                            10000 Acre
                           </Option>
                         </Select>
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={24} md={12}>
                       <Form.Item
-                        name="aiIntegration"
+                        name="services"
                         rules={[
                           {
-                            required: true,
-                            message: "Please select AI integration solution",
+                            required: false,
                           },
                         ]}
                       >
                         <Select
-                          placeholder="AI Integration solutions"
+                          placeholder="Services"
                           size="large"
                           suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                           className={styles.select}
@@ -430,46 +430,95 @@ export default function ContactUs() {
                           }}
                         >
                           <Option
-                            value="AI Integration solutions"
+                            value="Technical Consultancy"
                             className={styles.selectOption}
                           >
-                            AI Integration solutions
+                            Technical Consultancy
                           </Option>
                           <Option
-                            value="Seed Supply and Distribution"
+                            value="Lab analysis/Eurofins"
                             className={styles.selectOption}
                           >
-                            Seed Supply and Distribution
+                            Lab analysis/Eurofins
                           </Option>
                           <Option
-                            value="Soil Health and Management"
+                            value="Training Course"
                             className={styles.selectOption}
                           >
-                            Soil Health and Management
+                            Training Course
                           </Option>
                           <Option
-                            value="Crop Irrigation Management"
+                            value="Engineering & design of Irrigation and drainage systems."
                             className={styles.selectOption}
                           >
-                            Crop Irrigation Management
+                            Engineering & design of Irrigation and drainage
+                            systems.
                           </Option>
                           <Option
-                            value="Detailed Field Reports"
+                            value="Revision, Re-engineering and optimization of existing water systems."
                             className={styles.selectOption}
                           >
-                            Detailed Field Reports
+                            Revision, Re-engineering and optimization of
+                            existing water systems.
                           </Option>
                           <Option
-                            value="Crop Rotation Planning"
+                            value="Remote sensing"
                             className={styles.selectOption}
                           >
-                            Crop Rotation Planning
+                            Remote sensing
+                          </Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row gutter={16}>
+                    <Col span={24}>
+                      <Form.Item
+                        name="courses"
+                        rules={[
+                          {
+                            required: false,
+                          },
+                        ]}
+                      >
+                        <Select
+                          placeholder="Courses"
+                          size="large"
+                          suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
+                          className={styles.select}
+                          dropdownStyle={{
+                            backgroundColor: "white",
+                            border: "none",
+                          }}
+                          styles={{
+                            placeholder: { color: "#c9c9c9" },
+                          }}
+                        >
+                          <Option
+                            value="Advancing vertical farming with urban crop solutions"
+                            className={styles.selectOption}
+                          >
+                            Advancing vertical farming with urban crop solutions
                           </Option>
                           <Option
-                            value="Soil Texture Mapping"
+                            value="Controlled environment in agriculture growing"
                             className={styles.selectOption}
                           >
-                            Soil Texture Mapping
+                            Controlled environment in agriculture growing
+                          </Option>
+                          <Option
+                            value="How to help farmers break their financial barriers?"
+                            className={styles.selectOption}
+                          >
+                            How to help farmers break their financial barriers?
+                          </Option>
+                          <Option
+                            value="Future of food production in smart new indoor farming"
+                            className={styles.selectOption}
+                          >
+                            Future of food production in smart new indoor
+                            farming
                           </Option>
                         </Select>
                       </Form.Item>
@@ -504,19 +553,14 @@ export default function ContactUs() {
                   </Form.Item>
 
                   <Form.Item>
-                    <Button
-                      type="primary"
+                    <CustomButton
                       htmlType="submit"
-                      size="large"
                       loading={loading}
-                      className={`${styles.submitButton} ctaButton`}
-                      icon={
-                        !loading && <Uicons icon="fi-rr-arrow-small-right" />
-                      }
-                      iconPosition="end"
+                      className={styles.submitButton}
+                      icon={loading ? null : "fi-rr-arrow-small-right"}
                     >
                       {loading ? "Sending..." : "Submit Request"}
-                    </Button>
+                    </CustomButton>
                   </Form.Item>
                 </Form>
               </motion.div>

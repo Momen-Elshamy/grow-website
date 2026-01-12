@@ -16,24 +16,28 @@ const AgricultureProcess = () => {
 
   const steps = [
     {
-      title: "Preparation of soil",
+      title: "Farm Operation and Management",
       description:
-        "Soil preparation is crucial in the modern farming ecosystem, this process involves testing soil for nutrient and pH levels.",
+        "Soil preparation is crucial in the modern farming ecosystem.",
     },
     {
-      title: "Irrigation & fertilisation",
+      title: "Farm Resource Planning solution “FRP”",
       description:
-        "Efficient irrigation systems are vital in the farming ecosystem, especially in regions with the unpredictable rainfall.",
+        "Efficient irrigation systems are vital in the farming ecosystem.",
     },
     {
-      title: "Pest and disease control",
-      description:
-        "Integrated pest management strategies, including the use of biocontrol agents and rotation to manage pests and diseases.",
+      title: "Water Management",
+      description: "Integrated pest management strategies.",
     },
     {
-      title: "Harvesting & storage",
+      title: "Human Capital Training & Development",
       description:
-        "Timing of the harvest is critical & is determined by monitoring crop maturity facilitates harvesting, especially for large farms.",
+        "Timing of the harvest is critical & is determined by monitoring crop maturity facilitates harvesting.",
+    },
+    {
+      title: "Commercial Management",
+      description:
+        "Soil preparation is crucial in the modern farming ecosystem.",
     },
   ];
 
@@ -85,8 +89,8 @@ const AgricultureProcess = () => {
               </Text>
             </Flex>
             <Title level={2} className={styles.mainTitle}>
-              Empowering agriculture and eco farming with sustainable practices
-              and innovations!
+              Innovative solutions for agriculture optimal crops growth & soil
+              health.
             </Title>
           </Flex>
         </motion.div>

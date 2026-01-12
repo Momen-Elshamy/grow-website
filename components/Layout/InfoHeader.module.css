@@ -1,6 +1,5 @@
 .infoHeader {
-    position: fixed;
-    top: 0;
+    position: relative;
     left: 0;
     right: 0;
     z-index: 1001;
@@ -14,6 +13,7 @@
 .iconsContainer {
     border-right: 1px solid #E0E0E0;
 }
+.iconsContainer:nth-child(3),
 .iconsContainer:last-child {
     border-right: none;
 }
@@ -41,16 +41,25 @@
     align-items: center;
     gap: 22px;
 }
+.infoTextContent {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
 .text {
     font-size: 16px;
     font-weight: 500;
     color: #666;
-    padding-bottom: 6px;
+    margin: 0;
+    padding-bottom: 2px;
+    line-height: 1.2;
 }
 .info {
     font-size: 16px;
     font-weight: 600;
     color: #000;
+    margin: 0;
+    line-height: 1.2;
 }
 .iconsContainerLeft {
     justify-content: space-evenly !important;
@@ -75,7 +84,7 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    width: 100%;
+    flex: 1;
 }
 .mobileIconsWrapper {
     display: flex;
@@ -86,39 +95,78 @@
     margin-top: 0.5rem;
 }
 .socialIcon {
-    padding-top: 4px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
 }
-@media (max-width: 430px) {
-    .info {
-        font-size: 12px;
-    }
-    .text {
-        font-size: 12px;
-        padding-bottom: 2px !important;
-    }
-    .infoIcon {
-        font-size: 22px !important;
-    }
+@media (max-width: 786px) {
     .desktopRow {
         display: none !important;
     }
     .mobileLayout {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
-    .infoHeader {
-        padding: 1rem;
-        position: fixed;
-        top: 0;
+    .mobileInfoRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+        flex-wrap: nowrap;
+    }
+    .mobileInfoItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        flex: 0 1 auto;
+    }
+    .text {
+        font-size: 11px !important;
+        margin: 0;
+    }
+    .info {
+        font-size: 11px !important;
+        margin: 0;
+    }
+    .infoIcon {
+        font-size: 20px !important;
+    }
+    .mobileIconsWrapper {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
     }
     .iconBox {
         width: 36px;
         height: 36px;
     }
-    .infoText {
-        gap: 20px !important;
+}
+@media (max-width: 530px) {
+    .mobileInfoRow {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    .mobileInfoItem {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+    .text, .info {
+        font-size: 13px !important;
+        text-align: center !important;
+    }
+    .infoIcon {
+        font-size: 20px !important;
     }
 }
-@media (min-width: 430px) and (max-width: 991px) {
+@media (min-width: 787px) and (max-width: 1220px) {
    .text {
     font-size: 12px !important;
    }
@@ -134,47 +182,5 @@
    }
    .socialIcon {
     font-size: 16px !important;
-   }
-   .desktopRow {
-    flex-wrap: wrap !important;
-   }
-   .desktopRow :global(.ant-col:nth-child(2)),
-   .desktopRow :global(.ant-col:nth-child(3)) {
-    order: 1;
-    flex: 0 0 50% !important;
-    max-width: 50% !important;
-    border-right: 1px solid #E0E0E0 !important;
-   }
-   .desktopRow :global(.ant-col:nth-child(3)) {
-    border-right: none !important;
-   }
-   .iconsContainerLeft {
-    order: 2;
-    flex-basis: 100% !important;
-    max-width: 100% !important;
-    border-right: none !important;
-    border-top: 1px solid #E0E0E0 !important;
-    margin-top: 1rem !important;
-    padding-top: 1rem !important;
-    flex-direction: row !important;
-    justify-content: space-evenly !important;
-   }
-}
-@media (min-width: 991px) and (max-width: 1220px) {
-   .text {
-    font-size: 12px !important;
-   }
-   .info {
-    font-size: 12px !important;
-   }
-   .infoIcon {
-    font-size: 24px !important;
-   }
-   .iconBox {
-    width: 36px;
-    height: 36px;
-   }
-   .socialIcon {
-    font-size: 18px !important;
    }
 }

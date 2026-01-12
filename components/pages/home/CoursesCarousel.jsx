@@ -45,13 +45,15 @@ const CoursesCarousel = ({ data = [] }) => {
             bordered={false}
             styles={{ body: { padding: 0 } }}
           >
-            <Image
-              src={course.image}
-              alt={course.title}
-              className={styles.courseImage}
-              width={100}
-              height={100}
-            />
+            <div className={styles.imageWrapper}>
+              <Image
+                src={course.image}
+                alt={course.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className={styles.courseImage}
+              />
+            </div>
 
             <div className={styles.contentWrapper}>
               <Flex vertical gap={12}>

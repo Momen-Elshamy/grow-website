@@ -7,6 +7,36 @@ import Uicons from "../UI/Uicons";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const aboutLinks = [
+    { label: "Our Values", href: "/about#values" },
+    { label: "Vision & Mission", href: "/about#mission" },
+    { label: "Meet Our Experts", href: "/about#experts" },
+    { label: "Contact Us", href: "/contact" },
+  ];
+
+  const solutionsLinks = [
+    { label: "Farm Operation", href: "/solutions#operation" },
+    { label: 'Farm Resource Planning solution "FRP"', href: "/solutions#frp" },
+    { label: "Water Management", href: "/solutions#water" },
+    { label: "Human Capital Training", href: "/solutions#training" },
+    { label: "Commercial Management", href: "/solutions#commercial" },
+  ];
+
+  const servicesLinks = [
+    { label: "Technical Consultancy", href: "/services#consultancy" },
+    { label: "Lab analysis", href: "/services#lab" },
+    { label: "Course", href: "/services#training" },
+    { label: "Engineering", href: "/services#irrigation" },
+    { label: "Revision and optimization", href: "/services#optimization" },
+    { label: "Remote sensing", href: "/services#remote-sensing" },
+  ];
+
+  const bottomLinks = [
+    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Sitemap", href: "/sitemap" },
+  ];
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -58,18 +88,11 @@ export default function Footer() {
             <div className={styles.column}>
               <h4>About</h4>
               <ul className={styles.links}>
-                <li>
-                  <Link href="/about#values">Our Values</Link>
-                </li>
-                <li>
-                  <Link href="/about#mission">Vision & Mission</Link>
-                </li>
-                <li>
-                  <Link href="/about#experts">Meet Our Experts</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Contact Us</Link>
-                </li>
+                {aboutLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </Col>
@@ -78,25 +101,11 @@ export default function Footer() {
             <div className={styles.column}>
               <h4>Solutions</h4>
               <ul className={styles.links}>
-                <li>
-                  <Link href="/solutions#operation">Farm Operation</Link>
-                </li>
-                <li>
-                  <Link href="/solutions#frp">
-                    Farm Resource Planning solution "FRP"
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/solutions#water">Water Management</Link>
-                </li>
-                <li>
-                  <Link href="/solutions#training">Human Capital Training</Link>
-                </li>
-                <li>
-                  <Link href="/solutions#commercial">
-                    Commercial Management
-                  </Link>
-                </li>
+                {solutionsLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </Col>
@@ -105,28 +114,11 @@ export default function Footer() {
             <div className={styles.column}>
               <h4>Services</h4>
               <ul className={styles.links}>
-                <li>
-                  <Link href="/services#consultancy">
-                    Technical Consultancy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/services#lab">Lab analysis</Link>
-                </li>
-                <li>
-                  <Link href="/services#training">Course</Link>
-                </li>
-                <li>
-                  <Link href="/services#irrigation">Engineering</Link>
-                </li>
-                <li>
-                  <Link href="/services#optimization">
-                    Revision and optimization
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/services#remote-sensing">Remote sensing</Link>
-                </li>
+                {servicesLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </Col>
@@ -169,15 +161,11 @@ export default function Footer() {
             premastlab.com
           </p>
           <ul className={styles.bottomLinks}>
-            <li>
-              <Link href="/terms">Terms & Conditions</Link>
-            </li>
-            <li>
-              <Link href="/privacy">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link href="/sitemap">Sitemap</Link>
-            </li>
+            {bottomLinks.map((link, index) => (
+              <li key={index}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

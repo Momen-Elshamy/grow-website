@@ -10,6 +10,24 @@ import CustomButton from "@/components/UI/Button";
 const { TextArea } = Input;
 const { Option } = Select;
 
+const PROPERTY_SIZES = ["500", "1000", "2000", "4000", "8000", "10000"];
+
+const SERVICES_OPTIONS = [
+  "Technical Consultancy",
+  "Lab analysis/Eurofins",
+  "Training Course",
+  "Engineering & design of Irrigation and drainage systems.",
+  "Revision, Re-engineering and optimization of existing water systems.",
+  "Remote sensing",
+];
+
+const COURSES_OPTIONS = [
+  "Advancing vertical farming with urban crop solutions",
+  "Controlled environment in agriculture growing",
+  "How to help farmers break their financial barriers?",
+  "Future of food production in smart new indoor farming",
+];
+
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -386,24 +404,15 @@ export default function ContactUs() {
                             placeholder: { color: "#c9c9c9" },
                           }}
                         >
-                          <Option value="500" className={styles.selectOption}>
-                            500 Acre
-                          </Option>
-                          <Option value="1000" className={styles.selectOption}>
-                            1000 Acre
-                          </Option>
-                          <Option value="2000" className={styles.selectOption}>
-                            2000 Acre
-                          </Option>
-                          <Option value="4000" className={styles.selectOption}>
-                            4000 Acre
-                          </Option>
-                          <Option value="8000" className={styles.selectOption}>
-                            8000 Acre
-                          </Option>
-                          <Option value="10000" className={styles.selectOption}>
-                            10000 Acre
-                          </Option>
+                          {PROPERTY_SIZES.map((size) => (
+                            <Option
+                              key={size}
+                              value={size}
+                              className={styles.selectOption}
+                            >
+                              {size} Acre
+                            </Option>
+                          ))}
                         </Select>
                       </Form.Item>
                     </Col>
@@ -429,44 +438,15 @@ export default function ContactUs() {
                             placeholder: { color: "#c9c9c9" },
                           }}
                         >
-                          <Option
-                            value="Technical Consultancy"
-                            className={styles.selectOption}
-                          >
-                            Technical Consultancy
-                          </Option>
-                          <Option
-                            value="Lab analysis/Eurofins"
-                            className={styles.selectOption}
-                          >
-                            Lab analysis/Eurofins
-                          </Option>
-                          <Option
-                            value="Training Course"
-                            className={styles.selectOption}
-                          >
-                            Training Course
-                          </Option>
-                          <Option
-                            value="Engineering & design of Irrigation and drainage systems."
-                            className={styles.selectOption}
-                          >
-                            Engineering & design of Irrigation and drainage
-                            systems.
-                          </Option>
-                          <Option
-                            value="Revision, Re-engineering and optimization of existing water systems."
-                            className={styles.selectOption}
-                          >
-                            Revision, Re-engineering and optimization of
-                            existing water systems.
-                          </Option>
-                          <Option
-                            value="Remote sensing"
-                            className={styles.selectOption}
-                          >
-                            Remote sensing
-                          </Option>
+                          {SERVICES_OPTIONS.map((service) => (
+                            <Option
+                              key={service}
+                              value={service}
+                              className={styles.selectOption}
+                            >
+                              {service}
+                            </Option>
+                          ))}
                         </Select>
                       </Form.Item>
                     </Col>
@@ -495,31 +475,15 @@ export default function ContactUs() {
                             placeholder: { color: "#c9c9c9" },
                           }}
                         >
-                          <Option
-                            value="Advancing vertical farming with urban crop solutions"
-                            className={styles.selectOption}
-                          >
-                            Advancing vertical farming with urban crop solutions
-                          </Option>
-                          <Option
-                            value="Controlled environment in agriculture growing"
-                            className={styles.selectOption}
-                          >
-                            Controlled environment in agriculture growing
-                          </Option>
-                          <Option
-                            value="How to help farmers break their financial barriers?"
-                            className={styles.selectOption}
-                          >
-                            How to help farmers break their financial barriers?
-                          </Option>
-                          <Option
-                            value="Future of food production in smart new indoor farming"
-                            className={styles.selectOption}
-                          >
-                            Future of food production in smart new indoor
-                            farming
-                          </Option>
+                          {COURSES_OPTIONS.map((course) => (
+                            <Option
+                              key={course}
+                              value={course}
+                              className={styles.selectOption}
+                            >
+                              {course}
+                            </Option>
+                          ))}
                         </Select>
                       </Form.Item>
                     </Col>

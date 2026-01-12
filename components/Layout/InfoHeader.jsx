@@ -37,11 +37,8 @@ export default function InfoHeader() {
   return (
     <div className={styles.infoHeader}>
       <Row gutter={16} justify="center" className={styles.desktopRow}>
-        {/* Icons Side */}
-        <Col
-          span={12}
-          className={`${styles.iconsContainer} ${styles.iconsContainerLeft}`}
-        >
+        {/* Social Icons Column */}
+        <Col span={6} className={styles.iconsContainer}>
           <div className={styles.iconsWrapper}>
             {socialIcons.map((social, index) => (
               <div key={index} className={styles.iconBox}>
@@ -54,29 +51,20 @@ export default function InfoHeader() {
               </div>
             ))}
           </div>
-          <div className={styles.infoText}>
-            <Uicons
-              icon={infoItems[0].icon}
-              size={infoItems[0].desktopSize}
-              color="#107634"
-              className={styles.infoIcon}
-            />
-            <div className={styles.infoTextContent}>
-              <p className={styles.text}>{infoItems[0].text}</p>
-              <p className={styles.info}>{infoItems[0].info}</p>
-            </div>
-          </div>
         </Col>
-        {/* Right Side */}
-        {infoItems.slice(1).map((item, index) => (
+
+        {/* Info Items Columns */}
+        {infoItems.map((item, index) => (
           <Col key={index} span={6} className={styles.iconsContainer}>
             <div className={styles.infoText}>
-              <Uicons
-                icon={item.icon}
-                size={item.desktopSize}
-                color="#107634"
-                className={styles.infoIcon}
-              />
+              <div className={styles.infoIconWrapper}>
+                <Uicons
+                  icon={item.icon}
+                  size={item.desktopSize}
+                  color="#107634"
+                  className={styles.infoIcon}
+                />
+              </div>
               <div className={styles.infoTextContent}>
                 <p className={styles.text}>{item.text}</p>
                 <p className={styles.info}>{item.info}</p>

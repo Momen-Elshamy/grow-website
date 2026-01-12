@@ -28,7 +28,7 @@ const WhatsAppWidget = () => {
           rel="noopener noreferrer"
           className={styles.whatsappButton}
         >
-          <Uicons icon="fi-brands-whatsapp" size="24px" color="#25D366" />
+          <Uicons icon="fi-brands-whatsapp" size="22px" color="#25D366"  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}/>
           <span className={styles.buttonText}>Contact us on WhatsApp</span>
         </a>
       </div>

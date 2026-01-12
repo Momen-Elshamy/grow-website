@@ -29,7 +29,7 @@ export default function ServiceCarousel({ services }) {
           },
         },
         {
-          breakpoint: 500,
+          breakpoint: 580,
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,

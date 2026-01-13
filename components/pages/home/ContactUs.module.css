@@ -100,6 +100,14 @@
   margin: 2px 0;
   line-height: 1.4;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  display: block;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.contactText:hover {
+  opacity: 0.8;
+  color: #f3c800;
 }
 
 /* Right Column Styles - White Form Background */

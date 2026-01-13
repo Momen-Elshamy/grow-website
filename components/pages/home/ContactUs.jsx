@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import styles from "./ContactUs.module.css";
 import Uicons from "@/components/UI/Uicons";
 import CustomButton from "@/components/UI/Button";
+import Link from "next/link";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -200,8 +201,15 @@ export default function ContactUs() {
                   </div>
                   <div className={styles.contactDetails}>
                     <h3 className={styles.contactTitle}>Quick Contact</h3>
-                    <p className={styles.contactText}>info@growegypt.com</p>
-                    <p className={styles.contactText}>01080200887</p>
+                    <Link
+                      href="mailto:info@grow-egypt.com"
+                      className={styles.contactText}
+                    >
+                      info@grow-egypt.com
+                    </Link>
+                    +201080200887
+                    <br />
+                    +20235380720
                   </div>
                 </motion.div>
 
@@ -218,9 +226,14 @@ export default function ContactUs() {
                   </div>
                   <div className={styles.contactDetails}>
                     <h3 className={styles.contactTitle}>Our Location</h3>
-                    <p className={styles.contactText}>
-                      Smart village, linx building, office A105
-                    </p>
+                    <Link
+                      href="https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.contactText}
+                    >
+                      A105 LINX building, Smart Village
+                    </Link>
                   </div>
                 </motion.div>
 
@@ -241,6 +254,27 @@ export default function ContactUs() {
                       Mon - Fri: 8.00am - 18.00pm
                     </p>
                     <p className={styles.contactText}>Sat: 9.00am - 17.00pm</p>
+                  </div>
+                </motion.div>
+                <Divider style={{ margin: "0" }} />
+                <motion.div
+                  className={styles.contactItem}
+                  variants={contactItemVariants}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                >
+                  <div className={styles.iconWrapper}>
+                    <Uicons icon="fi-rr-newsletter-subscribe" />
+                  </div>
+                  <div className={styles.contactDetails}>
+                    <h3 className={styles.contactTitle}>
+                      Recommendations / Complaints
+                    </h3>
+                    <Link
+                      href="mailto:info@grow-egypt.com"
+                      className={styles.contactText}
+                    >
+                      info@grow-egypt.com
+                    </Link>
                   </div>
                 </motion.div>
               </motion.div>
@@ -492,7 +526,7 @@ export default function ContactUs() {
                   >
                     <TextArea
                       rows={5}
-                      placeholder="Kindly provide enough information about your farm business..."
+                      placeholder="Kindly discribe your business..."
                       showCount
                       maxLength={1000}
                       className={styles.textarea}

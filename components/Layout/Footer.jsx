@@ -117,15 +117,21 @@ export default function Footer() {
               <h4>Quick Contact</h4>
               <div className={styles.contactInfo}>
                 <p className={styles.contactItem}>
-                  Smart village, linx building, office A105
+                  <Link
+                    href="https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    A105 LINX building, Smart Village
+                  </Link>
                 </p>
                 <p className={styles.contactItem}>
-                  <Link href="mailto:info@growegypt.com">
-                    info@growegypt.com
+                  <Link href="mailto:info@grow-egypt.com">
+                    info@grow-egypt.com
                   </Link>
                 </p>
                 <p className={`${styles.contactItem} ${styles.phone}`}>
-                  01080200887
+                  +201080200887
                 </p>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import { Row, Col } from "antd";
 import Uicons from "../UI/Uicons";
 import styles from "./InfoHeader.module.css";
+import Link from "next/link";
 
 const socialIcons = [
   { icon: "fi-brands-linkedin", desktopSize: 20, mobileSize: 18 },
@@ -14,14 +15,14 @@ const infoItems = [
     icon: "fi-rr-phone-call",
     text: "+20235380720",
     // textLink: "tel:+20235380720",
-    info: "+01080200887",
+    info: "+201080200887",
     // infoLink: "tel:+201080200887",
     desktopSize: 30,
     mobileSize: 40,
   },
   {
     icon: "fi-rr-newsletter-subscribe",
-    text: "01080200887",
+    text: "+201080200887",
     textLink: "https://wa.me/201080200887",
     info: "info@grow-egypt.com",
     infoLink: "mailto:info@grow-egypt.com",
@@ -49,14 +50,12 @@ const InfoField = ({ item, fieldKey }) => {
 
   if (link) {
     return (
-      <a
+      <Link
         href={link}
         target={link.startsWith("http") ? "_blank" : undefined}
         rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
-        className={styles.link}
-      >
-        {content}
-      </a>
+        className={styles.link}>{content}
+      </Link>
     );
   }
   return <div>{content}</div>;

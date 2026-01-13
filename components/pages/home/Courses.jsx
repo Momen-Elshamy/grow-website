@@ -54,12 +54,10 @@ const Courses = () => {
             <Row justify="center">
               <Col xs={24} md={18} lg={12}>
                 <p className={styles.tagline}>
-                Build Your Future with Agriculture Courses
+                Our Success Stories
                 </p>
 
-                <h2 className={styles.heading}>
-                  Explore our courses and <br /> latest success stories.
-                </h2>
+                <h2 className={styles.heading}>Growing Success Together</h2>
                 <Flex
                   justify="center"
                   gap={10}

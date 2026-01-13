@@ -4,9 +4,11 @@ export const navLinks = [
     path: "/about",
     hasDropdown: true,
     children: [
+      { label: "Our Company ", key: "company" },
       { label: "Our Values", key: "values" },
       { label: "Vision & Mission", key: "mission" },
       { label: "Meet Our Experts", key: "experts" },
+      { label: "Success Stories", key: "stories" },
     ],
   },
   {

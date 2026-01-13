@@ -10,7 +10,15 @@ import CustomButton from "@/components/UI/Button";
 const { TextArea } = Input;
 const { Option } = Select;
 
-const PROPERTY_SIZES = ["500", "1000", "2000", "4000", "8000", "10000"];
+const PROPERTY_SIZES = [
+  ">20",
+  "20-50",
+  "50-100",
+  "100-200",
+  "200-500",
+  "500-1000",
+  "<1000",
+];
 
 const SERVICES_OPTIONS = [
   "Technical Consultancy",
@@ -19,13 +27,6 @@ const SERVICES_OPTIONS = [
   "Engineering & design of Irrigation and drainage systems.",
   "Revision, Re-engineering and optimization of existing water systems.",
   "Remote sensing",
-];
-
-const COURSES_OPTIONS = [
-  "Advancing vertical farming with urban crop solutions",
-  "Controlled environment in agriculture growing",
-  "How to help farmers break their financial barriers?",
-  "Future of food production in smart new indoor farming",
 ];
 
 // Animation variants
@@ -119,8 +120,8 @@ export default function ContactUs() {
           company: values.company,
           phone: values.phone,
           propertySize: values.propertySize,
+          location: values.location,
           services: values.services,
-          courses: values.courses,
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
@@ -343,7 +344,7 @@ export default function ContactUs() {
                         ]}
                       >
                         <Input
-                          placeholder="Company Name"
+                          placeholder="Company Name / Farm Owner"
                           size="large"
                           className={styles.input}
                         />
@@ -418,6 +419,25 @@ export default function ContactUs() {
                     </Col>
                     <Col xs={24} sm={24} md={12}>
                       <Form.Item
+                        name="location"
+                        rules={[
+                          {
+                            required: false,
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Location (Village/City)"
+                          size="large"
+                          className={styles.input}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row gutter={16}>
+                    <Col span={24}>
+                      <Form.Item
                         name="services"
                         rules={[
                           {
@@ -445,43 +465,6 @@ export default function ContactUs() {
                               className={styles.selectOption}
                             >
                               {service}
-                            </Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    </Col>
-                  </Row>
-
-                  <Row gutter={16}>
-                    <Col span={24}>
-                      <Form.Item
-                        name="courses"
-                        rules={[
-                          {
-                            required: false,
-                          },
-                        ]}
-                      >
-                        <Select
-                          placeholder="Courses"
-                          size="large"
-                          suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
-                          className={styles.select}
-                          dropdownStyle={{
-                            backgroundColor: "white",
-                            border: "none",
-                          }}
-                          styles={{
-                            placeholder: { color: "#c9c9c9" },
-                          }}
-                        >
-                          {COURSES_OPTIONS.map((course) => (
-                            <Option
-                              key={course}
-                              value={course}
-                              className={styles.selectOption}
-                            >
-                              {course}
                             </Option>
                           ))}
                         </Select>
@@ -521,7 +504,6 @@ export default function ContactUs() {
                       htmlType="submit"
                       loading={loading}
                       className={styles.submitButton}
-                      icon={loading ? null : "fi-rr-arrow-small-right"}
                     >
                       {loading ? "Sending..." : "Submit Request"}
                     </CustomButton>

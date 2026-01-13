@@ -37,6 +37,13 @@ export default function Footer() {
     { label: "Sitemap", href: "/sitemap" },
   ];
 
+  const socialLinks = [
+    { label: "LinkedIn", icon: "fi-brands-linkedin", href: "#" },
+    { label: "Facebook", icon: "fi-brands-facebook", href: "#" },
+    { label: "Instagram", icon: "fi-brands-instagram", href: "#" },
+    { label: "YouTube", icon: "fi-brands-youtube", href: "#" },
+  ];
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -52,34 +59,16 @@ export default function Footer() {
                 production!
               </p>
               <div className={styles.socials}>
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-facebook" />}
-                  aria-label="Facebook"
-                  href="#"
-                />
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-instagram" />}
-                  aria-label="Instagram"
-                  href="#"
-                />
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-youtube" />}
-                  aria-label="YouTube"
-                  href="#"
-                />
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-linkedin" />}
-                  aria-label="LinkedIn"
-                  href="#"
-                />
+                {socialLinks.map((social, index) => (
+                  <Button
+                    key={index}
+                    type="primary"
+                    shape="default"
+                    icon={<Uicons icon={social.icon} />}
+                    aria-label={social.label}
+                    href={social.href}
+                  />
+                ))}
               </div>
             </div>
           </Col>

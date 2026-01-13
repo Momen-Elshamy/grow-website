@@ -53,11 +53,9 @@ const Courses = () => {
           >
             <Row justify="center">
               <Col xs={24} md={18} lg={12}>
-                <p className={styles.tagline}>
-                Our Success Stories
-                </p>
+                <p className={styles.tagline}>Growing Success Together</p>
 
-                <h2 className={styles.heading}>Growing Success Together</h2>
+                <h2 className={styles.heading}>Success Stories</h2>
                 <Flex
                   justify="center"
                   gap={10}

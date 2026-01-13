@@ -37,6 +37,13 @@ export default function Footer() {
     { label: "Sitemap", href: "/sitemap" },
   ];
 
+  const socialLinks = [
+    { label: "LinkedIn", icon: "fi-brands-linkedin", href: "#" },
+    { label: "Facebook", icon: "fi-brands-facebook", href: "#" },
+    { label: "Instagram", icon: "fi-brands-instagram", href: "#" },
+    { label: "YouTube", icon: "fi-brands-youtube", href: "#" },
+  ];
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -52,34 +59,16 @@ export default function Footer() {
                 production!
               </p>
               <div className={styles.socials}>
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-facebook" />}
-                  aria-label="Facebook"
-                  href="#"
-                />
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-instagram" />}
-                  aria-label="Instagram"
-                  href="#"
-                />
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-youtube" />}
-                  aria-label="YouTube"
-                  href="#"
-                />
-                <Button
-                  type="primary"
-                  shape="default"
-                  icon={<Uicons icon="fi-brands-linkedin" />}
-                  aria-label="LinkedIn"
-                  href="#"
-                />
+                {socialLinks.map((social, index) => (
+                  <Button
+                    key={index}
+                    type="primary"
+                    shape="default"
+                    icon={<Uicons icon={social.icon} />}
+                    aria-label={social.label}
+                    href={social.href}
+                  />
+                ))}
               </div>
             </div>
           </Col>
@@ -128,15 +117,21 @@ export default function Footer() {
               <h4>Quick Contact</h4>
               <div className={styles.contactInfo}>
                 <p className={styles.contactItem}>
-                  Smart village, linx building, office A105
+                  <Link
+                    href="https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    A105 LINX building, Smart Village
+                  </Link>
                 </p>
                 <p className={styles.contactItem}>
-                  <Link href="mailto:info@growegypt.com">
-                    info@growegypt.com
+                  <Link href="mailto:info@grow-egypt.com">
+                    info@grow-egypt.com
                   </Link>
                 </p>
                 <p className={`${styles.contactItem} ${styles.phone}`}>
-                  01080200887
+                  +201080200887
                 </p>
               </div>
             </div>

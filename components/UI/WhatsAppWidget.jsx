@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "antd";
 import Uicons from "./Uicons";
 import styles from "./WhatsAppWidget.module.css";
+import Link from "next/link";
 
 const WhatsAppWidget = () => {
   const phoneNumber = "201080200887"; // Based on earlier info 01080200887
@@ -22,7 +23,7 @@ const WhatsAppWidget = () => {
             Leave us a message and we'll get back to you.
           </p>
         </div>
-        <a
+        <Link
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -30,7 +31,7 @@ const WhatsAppWidget = () => {
         >
           <Uicons icon="fi-brands-whatsapp" size="22px" color="#25D366"  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}/>
           <span className={styles.buttonText}>Contact us on WhatsApp</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

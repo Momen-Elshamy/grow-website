@@ -67,6 +67,15 @@
     flex-direction: column;
     min-width: 0;
 }
+.link {
+    text-decoration: none !important;
+    color: inherit !important;
+    transition: opacity 0.2s ease;
+}
+.link:hover {
+    opacity: 0.7;
+    color: #107634 !important;
+}
 .text {
     font-size: 14px;
     font-weight: 500;

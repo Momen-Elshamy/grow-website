@@ -110,9 +110,15 @@
 }
 
 .contactItem a {
-  color: #EECD15;
+  /* color: #EECD15; */
   text-decoration: none;
   font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.contactItem a:hover {
+  color: #EECD15;
+  opacity: 0.8;
 }
 
 .phone {

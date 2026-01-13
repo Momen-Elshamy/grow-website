@@ -6,11 +6,20 @@ import { motion } from "framer-motion";
 import styles from "./ContactUs.module.css";
 import Uicons from "@/components/UI/Uicons";
 import CustomButton from "@/components/UI/Button";
+import Link from "next/link";
 
 const { TextArea } = Input;
 const { Option } = Select;
 
-const PROPERTY_SIZES = ["500", "1000", "2000", "4000", "8000", "10000"];
+const PROPERTY_SIZES = [
+  ">20",
+  "20-50",
+  "50-100",
+  "100-200",
+  "200-500",
+  "500-1000",
+  "<1000",
+];
 
 const SERVICES_OPTIONS = [
   "Technical Consultancy",
@@ -19,13 +28,6 @@ const SERVICES_OPTIONS = [
   "Engineering & design of Irrigation and drainage systems.",
   "Revision, Re-engineering and optimization of existing water systems.",
   "Remote sensing",
-];
-
-const COURSES_OPTIONS = [
-  "Advancing vertical farming with urban crop solutions",
-  "Controlled environment in agriculture growing",
-  "How to help farmers break their financial barriers?",
-  "Future of food production in smart new indoor farming",
 ];
 
 // Animation variants
@@ -119,8 +121,8 @@ export default function ContactUs() {
           company: values.company,
           phone: values.phone,
           propertySize: values.propertySize,
+          location: values.location,
           services: values.services,
-          courses: values.courses,
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
@@ -199,8 +201,15 @@ export default function ContactUs() {
                   </div>
                   <div className={styles.contactDetails}>
                     <h3 className={styles.contactTitle}>Quick Contact</h3>
-                    <p className={styles.contactText}>info@growegypt.com</p>
-                    <p className={styles.contactText}>01080200887</p>
+                    <Link
+                      href="mailto:info@grow-egypt.com"
+                      className={styles.contactText}
+                    >
+                      info@grow-egypt.com
+                    </Link>
+                    +201080200887
+                    <br />
+                    +20235380720
                   </div>
                 </motion.div>
 
@@ -217,9 +226,14 @@ export default function ContactUs() {
                   </div>
                   <div className={styles.contactDetails}>
                     <h3 className={styles.contactTitle}>Our Location</h3>
-                    <p className={styles.contactText}>
-                      Smart village, linx building, office A105
-                    </p>
+                    <Link
+                      href="https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.contactText}
+                    >
+                      A105 LINX building, Smart Village
+                    </Link>
                   </div>
                 </motion.div>
 
@@ -240,6 +254,27 @@ export default function ContactUs() {
                       Mon - Fri: 8.00am - 18.00pm
                     </p>
                     <p className={styles.contactText}>Sat: 9.00am - 17.00pm</p>
+                  </div>
+                </motion.div>
+                <Divider style={{ margin: "0" }} />
+                <motion.div
+                  className={styles.contactItem}
+                  variants={contactItemVariants}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                >
+                  <div className={styles.iconWrapper}>
+                    <Uicons icon="fi-rr-newsletter-subscribe" />
+                  </div>
+                  <div className={styles.contactDetails}>
+                    <h3 className={styles.contactTitle}>
+                      Recommendations / Complaints
+                    </h3>
+                    <Link
+                      href="mailto:info@grow-egypt.com"
+                      className={styles.contactText}
+                    >
+                      info@grow-egypt.com
+                    </Link>
                   </div>
                 </motion.div>
               </motion.div>
@@ -343,7 +378,7 @@ export default function ContactUs() {
                         ]}
                       >
                         <Input
-                          placeholder="Company Name"
+                          placeholder="Company Name / Farm Owner"
                           size="large"
                           className={styles.input}
                         />
@@ -418,6 +453,25 @@ export default function ContactUs() {
                     </Col>
                     <Col xs={24} sm={24} md={12}>
                       <Form.Item
+                        name="location"
+                        rules={[
+                          {
+                            required: false,
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Location (Village/City)"
+                          size="large"
+                          className={styles.input}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row gutter={16}>
+                    <Col span={24}>
+                      <Form.Item
                         name="services"
                         rules={[
                           {
@@ -452,43 +506,6 @@ export default function ContactUs() {
                     </Col>
                   </Row>
 
-                  <Row gutter={16}>
-                    <Col span={24}>
-                      <Form.Item
-                        name="courses"
-                        rules={[
-                          {
-                            required: false,
-                          },
-                        ]}
-                      >
-                        <Select
-                          placeholder="Courses"
-                          size="large"
-                          suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
-                          className={styles.select}
-                          dropdownStyle={{
-                            backgroundColor: "white",
-                            border: "none",
-                          }}
-                          styles={{
-                            placeholder: { color: "#c9c9c9" },
-                          }}
-                        >
-                          {COURSES_OPTIONS.map((course) => (
-                            <Option
-                              key={course}
-                              value={course}
-                              className={styles.selectOption}
-                            >
-                              {course}
-                            </Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    </Col>
-                  </Row>
-
                   <Form.Item
                     name="message"
                     rules={[
@@ -509,7 +526,7 @@ export default function ContactUs() {
                   >
                     <TextArea
                       rows={5}
-                      placeholder="Kindly provide enough information about your farm business..."
+                      placeholder="Kindly discribe your business..."
                       showCount
                       maxLength={1000}
                       className={styles.textarea}
@@ -521,7 +538,6 @@ export default function ContactUs() {
                       htmlType="submit"
                       loading={loading}
                       className={styles.submitButton}
-                      icon={loading ? null : "fi-rr-arrow-small-right"}
                     >
                       {loading ? "Sending..." : "Submit Request"}
                     </CustomButton>

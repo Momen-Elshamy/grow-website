@@ -6,6 +6,11 @@
   overflow: hidden;
 }
 
+.contactSection.noBackground {
+  background-color: #f8f9fa;
+  overflow: visible;
+}
+
 .backgroundImageWrapper {
   position: absolute;
   top: 0;
@@ -37,13 +42,17 @@
   padding: 0 40px;
 }
 
-/* Left Column Styles - Transparent Background */
+/* Left Column Styles */
 .leftContent {
-  padding: 56px;
+  padding: 40px 56px;
   height: 100%;
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+
+.contactSection.noBackground .leftContent {
+  border-radius: 12px;
 }
 
 .heading {
@@ -51,6 +60,10 @@
   line-height: 1.28571429 !important;
   font-weight: 700;
   color: #ffffff;
+}
+
+.contactSection.noBackground .heading {
+  color: #083b1a;
 }
 
 .contactInfo {
@@ -76,6 +89,10 @@
   flex-shrink: 0;
 }
 
+.contactSection.noBackground .iconWrapper {
+  background-color: #eecd15;
+}
+
 .iconWrapper i {
   font-size: 1.3rem;
   color: #00843d;
@@ -94,6 +111,11 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
+.contactSection.noBackground .contactTitle {
+  color: #083b1a;
+  text-shadow: none;
+}
+
 .contactText {
   font-size: 1rem;
   color: #ffffff;
@@ -105,9 +127,19 @@
   transition: opacity 0.2s ease;
 }
 
+.contactSection.noBackground .contactText {
+  color: #2d583c;
+  text-shadow: none;
+}
+
 .contactText:hover {
   opacity: 0.8;
   color: #f3c800;
+}
+
+.contactSection.noBackground .contactText:hover {
+  opacity: 1;
+  color: #00843d;
 }
 
 /* Right Column Styles - White Form Background */

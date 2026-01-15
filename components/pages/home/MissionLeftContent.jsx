@@ -59,7 +59,7 @@ const MissionLeftContent = ({ title, paragraph, imageSrc }) => {
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <CustomButton className={styles.contactButton} iconColor="#0b2414">
+          <CustomButton href="/contact" className={styles.contactButton} iconColor="#0b2414">
             Contact Us
           </CustomButton>
         </motion.div>

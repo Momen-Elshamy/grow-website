@@ -169,11 +169,12 @@ export default function NewsSection({
               <motion.div className={styles.actions} variants={rightVariants}>
                 <CustomButton
                   className={styles.btn}
-                  icon="fi-rr-arrow-small-right"
+                 href="/about"
                 >
                   More About Us
                 </CustomButton>
                 <CustomButton
+                href="/contact"
                   className={`${styles.btn} ${styles.secondaryBtn}`}
                   icon={null}
                 >

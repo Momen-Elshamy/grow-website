@@ -108,8 +108,8 @@ export default function CarouselComponent() {
                       }}
                       className={styles.buttonsContainer}
                     >
-                      <CustomButton>Explore Our Services</CustomButton>
-                      <CustomButton className={styles.aboutButton} icon={null}>
+                      <CustomButton href="/services">Explore Our Services</CustomButton>
+                      <CustomButton href="/about" className={styles.aboutButton} icon={null}>
                         About Us
                       </CustomButton>
                     </motion.div>

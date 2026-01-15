@@ -162,24 +162,6 @@ export default function ContactMap() {
     }
   };
 
-  const handleMarkerClick = (e) => {
-    if (e && e.event) {
-      e.event.stopPropagation();
-    }
-
-    const [lat, lng] = COMPANY_LOCATION.coordinates;
-    const urls = createGoogleMapsUrls(lat, lng, COMPANY_LOCATION.address);
-
-    setSelectedLocation({
-      title: "A105 LINX building",
-      address: COMPANY_LOCATION.address,
-      coordinates: COMPANY_LOCATION.coordinates,
-      directionsUrl: urls.directionsUrl,
-      placeUrl: urls.placeUrl,
-    });
-    setMarkerPosition(COMPANY_LOCATION.coordinates);
-  };
-
   const handleMouseDown = () => setIsDragging(true);
   const handleMouseUp = () => setIsDragging(false);
   const handleMouseLeave = () => setIsDragging(false);
@@ -219,11 +201,7 @@ export default function ContactMap() {
               onClick={handleMapClick}
               mouseEvents={{ cursor: "default" }}
             >
-              <Marker
-                anchor={markerPosition}
-                payload={1}
-                onClick={handleMarkerClick}
-              />
+              <Marker anchor={markerPosition} payload={1} />
             </Map>
           </div>
         </motion.div>

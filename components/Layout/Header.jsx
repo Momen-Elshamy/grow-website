@@ -65,7 +65,8 @@ export default function Header() {
             {navLinks.map((link) => {
               if (link.hasDropdown) {
                 const dropdownTrigger = (
-                  <div
+                  <Link
+                    href={link.path}
                     className={`${styles.navLink} ${
                       router.pathname === link.path ? styles.active : ""
                     } ${styles.dropdownTrigger}`}
@@ -74,7 +75,7 @@ export default function Header() {
                     <span className={styles.iconWrapper}>
                       <Uicons icon="fi-rr-angle-small-down" />
                     </span>
-                  </div>
+                  </Link>
                 );
                 return (
                   <Dropdown

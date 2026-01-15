@@ -126,7 +126,7 @@ export default function ServiceCarousel({ services }) {
                   }}
                   transition={{ duration: 0.5 }}
                 >
-                  <CustomButton className={styles.serviceButton}>
+                  <CustomButton href="/services" className={styles.serviceButton}>
                     Explore More
                   </CustomButton>
                 </motion.div>

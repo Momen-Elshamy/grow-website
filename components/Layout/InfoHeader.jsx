@@ -4,10 +4,30 @@ import styles from "./InfoHeader.module.css";
 import Link from "next/link";
 
 const socialIcons = [
-  { icon: "fi-brands-linkedin", desktopSize: 20, mobileSize: 18 },
-  { icon: "fi-brands-facebook", desktopSize: 20, mobileSize: 18 },
-  { icon: "fi-brands-instagram", desktopSize: 20, mobileSize: 18 },
-  { icon: "fi-brands-youtube", desktopSize: 20, mobileSize: 18 },
+  {
+    icon: "fi-brands-linkedin",
+    desktopSize: 20,
+    mobileSize: 18,
+    href: "#",
+  },
+  {
+    icon: "fi-brands-facebook",
+    desktopSize: 20,
+    mobileSize: 18,
+    href: "#",
+  },
+  {
+    icon: "fi-brands-instagram",
+    desktopSize: 20,
+    mobileSize: 18,
+    href: "#",
+  },
+  {
+    icon: "fi-brands-youtube",
+    desktopSize: 20,
+    mobileSize: 18,
+    href: "#",
+  },
 ];
 
 const infoItems = [
@@ -54,7 +74,9 @@ const InfoField = ({ item, fieldKey }) => {
         href={link}
         target={link.startsWith("http") ? "_blank" : undefined}
         rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
-        className={styles.link}>{content}
+        className={styles.link}
+      >
+        {content}
       </Link>
     );
   }
@@ -70,12 +92,14 @@ export default function InfoHeader() {
           <div className={styles.iconsWrapper}>
             {socialIcons.map((social, index) => (
               <div key={index} className={styles.iconBox}>
-                <Uicons
-                  icon={social.icon}
-                  size={social.desktopSize}
-                  color="black"
-                  className={styles.socialIcon}
-                />
+                <Link href={social.href} target="_blank">
+                  <Uicons
+                    icon={social.icon}
+                    size={social.desktopSize}
+                    color="black"
+                    className={styles.socialIcon}
+                  />
+                </Link>
               </div>
             ))}
           </div>

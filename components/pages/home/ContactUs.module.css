@@ -115,6 +115,9 @@
   color: #083b1a;
   text-shadow: none;
 }
+.contactSection.noBackground .contactDetails {
+  color: #083b1a;
+}
 
 .contactText {
   font-size: 1rem;

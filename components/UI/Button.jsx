@@ -3,7 +3,7 @@ import Uicons from "./Uicons";
 
 export default function CustomButton({
   children,
-  icon = "fi-rr-arrow-right",
+  icon = "fi-rr-arrow-small-right",
   iconColor = "white",
   style,
   ...props

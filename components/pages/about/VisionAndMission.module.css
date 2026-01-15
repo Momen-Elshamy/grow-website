@@ -1,0 +1,144 @@
+.visionMissionSection {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #062a1a;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+.gridRow {
+  border-top: 1px solid #f0f0f0;
+  /* border-left: 1px solid #f0f0f0; */
+}
+
+.gridCol {
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 60px 32px !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Remove right border on the last column of each row (Desktop: 4 columns) */
+@media (min-width: 992px) {
+  .gridCol:nth-child(4n) {
+    border-right: none;
+  }
+  /* Remove bottom border on the last row (items 5-8) */
+  .gridCol:nth-child(n + 5) {
+    border-bottom: none;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 576px) and (max-width: 991px) {
+  /* Remove bottom border on the last row (items 7-8) */
+  .gridCol:nth-child(n + 7) {
+    border-bottom: none;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 575px) {
+  .gridCol {
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 40px 0 !important;
+  }
+  .gridCol:last-child {
+    border-bottom: none;
+  }
+}
+
+.gridCol:hover {
+  background-color: #f9fdfa;
+}
+
+.itemWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.iconContainer {
+  width: 60px;
+  height: 60px;
+  background-color: #f0f8f3;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.itemTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #062a1a;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.itemDescription {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .gridCol {
+    padding: 40px 24px !important;
+  }
+  
+  .itemTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 991px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .gridCol {
+    padding: 40px 16px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .gridRow {
+    border-top: none;
+    /* border-left: none; */
+  }
+
+  .gridCol:hover {
+    background-color: transparent;
+  }
+}
+

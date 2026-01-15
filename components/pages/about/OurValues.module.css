@@ -1,0 +1,96 @@
+.ourValuesSection {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+
+.container {
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #062a1a;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: 500;
+  color: #4a4a4a;
+  margin-bottom: 40px;
+}
+
+.valuesGrid {
+  width: 100%;
+}
+
+.valueItem {
+  background-color: #f4f7f4; /* Light greenish background from image */
+  padding: 30px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  transition: transform 0.5s ease, background-color 0.5s ease !important;
+}
+
+.valueItem:hover {
+  background-color: #e8eee8;
+  transform: translateY(-4px) !important;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+.valueItem:hover .iconWrapper {
+  transform: translateY(-4px);
+}
+
+.valueText {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2c4739;
+  line-height: 1.4;
+  transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+.valueItem:hover .valueText {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 991px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .heading {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .valueText {
+    font-size: 16px;
+  }
+  
+  .valueItem {
+    padding: 20px 16px;
+  }
+}
+

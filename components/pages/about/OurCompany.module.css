@@ -1,0 +1,181 @@
+.ourCompanySection {
+  padding: 100px 0;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1290px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.mainImageContainer {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  height: 700px !important;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100% !important;
+  display: block;
+  object-fit: cover;
+}
+
+.decorativeText {
+  position: absolute;
+  bottom: -40px;
+  left: 30px;
+  font-family: "Dancing Script", cursive;
+  font-size: 110px;
+  color: #eecd15;
+  pointer-events: none;
+  z-index: 10;
+  transform: rotate(-8deg);
+  white-space: nowrap;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .decorativeText {
+    font-size: 100px;
+    bottom: -30px;
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #107634;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.heading {
+  font-size: 32px;
+  font-weight: 700;
+  color: #062a1a;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  margin-bottom: 24px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.teamBtn {
+  background-color: #107634 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.marqueeWrapper {
+  width: 100%;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.marqueeItem {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-right: 30px;
+}
+
+.marqueeText {
+  font-size: 80px;
+  font-weight: 800;
+  color: #ededed;
+  -webkit-text-stroke: 1px #ededed;
+  text-transform: capitalize;
+  white-space: nowrap;
+  font-family: "Parkinsans", sans-serif;
+  opacity: 0.6;
+}
+
+.marqueeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+@media (max-width: 991px) {
+  .marqueeText {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 575px) {
+  .marqueeText {
+    font-size: 40px;
+  }
+}
+
+.badgeItem {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.badgeItem:hover {
+  opacity: 1;
+}
+
+@media (max-width: 991px) {
+  .mainImageContainer {
+    height: 400px;
+  }
+  .heading {
+    font-size: 32px;
+  }
+  .decorativeText {
+    font-size: 80px;
+    bottom: -25px;
+  }
+  .container :global(.ant-row) {
+    flex-direction: column-reverse !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .ourCompanySection {
+    padding: 60px 0;
+  }
+  .heading {
+    font-size: 28px;
+  }
+  .buttonGroup {
+    flex-direction: column;
+  }
+  .decorativeText {
+    font-size: 60px;
+    bottom: -20px;
+    left: 10px;
+  }
+}
+

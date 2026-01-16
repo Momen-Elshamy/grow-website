@@ -53,7 +53,7 @@ export default function MissionSection() {
     <section className={styles.missionSection}>
       <div className={styles.backgroundWrapper}>
         <Image
-          src="/images/services/background-services.webp"
+          src="/images/services/bg-services.webp"
           alt="Mission Background"
           fill
           className={styles.backgroundImage}

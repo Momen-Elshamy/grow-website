@@ -32,13 +32,13 @@
 .decorativeText {
   position: absolute;
   bottom: -40px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
   font-family: "Dancing Script", cursive;
   font-size: 110px;
   color: #eecd15;
   pointer-events: none;
   z-index: 10;
-  transform: rotate(-8deg);
   white-space: nowrap;
   line-height: 1;
   display: flex;
@@ -47,7 +47,7 @@
 
 @media (max-width: 1200px) {
   .decorativeText {
-    font-size: 100px;
+    font-size: 94px;
     bottom: -30px;
   }
 }
@@ -175,7 +175,8 @@
   .decorativeText {
     font-size: 60px;
     bottom: -20px;
-    left: 10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-8deg);
   }
 }
 

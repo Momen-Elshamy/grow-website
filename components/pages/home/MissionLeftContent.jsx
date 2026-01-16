@@ -38,7 +38,7 @@ const farmerVariants = {
   },
 };
 
-const MissionLeftContent = ({ title, paragraph, imageSrc }) => {
+export default function MissionLeftContent({ title, paragraph, imageSrc }) {
   return (
     <motion.div
       variants={containerVariants}
@@ -59,7 +59,11 @@ const MissionLeftContent = ({ title, paragraph, imageSrc }) => {
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <CustomButton href="/contact" className={styles.contactButton} iconColor="#0b2414">
+          <CustomButton
+            href="/contact"
+            className={styles.contactButton}
+            iconColor="#0b2414"
+          >
             Contact Us
           </CustomButton>
         </motion.div>
@@ -78,6 +82,4 @@ const MissionLeftContent = ({ title, paragraph, imageSrc }) => {
       </motion.div>
     </motion.div>
   );
-};
-
-export default MissionLeftContent;
+}

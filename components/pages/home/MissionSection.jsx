@@ -34,7 +34,7 @@ const leftData = {
   imageSrc: "/images/mission/banner.png",
 };
 
-const MissionSection = () => {
+export default function MissionSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleNext = () => {
@@ -80,6 +80,4 @@ const MissionSection = () => {
       </div>
     </section>
   );
-};
-
-export default MissionSection;
+}

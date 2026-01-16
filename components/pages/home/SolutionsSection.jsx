@@ -7,7 +7,7 @@ import styles from "./SolutionsSection.module.css";
 
 const { Title, Text } = Typography;
 
-const AgricultureProcess = () => {
+export default function SolutionsSection() {
   const [current, setCurrent] = useState(0);
 
   const onChange = (value) => {
@@ -157,6 +157,4 @@ const AgricultureProcess = () => {
       </div>
     </div>
   );
-};
-
-export default AgricultureProcess;
+}

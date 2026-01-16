@@ -165,6 +165,10 @@ export default function SuccessStories() {
             {/* RIGHT */}
             <Col xs={24} lg={12}>
               <motion.div className={styles.contentWrapper}>
+                <div className={styles.tagline}>
+                  <Uicons icon="fi-rr-leaf" size="20px"  />
+                  <span>Success Stories</span>
+                </div>
                 <h2 className={styles.heading}>{currentStory.heading}</h2>
                 <p className={styles.description}>{currentStory.description}</p>
 

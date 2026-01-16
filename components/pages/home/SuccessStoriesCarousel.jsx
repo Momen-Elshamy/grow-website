@@ -1,9 +1,9 @@
 import { Carousel, Card, Tag, Flex } from "antd";
 import Image from "next/image";
 import CustomButton from "@/components/UI/Button";
-import styles from "./CoursesCarousel.module.css";
+import styles from "./SuccessStoriesCarousel.module.css";
 
-const CoursesCarousel = ({ data = [] }) => {
+export default function SuccessStoriesCarousel({ data = [] }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -85,6 +85,4 @@ const CoursesCarousel = ({ data = [] }) => {
       ))}
     </Carousel>
   );
-};
-
-export default CoursesCarousel;
+}

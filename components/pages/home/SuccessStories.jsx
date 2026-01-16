@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Row, Col, Flex } from "antd";
 import Uicons from "@/components/UI/Uicons";
-import CoursesCarousel from "./CoursesCarousel";
-import styles from "./CoursesCarousel.module.css";
+import SuccessStoriesCarousel from "./SuccessStoriesCarousel";
+import styles from "./SuccessStoriesCarousel.module.css";
 import Image from "next/image";
 
 const COURSES_DATA = [
@@ -40,7 +40,7 @@ const COURSES_DATA = [
   },
 ];
 
-const Courses = () => {
+export default function SuccessStories() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -79,11 +79,9 @@ const Courses = () => {
           viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <CoursesCarousel data={COURSES_DATA} />
+          <SuccessStoriesCarousel data={COURSES_DATA} />
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default Courses;
+}

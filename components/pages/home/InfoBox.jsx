@@ -22,7 +22,7 @@ export default function InfoBox() {
       {/* Logo */}
       <div className={styles.logoContainer}>
         <Image
-          src="/images/hero/logo-1.png"
+          src="/images/hero/logo1.png"
           alt="Logo"
           className={styles.logoImage}
           width={100}

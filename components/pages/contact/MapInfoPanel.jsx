@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./ContactMap.module.css";
+import styles from "../contact/ContactMap.module.css";
 import Uicons from "@/components/UI/Uicons";
 
 export default function MapInfoPanel({ selectedLocation, isLoading }) {

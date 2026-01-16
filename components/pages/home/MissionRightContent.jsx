@@ -29,7 +29,11 @@ const leafVariants = {
   },
 };
 
-const MissionRightContent = ({ currentContent, handlePrev, handleNext }) => {
+export default function MissionRightContent({
+  currentContent,
+  handlePrev,
+  handleNext,
+}) {
   return (
     <motion.div
       variants={containerVariants}
@@ -86,6 +90,4 @@ const MissionRightContent = ({ currentContent, handlePrev, handleNext }) => {
       </motion.div>
     </motion.div>
   );
-};
-
-export default MissionRightContent;
+}

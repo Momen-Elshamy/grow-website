@@ -4,8 +4,8 @@ import Uicons from "./Uicons";
 import styles from "./WhatsAppWidget.module.css";
 import Link from "next/link";
 
-const WhatsAppWidget = () => {
-  const phoneNumber = "201080200887"; // Based on earlier info 01080200887
+export default function WhatsAppWidget() {
+  const phoneNumber = "+201080200887"; // Based on earlier info 01080200887
   const message = "Hello, I'm interested in your services.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message
@@ -29,12 +29,19 @@ const WhatsAppWidget = () => {
           rel="noopener noreferrer"
           className={styles.whatsappButton}
         >
-          <Uicons icon="fi-brands-whatsapp" size="22px" color="#25D366"  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}/>
+          <Uicons
+            icon="fi-brands-whatsapp"
+            size="22px"
+            color="#25D366"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
           <span className={styles.buttonText}>Contact us on WhatsApp</span>
         </Link>
       </div>
     </div>
   );
-};
-
-export default WhatsAppWidget;
+}

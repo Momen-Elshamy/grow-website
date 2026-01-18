@@ -89,7 +89,7 @@ export default function ContactInfo() {
           <div className={styles.contactDetails}>
             <h3 className={styles.contactTitle}>Working Hours</h3>
             <p className={styles.contactText}>
-               Sunday to Thursday from 8am -4 pm
+               Sunday to Thursday from 8am - 4pm
             </p>
           </div>
         </motion.div>

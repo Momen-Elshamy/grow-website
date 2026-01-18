@@ -8,7 +8,7 @@ const socialIcons = [
     icon: "fi-brands-linkedin",
     desktopSize: 20,
     mobileSize: 18,
-    href: "#",
+    href: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU",
   },
   {
     icon: "fi-brands-facebook",

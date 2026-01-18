@@ -38,7 +38,7 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { label: "LinkedIn", icon: "fi-brands-linkedin", href: "#" },
+    { label: "LinkedIn", icon: "fi-brands-linkedin", href: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
     { label: "Facebook", icon: "fi-brands-facebook", href: "#" },
     { label: "Instagram", icon: "fi-brands-instagram", href: "#" },
     { label: "YouTube", icon: "fi-brands-youtube", href: "#" },

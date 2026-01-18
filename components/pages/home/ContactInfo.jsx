@@ -89,9 +89,8 @@ export default function ContactInfo() {
           <div className={styles.contactDetails}>
             <h3 className={styles.contactTitle}>Working Hours</h3>
             <p className={styles.contactText}>
-              Mon - Fri: 8.00am - 18.00pm
+               Sunday to Thursday from 8am - 4pm
             </p>
-            <p className={styles.contactText}>Sat: 9.00am - 17.00pm</p>
           </div>
         </motion.div>
         <Divider style={{ margin: "0" }} />
@@ -107,12 +106,7 @@ export default function ContactInfo() {
             <h3 className={styles.contactTitle}>
               Recommendations / Complaints
             </h3>
-            <Link
-              href="mailto:info@grow-egypt.com"
-              className={styles.contactText}
-            >
-              info@grow-egypt.com
-            </Link>
+            <p className={styles.contactText}>+20 109 917 1000</p>
           </div>
         </motion.div>
       </motion.div>

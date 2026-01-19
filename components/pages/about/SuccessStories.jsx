@@ -5,70 +5,53 @@ import { motion, AnimatePresence } from "framer-motion";
 import Uicons from "../../UI/Uicons";
 import styles from "./SuccessStories.module.css";
 
-const storiesData = [
-  {
-    id: "1",
-    title: "Together with people",
-    heading: "Building strong partnerships for a better future!",
-    description:
-      "We work as a global network to bring together the people, ideas and resources that can nourish lives around the world. Our collaborative approach ensures sustainable growth.",
-    media: [
-      // { type: "image", src: "/images/about/bg-newsletter.webp" },
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/vDMwdqtipeI?feature=oembed&autoplay=1&controls=1",
-        featerImage: "/images/about/bg-newsletter.webp",
-      },
-    ],
-  },
-  {
-    id: "2",
-    title: "Only organic products",
-    heading: "Purely natural solutions for healthy harvests!",
-    description:
-      "We help ensure farmers and consumers have the technologies needed to protect crops safely.",
-    media: [{ type: "image", src: "/images/about/service.webp" }],
-  },
-  {
-    id: "3",
-    title: "Impact on the planet",
-    heading: "Restoring balance to our natural ecosystems!",
-    description:
-      "Our mission is to restore soil health and biodiversity through sustainable practices.",
-    media: [{ type: "image", src: "/images/about/blog-6.webp" }],
-  },
-];
+export default function SuccessStories({ successStoriesData }) {
+  if (!successStoriesData) return null;
 
-export default function SuccessStories() {
-  const [activeKey, setActiveKey] = useState("1");
+  const { icon, tagline, storiesData } = successStoriesData || {};
+  const cards = storiesData || [];
+  const title = successStoriesData?.title || "";
+
+  const [activeKey, setActiveKey] = useState(cards.length > 0 ? "0" : "");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const currentStory = storiesData.find((s) => s.id === activeKey);
+  const currentIndex =
+    cards.length > 0
+      ? parseInt(activeKey) >= 0 && parseInt(activeKey) < cards.length
+        ? parseInt(activeKey)
+        : 0
+      : -1;
+  const currentStory = currentIndex >= 0 ? cards[currentIndex] : null;
 
   // MEDIA HELPERS
-  const videoMedia =
-    currentStory?.media?.find((m) => m.type === "video") || null;
-
-  const imageMedia =
-    currentStory?.media?.find((m) => m.type === "image") || null;
+  const videoMedia = currentStory?.video
+    ? { type: "video", src: currentStory.video }
+    : null;
+  const imageMedia = currentStory?.image
+    ? { type: "image", src: currentStory.image }
+    : null;
 
   // VIEW IMAGE RULE
-  const viewImage = videoMedia?.featerImage || imageMedia?.src;
+  const viewImage = videoMedia?.src || imageMedia?.src;
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
   const handleNext = () => {
-    const index = storiesData.findIndex((s) => s.id === activeKey);
-    setActiveKey(storiesData[(index + 1) % storiesData.length].id);
+    if (cards.length === 0) return;
+    const nextIndex = (currentIndex + 1) % cards.length;
+    setActiveKey(nextIndex.toString());
   };
 
   const handlePrev = () => {
-    const index = storiesData.findIndex((s) => s.id === activeKey);
-    setActiveKey(
-      storiesData[(index - 1 + storiesData.length) % storiesData.length].id
-    );
+    if (cards.length === 0) return;
+    const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+    setActiveKey(prevIndex.toString());
   };
+
+  if (!currentStory || cards.length === 0) {
+    return null;
+  }
 
   return (
     <section id="stories" className={styles.containerSuccessStories}>
@@ -95,8 +78,11 @@ export default function SuccessStories() {
                       transition={{ duration: 0.5 }}
                     >
                       <Image
-                        src={viewImage}
-                        alt={currentStory.title}
+                        src={currentStory?.image?.node?.sourceUrl}
+                        alt={
+                          currentStory?.image?.node?.altText ||
+                          currentStory?.altImage
+                        }
                         width={600}
                         height={600}
                         className={styles.mainImage}
@@ -134,9 +120,11 @@ export default function SuccessStories() {
                       transition={{ duration: 0.4 }}
                       className={styles.overlappingCard}
                     >
-                      <h4 className={styles.cardTitle}>{currentStory.title}</h4>
+                      <h4 className={styles.cardTitle}>
+                        {currentStory?.title || currentStory?.heading}
+                      </h4>
                       <p className={styles.cardDescription}>
-                        {currentStory.description}
+                        {currentStory?.description}
                       </p>
                     </motion.div>
                   </AnimatePresence>
@@ -166,22 +154,25 @@ export default function SuccessStories() {
             <Col xs={24} lg={12}>
               <motion.div className={styles.contentWrapper}>
                 <div className={styles.tagline}>
-                  <Uicons icon="fi-rr-leaf" size="20px"  />
-                  <span>Success Stories</span>
+                  <Uicons icon={icon} size="20px" />
+                  <span>{tagline}</span>
                 </div>
-                <h2 className={styles.heading}>{currentStory.heading}</h2>
-                <p className={styles.description}>{currentStory.description}</p>
+                <h2 className={styles.heading}> {currentStory?.heading}</h2>
+                <p className={styles.description}>
+                  {" "}
+                  {currentStory?.description }
+                </p>
 
                 <div className={styles.storiesList}>
-                  {storiesData.map((story) => (
+                  {cards.map((story, idx) => (
                     <motion.div
-                      key={story.id}
+                      key={idx}
                       className={`${styles.storyItem} ${
-                        activeKey === story.id ? styles.activeItem : ""
+                        activeKey === idx.toString() ? styles.activeItem : ""
                       }`}
-                      onClick={() => setActiveKey(story.id)}
+                      onClick={() => setActiveKey(idx.toString())}
                     >
-                      <h3 className={styles.storyTitle}>{story.title}</h3>
+                      <h3 className={styles.storyTitle}>{story?.title}</h3>
                     </motion.div>
                   ))}
                 </div>
@@ -206,7 +197,7 @@ export default function SuccessStories() {
         {videoMedia ? (
           <div className={styles.videoResponsive}>
             <iframe
-              src={videoMedia.src}
+              src={currentStory?.video}
               width="100%"
               height="100%"
               frameBorder="0"
@@ -217,8 +208,8 @@ export default function SuccessStories() {
         ) : (
           <div className={styles.videoResponsive}>
             <Image
-              src={imageMedia.src}
-              alt={currentStory.title}
+              src={currentStory?.image?.node?.sourceUrl}
+              alt={currentStory?.image?.node?.altText || currentStory?.altImage}
               fill
               style={{ objectFit: "contain" }}
             />

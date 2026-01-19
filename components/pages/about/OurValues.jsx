@@ -3,15 +3,6 @@ import { motion } from "framer-motion";
 import Uicons from "../../UI/Uicons";
 import styles from "./OurValues.module.css";
 
-const valuesItems = [
-  "Highest quality seeds & plants",
-  "Cutting edge biosecurity methods",
-  "Pest management planning",
-  "Improving energy efficiency",
-  "Filtering, and recycling rainwater",
-  "Solutions tailored to your needs",
-];
-
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -31,7 +22,8 @@ const itemVariants = {
   },
 };
 
-export default function OurValues() {
+export default function OurValues( { ourValuesData } ) {
+  const { title, description, valueItem } = ourValuesData;
   return (
     <section id="values" className={styles.ourValuesSection}>
       <div className={styles.container}>
@@ -42,9 +34,9 @@ export default function OurValues() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.title}>Our Values</h2>
+          <h2 className={styles.title}>{title}</h2>
           <p className={styles.heading}>
-            Delivering impact with purpose and partnership!
+            {description}
           </p>
         </motion.div>
 
@@ -55,7 +47,7 @@ export default function OurValues() {
           viewport={{ once: true, amount: 0.1 }}
         >
           <Row gutter={[16, 16]} className={styles.valuesGrid}>
-            {valuesItems.map((value, index) => (
+            {valueItem?.map((value, index) => (
               <Col key={index} xs={24} md={8}>
                 <motion.div
                   variants={itemVariants}
@@ -63,7 +55,7 @@ export default function OurValues() {
                 >
                   <div className={styles.iconWrapper}>
                     <Uicons
-                      icon="fi-rr-check-circle"
+                      icon={value?.icon}
                       size="24px"
                       color="#107634"
                       style={{
@@ -73,7 +65,7 @@ export default function OurValues() {
                       }}
                     />
                   </div>
-                  <span className={styles.valueText}>{value}</span>
+                  <span className={styles.valueText}>{value?.valueText}</span>
                 </motion.div>
               </Col>
             ))}

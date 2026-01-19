@@ -5,58 +5,17 @@ import { motion } from "framer-motion";
 import Uicons from "../../UI/Uicons";
 import styles from "./ExpertsSection.module.css";
 
-const expertsData = [
-  {
-    id: 1,
-    media: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/vDMwdqtipeI?feature=oembed&autoplay=1&controls=1",
-        featerImage: "/images/about/bg-newsletter.webp",
-      },
-    ],
-    name: "John Doe",
-    description: "Agricultural Specialist with 10+ years of experience.",
-  },
-  {
-    id: 2,
-    image: "/images/about/blog-6.webp",
-    name: "Jane Smith",
-    description: "Expert in sustainable farming and soil health.",
-  },
-  {
-    id: 3,
-    image: "/images/services/bg-services.webp",
-    name: "Robert Brown",
-    description: "Pest management planning and crop protection.",
-  },
-  {
-    id: 4,
-    image: "/images/about/ptitle-pricing.webp",
-    name: "Emily White",
-    description: "Energy efficiency and water recycling expert.",
-  },
-  {
-    id: 5,
-    image: "/images/about/bg-newsletter.webp",
-    name: "Michael Green",
-    description: "Leading the future of smart agriculture.",
-  },
-  {
-    id: 6,
-    image: "/images/about/service.webp",
-    name: "Sarah Jenkins",
-    description: "Dedication to purely organic products.",
-  },
-];
-
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   hover: { y: -10, transition: { duration: 0.3, ease: "easeOut" } },
 };
 
-export default function ExpertsSection() {
+export default function ExpertsSection({ expertsData }) {
+  if (!expertsData) return null;
+
+  const { title, description, expertsData: expertsList } = expertsData || {};
+  const experts = expertsList || [];
   const [selectedMedia, setSelectedMedia] = useState(null);
 
   const handleOpenModal = (expert, mediaType) => {
@@ -75,21 +34,17 @@ export default function ExpertsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.title}>Meet Our Experts</h2>
-          <p className={styles.description}>
-            Our team brings years of agricultural expertise and innovative
-            thinking.
-          </p>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.description}>{description}</p>
         </motion.div>
 
         <Row gutter={[30, 30]}>
-          {expertsData.map((expert, index) => {
-            const media = expert.media?.[0];
-            const isVideo = media?.type === "video";
-            const displayImage = isVideo ? media.featerImage : expert.image;
+          {experts.map((expert, index) => {
+            const isVideo = !!expert.video;
+            const displayImage = expert.image;
 
             return (
-              <Col key={expert.id} xs={24} sm={12} md={8}>
+              <Col key={index} xs={24} sm={12} md={8}>
                 <motion.div
                   variants={itemVariants}
                   initial="hidden"
@@ -100,10 +55,14 @@ export default function ExpertsSection() {
                   whileHover="hover"
                 >
                   <div className={styles.imageWrapper}>
-                    {displayImage && (
+                    {displayImage?.node?.sourceUrl && (
                       <Image
-                        src={displayImage}
-                        alt={expert.name}
+                        src={displayImage.node.sourceUrl}
+                        alt={
+                          displayImage.node.altText ||
+                          expert.altImage ||
+                          expert.name
+                        }
                         width={400}
                         height={500}
                         className={styles.expertImage}
@@ -127,7 +86,11 @@ export default function ExpertsSection() {
                         icon={isVideo ? "fi-rr-play" : "fi-rr-expand"}
                         size="22px"
                         color="#fff"
-                        style={{display: "flex", alignItems: "center", justifyContent: "center"}}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
                       />
                     </motion.div>
 
@@ -169,12 +132,12 @@ export default function ExpertsSection() {
       >
         {selectedMedia &&
           selectedMedia.mediaType === "video" &&
-          selectedMedia.media?.[0] && (
+          selectedMedia.video && (
             <div className={styles.videoResponsive}>
               <iframe
                 width="100%"
                 height="100%"
-                src={selectedMedia.media[0].src}
+                src={selectedMedia.video}
                 title="Video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -185,10 +148,14 @@ export default function ExpertsSection() {
 
         {selectedMedia &&
           selectedMedia.mediaType === "image" &&
-          selectedMedia.image && (
+          selectedMedia.image?.node?.sourceUrl && (
             <Image
-              src={selectedMedia.image}
-              alt={selectedMedia.name}
+              src={selectedMedia.image.node.sourceUrl}
+              alt={
+                selectedMedia.image.node.altText ||
+                selectedMedia.altImage ||
+                selectedMedia.name
+              }
               width={1200}
               height={1500}
               className={styles.modalImage}

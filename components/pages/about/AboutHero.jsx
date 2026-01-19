@@ -5,13 +5,13 @@ import CustomButton from "@/components/UI/Button";
 import styles from "./AboutHero.module.css";
 import Link from "next/link";
 
-export default function AboutHero() {
+export default function AboutHero( { heroData } ) {
   return (
     <section className={styles.heroSection}>
       <div className={styles.imageWrapper}>
         <Image
-          src="/images/about/service.webp"
-          alt="About Us Hero"
+          src={heroData?.image?.node?.sourceUrl}
+          alt={heroData?.image?.node?.altText}
           fill
           priority
           className={styles.heroImage}
@@ -27,7 +27,7 @@ export default function AboutHero() {
             transition={{ duration: 0.6 }}
             className={styles.title}
           >
-            About Us
+            {heroData?.title}
           </motion.h1>
 
           <motion.p
@@ -36,9 +36,7 @@ export default function AboutHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={styles.description}
           >
-            Our success depends on our customers&apos; success, so we are
-            committed to building long lasting partnerships based on trust,
-            collaboration, and foster true sustainable growth.
+            {heroData?.description}
           </motion.p>
 
           <motion.div

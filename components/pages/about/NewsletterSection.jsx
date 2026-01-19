@@ -8,14 +8,17 @@ import styles from "./NewsletterSection.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function NewsletterSection() {
+export default function NewsletterSection({ newsletterData }) {
+  if (!newsletterData) return null;
+
+  const { title, description, image , email} = newsletterData || {};
   return (
     <section className={styles.newsletterSection}>
       <div className={styles.container}>
         <div className={styles.backgroundWrapper}>
           <Image
-            src="/images/about/bg-newsletter.webp"
-            alt="Newsletter Background"
+            src={image?.node?.sourceUrl}
+            alt={image?.node?.altText}
             fill
             className={styles.backgroundImage}
           />
@@ -31,11 +34,8 @@ export default function NewsletterSection() {
           <Row gutter={[40, 30]} align="middle">
             <Col xs={24} lg={12}>
               <div className={styles.textContent}>
-                <h2 className={styles.title}>Stay Updated</h2>
-                <p className={styles.description}>
-                  Our newsletter is a mix of tips and trends, sign up for
-                  alerts, deals, news and insights from us.
-                </p>
+                <h2 className={styles.title}>{title}</h2>
+                <p className={styles.description}>{description}</p>
               </div>
             </Col>
 
@@ -47,7 +47,7 @@ export default function NewsletterSection() {
                     placeholder="Your Email Address"
                     className={styles.emailInput}
                   />
-                  <Link href="mailto:info@grow-egypt.com">
+                  <Link href={`mailto:${email}`}>
                     <CustomButton className={styles.subscribeBtn}>
                       Subscribe
                     </CustomButton>

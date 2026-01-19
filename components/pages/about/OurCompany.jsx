@@ -7,7 +7,8 @@ import Uicons from "../../UI/Uicons";
 import styles from "./OurCompany.module.css";
 import Marquee from "react-fast-marquee";
 
-export default function OurCompany() {
+export default function OurCompany( { ourCompanyData } ) {
+  const { title, description, image, decorativeText, icon, tagline } = ourCompanyData;
   const marqueeData = [
     { text: "Grow Egypt", icon: "fi-rr-leaf" },
     { text: "Grow Egypt", icon: "fi-rr-leaf" },
@@ -30,14 +31,14 @@ export default function OurCompany() {
             >
               <div className={styles.mainImageContainer}>
                 <Image
-                  src="/images/about/banner-6.webp"
-                  alt="Our Company"
+                  src={image?.node?.sourceUrl}
+                  alt={image?.node?.altText}
                   width={600}
                   height={600}
                   className={styles.mainImage}
                 />
               </div>
-              <div className={styles.decorativeText}>Collaboration</div>
+              <div className={styles.decorativeText}>{decorativeText}</div>
             </motion.div>
           </Col>
 
@@ -51,24 +52,16 @@ export default function OurCompany() {
               className={styles.contentWrapper}
             >
               <div className={styles.tagline}>
-                <Uicons icon="fi-rr-leaf" size="20px" color="#107634" />
-                <span>Our Company</span>
+                <Uicons icon={icon} size="20px" color="#107634" />
+                <span>{tagline}</span>
               </div>
 
               <h2 className={styles.heading}>
-                Helping farmers in delivering & sourcing products that are vital
-                for living with innovation.
+                {title}
               </h2>
 
               <p className={styles.description}>
-                Our success depends on our customers&apos; success, so we are
-                committed to building long lasting partnerships based on trust,
-                collaboration, and foster sustainable growth for our customers
-                and contribute to the horticulture industry&apos;s advancement.
-              </p>
-              <p className={styles.description}>
-                People are at the heart of everything we do from agriculture and
-                forestry work together with partners from processing to trade.
+                {description}
               </p>
 
               <div className={styles.buttonGroup}>

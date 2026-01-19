@@ -3,19 +3,19 @@ import Uicons from "../UI/Uicons";
 import styles from "./InfoHeader.module.css";
 import Link from "next/link";
 
-
 const infoItems = [
   {
-    icon: "fi-rr-phone-call",
+    icons: ["fi-rr-phone-rotary", "fi-brands-whatsapp"],
     text: "+20235380720",
     info: "+201080200887",
-    desktopSize: 30,
-    mobileSize: 40,
+    infoLink: "https://wa.me/201080200887",
+    desktopSize: 16,
+    mobileSize: 16,
   },
   {
     icon: "fi-rr-newsletter-subscribe",
-    text: "+201080200887",
-    textLink: "https://wa.me/201080200887",
+    // text: "+201080200887",
+    // textLink: "https://wa.me/201080200887",
     info: "info@grow-egypt.com",
     infoLink: "mailto:info@grow-egypt.com",
     desktopSize: 30,
@@ -37,7 +37,10 @@ const infoItems = [
 const INFO_FIELDS = ["text", "info"];
 
 const InfoField = ({ item, fieldKey }) => {
-  const content = <p className={styles[fieldKey]}>{item[fieldKey]}</p>;
+  const fieldValue = item[fieldKey];
+  if (!fieldValue) return null;
+
+  const content = <p className={styles[fieldKey]}>{fieldValue}</p>;
   const link = item[`${fieldKey}Link`];
 
   if (link) {
@@ -55,17 +58,21 @@ const InfoField = ({ item, fieldKey }) => {
   return <div>{content}</div>;
 };
 
-export default function InfoHeader({ socialMediaData, contactData }) {
-  console.log(contactData, 'contactData')
-  const socialIcons = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0 
-    ? socialMediaData 
-    : [
-        { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
-        { icon: "fi-brands-facebook", link: "#" },
-        { icon: "fi-brands-instagram", link: "#" },
-        { icon: "fi-brands-youtube", link: "#" },
-      ];
-  
+export default function InfoHeader({ socialMediaData }) {
+  const socialIcons =
+    socialMediaData &&
+    Array.isArray(socialMediaData) &&
+    socialMediaData.length > 0
+      ? socialMediaData
+      : [
+          {
+            icon: "fi-brands-linkedin",
+            link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU",
+          },
+          { icon: "fi-brands-facebook", link: "#" },
+          { icon: "fi-brands-instagram", link: "#" },
+          { icon: "fi-brands-youtube", link: "#" },
+        ];
   return (
     <div className={styles.infoHeader}>
       <Row gutter={16} justify="center" className={styles.desktopRow}>
@@ -74,7 +81,11 @@ export default function InfoHeader({ socialMediaData, contactData }) {
           <div className={styles.iconsWrapper}>
             {socialIcons.map((social, index) => (
               <div key={index} className={styles.iconBox}>
-                <Link href={social?.link || "#"} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={social?.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Uicons
                     icon={social?.icon}
                     size={20}
@@ -92,12 +103,24 @@ export default function InfoHeader({ socialMediaData, contactData }) {
           <Col key={index} span={6} className={styles.iconsContainer}>
             <div className={styles.infoText}>
               <div className={styles.infoIconWrapper}>
-                <Uicons
-                  icon={item.icon}
-                  size={item.desktopSize}
-                  color="#107634"
-                  className={styles.infoIcon}
-                />
+                {item.icons ? (
+                  item.icons.map((icon, iconIndex) => (
+                    <Uicons
+                      key={iconIndex}
+                      icon={icon}
+                      size={item.desktopSize}
+                      color="#107634"
+                      className={styles.infoIcon}
+                    />
+                  ))
+                ) : (
+                  <Uicons
+                    icon={item.icon}
+                    size={item.desktopSize}
+                    color="#107634"
+                    className={styles.infoIcon}
+                  />
+                )}
               </div>
               <div className={styles.infoTextContent}>
                 {INFO_FIELDS.map((key) => (
@@ -113,12 +136,24 @@ export default function InfoHeader({ socialMediaData, contactData }) {
         <div className={styles.mobileInfoRow}>
           {infoItems.map((item, index) => (
             <div key={index} className={styles.mobileInfoItem}>
-              <Uicons
-                icon={item.icon}
-                size={item.mobileSize}
-                color="#107634"
-                className={styles.infoIcon}
-              />
+              {item.icons ? (
+                item.icons.map((icon, iconIndex) => (
+                  <Uicons
+                    key={iconIndex}
+                    icon={icon}
+                    size={item.mobileSize}
+                    color="#107634"
+                    className={styles.infoIcon}
+                  />
+                ))
+              ) : (
+                <Uicons
+                  icon={item.icon}
+                  size={item.mobileSize}
+                  color="#107634"
+                  className={styles.infoIcon}
+                />
+              )}
               <div className={styles.infoTextContent}>
                 {INFO_FIELDS.map((key) => (
                   <InfoField key={key} item={item} fieldKey={key} />
@@ -130,7 +165,11 @@ export default function InfoHeader({ socialMediaData, contactData }) {
         <div className={styles.mobileIconsWrapper}>
           {socialIcons.map((social, index) => (
             <div key={index} className={styles.iconBox}>
-              <Link href={social?.link || "#"} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={social?.link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Uicons
                   icon={social?.icon}
                   size={18}

@@ -7,8 +7,12 @@ export default function HomePage({ homePageData }) {
 }
 
 HomePage.getLayout = function getLayout(page, pageProps) {
-   const socialMediaData = pageProps?.homePageData?.socialMedia;
-   return <MainLayout socialMediaData={socialMediaData}>{page}</MainLayout>;
+   // Extract data from pageProps
+   const homePageFields = pageProps?.homePageData || {};
+   const socialMediaData = homePageFields?.socialMedia || [];
+   const contactData = homePageFields?.contactUs || null;
+   
+   return <MainLayout socialMediaData={socialMediaData} contactData={contactData}>{page}</MainLayout>;
 };
 
 export const getStaticProps = async () => {

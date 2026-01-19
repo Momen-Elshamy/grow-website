@@ -69,8 +69,8 @@ export default function ServiceCarousel({ services }) {
               className={styles.serviceImageContainer}
             >
               <Image
-                src={service.image}
-                alt={service.title}
+                src={service.image?.node?.sourceUrl}
+                alt={service.image?.node?.altText}
                 fill
                 className={styles.serviceImage}
               />
@@ -103,7 +103,7 @@ export default function ServiceCarousel({ services }) {
                   transition={{ duration: 0.5 }}
                   className={styles.serviceTitle}
                 >
-                  {service.title}
+                  {service?.title}
                 </motion.h3>
                 <motion.p
                   variants={{
@@ -117,7 +117,7 @@ export default function ServiceCarousel({ services }) {
                   transition={{ duration: 0.5 }}
                   className={styles.serviceDescription}
                 >
-                  {service.description}
+                  {service?.description}
                 </motion.p>
                 <motion.div
                   variants={{

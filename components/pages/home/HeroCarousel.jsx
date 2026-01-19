@@ -1,4 +1,4 @@
-import { Carousel, Flex } from "antd";
+import { Button, Carousel, Flex } from "antd";
 import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -6,33 +6,8 @@ import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./HeroCarousel.module.css";
 
-export default function CarouselComponent() {
+export default function CarouselComponent({ heroDetails }) {
   const carouselRef = useRef(null);
-
-  // Array of images for the carousel
-  const carouselImages = [
-    {
-      id: 1,
-      image: "/images/hero/background-1.jpg", // Replace with your image path
-      title: "Shaping A Future For Eco Farming & New Agriculture!",
-      description:
-        "Our Agriculture businesses deliver agronomic advice, services, and inputs to livestock, fruit, and vegetables. We also supply smart chain solutions to all businesses in all the primary food production fields.",
-    },
-    {
-      id: 2,
-      image: "/images/hero/background-2.webp", // Replace with your image path
-      title: "Sustainable Agriculture Solutions",
-      description:
-        "Techniques that prioritize health of our land and customers within the regional agricultural market.",
-    },
-    {
-      id: 3,
-      image: "/images/hero/background-1.jpg", // Replace with your image path
-      title: "100% Organic Products",
-      description:
-        "Delivering sustainable agriculture solutions for a better future.",
-    },
-  ];
 
   const next = () => {
     carouselRef.current?.next();
@@ -41,6 +16,11 @@ export default function CarouselComponent() {
   const prev = () => {
     carouselRef.current?.prev();
   };
+
+  const carouselArrows = [
+    { onClick: prev, icon: "fi-rr-angle-left", className: styles.navButtonLeft, id: 1 },
+    { onClick: next, icon: "fi-rr-angle-right", className: styles.navButtonRight, id: 2 },
+  ];
 
   return (
     <div className={styles.heroContainer}>
@@ -52,12 +32,12 @@ export default function CarouselComponent() {
         effect="fade"
         className={styles.carousel}
       >
-        {carouselImages.map((slide, index) => (
+        {heroDetails?.map((slide, index) => (
           <div key={slide.id}>
             <div className={styles.slideContainer}>
               <Image
-                src={slide.image}
-                alt={slide.title}
+                src={slide.image?.node?.sourceUrl}
+                alt={slide.image?.node?.altText}
                 fill
                 priority={index === 0}
                 className={styles.backgroundImage}
@@ -122,18 +102,17 @@ export default function CarouselComponent() {
       </Carousel>
 
       {/* Custom Navigation Arrows */}
-      <button
-        onClick={prev}
-        className={`${styles.navButton} ${styles.navButtonLeft}`}
-      >
-        <Uicons icon="fi-rr-angle-left" size="32px" color="white" />
-      </button>
-      <button
-        onClick={next}
-        className={`${styles.navButton} ${styles.navButtonRight}`}
-      >
-        <Uicons icon="fi-rr-angle-right" size="32px" color="white" />
-      </button>
+      {carouselArrows.map((nav) => (
+        { onClick: prev, icon: "fi-rr-angle-left", className: styles.navButtonLeft },
+        { onClick: next, icon: "fi-rr-angle-right", className: styles.navButtonRight },
+        <Button
+          key={nav.id}
+          onClick={nav.onClick}
+          className={`${styles.navButton} ${nav.className}`}
+        >
+          <Uicons icon={nav.icon} size="32px" color="white" />
+          </Button>
+      ))}
     </div>
   );
 }

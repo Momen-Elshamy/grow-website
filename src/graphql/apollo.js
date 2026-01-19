@@ -3,8 +3,14 @@ import { relayStylePagination } from "@apollo/client/utilities";
 import { setContext } from "@apollo/client/link/context";
 
 // Create HTTP link
+const graphqlEndpoint = process.env.WORDPRESS_GRAPHQL_ENDPOINT || process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT;
+
+if (!graphqlEndpoint) {
+   console.error("WORDPRESS_GRAPHQL_ENDPOINT is not configured. Please set it in your .env file.");
+}
+
 const httpLink = createHttpLink({
-   uri: process.env.WORDPRESS_GRAPHQL_ENDPOINT,
+   uri: graphqlEndpoint || "https://grow-wordpress-2a16da-72-61-111-171.traefik.me/graphql",
 });
 
 // Create auth link
@@ -35,6 +41,7 @@ const cache = new InMemoryCache({
             posts: relayStylePagination(),
             pages: relayStylePagination(),
             // Add other post types as needed
+            // customPostType: relayStylePagination(),
          },
       },
       // Handle custom post types
@@ -48,6 +55,15 @@ const cache = new InMemoryCache({
             // Add any specific field policies for Page type
          },
       },
+      // MediaItem: {
+      //    fields: {
+      //       sourceUrl: {
+      //          read(existing) {
+      //             return toHttps(existing);
+      //          },
+      //       },
+      //    },
+      // },
       // Handle ACF Media fields
       AcfMediaField: {
          fields: {

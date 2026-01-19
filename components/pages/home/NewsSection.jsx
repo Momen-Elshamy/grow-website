@@ -6,37 +6,18 @@ import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./NewsSection.module.css";
 
-const COMMITMENT_DEFAULTS = {
-  videoUrl:
-    "https://www.youtube.com/embed/vDMwdqtipeI?feature=oembed&mode=opaque&loop=1&autoplay=1&controls=1&mute=0&rel=0&modestbranding=0",
-  mainImage: "/images/news/banner-video.webp",
-  tagline: "Insights, News, and Updates on Sustainable Agriculture.",
-  heading:
-    "Discover expert insights, industry news, and updates.",
-  features: [
-    {
-      icon: "fi fi-rr-farm",
-      title: "Always support farmers",
-      description:
-        "Farmers strength their soil health while increasing crop yields & profitability.",
-    },
-    {
-      icon: "fi-rr-recycle",
-      title: "Power of regeneration",
-      description:
-        "Shifting agriculture from being carbon emitter to a powerful carbon sink.",
-    },
-  ],
+const getYouTubeEmbedUrl = (url) => {
+  if (!url) return "";
+  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)?.[1];
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 };
 
-export default function NewsSection({
-  videoUrl = COMMITMENT_DEFAULTS.videoUrl,
-  mainImage = COMMITMENT_DEFAULTS.mainImage,
-  tagline = COMMITMENT_DEFAULTS.tagline,
-  heading = COMMITMENT_DEFAULTS.heading,
-  features = COMMITMENT_DEFAULTS.features,
-}) {
+export default function NewsSection({ newsData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { video, image, taglineicon, title, categoryTitle, features, description, decorativeText, icon } = newsData || {};
+  
+  const embedUrl = getYouTubeEmbedUrl(video);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -76,12 +57,12 @@ export default function NewsSection({
         variants={containerVariants}
       >
         <motion.div className={styles.tagline} variants={leftVariants}>
-          <Uicons icon="fi-rr-leaf" className={styles.taglineIcon} />
-          <span>{tagline}</span>
+          <Uicons icon={newsData?.taglineicon || "fi-rr-leaf"} className={styles.taglineIcon} />
+          <span>{taglineicon}</span>
         </motion.div>
 
         <motion.h2 className={styles.heading} variants={leftVariants}>
-          {heading}
+          {title}
         </motion.h2>
 
         <Row gutter={[60, 40]}>
@@ -89,8 +70,8 @@ export default function NewsSection({
             <motion.div className={styles.imageWrapper} variants={leftVariants}>
               <div className={styles.mainImageContainer}>
                 <Image
-                  src={mainImage}
-                  alt="Agriculture Technology"
+                  src={image?.node?.sourceUrl}
+                  alt={image?.node?.altText}
                   fill
                   sizes="(max-width: 991px) 100vw, 50vw"
                   className={styles.mainImage}
@@ -105,10 +86,10 @@ export default function NewsSection({
                 >
                   <Flex vertical justify="center" align="center">
                     <div className={styles.overlayIconBox}>
-                      <Uicons icon="fi-rr-wheat" size={32} color="#107634" />
+                      <Uicons icon={icon} size={32} color="#107634" />
                     </div>
                     <div className={styles.overlayContent}>
-                      <h3>Agriculture & Foods</h3>
+                      <h3>{categoryTitle}</h3>
                     </div>
                   </Flex>
                   <div
@@ -126,41 +107,35 @@ export default function NewsSection({
                 viewport={{ once: false }}
                 transition={{ delay: 0.7, duration: 0.8 }}
               >
-                Quality Crops
+                {decorativeText}
               </motion.div>
             </motion.div>
           </Col>
 
           <Col xs={24} lg={12}>
             <div className={styles.content}>
-              <motion.p
-                className={styles.descriptionOne}
-                variants={rightVariants}
-              >
-                We help farmers and consumers have the technologies they need to
-                protect the crops and the ecosystems from the threat of pests,
-                weeds diseases in an environmentally sound, safe, and
-                sustainable way.
-              </motion.p>
-              <motion.p className={styles.description} variants={rightVariants}>
-                With 65 years of experience, we utilize deep industry knowledge,
-                insights and innovation expertise to create solutions for
-                tomorrow.
-              </motion.p>
+              {description && (
+                <motion.p
+                  className={styles.descriptionOne}
+                  variants={rightVariants}
+                >
+                  {description}
+                </motion.p>
+              )}
 
               <div className={styles.features}>
-                {features.map((feature, index) => (
+                {features?.map((feature, index) => (
                   <motion.div
                     key={index}
                     className={styles.featureItem}
                     variants={rightVariants}
                   >
                     <div className={styles.featureIcon}>
-                      <Uicons icon={feature.icon} className={styles.icon} />
+                      <Uicons icon={feature?.icon} className={styles.icon} />
                     </div>
                     <div className={styles.featureText}>
-                      <h4>{feature.title}</h4>
-                      <p>{feature.description}</p>
+                      <h4>{feature?.title}</h4>
+                      <p>{feature?.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -201,7 +176,7 @@ export default function NewsSection({
           <iframe
             width="100%"
             height="100%"
-            src={`${videoUrl}?autoplay=1`}
+            src={`${embedUrl}?autoplay=1&rel=0`}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

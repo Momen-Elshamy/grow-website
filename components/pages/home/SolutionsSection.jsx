@@ -7,39 +7,13 @@ import styles from "./SolutionsSection.module.css";
 
 const { Title, Text } = Typography;
 
-export default function SolutionsSection() {
+export default function SolutionsSection({ solutionsData }) {
+  const { icon, subtitle, title, steps, image, overlaytext } = solutionsData || {};
   const [current, setCurrent] = useState(0);
 
   const onChange = (value) => {
     setCurrent(value);
   };
-
-  const steps = [
-    {
-      title: "Farm Operation and Management",
-      description:
-        "Soil preparation is crucial in the modern farming ecosystem.",
-    },
-    {
-      title: "Farm Resource Planning solution “FRP”",
-      description:
-        "Efficient irrigation systems are vital in the farming ecosystem.",
-    },
-    {
-      title: "Water Management",
-      description: "Integrated pest management strategies.",
-    },
-    {
-      title: "Human Capital Training & Development",
-      description:
-        "Timing of the harvest is critical & is determined by monitoring crop maturity facilitates harvesting.",
-    },
-    {
-      title: "Commercial Management",
-      description:
-        "Soil preparation is crucial in the modern farming ecosystem.",
-    },
-  ];
 
   useEffect(() => {
     const handleIntersect = (entries) => {
@@ -83,14 +57,13 @@ export default function SolutionsSection() {
         >
           <Flex vertical gap="small" className={styles.header}>
             <Flex align="center" gap="small">
-              <Uicons icon="fi-rr-leaf" className={styles.leafIcon} />
+              <Uicons icon={icon} className={styles.leafIcon} />
               <Text className={styles.subtitle}>
-                Simple Steps. Powerful Agricultural Solutions.
+                {subtitle}
               </Text>
             </Flex>
             <Title level={2} className={styles.mainTitle}>
-              Innovative solutions for agriculture optimal crops growth & soil
-              health.
+              {title}
             </Title>
           </Flex>
         </motion.div>
@@ -107,11 +80,11 @@ export default function SolutionsSection() {
                 direction="vertical"
                 current={current}
                 onChange={onChange}
-                items={steps.map((step, index) => ({
-                  title: <span className={styles.stepTitle}>{step.title}</span>,
+                items={steps?.map((step, index) => ({
+                  title: <span className={styles.stepTitle}>{step?.title}</span>,
                   description: (
                     <span className={styles.stepDescription}>
-                      {step.description}
+                      {step?.description}
                     </span>
                   ),
                   icon: <div className={styles.stepIcon}>{index + 1}</div>,
@@ -129,8 +102,8 @@ export default function SolutionsSection() {
               className={styles.imageWrapper}
             >
               <Image
-                src="/images/solutions/banner-process.webp"
-                alt="Agriculture Process"
+                src={image?.node?.sourceUrl}
+                alt={image?.node?.altText}
                 width={500}
                 height={500}
                 className={styles.mainImage}
@@ -143,11 +116,11 @@ export default function SolutionsSection() {
                 className={styles.overlayCard}
               >
                 <div className={styles.iconBox}>
-                  <Uicons icon="fi-rr-mobile-notch" size={40} color="#0b3d1b" />
+                  <Uicons icon={solutionsData?.icon} size={40} color="#0b3d1b" />
                 </div>
                 <div className={styles.overlayTextWrapper}>
                   <Text className={styles.overlayText}>
-                    Leading provider of seeds and plants for all greenhouses.
+                    {overlaytext}
                   </Text>
                 </div>
               </motion.div>

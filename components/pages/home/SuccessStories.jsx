@@ -3,44 +3,10 @@ import { Row, Col, Flex } from "antd";
 import Uicons from "@/components/UI/Uicons";
 import SuccessStoriesCarousel from "./SuccessStoriesCarousel";
 import styles from "./SuccessStoriesCarousel.module.css";
-import Image from "next/image";
 
-const COURSES_DATA = [
-  {
-    id: 1,
-    image: "/images/courses/project-3.webp",
-    tags: ["Agriculture", "Greenhouse"],
-    title: "Advancing vertical farming with urban crop solutions",
-    description:
-      "Innovative urban farming solutions to maximize crop yields in limited spaces using vertical technology.",
-  },
-  {
-    id: 2,
-    image: "/images/courses/project-5.webp",
-    tags: ["Agriculture", "Greenhouse"],
-    title: "Controlled environment in agriculture growing",
-    description:
-      "Discover the latest trends in climate-controlled greenhouses for sustainable year-round production.",
-  },
-  {
-    id: 3,
-    image: "/images/solutions/banner-process.webp",
-    tags: ["Climate", "Farmers"],
-    title: "How to help farmers break their financial barriers?",
-    description:
-      "Over the last few years, we have witnessed a steady rise in demand for locally sourced food, restaurants are growing their own food even.",
-  },
-  {
-    id: 4,
-    image: "/images/courses/project-5.webp",
-    tags: ["Farming", "Food"],
-    title: "Future of food production in smart new indoor farming",
-    description:
-      "Smart technology integration in indoor farming to ensure food security and sustainable growth.",
-  },
-];
+export default function SuccessStories({ successStoriesData }) {
+  const { title, subtitle, cards } = successStoriesData || {};
 
-export default function SuccessStories() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -53,9 +19,9 @@ export default function SuccessStories() {
           >
             <Row justify="center">
               <Col xs={24} md={18} lg={12}>
-                <p className={styles.tagline}>Growing Success Together</p>
+                <p className={styles.tagline}>{subtitle}</p>
 
-                <h2 className={styles.heading}>Success Stories</h2>
+                <h2 className={styles.heading}>{title}</h2>
                 <Flex
                   justify="center"
                   gap={10}
@@ -79,7 +45,7 @@ export default function SuccessStories() {
           viewport={{ once: false, amount: 0.1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <SuccessStoriesCarousel data={COURSES_DATA} />
+          <SuccessStoriesCarousel cards={cards} />
         </motion.div>
       </div>
     </section>

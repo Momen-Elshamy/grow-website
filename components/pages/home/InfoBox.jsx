@@ -3,12 +3,9 @@ import { motion } from "framer-motion";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./InfoBox.module.css";
 
-export default function InfoBox() {
-  const features = [
-    "100% Organic Products",
-    "The Best Ingredients",
-    "Cow Meat & Milk",
-  ];
+export default function InfoBox({ infoboxData }) {
+
+  const {title, description, features} = infoboxData;
 
   return (
     <motion.div
@@ -38,7 +35,7 @@ export default function InfoBox() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={styles.infoTitle}
       >
-        Delivering Sustainable Agriculture Solutions!
+        {title}
       </motion.h2>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -47,8 +44,7 @@ export default function InfoBox() {
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         className={styles.infoDescription}
       >
-        Techniques that prioritize health of our land and customers within the
-        regional agricultural market.
+        {description}
       </motion.p>
 
       {/* Features List */}
@@ -62,8 +58,8 @@ export default function InfoBox() {
             transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
             className={styles.featureItem}
           >
-            <Uicons icon="fi-rr-check" size="20px" color="white" />
-            <span>{feature}</span>
+            <Uicons icon={feature?.icon} size="20px" color="white" />
+            <span>{feature?.feature}</span>
           </motion.li>
         ))}
       </ul>

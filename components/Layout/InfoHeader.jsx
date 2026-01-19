@@ -55,7 +55,8 @@ const InfoField = ({ item, fieldKey }) => {
   return <div>{content}</div>;
 };
 
-export default function InfoHeader({ socialMediaData }) {
+export default function InfoHeader({ socialMediaData, contactData }) {
+  console.log(contactData, 'contactData')
   const socialIcons = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0 
     ? socialMediaData 
     : [

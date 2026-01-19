@@ -23,7 +23,9 @@ const itemVariants = {
 };
 
 export default function OurValues( { ourValuesData } ) {
-  const { title, description, valueItem } = ourValuesData;
+  if (!ourValuesData) return null;
+
+  const { title, description, valueItem } = ourValuesData || {};
   return (
     <section id="values" className={styles.ourValuesSection}>
       <div className={styles.container}>

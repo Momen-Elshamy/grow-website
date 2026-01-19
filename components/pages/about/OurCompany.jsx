@@ -8,7 +8,9 @@ import styles from "./OurCompany.module.css";
 import Marquee from "react-fast-marquee";
 
 export default function OurCompany( { ourCompanyData } ) {
-  const { title, description, image, decorativeText, icon, tagline } = ourCompanyData;
+  if (!ourCompanyData) return null;
+
+  const { title, description, image, decorativeText, icon, tagline } = ourCompanyData || {};
   const marqueeData = [
     { text: "Grow Egypt", icon: "fi-rr-leaf" },
     { text: "Grow Egypt", icon: "fi-rr-leaf" },

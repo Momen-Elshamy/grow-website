@@ -3,40 +3,12 @@ import Uicons from "../UI/Uicons";
 import styles from "./InfoHeader.module.css";
 import Link from "next/link";
 
-const socialIcons = [
-  {
-    icon: "fi-brands-linkedin",
-    desktopSize: 20,
-    mobileSize: 18,
-    href: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU",
-  },
-  {
-    icon: "fi-brands-facebook",
-    desktopSize: 20,
-    mobileSize: 18,
-    href: "#",
-  },
-  {
-    icon: "fi-brands-instagram",
-    desktopSize: 20,
-    mobileSize: 18,
-    href: "#",
-  },
-  {
-    icon: "fi-brands-youtube",
-    desktopSize: 20,
-    mobileSize: 18,
-    href: "#",
-  },
-];
 
 const infoItems = [
   {
     icon: "fi-rr-phone-call",
     text: "+20235380720",
-    // textLink: "tel:+20235380720",
     info: "+201080200887",
-    // infoLink: "tel:+201080200887",
     desktopSize: 30,
     mobileSize: 40,
   },
@@ -83,7 +55,16 @@ const InfoField = ({ item, fieldKey }) => {
   return <div>{content}</div>;
 };
 
-export default function InfoHeader() {
+export default function InfoHeader({ socialMediaData }) {
+  const socialIcons = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0 
+    ? socialMediaData 
+    : [
+        { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
+        { icon: "fi-brands-facebook", link: "#" },
+        { icon: "fi-brands-instagram", link: "#" },
+        { icon: "fi-brands-youtube", link: "#" },
+      ];
+  
   return (
     <div className={styles.infoHeader}>
       <Row gutter={16} justify="center" className={styles.desktopRow}>
@@ -92,10 +73,10 @@ export default function InfoHeader() {
           <div className={styles.iconsWrapper}>
             {socialIcons.map((social, index) => (
               <div key={index} className={styles.iconBox}>
-                <Link href={social.href} target="_blank">
+                <Link href={social?.link || "#"} target="_blank" rel="noopener noreferrer">
                   <Uicons
-                    icon={social.icon}
-                    size={social.desktopSize}
+                    icon={social?.icon}
+                    size={20}
                     color="black"
                     className={styles.socialIcon}
                   />
@@ -148,12 +129,14 @@ export default function InfoHeader() {
         <div className={styles.mobileIconsWrapper}>
           {socialIcons.map((social, index) => (
             <div key={index} className={styles.iconBox}>
-              <Uicons
-                icon={social.icon}
-                size={social.mobileSize}
-                color="black"
-                className={styles.socialIcon}
-              />
+              <Link href={social?.link || "#"} target="_blank" rel="noopener noreferrer">
+                <Uicons
+                  icon={social?.icon}
+                  size={18}
+                  color="black"
+                  className={styles.socialIcon}
+                />
+              </Link>
             </div>
           ))}
         </div>

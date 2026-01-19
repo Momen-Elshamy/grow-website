@@ -45,17 +45,17 @@ export default function MissionRightContent({
       <div className={styles.rightContent}>
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentContent.id}
+            key={currentContent?.id}
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <Title level={4} className={styles.rightTitle}>
-              {currentContent.title}
+              {currentContent?.title}
             </Title>
             <Paragraph className={styles.rightParagraph}>
-              {currentContent.text}
+              {currentContent?.description}
             </Paragraph>
           </motion.div>
         </AnimatePresence>

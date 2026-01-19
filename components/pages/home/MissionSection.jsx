@@ -1,53 +1,32 @@
 import React, { useState } from "react";
-import { Row, Col, Typography, Button as AntButton } from "antd";
+import { Row, Col } from "antd";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import CustomButton from "../../UI/Button";
-import Uicons from "../../UI/Uicons";
 import styles from "./MissionSection.module.css";
 import MissionLeftContent from "./MissionLeftContent";
 import MissionRightContent from "./MissionRightContent";
 
-const { Title, Paragraph } = Typography;
+export default function MissionSection({ missionData }) {
+  const { title, description, image, currentcontent } = missionData || {};
 
-const contentData = [
-  {
-    id: "mission",
-    title: "Our Mission",
-    text: "Our mission is to empower our customers by delivering highest quality plants and innovative solutions tailored to their specific needs.",
-  },
-  {
-    id: "vision",
-    title: "Our Vision",
-    text: "Our vision is to advocates for formulators and distributors of organic crop pesticides, ensuring their participation in shaping pesticide policy.",
-  },
-];
+  const leftData = {
+    title: title,
+    paragraph: description,
+    imageSrc: image?.node?.sourceUrl,
+  };
 
-const leftData = {
-  title: (
-    <>
-      Feeding The World <br /> With Consistency.
-    </>
-  ),
-  paragraph:
-    "We are committed to build long lasting partnerships with our clients founded on trust to foster growth.",
-  imageSrc: "/images/mission/banner.png",
-};
-
-export default function MissionSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % contentData.length);
+    setActiveIndex((prev) => (prev + 1) % currentcontent.length);
   };
 
   const handlePrev = () => {
     setActiveIndex(
-      (prev) => (prev - 1 + contentData.length) % contentData.length
+      (prev) => (prev - 1 + currentcontent.length) % currentcontent.length
     );
   };
 
-  const currentContent = contentData[activeIndex];
+  const currentContent = currentcontent[activeIndex];
 
   return (
     <section className={styles.missionSection}>

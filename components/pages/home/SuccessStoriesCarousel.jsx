@@ -3,7 +3,7 @@ import Image from "next/image";
 import CustomButton from "@/components/UI/Button";
 import styles from "./SuccessStoriesCarousel.module.css";
 
-export default function SuccessStoriesCarousel({ data = [] }) {
+export default function SuccessStoriesCarousel({ cards = [] }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -38,7 +38,7 @@ export default function SuccessStoriesCarousel({ data = [] }) {
 
   return (
     <Carousel {...settings} className={`${styles.carousel} carousel`}>
-      {data.map((course) => (
+      {cards.map((course) => (
         <div key={course.id} className={styles.slide}>
           <Card
             className={styles.card}
@@ -47,8 +47,8 @@ export default function SuccessStoriesCarousel({ data = [] }) {
           >
             <div className={styles.imageWrapper}>
               <Image
-                src={course.image}
-                alt={course.title}
+                src={course.image?.node?.sourceUrl}
+                alt={course.image?.node?.altText}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className={styles.courseImage}
@@ -58,15 +58,15 @@ export default function SuccessStoriesCarousel({ data = [] }) {
             <div className={styles.contentWrapper}>
               <Flex vertical gap={12}>
                 <Flex gap={8} wrap="wrap">
-                  {course.tags.map((tag) => (
-                    <Tag key={tag} className={styles.contentTag}>
-                      {tag}
+                  {course.contenttag.map((tag) => (
+                    <Tag key={tag.id} className={styles.contentTag}>
+                      {tag.title}
                     </Tag>
                   ))}
                 </Flex>
-                <h3 className={styles.cardTitle}>{course.title}</h3>
-                {course.description && (
-                  <p className={styles.cardDescription}>{course.description}</p>
+                <h3 className={styles.cardTitle}>{course?.title}</h3>
+                {course?.description && (
+                  <p className={styles.cardDescription}>{course?.description}</p>
                 )}
               </Flex>
               <div className={styles.btnWrapper}>

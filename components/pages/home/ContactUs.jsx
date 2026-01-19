@@ -6,7 +6,8 @@ import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
 import { containerVariants } from "@/_data/contactUs/animations";
 
-export default function ContactUs({ noBackground = false }) {
+export default function ContactUs({ noBackground = false, contactData }) {
+
   return (
     <motion.section
       className={`${styles.contactSection} ${
@@ -36,7 +37,7 @@ export default function ContactUs({ noBackground = false }) {
         <Row gutter={[32, 32]}>
           {/* Left Column - Contact Information */}
           <Col md={24} lg={10}>
-            <ContactInfo />
+            <ContactInfo contactData={contactData} />
           </Col>
 
           {/* Right Column - Contact Form */}

@@ -4,8 +4,16 @@ import Image from "next/image";
 import styles from "./Footer.module.css";
 import Uicons from "../UI/Uicons";
 
-export default function Footer() {
+export default function Footer({ socialMediaData }) {
   const currentYear = new Date().getFullYear();
+  const socialLinks = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0
+    ? socialMediaData
+    : [
+        { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
+        { icon: "fi-brands-facebook", link: "#" },
+        { icon: "fi-brands-instagram", link: "#" },
+        { icon: "fi-brands-youtube", link: "#" },
+      ];
 
   const aboutLinks = [
     { label: "Our Values", href: "/about#values" },
@@ -37,12 +45,6 @@ export default function Footer() {
     { label: "Sitemap", href: "/sitemap" },
   ];
 
-  const socialLinks = [
-    { label: "LinkedIn", icon: "fi-brands-linkedin", href: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
-    { label: "Facebook", icon: "fi-brands-facebook", href: "#" },
-    { label: "Instagram", icon: "fi-brands-instagram", href: "#" },
-    { label: "YouTube", icon: "fi-brands-youtube", href: "#" },
-  ];
 
   return (
     <footer className={styles.footer}>
@@ -60,14 +62,19 @@ export default function Footer() {
               </p>
               <div className={styles.socials}>
                 {socialLinks.map((social, index) => (
-                  <Button
+                  <Link
                     key={index}
-                    type="primary"
-                    shape="default"
-                    icon={<Uicons icon={social.icon} />}
-                    aria-label={social.label}
-                    href={social.href}
-                  />
+                    href={social?.link || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      type="primary"
+                      shape="default"
+                      icon={<Uicons icon={social.icon} />}
+                      aria-label={social.icon}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>

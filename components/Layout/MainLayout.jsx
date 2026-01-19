@@ -4,11 +4,10 @@ import Footer from "./Footer";
 import WhatsAppWidget from "../UI/WhatsAppWidget";
 import { Layout } from "antd";
 
-export default function MainLayout({ children, socialMediaData }) {
-
+export default function MainLayout({ children, socialMediaData, contactData }) {
    return (
       <Layout style={{ margin: "0 auto", background: "white" }}>
-         <InfoHeader socialMediaData={socialMediaData} />
+         <InfoHeader socialMediaData={socialMediaData} contactData={contactData} />
          <Header />
          <Layout.Content style={{ minHeight: "100vh" }}>{children}</Layout.Content>
          <Footer socialMediaData={socialMediaData} />

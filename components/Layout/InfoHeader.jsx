@@ -73,7 +73,6 @@ export default function InfoHeader({ socialMediaData }) {
           { icon: "fi-brands-instagram", link: "#" },
           { icon: "fi-brands-youtube", link: "#" },
         ];
-
   return (
     <div className={styles.infoHeader}>
       <Row gutter={16} justify="center" className={styles.desktopRow}>

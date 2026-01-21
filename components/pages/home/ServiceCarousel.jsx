@@ -37,7 +37,7 @@ export default function ServiceCarousel({ services }) {
         },
       ]}
     >
-      {services.map((service, index) => (
+      {services?.map((service, index) => (
         <div key={service.id} className={styles.carouselSlide}>
           <motion.div
             initial="hidden"

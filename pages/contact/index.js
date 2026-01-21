@@ -5,6 +5,7 @@ import ContactUs from "@/components/pages/home/ContactUs";
 import { client, GET_FRONT_PAGE_DATA } from "@/src/graphql";
 
 export default function ContactPage({ homePageData }) {
+  console.log(homePageData, 'homePageData');
   const contactData = homePageData?.contactUs;
   return (
     <>
@@ -23,7 +24,9 @@ export const getStaticProps = async () => {
     query: GET_FRONT_PAGE_DATA,
   });
   const homePageData = data?.nodeByUri?.homePageFields ?? null;
+  const safeHomePageData =
+    homePageData === null ? null : JSON.parse(JSON.stringify(homePageData));
   return {
-    props: { homePageData },
+    props: { homePageData: safeHomePageData },
   };
 };

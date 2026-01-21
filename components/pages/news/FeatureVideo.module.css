@@ -1,0 +1,251 @@
+.section {
+  margin-top: 40px;
+  padding: 0;
+  padding-bottom: 0;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .imageContainer {
+    height: 60vh;
+    min-height: 400px;
+  }
+}
+
+.videoImage {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 1;
+}
+
+.contentOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 40px;
+}
+
+.textContent {
+  text-align: center;
+  max-width: 900px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #ffffff;
+  opacity: 0.95;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.playButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playButton {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+}
+
+.playButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+.playButton:active {
+  transform: scale(0.95);
+}
+
+.graphicContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.footerGraphic {
+  width: 100%;
+  height: auto;
+  min-height: 60px;
+  object-fit: cover;
+  display: block;
+}
+
+.videoResponsive {
+  overflow: hidden;
+  padding-bottom: 45%;
+  position: relative;
+  height: 0;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .videoResponsive {
+    padding-bottom: 56.25%;
+  }
+}
+
+.videoResponsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border: none;
+  background-color: #000;
+}
+
+.videoModal :global(.ant-modal-content) {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.videoModal :global(.ant-modal-close) {
+  color: white !important;
+  top: -40px;
+  right: -40px;
+  font-size: 24px;
+}
+
+.videoModal :global(.ant-modal-close:hover) {
+  color: #eecf4c !important;
+}
+
+@media (max-width: 1200px) {
+  .videoModal :global(.ant-modal-close) {
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .imageContainer {
+    height: 60vh;
+    min-height: 400px;
+  }
+
+  .contentOverlay {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .textContent {
+    margin-bottom: 30px;
+  }
+
+  .playButton {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 568px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .playButton {
+    width: 60px;
+    height: 60px;
+  }
+
+  .imageContainer {
+    height: 50vh;
+    min-height: 350px;
+  }
+}

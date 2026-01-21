@@ -1,0 +1,196 @@
+.section {
+  padding: 80px 0;
+  background: #fff;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 14px;
+  color: #c9a227;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1f1f1f;
+  margin: 0;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 56px) / 3);
+  gap: 28px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 0 4px;
+  flex: 1;
+}
+
+.trackCentered {
+  justify-content: center;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #1f1f1f;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.arrowActive {
+  background: #137333;
+  color: #fff;
+  border-color: #137333;
+}
+
+.arrowDisabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.arrow:hover:not(.arrowDisabled),
+.arrow:focus-visible {
+  border-color: #c9a227;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  outline: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  scroll-snap-align: start;
+  height: 100%;
+  cursor: pointer;
+}
+
+.imageWrapper {
+  position: relative;
+  height: 100% !important;
+  min-height: 350px !important;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f2f2f2;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.tagBadge {
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagBadgeItem {
+  background: #eecd15;
+  color: #0d3b1e;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0d3b1e;
+  margin: 12px 24px 8px;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .track {
+    grid-auto-columns: calc((100% - 28px) / 2);
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .cardTitle {
+    font-size: 14px !important;
+    font-weight: 600;
+    color: #1f1f1f;
+    text-align: center;
+    margin: 0 12px;
+  }
+
+  .track {
+    grid-auto-columns: 100%;
+  }
+
+  .card {
+    width: 100%;
+  }
+  .section {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+  }
+}

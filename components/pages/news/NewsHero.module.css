@@ -1,0 +1,197 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; */
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 2;
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* padding: 0 60px; */
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;
+}
+
+.textWrapper {
+  max-width: 800px;
+}
+
+.title {
+  font-size: 80px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.contactBtnLink {
+  text-decoration: none;
+}
+
+.transparentBtn {
+  background-color: transparent !important;
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+}
+
+.transparentBtn:hover {
+  background-color: #107634 !important;
+  border-color: #107634 !important;
+  color: #ffffff !important;
+}
+
+.breadcrumbWrapper {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.breadcrumb {
+  background: rgba(139, 149, 112, 0.6);
+  padding: 8px 24px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 15px;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+
+.breadcrumb :global(.ant-breadcrumb-ol) {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.breadcrumb :global(.ant-breadcrumb-link),
+.breadcrumb :global(.ant-breadcrumb-link a),
+.breadcrumb :global(.ant-breadcrumb-separator) {
+  color: #ffffff !important;
+}
+
+.breadcrumb a {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+
+.breadcrumb a:hover {
+  opacity: 1;
+}
+
+.separator {
+  opacity: 0.8;
+  font-size: 12px;
+  margin: 0 4px;
+}
+
+.current {
+  opacity: 1;
+  font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+  .contentContainer {
+    padding: 0 80px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 64px;
+  }
+  .contentContainer {
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 48px;
+  }
+  .contentContainer {
+    padding: 0 20px;
+  }
+  .buttonGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .buttonGroup :global(.ant-btn) {
+    width: 100%;
+  }
+
+  .breadcrumbWrapper {
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    transform: none;
+  }
+
+  .breadcrumb {
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 568px) {
+  .title {
+    font-size: 40px;
+  }
+}

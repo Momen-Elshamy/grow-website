@@ -32,8 +32,8 @@ export default function Header() {
       label: (
           <span style={{display : "flex" , justifyContent : "center"}} >
             <Image
-              src={lang.flag}
-              alt={lang.label}
+              src={lang?.flag}
+              alt={lang?.label}
               width={32}
               height={32} 
               className={styles.flag}

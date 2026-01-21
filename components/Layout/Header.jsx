@@ -6,11 +6,41 @@ import { navLinks } from "../../_data/navigation";
 import Uicons from "../UI/Uicons";
 import CustomButton from "../UI/Button";
 import styles from "./Header.module.css";
+import Image from "next/image";
+
+const languages = [
+  { key: "en", flag: "/images/flags/united-states.png" },
+  { key: "ar", flag: "/images/flags/saudi-arabia.png" },
+];
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedKeys, setExpandedKeys] = useState([]);
   const router = useRouter();
+  const [ currentLang, setCurrentLang ] = useState("en");
 
+  const handleLanguageChange = ({ key }) => {
+    setCurrentLang(key);
+  };
+
+  const currentLanguage = languages.find((lang) => lang.key === currentLang);
+
+  const menuItems = languages
+    .filter((lang) => lang.key !== currentLang)
+    .map((lang) => ({
+      key: lang.key,
+      label: (
+          <span style={{display : "flex" , justifyContent : "center"}} >
+            <Image
+              src={lang?.flag}
+              alt={lang?.label}
+              width={32}
+              height={32} 
+              className={styles.flag}
+            />
+          </span>
+      ),
+    }));
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -54,6 +84,7 @@ export default function Header() {
       ),
     };
   });
+
   return (
     <>
       <header className={styles.header}>
@@ -117,9 +148,27 @@ export default function Header() {
             })}
           </nav>
           <div className={styles.actions}>
-            <Link href="/contact" passHref>
+          <Dropdown
+                  menu={{ items: menuItems, onClick: handleLanguageChange }}
+                  trigger={["click"]}
+                >
+              <CustomButton icon="" className={styles.languageButton} type="text">
+                  <span>
+                    <Image
+                      src={currentLanguage.flag}
+                      alt="language flag"
+                      width={32}
+                      height={32} 
+                      className={styles.flag}
+                    />
+                  </span>
+              </CustomButton>
+           </Dropdown>
+            <Link href="/contact" passHref className={styles.contactUsButton}>
               <CustomButton>Contact Us</CustomButton>
             </Link>
+
+
             <Button
               className="mobileMenuBtn"
               type="text"
@@ -171,6 +220,9 @@ export default function Header() {
           className={styles.mobileMenu}
           items={mobileMenuItems}
         />
+                  <Link href="/contact" passHref className={styles.contactUsLinkMenu}>
+            <CustomButton className={styles.contactUsButtonMenu}>Contact Us</CustomButton>
+        </Link>
       </Drawer>
     </>
   );

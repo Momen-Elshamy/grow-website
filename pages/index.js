@@ -20,8 +20,10 @@ export const getStaticProps = async () => {
     query: GET_FRONT_PAGE_DATA,
   });
 
-  const homePageData = data?.nodeByUri?.homePageFields;
+  const homePageData = data?.nodeByUri?.homePageFields ?? null;
+  const safeHomePageData =
+    homePageData === null ? null : JSON.parse(JSON.stringify(homePageData));
   return {
-    props: { homePageData },
+    props: { homePageData: safeHomePageData },
   };
 };

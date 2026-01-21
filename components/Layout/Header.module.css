@@ -241,8 +241,20 @@
   background-color: transparent !important;
   background: transparent !important;
 }
+.mobileDrawer .contactUsLinkMenu{
+  margin-top: auto;
+  padding: 2rem;
+}
+.mobileDrawer .contactUsLinkMenu .contactUsButtonMenu {
+  width: 100%;
+}
+
 .mobileActions .ctaButton {
   width: 100%;
+}
+
+.languageButton{
+  padding: 12px !important;
 }
 @media (min-width: 991px) and (max-width: 1220px) {
   .header {
@@ -263,6 +275,17 @@
   }
   :global(.ctaButton) {
     display: none !important;
+  }
+  .contactUsButton{
+    display: none;
+  }
+  .languageButton{
+    padding: 4px !important;
+  }
+  .flag{
+    width: 28px;
+    height: 28px;
+    margin-bottom: 6px;
   }
 }
 @media (max-width: 480px) {

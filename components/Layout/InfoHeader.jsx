@@ -9,8 +9,8 @@ const infoItems = [
     text: "+20235380720",
     info: "+201080200887",
     infoLink: "https://wa.me/201080200887",
-    desktopSize: 16,
-    mobileSize: 16,
+    desktopSize: 18,
+    mobileSize: 8,
   },
   {
     icon: "fi-rr-newsletter-subscribe",
@@ -137,15 +137,17 @@ export default function InfoHeader({ socialMediaData }) {
           {infoItems.map((item, index) => (
             <div key={index} className={styles.mobileInfoItem}>
               {item.icons ? (
-                item.icons.map((icon, iconIndex) => (
-                  <Uicons
-                    key={iconIndex}
-                    icon={icon}
-                    size={item.mobileSize}
-                    color="#107634"
-                    className={styles.infoIcon}
-                  />
-                ))
+                <div className={styles.infoIconWrapper}>
+                  {item.icons.map((icon, iconIndex) => (
+                    <Uicons
+                      key={iconIndex}
+                      icon={icon}
+                      size={item.mobileSize}
+                      color="#107634"
+                      className={styles.infoIcon}
+                    />
+                  ))}
+                </div>
               ) : (
                 <Uicons
                   icon={item.icon}

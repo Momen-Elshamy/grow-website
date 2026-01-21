@@ -1,0 +1,130 @@
+/* Enable smooth scrolling for the entire page */
+:global(html) {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
+
+/* Ensure anchor targets account for sticky header */
+:global([id]) {
+  scroll-margin-top: 120px;
+}
+
+.headerService {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  /* padding: 0 60px; */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .headerService {
+    display: none;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 8px;
+  padding: 16px 8px;
+  flex-wrap: nowrap;
+  min-width: fit-content;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0d2e1a;
+  white-space: nowrap;
+  position: relative;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.navButton:hover {
+  background: transparent;
+  color: #0d2e1a;
+  opacity: 0.8;
+}
+
+.navButton.active {
+  background: transparent;
+  color: #0d2e1a;
+}
+
+.navButton.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 2px;
+  background: #0d2e1a;
+  border-radius: 2px;
+}
+
+.navLabel {
+  font-weight: 500;
+}
+
+/* Tablet Styles */
+@media (max-width: 1200px) {
+
+  .nav {
+    gap: 10px;
+    padding: 14px 0;
+  }
+
+  .navButton {
+    padding: 11px 20px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .nav {
+    gap: 8px;
+    padding: 14px 0;
+    justify-content: flex-start;
+  }
+
+  .navButton {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+}

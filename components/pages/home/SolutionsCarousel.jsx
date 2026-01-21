@@ -2,9 +2,10 @@ import { Carousel } from "antd";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CustomButton from "@/components/UI/Button";
-import styles from "./Services.module.css";
+import styles from "./Solutions.module.css";
 
-export default function ServiceCarousel({ services }) {
+export default function SolutionsCarousel({ solutionscarousel }) {
+
   return (
     <Carousel
       dots={true}
@@ -37,8 +38,8 @@ export default function ServiceCarousel({ services }) {
         },
       ]}
     >
-      {services.map((service, index) => (
-        <div key={service.id} className={styles.carouselSlide}>
+      {solutionscarousel?.map((solution, index) => (
+        <div key={solution.id} className={styles.carouselSlide}>
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -69,8 +70,8 @@ export default function ServiceCarousel({ services }) {
               className={styles.serviceImageContainer}
             >
               <Image
-                src={service.image?.node?.sourceUrl}
-                alt={service.image?.node?.altText}
+                src={solution.image?.node?.sourceUrl}
+                alt={solution.image?.node?.altText}
                 fill
                 className={styles.serviceImage}
               />
@@ -103,7 +104,7 @@ export default function ServiceCarousel({ services }) {
                   transition={{ duration: 0.5 }}
                   className={styles.serviceTitle}
                 >
-                  {service?.title}
+                  {solution?.title}
                 </motion.h3>
                 <motion.p
                   variants={{
@@ -117,7 +118,7 @@ export default function ServiceCarousel({ services }) {
                   transition={{ duration: 0.5 }}
                   className={styles.serviceDescription}
                 >
-                  {service?.description}
+                  {solution?.description}
                 </motion.p>
                 <motion.div
                   variants={{
@@ -126,7 +127,7 @@ export default function ServiceCarousel({ services }) {
                   }}
                   transition={{ duration: 0.5 }}
                 >
-                  <CustomButton href="/services" className={styles.serviceButton}>
+                  <CustomButton href="/solutions" className={styles.serviceButton}>
                     Explore More
                   </CustomButton>
                 </motion.div>

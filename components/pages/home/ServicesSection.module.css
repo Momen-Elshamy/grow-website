@@ -3,11 +3,13 @@
   margin: 0 auto;
   width: 100%;
 }
+
 .containerInner {
   padding: 0 16px;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .header {
   margin-bottom: 60px;
   max-width: 900px;
@@ -31,6 +33,7 @@
   color: #0b3d1b !important;
   margin-top: 10px !important;
 }
+
 .customSteps :global(.ant-steps-item-icon) {
   margin-inline-end: 24px !important;
   flex-shrink: 0 !important;
@@ -87,9 +90,9 @@
 /* Style for the active/highlighted step icon and line */
 .customSteps :global(.ant-steps-item-process) .stepIcon,
 .customSteps :global(.ant-steps-item-finish) .stepIcon {
-    background-color: #EECD15;
-    border-color: #EECD15;
-    font-weight: 500;
+  background-color: #EECD15;
+  border-color: #EECD15;
+  font-weight: 500;
 }
 
 /* Yellow line segment for finished and active steps */
@@ -97,9 +100,9 @@
 .customSteps :global(.ant-steps-item-process) :global(.ant-steps-item-tail::after),
 .customSteps :global(.ant-steps-item-finish) :global(.ant-steps-item-rail),
 .customSteps :global(.ant-steps-item-process) :global(.ant-steps-item-rail) {
-    background: #EECD15 !important;
-    background-color: #EECD15 !important;
-    border-color: #EECD15 !important;
+  background: #EECD15 !important;
+  background-color: #EECD15 !important;
+  border-color: #EECD15 !important;
 }
 
 
@@ -124,11 +127,13 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  aspect-ratio: 6 / 7;
 }
 
 .mainImage {
   width: 100%;
-  height: 500px;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
@@ -158,7 +163,7 @@
 }
 
 .overlayTextWrapper {
-  padding: 20px ;
+  padding: 20px;
   display: flex;
   align-items: center;
   flex-grow: 1;
@@ -176,9 +181,11 @@
   .mainTitle {
     font-size: 1.25rem !important;
   }
+
   .stepTitle {
     font-size: 1.1rem;
   }
+
   .stepDescription {
     font-size: 0.9rem;
     max-width: 100%;
@@ -190,6 +197,7 @@
   .leafIcon {
     font-size: 0.8rem;
   }
+
   .subtitle {
     font-size: 0.7rem;
   }

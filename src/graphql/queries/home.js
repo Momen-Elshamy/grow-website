@@ -1,12 +1,12 @@
 import { gql } from "@apollo/client";
 
 export const GET_FRONT_PAGE_DATA = gql`
- query GETAGBPAGEDATA {
-  nodeByUri(uri: "/home") {
-        ... on Page {
+  query GETAGBPAGEDATA {
+    nodeByUri(uri: "/home") {
+      ... on Page {
         id
         title
-        slug 
+        slug
         homePageFields {
           hero {
             heroDetails {
@@ -39,7 +39,7 @@ export const GET_FRONT_PAGE_DATA = gql`
               }
             }
             categoryTitle
-            video 
+            video
             decorativetext
             description
             features {
@@ -48,12 +48,12 @@ export const GET_FRONT_PAGE_DATA = gql`
               description
             }
           }
-          solutionsSection {
+          services {
             icon
             subtitle
             title
             steps {
-              title 
+              title
               description
             }
             image {
@@ -65,10 +65,10 @@ export const GET_FRONT_PAGE_DATA = gql`
             icon
             overlaytext
           }
-          services {
+          solutionsSection {
             subtitle
             title
-            servicecarousel {
+            solutionscarousel {
               image {
                 node {
                   altText
@@ -125,9 +125,9 @@ export const GET_FRONT_PAGE_DATA = gql`
           socialMedia {
             icon
             link
-          }   
+          }
         }
       }
+    }
   }
-}
 `;

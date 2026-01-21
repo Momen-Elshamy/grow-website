@@ -53,6 +53,13 @@
     justify-content: center !important;
     gap: 8px;
 }
+
+/* Ensure icons stay in column on all screen sizes */
+.infoIconWrapper .infoIcon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
 .infoIcon {
     display: flex !important;
     align-items: center !important;
@@ -138,9 +145,9 @@
         display: none !important;
     }
     .mobileLayout {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         gap: 1rem;
     }
     .mobileInfoRow {
@@ -158,6 +165,14 @@
         gap: 10px;
         flex: 0 1 auto;
     }
+    /* Ensure icons stay in column on mobile */
+    .mobileInfoItem .infoIconWrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px;
+    }
     .text {
         font-size: 11px !important;
         margin: 0;
@@ -167,7 +182,11 @@
         margin: 0;
     }
     .infoIcon {
-        font-size: 20px !important;
+        font-size: 16px !important;
+    }
+    /* Make phone/WhatsApp icons even smaller on mobile */
+    .mobileInfoItem .infoIconWrapper .infoIcon {
+        font-size: 14px !important;
     }
     .mobileIconsWrapper {
         display: flex;
@@ -195,9 +214,13 @@
         text-align: center !important;
     }
     .infoIcon {
-        font-size: 20px !important;
+        font-size: 14px !important;
         display: flex !important;
         align-items: center !important;
+    }
+    /* Make phone/WhatsApp icons even smaller on very small screens */
+    .mobileInfoItem .infoIconWrapper .infoIcon {
+        font-size: 14px !important;
     }
     .infoText {
         gap: 12px !important;

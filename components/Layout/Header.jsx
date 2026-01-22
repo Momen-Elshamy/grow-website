@@ -90,7 +90,14 @@ export default function Header() {
       <header className={styles.header}>
         <div className={styles.container}>
           <Link href="/" className={styles.logo}>
-            Grow
+            {/* Grow */}
+            <Image
+              src="/images/logo1.png"
+              alt="Grow Logo"
+              width={90}
+              height={40}
+              className={styles.logoImage}
+            />
           </Link>
           <nav className={styles.nav}>
             {navLinks.map((link) => {

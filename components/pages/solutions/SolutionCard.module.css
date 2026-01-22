@@ -1,0 +1,221 @@
+.cardWrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .cardWrapper {
+    height: auto;
+    min-height: 100vh;
+    align-items: stretch;
+  }
+}
+
+.card {
+  width: 100%;
+  height: 550px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.cardRow {
+  height: 100%;
+  width: 100%;
+}
+
+.cardContent {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+  position: relative;
+}
+
+html[dir="rtl"] .cardRow,
+html[lang="ar"] .cardRow {
+  direction: rtl;
+}
+
+.cardTitle {
+  font-size: 25px;
+  font-weight: 700 !important;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: #0b3d1b !important;
+}
+
+.cardDescription {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4a4a4a;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.featureList {
+  list-style: none;
+  margin-bottom: auto;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.checkIcon {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark {
+  color: #107634;
+  font-size: 1rem;
+}
+
+html[dir="rtl"] .checkIcon,
+html[lang="ar"] .checkIcon {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+.featureText {
+  font-size: 16px;
+  font-weight: 400;
+  color: #4a4a4a !important;
+  line-height: 1.6;
+}
+
+.cardNumber {
+  position: absolute;
+  bottom: 0;
+  right: 0rem;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(16, 118, 52, 0.1);
+  text-align: right !important;
+  letter-spacing: -1px;
+  font-size: 140px;
+  font-weight: 800;
+  color: transparent;
+  line-height: 140px;
+  font-family: "Parkinsans", sans-serif;
+}
+
+html[dir="rtl"] .cardNumber,
+html[lang="ar"] .cardNumber {
+  right: auto;
+  left: -6rem;
+  text-align: left !important;
+}
+
+.cardImageContainer {
+  position: relative;
+  height: 100%;
+  background-color: #f5f5f5;
+}
+
+.cardImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  /* filter: grayscale(100%); */
+}
+
+.inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tablet styles (768px - 991px) */
+@media (max-width: 991px) and (min-width: 769px) {
+  .card {
+    height: 500px;
+  }
+
+  .cardContent {
+    padding: 1.5rem;
+  }
+
+  .cardTitle {
+    font-size: 22px !important;
+  }
+
+  .cardDescription {
+    font-size: 15px !important;
+  }
+
+  .cardImageContainer {
+    min-height: 400px;
+  }
+}
+
+/* Mobile styles (max-width: 768px) */
+@media (max-width: 768px) {
+  .card {
+    min-height: 700px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cardRow {
+    height: 100% !important;
+    flex: 1;
+  }
+
+  .cardContent {
+    padding: 1rem;
+    flex: 1;
+    height: 100%;
+  }
+
+  .cardTitle {
+    font-size: 20px !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardDescription {
+    font-size: 14px !important;
+    margin-bottom: 1.5rem;
+  }
+
+  .cardNumber {
+    position: static;
+    /* Let flexbox handle positioning */
+    font-size: 6rem;
+    line-height: 1;
+  }
+
+  .featureItem {
+    margin-bottom: 0.5rem;
+    font-size: 14px !important;
+  }
+
+  .featureText {
+    font-size: 12px !important;
+  }
+
+  .cardImageContainer {
+    height: 370px;
+    /* Fixed height for image on mobile */
+  }
+}
+@media (max-width: 480px) {
+  .cardNumber {
+    font-size: 4rem;
+  }
+}

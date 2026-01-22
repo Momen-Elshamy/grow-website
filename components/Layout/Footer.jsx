@@ -24,7 +24,7 @@ export default function Footer({ socialMediaData }) {
 
   const solutionsLinks = [
     { label: "Farm Operation", href: "/solutions#operation" },
-    { label: 'Farm Resource Planning solution "FRP"', href: "/solutions#frp" },
+    { label: 'Farm Resource Planning "FRP"', href: "/solutions#frp" },
     { label: "Water Management", href: "/solutions#water" },
     { label: "Human Capital Training", href: "/solutions#training" },
     { label: "Commercial Management", href: "/solutions#commercial" },
@@ -34,8 +34,8 @@ export default function Footer({ socialMediaData }) {
     { label: "Technical Consultancy", href: "/services#consultancy" },
     { label: "Lab analysis", href: "/services#lab" },
     { label: "Course", href: "/services#training" },
-    { label: "Engineering", href: "/services#irrigation" },
-    { label: "Revision and optimization", href: "/services#optimization" },
+    { label: "Irrigation", href: "/services#irrigation" },
+    { label: "Optimization", href: "/services#optimization" },
     { label: "Remote sensing", href: "/services#remote-sensing" },
   ];
 
@@ -53,7 +53,13 @@ export default function Footer({ socialMediaData }) {
           <Col xs={24} sm={24} md={24} lg={8} xl={7}>
             <div className={styles.logoSection}>
               <Link href="/" className={styles.logo}>
-                Grow
+              <Image
+              src="/images/logo2.png"
+              alt="Grow Logo"
+              width={90}
+              height={40}
+              className={styles.logoImage}
+            />
               </Link>
               <p className={styles.description}>
                 Our commitment is to help farmers have the technologies they

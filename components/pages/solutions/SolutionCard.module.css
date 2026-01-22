@@ -103,7 +103,7 @@ html[lang="ar"] .checkIcon {
   bottom: 0;
   right: 0rem;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(16, 118, 52, 0.1);
+  -webkit-text-stroke: 1px #11672f23;
   text-align: right !important;
   letter-spacing: -1px;
   font-size: 140px;

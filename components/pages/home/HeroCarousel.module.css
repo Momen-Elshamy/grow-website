@@ -143,15 +143,15 @@
 }
 @media (max-width: 480px) {
   .heroContainer {
-    min-height: 600px;
+    min-height:650px;
     height: auto;
   }
   .carousel {
-    min-height: 600px;
+    min-height: 650px;
     height: auto;
   }
   .slideContainer {
-    min-height: 600px;
+    min-height: 650px;
     height: auto;
     padding: 80px 0;
   }

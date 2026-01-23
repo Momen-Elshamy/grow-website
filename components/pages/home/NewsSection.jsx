@@ -57,7 +57,7 @@ export default function NewsSection({ newsData }) {
         variants={containerVariants}
       >
         <motion.div className={styles.tagline} variants={leftVariants}>
-          <Uicons icon={newsData?.taglineicon || "fi-rr-leaf"} className={styles.taglineIcon} />
+          <Uicons icon={newsData?.taglineicon} className={styles.taglineIcon} />
           <span>{taglineicon}</span>
         </motion.div>
 

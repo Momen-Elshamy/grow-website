@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from "react";
 import { useScroll } from "framer-motion";
 import { Typography, Flex } from "antd";
@@ -9,7 +8,7 @@ import Lenis from "lenis";
 
 const { Text } = Typography;
 
-export default function CommitmentSection({ solutionsSection, solutionCardsData }) {
+export default function CommitmentSection({ solutionsSection, solutionCardsData}) {
   const { title = "", description = "", icon, subtitle } = solutionsSection || {};
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -46,32 +45,25 @@ export default function CommitmentSection({ solutionsSection, solutionCardsData 
       number: String(index + 1).padStart(2, "0"),
       title: card.title,
       description: card.description,
-      features: card.iconSection?.map(item => ({
-        textIcon: item.textIcon,
-        icon: item.icon
-      })) || [],
+      features:
+        card.iconSection?.map((item) => ({
+          textIcon: item.textIcon,
+          icon: item.icon,
+        })) || [],
       image: card.image?.node?.sourceUrl,
-      altImage: card.altImage,  
+      altImage: card.altImage,
     })) || [];
 
   return (
     <section className={styles.container} ref={container}>
       <Flex vertical gap={24} className={styles.header}>
         <div className={styles.contentWrapper}>
-          {icon && subtitle && (
-            <Flex align="center" gap="small" className={styles.subtitleWrapper}>
-              <Uicons icon={icon} className={styles.subtitleIcon} />
-              <Text className={styles.subtitle}>{subtitle}</Text>
-            </Flex>
-          )}
-          <h2 className={styles.mainHeading}>
-            {title}
-          </h2>
-          {description && (
-            <p className={styles.description}>
-              {description}
-            </p>
-          )}
+          <Flex align="center" gap="small" className={styles.subtitleWrapper}>
+            <Uicons icon={icon} className={styles.subtitleIcon} />
+            <Text className={styles.subtitle}>{subtitle}</Text>
+          </Flex>
+          <h2 className={styles.mainHeading}>{title}</h2>
+          <p className={styles.description}>{description}</p>
         </div>
       </Flex>
 
@@ -93,8 +85,4 @@ export default function CommitmentSection({ solutionsSection, solutionCardsData 
       </div>
     </section>
   );
-};
-
-
-
-
+}

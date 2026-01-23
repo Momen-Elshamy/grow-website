@@ -1,5 +1,5 @@
 
-import React, { useRef , memo } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Typography, Flex, Row, Col } from "antd";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import { scrollToSection } from "@/utils/scroll";
 
 const { Paragraph, Text } = Typography;
 
-const Card = memo(({ solution, index, progress, range, targetScale }) => {
+export default function Card({ solution, index, progress, range, targetScale }) {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -107,11 +107,7 @@ const Card = memo(({ solution, index, progress, range, targetScale }) => {
       </motion.div>
     </div>
   );
-});
-
-Card.displayName = "Card";
-
-export default Card;
+}
 
 
 

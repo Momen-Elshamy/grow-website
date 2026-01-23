@@ -49,7 +49,7 @@ export default function SolutionsHero({ heroData }) {
             >
             
               <Link href="/contact" className={styles.contactBtnLink}>
-                <CustomButton className={styles.transparentBtn} icon="null">
+                <CustomButton className={styles.transparentBtn}>
                   Contact Us
                 </CustomButton>
               </Link>

@@ -89,7 +89,7 @@ export default function InfoHeader({ socialMediaData }) {
                   <Uicons
                     icon={social?.icon}
                     size={20}
-                    color="black"
+                    color="#17311E"
                     className={styles.socialIcon}
                   />
                 </Link>
@@ -109,7 +109,7 @@ export default function InfoHeader({ socialMediaData }) {
                       key={iconIndex}
                       icon={icon}
                       size={item.desktopSize}
-                      color="#107634"
+                      color="#17311E"
                       className={styles.infoIcon}
                     />
                   ))
@@ -117,7 +117,7 @@ export default function InfoHeader({ socialMediaData }) {
                   <Uicons
                     icon={item.icon}
                     size={item.desktopSize}
-                    color="#107634"
+                    color="#17311E"
                     className={styles.infoIcon}
                   />
                 )}
@@ -143,7 +143,7 @@ export default function InfoHeader({ socialMediaData }) {
                       key={iconIndex}
                       icon={icon}
                       size={item.mobileSize}
-                      color="#107634"
+                      color="#17311E"
                       className={styles.infoIcon}
                     />
                   ))}
@@ -152,7 +152,7 @@ export default function InfoHeader({ socialMediaData }) {
                 <Uicons
                   icon={item.icon}
                   size={item.mobileSize}
-                  color="#107634"
+                  color="#17311E"
                   className={styles.infoIcon}
                 />
               )}
@@ -175,7 +175,7 @@ export default function InfoHeader({ socialMediaData }) {
                 <Uicons
                   icon={social?.icon}
                   size={18}
-                  color="black"
+                  color="#17311E"
                   className={styles.socialIcon}
                 />
               </Link>

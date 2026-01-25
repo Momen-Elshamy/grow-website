@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #107634;
+  color: #366C45;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -27,7 +27,7 @@
 .heading {
   font-size: 3rem;
   font-weight: 600;
-  color: #0d3b1e;
+  color: #17311E;
   line-height: 1.2;
   max-width: 900px;
   margin-bottom: 60px;
@@ -93,7 +93,7 @@
 }
 
 .playButton {
-  background-color: #eecf4c;
+  background-color: #FFB01E;
   width: 60px;
   height: 150px;
   display: flex;
@@ -104,7 +104,7 @@
 }
 
 .playButton:hover {
-  background-color: #dcb93d;
+  background-color: #FFC65C;
 }
 
 .decorativeText {
@@ -126,13 +126,15 @@
 .content {
   padding-left: 20px;
 }
+
 .descriptionOne {
-  font-size: 1.1rem ;
+  font-size: 1.1rem;
   color: #3e3d3d;
   line-height: 1.6;
   margin-bottom: 25px;
-  font-weight: 500 ;
+  font-weight: 500;
 }
+
 .description {
   font-size: 1.1rem;
   color: #555;
@@ -164,14 +166,16 @@
   align-items: center !important;
   justify-content: center !important;
   flex-shrink: 0;
-  color: #107634;
+  color: #245631;
   font-size: 1.8rem;
 }
+
 .icon {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
 }
+
 .featureText h4 {
   font-size: 1.2rem;
   font-weight: 700;
@@ -193,12 +197,13 @@
 
 .secondaryBtn {
   background-color: transparent !important;
-  border-color: #107634 !important;
-  color: #107634 !important;
+  border-color: #17311E !important;
+  color: #17311E !important;
 }
+
 .secondaryBtn:hover {
-  background-color: #107634 !important;
-  color: #fff !important;
+  background-color: transparent !important;
+  color: #17311E !important;
 }
 
 .videoResponsive {
@@ -250,7 +255,7 @@
 }
 
 .videoModal :global(.ant-modal-close:hover) {
-  color: #eecf4c !important;
+  color: #FFB01E !important;
 }
 
 @media (max-width: 1200px) {
@@ -268,17 +273,17 @@
   .section {
     padding: 60px 0;
   }
-  
+
   .heading {
     font-size: 2.5rem;
     margin-bottom: 40px;
   }
-  
+
   .content {
     padding-left: 0;
     margin-top: 40px;
   }
-  
+
   .overlayCard {
     right: 20px;
   }
@@ -288,7 +293,7 @@
   .heading {
     font-size: 1.5rem;
   }
-  
+
   .actions {
     flex-direction: column;
     gap: 15px;
@@ -298,13 +303,13 @@
     width: 100% !important;
     justify-content: center !important;
   }
-  
+
   .decorativeText {
     font-size: 4rem;
     bottom: -20px;
   }
+
   .tagline {
     font-size: 0.7rem;
   }
 }
-

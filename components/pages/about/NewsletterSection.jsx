@@ -48,7 +48,7 @@ export default function NewsletterSection({ newsletterData }) {
                     className={styles.emailInput}
                   />
                   <Link href={`mailto:${email}`}>
-                    <CustomButton className={styles.subscribeBtn}>
+                    <CustomButton>
                       Subscribe
                     </CustomButton>
                   </Link>

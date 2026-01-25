@@ -59,7 +59,7 @@ export default function OurValues( { ourValuesData } ) {
                     <Uicons
                       icon={value?.icon}
                       size="24px"
-                      color="#107634"
+                      color="#245631"
                       style={{
                         display: "flex",
                         alignItems: "center",

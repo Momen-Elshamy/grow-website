@@ -1,9 +1,11 @@
 .containerSuccessStories {
   padding: 32px 16px;
 }
+
 .successStoriesSection {
   padding: 32px 0px;
-  background-color: #062a1a; /* Dark green background */
+  background-color: #17311E;
+  /* Dark green background */
   overflow: hidden;
   border-radius: 20px;
   max-width: 1280px;
@@ -18,8 +20,26 @@
   padding: 0 24px;
 }
 
+.container :global(.ant-row) {
+  align-items: stretch;
+}
+
+.container :global(.ant-col) {
+  display: flex;
+  flex-direction: column;
+}
+
 .imageWrapper {
   position: relative;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+}
+
+.imageWrapper>div {
+  height: 100%;
+  width: 100%;
 }
 
 .mainImageContainer {
@@ -27,7 +47,8 @@
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 600px;
+  height: 100%;
+  min-height: 600px;
 }
 
 .imageMotionWrapper {
@@ -38,12 +59,15 @@
 
 .playButton {
   position: absolute;
-  top: 10%; /* centered vertically */
-  right: -10px; /* centered horizontally */
-  transform: translate(-50%, -60%) scale(0.8); /* slightly above and smaller */
+  top: 10%;
+  /* centered vertically */
+  right: -10px;
+  /* centered horizontally */
+  transform: translate(-50%, -60%) scale(0.8);
+  /* slightly above and smaller */
   width: 58px;
   height: 58px;
-  background: rgb(24, 116, 56);
+  background: #366C45;
   border-radius: 20%;
   display: flex;
   align-items: center;
@@ -52,14 +76,16 @@
   opacity: 0;
   visibility: hidden;
   cursor: pointer;
-  transition: all 0.5s ease; /* smooth animation */
+  transition: all 0.5s ease;
+  /* smooth animation */
 }
 
 /* show icon on hover */
 .imageMotionWrapper:hover .playButton {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, -50%) scale(1); /* move to center + normal size */
+  transform: translate(-50%, -50%) scale(1);
+  /* move to center + normal size */
 }
 
 
@@ -75,7 +101,7 @@
 }
 
 .videoModal :global(.ant-modal-close:hover) {
-  color: #eecd15;
+  color: #FFB01E;
 }
 
 .videoResponsive {
@@ -108,7 +134,8 @@
   position: absolute;
   bottom: 30px;
   left: 30px;
-  background: linear-gradient(135deg, rgba(142, 168, 78, 0.9) 0%, rgba(74, 93, 35, 0.9) 100%);
+  /* background: linear-gradient(135deg, rgba(142, 168, 78, 0.9) 0%, rgba(74, 93, 35, 0.9) 100%); */
+  background: linear-gradient(122.79deg, #17311E 20.62%, #599C6B 80.41%);
   backdrop-filter: blur(10px);
   padding: 18px;
   border-radius: 12px;
@@ -129,6 +156,7 @@
   font-size: 14px;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0 !important;
 }
 
 .navigationArrows {
@@ -146,7 +174,7 @@
 .navBtn {
   width: 45px;
   height: 45px;
-  background: rgba(16, 118, 52, 0.6);
+  background: #366C45;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
@@ -159,14 +187,15 @@
 }
 
 .navBtn:hover {
-  background: rgba(16, 118, 52, 0.9);
   transform: scale(1.1);
-  border-color: #eecd15;
+  border-color: #FFB01E;
 }
 
 .contentWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
 
 .tagline {
@@ -174,7 +203,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-  color: #eecd15;
+  color: #FFB01E;
   font-weight: 500;
   font-size: 18px;
 }
@@ -208,9 +237,10 @@
 }
 
 .storyTitle {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
-  color: #979797; /* Grayed out when not active */
+  color: #979797;
+  /* Grayed out when not active */
   margin: 0;
   transition: all 0.3s ease;
 }
@@ -228,18 +258,19 @@
   .heading {
     font-size: 32px;
   }
+
   .mainImageContainer {
     height: 500px;
   }
 }
-
-@media (max-width: 991px) {
-  .successStoriesSection {
-    padding: 60px 0;
+@media (max-width: 989px) {
+  .mainImageContainer {
+    height: 500px !important;
   }
 }
-
-@media (hover: none), (pointer: coarse), (max-width: 786px) {
+@media (hover: none),
+(pointer: coarse),
+(max-width: 786px) {
   .imageMotionWrapper .playButton {
     opacity: 1 !important;
     visibility: visible !important;
@@ -250,24 +281,29 @@
   .heading {
     font-size: 28px;
   }
+
   .storyTitle {
-    font-size: 22px;
+    font-size: 16px;
   }
+
   .overlappingCard {
     bottom: 10px;
     width: 280px;
     left: 6px;
   }
+
   .cardTitle {
     font-size: 16px;
   }
+
   .cardDescription {
     font-size: 12px;
   }
 }
+
 @media (max-width: 344px) {
   .overlappingCard {
     left: 4px;
-     width: 255px;
+    width: 255px;
   }
 }

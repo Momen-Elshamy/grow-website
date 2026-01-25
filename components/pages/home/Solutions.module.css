@@ -63,7 +63,7 @@
 }
 
 .subtitle {
-  color: #107634;
+  color: #366C45;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 15px;
@@ -217,11 +217,6 @@
 
 .serviceButton {
   width: fit-content;
-}
-
-.serviceButton:hover {
-  background-color: #107634 !important;
-  border-color: #107634 !important;
 }
 
 /* Responsive */

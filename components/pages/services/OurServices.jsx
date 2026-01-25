@@ -38,7 +38,7 @@ export default function OurServices({ourServicesData}) {
               <Row gutter={[16, 16]} className={styles.servicesList}>
                 {ourServicesData?.services.map((service, index) => (
                   <Col xs={24} sm={24} md={24} lg={24} key={service.id}>
-                    <motion.button
+                    <motion.customButton
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
@@ -61,7 +61,7 @@ export default function OurServices({ourServicesData}) {
                         size="20px"
                         style={{ color: "#ffffff" }}
                       />
-                    </motion.button>
+                    </motion.customButton>
                   </Col>
                 ))}
               </Row>

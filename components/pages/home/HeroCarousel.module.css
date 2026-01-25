@@ -74,12 +74,12 @@
 .aboutButton {
   background-color: transparent;
   color: white;
-  border-color: white;
+  border-color: white !important;
 }
 .aboutButton:hover {
   color: white !important;
-  background-color: #107634 !important;
-  border: none !important;
+  background-color: transparent !important;
+  /* border: white !important; */
 }
 .navButton {
   position: absolute;

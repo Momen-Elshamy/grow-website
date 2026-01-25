@@ -57,7 +57,7 @@ export default function NewsSection({ newsData }) {
         variants={containerVariants}
       >
         <motion.div className={styles.tagline} variants={leftVariants}>
-          <Uicons icon={newsData?.taglineicon} className={styles.taglineIcon} />
+          <Uicons icon={icon} className={styles.taglineIcon} />
           <span>{taglineicon}</span>
         </motion.div>
 
@@ -86,7 +86,7 @@ export default function NewsSection({ newsData }) {
                 >
                   <Flex vertical justify="center" align="center">
                     <div className={styles.overlayIconBox}>
-                      <Uicons icon={icon} size={32} color="#107634" />
+                      <Uicons icon={icon} size={32} color="#245631" />
                     </div>
                     <div className={styles.overlayContent}>
                       <h3>{categoryTitle}</h3>

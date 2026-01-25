@@ -12,7 +12,7 @@
   transform: translateX(-50%);
   width: 100%;
   height: 100%;
-  z-index: 1;  
+  z-index: 1;
   border-radius: 20px;
 }
 
@@ -31,8 +31,8 @@
 }
 
 .whiteCard {
-  position: relative;  
-  z-index: 10;      
+  position: relative;
+  z-index: 10;
   background-color: #ffffff;
   padding: 32px;
   border-radius: 24px;
@@ -43,7 +43,7 @@
 .title {
   font-size: 32px;
   font-weight: 700;
-  color: #062a1a;
+  color: #17311E;
   margin-bottom: 16px;
 }
 
@@ -74,21 +74,12 @@
   box-shadow: none !important;
   padding: 0 20px !important;
   font-size: 16px !important;
-  color: #062a1a !important;
+  color: #17311E !important;
   flex-grow: 1;
 }
 
 .emailInput::placeholder {
   color: #97a697 !important;
-}
-.subscribeBtn {
-  background-color: #107634 !important;
-  color: #ffffff !important;
-  border: none !important;
-  height: 46px !important;
-  padding: 0 32px !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
 }
 
 .privacyText {
@@ -113,26 +104,31 @@
     border-radius: 16px;
     /* margin: 0 10px; */
   }
+
   .title {
     font-size: 24px;
     text-align: center;
   }
+
   .description {
     font-size: 14px;
     text-align: center;
     margin-bottom: 20px;
   }
+
   .privacyText {
     text-align: center;
   }
+
   .inputGroup {
     flex-direction: column;
   }
+
   .subscribeBtn {
     width: 100% !important;
   }
+
   .container {
     padding: 0 10px;
   }
 }
-

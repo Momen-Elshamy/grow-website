@@ -1,5 +1,5 @@
 .footer {
-  background-color: #062a1a;
+  background-color: #17311E;
   color: #ffffff;
   padding: 100px 0 0 0;
   position: relative;
@@ -48,14 +48,14 @@
   width: 45px !important;
   height: 45px !important;
   padding: 0 !important;
-  background: #107634 !important;
+  background: #366C45 !important;
   border: none !important;
   border-radius: 12px !important;
   transition: all 0.3s ease !important;
 }
 
 .socials :global(.ant-btn:hover) {
-  background: #EECD15 !important;
+  background: #FFB01E !important;
   transform: translateY(-3px);
 }
 
@@ -94,7 +94,7 @@
 }
 
 .links li a:hover {
-  color: #EECD15;
+  color: #FFB01E;
 }
 
 .contactInfo {
@@ -117,7 +117,7 @@
 }
 
 .contactItem a:hover {
-  color: #EECD15;
+  color: #FFB01E;
   opacity: 0.8;
 }
 
@@ -131,7 +131,8 @@
 .graphicContainer {
   width: 100%;
   line-height: 0;
-  margin-top: -2px; /* Prevent tiny gaps with the top section */
+  margin-top: -2px;
+  /* Prevent tiny gaps with the top section */
   position: relative;
   overflow: hidden;
 }
@@ -166,7 +167,7 @@
 }
 
 .bottomLinks li a {
-  color: #107634;
+  color: #17311E;
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
@@ -184,7 +185,7 @@
 }
 
 .copyright span {
-  color: #107634;
+  color: #17311E;
   font-weight: 600;
 }
 
@@ -200,6 +201,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
+
   .logoSection {
     grid-column: span 2;
   }
@@ -209,11 +211,12 @@
   .top {
     grid-template-columns: 1fr;
   }
+
   .logoSection {
     grid-column: span 1;
   }
+
   .container {
     padding: 0 30px;
   }
 }
-

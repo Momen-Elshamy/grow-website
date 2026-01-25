@@ -75,7 +75,7 @@ export default function MissionLeftContent({ title, paragraph, imageSrc }) {
           src={imageSrc}
           alt="Farmer"
           width={200}
-          height={300}
+          height={350}
           className={styles.farmerImage}
           priority
         />

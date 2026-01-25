@@ -16,12 +16,12 @@
 }
 
 .leafIcon {
-  color: #107634;
+  color: #366C45;
   font-size: 1.2rem;
 }
 
 .subtitle {
-  color: #107634;
+  color: #366C45;
   font-weight: 500;
   font-size: 1rem;
 }
@@ -90,8 +90,8 @@
 /* Style for the active/highlighted step icon and line */
 .customSteps :global(.ant-steps-item-process) .stepIcon,
 .customSteps :global(.ant-steps-item-finish) .stepIcon {
-  background-color: #EECD15;
-  border-color: #EECD15;
+  background-color: #FFB01E;
+  border-color: #FFB01E;
   font-weight: 500;
 }
 
@@ -100,9 +100,9 @@
 .customSteps :global(.ant-steps-item-process) :global(.ant-steps-item-tail::after),
 .customSteps :global(.ant-steps-item-finish) :global(.ant-steps-item-rail),
 .customSteps :global(.ant-steps-item-process) :global(.ant-steps-item-rail) {
-  background: #EECD15 !important;
-  background-color: #EECD15 !important;
-  border-color: #EECD15 !important;
+  background: #FFB01E !important;
+  background-color: #FFB01E !important;
+  border-color: #FFB01E !important;
 }
 
 
@@ -154,7 +154,7 @@
 
 .iconBox {
   width: 100px;
-  background-color: #EECD15;
+  background-color: #FFB01E;
   display: flex;
   align-items: center;
   justify-content: center;

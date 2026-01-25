@@ -54,7 +54,7 @@
 }
 
 .darkGreenCard {
-  background-color: #0b2414; /* Dark Forest Green */
+  background-color: #17311E; /* Dark Forest Green */
   border-radius: 20px;
   padding: 44px;
   height: 100%;
@@ -84,9 +84,9 @@
 }
 
 .contactButton {
-  background-color: #eecd15 !important;
-  border-color: #eecd15 !important;
-  color: #0b2414 !important;
+  background-color: #FFB01E !important;
+  border-color: #FFB01E !important;
+  color: #17311E !important;
   align-items: center;
 }
 
@@ -104,7 +104,7 @@
 .farmerImage {
   object-fit: contain;
   width: 100%;
-  height: auto;
+  height: auto !important;
 }
 
 .rightCol {
@@ -113,7 +113,7 @@
 }
 
 .yellowCard {
-  background-color: #eecd15;
+  background-color: #FFB01E;
   border-radius: 20px;
   padding: 44px;
   height: 100%;
@@ -131,14 +131,14 @@
 }
 
 .rightTitle {
-  color: #0b2414 !important;
+  color: #17311E !important;
   font-size: 24px !important;
   font-weight: 700 !important;
   margin-bottom: 24px !important;
 }
 
 .rightParagraph {
-  color: #0b2414 !important;
+  color: #17311E !important;
   font-size: 16px !important;
   margin-bottom: 40px !important;
   max-width: 300px;
@@ -152,7 +152,7 @@
 .navButton {
   background: transparent !important;
   border: 1px solid #000 !important;
-  color: #0b2414 !important;
+  color: #17311E !important;
   display: flex;
   align-items: center;
   justify-content: center;

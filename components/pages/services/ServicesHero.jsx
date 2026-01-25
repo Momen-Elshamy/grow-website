@@ -5,7 +5,7 @@ import CustomButton from "@/components/UI/Button";
 import styles from "./ServicesHero.module.css";
 import Link from "next/link";
 
-export default function ServicesHero({heroData}) {
+export default function ServicesHero({ heroData }) {
   const { title, description, image, altImage } = heroData || {};
   return (
     <section id="hero" className={styles.heroSection}>
@@ -28,7 +28,7 @@ export default function ServicesHero({heroData}) {
             transition={{ duration: 0.6 }}
             className={styles.title}
           >
-           {title}
+            {title}
           </motion.h1>
 
           <motion.p
@@ -37,7 +37,7 @@ export default function ServicesHero({heroData}) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={styles.description}
           >
-          {description}
+            {description}
           </motion.p>
 
           <motion.div
@@ -47,11 +47,8 @@ export default function ServicesHero({heroData}) {
             className={styles.buttonGroup}
           >
             {" "}
-            <Link href="/about" className={styles.contactBtnLink}>
-              <CustomButton>More About Us</CustomButton>
-            </Link>
             <Link href="/contact" className={styles.contactBtnLink}>
-              <CustomButton className={styles.transparentBtn} icon="null">
+              <CustomButton className={styles.transparentBtn} >
                 Contact Us
               </CustomButton>
             </Link>

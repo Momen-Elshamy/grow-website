@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import styles from "./RemoteSensing.module.css";
 import Uicons from "@/components/UI/Uicons";
 
-export default function RemoteSensing({ourServicesData}) {
+export default function RemoteSensing({ ourServicesData }) {
   const service = ourServicesData?.services?.[5];
 
   if (!service) return null;
 
-  const { title, description, image, altImage , moreDescription,benefits} = service;
+  const { title, description, image, altImage, moreDescription, benefits } =
+    service;
   return (
     <section id="remote-sensing" className={styles.remoteSensingSection}>
       <div className={styles.container}>
@@ -23,7 +24,6 @@ export default function RemoteSensing({ourServicesData}) {
               transition={{ duration: 0.8 }}
               className={styles.imageWrapper}
             >
-              <div className={styles.greenStripe} />
               <div className={styles.imageContainer}>
                 <Image
                   src={image?.node?.sourceUrl}
@@ -44,14 +44,9 @@ export default function RemoteSensing({ourServicesData}) {
               transition={{ duration: 0.8 }}
               className={styles.textContent}
             >
-              
               <h2 className={styles.title}>{title}</h2>
-              <p className={styles.intro}>
-              {description}
-              </p>
-              <p className={styles.intro}>
-              {moreDescription}
-              </p>
+              <p className={styles.intro}>{description}</p>
+              <p className={styles.intro}>{moreDescription}</p>
 
               <div className={styles.benefitsList}>
                 {benefits?.map((benefit, index) => (

@@ -183,7 +183,7 @@ export default function Header() {
               icon={
                 <Uicons
                   icon={mobileMenuOpen ? "fi-rr-cross" : "fi-rr-menu-burger"}
-                  color="#062A1A"
+                  color="#17311E"
                 />
               }
             />

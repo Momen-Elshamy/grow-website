@@ -27,10 +27,10 @@ export default function SuccessStories({ successStoriesData }) {
                   gap={10}
                   className={styles.iconContainer}
                 >
-                  <Uicons icon="fi-rr-leaf" color="#107634" />
+                  <Uicons icon="fi-rr-leaf" color="#366C45" />
                   <Uicons
                     icon="fi-rr-leaf"
-                    color="#107634"
+                    color="#366C45"
                     style={{ transform: "scaleX(-1)" }}
                   />
                 </Flex>

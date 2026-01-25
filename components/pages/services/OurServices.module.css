@@ -57,7 +57,7 @@
 } */
 
 .serviceButton {
-  background-color: #107634;
+  background-color: #17311E;
   border: none;
   border-radius: 12px;
   padding: 18px 24px;
@@ -72,20 +72,19 @@
 }
 
 .serviceButton:hover {
-  background-color: #0d5d2a;
+  background-color: #17311E;
   transform: translateX(4px);
 }
 
 .serviceButton.active {
-  background-color: #0d2e1a;
+  background-color: #17311E;
   box-shadow: 0 4px 12px rgba(13, 46, 26, 0.3);
   transform: translateX(4px);
 }
 
 .serviceButton.active:hover,
 .serviceButton:focus {
-
-  background-color: #107634 !important;
+  background-color: #245631 !important;
 }
 
 .serviceText {

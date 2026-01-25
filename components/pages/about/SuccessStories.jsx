@@ -1,19 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Modal } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import Uicons from "../../UI/Uicons";
 import styles from "./SuccessStories.module.css";
 
 export default function SuccessStories({ successStoriesData }) {
+  const router = useRouter();
+  
   if (!successStoriesData) return null;
 
   const { icon, tagline, storiesData } = successStoriesData || {};
   const cards = storiesData || [];
-  const title = successStoriesData?.title || "";
 
   const [activeKey, setActiveKey] = useState(cards.length > 0 ? "0" : "");
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Handle query parameter to select specific story
+  useEffect(() => {
+    if (router.isReady && router.query.story && cards.length > 0) {
+      // Guard router.query.story value before calling decodeURIComponent
+      const storyQuery = router.query.story;
+      const storyValue = Array.isArray(storyQuery) 
+        ? storyQuery[0] 
+        : typeof storyQuery === "string" 
+        ? storyQuery 
+        : null;
+      
+      if (!storyValue) return;
+      
+      const storyTitle = decodeURIComponent(storyValue);
+      const storyIndex = cards.findIndex(
+        (card) => card?.title === storyTitle || card?.heading === storyTitle
+      );
+      
+      if (storyIndex >= 0) {
+        setActiveKey(storyIndex.toString());
+        // Scroll to section after a short delay to ensure component is rendered
+        const timeoutId = setTimeout(() => {
+          const element = document.getElementById("stories");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+        
+        // Clear timeout on cleanup to avoid leaks
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }
+    }
+  }, [router.isReady, router.query.story, cards]);
 
   const currentIndex =
     cards.length > 0
@@ -57,7 +95,7 @@ export default function SuccessStories({ successStoriesData }) {
     <section id="stories" className={styles.containerSuccessStories}>
       <div className={styles.successStoriesSection}>
         <div className={styles.container}>
-          <Row gutter={[60, 40]} align="middle">
+          <Row gutter={[60, 40]} align="stretch">
             {/* LEFT */}
             <Col xs={24} lg={12}>
               <motion.div
@@ -66,6 +104,7 @@ export default function SuccessStories({ successStoriesData }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
                 className={styles.imageWrapper}
+                style={{ height: "100%" }}
               >
                 <div className={styles.mainImageContainer}>
                   <AnimatePresence mode="wait">
@@ -84,7 +123,7 @@ export default function SuccessStories({ successStoriesData }) {
                           currentStory?.altImage
                         }
                         width={600}
-                        height={600}
+                        height={900}
                         className={styles.mainImage}
                       />
 
@@ -152,7 +191,7 @@ export default function SuccessStories({ successStoriesData }) {
 
             {/* RIGHT */}
             <Col xs={24} lg={12}>
-              <motion.div className={styles.contentWrapper}>
+              <motion.div className={styles.contentWrapper} style={{ height: "100%" }}>
                 <div className={styles.tagline}>
                   <Uicons icon={icon} size="20px" />
                   <span>{tagline}</span>

@@ -66,7 +66,7 @@ export default function VisionAndMission({ visionAndMissionData }) {
                     <Uicons
                       icon={item.icon}
                       size="32px"
-                      color="#107634"
+                      color="#17311E"
                       style={{
                         display: "flex",
                         alignItems: "center",

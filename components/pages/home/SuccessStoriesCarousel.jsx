@@ -2,8 +2,10 @@ import { Carousel, Card, Tag, Flex } from "antd";
 import Image from "next/image";
 import CustomButton from "@/components/UI/Button";
 import styles from "./SuccessStoriesCarousel.module.css";
+import Link from "next/link";
 
 export default function SuccessStoriesCarousel({ cards = [] }) {
+
   const settings = {
     dots: true,
     infinite: true,
@@ -38,8 +40,8 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
 
   return (
     <Carousel {...settings} className={`${styles.carousel} carousel`}>
-      {cards.map((course) => (
-        <div key={course.id} className={styles.slide}>
+      {cards.map((course) => (  
+        <Link href={`/about?story=${encodeURIComponent(course?.title || "")}`} key={course.id} className={styles.slide}>
           <Card
             className={styles.card}
             bordered={false}
@@ -81,7 +83,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               </div>
             </div>
           </Card>
-        </div>
+        </Link>
       ))}
     </Carousel>
   );

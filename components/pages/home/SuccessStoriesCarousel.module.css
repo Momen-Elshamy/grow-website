@@ -25,7 +25,7 @@
 }
 
 .tagline {
-  color: #107634;
+  color: #366C45;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -183,7 +183,7 @@
 }
 
 .cardBtn:hover {
-  background-color: #EECD15 !important;
+  background-color: #FFB01E !important;
 }
 
 .cardBtn:hover i {
@@ -191,7 +191,7 @@
 }
 
 .card:hover .cardBtn {
-  background-color: #EECD15 !important;
+  background-color: #FFB01E !important;
 }
 
 .card:hover .cardBtn i {

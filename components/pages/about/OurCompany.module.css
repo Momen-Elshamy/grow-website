@@ -36,7 +36,7 @@
   transform: translateX(-50%) rotate(-8deg);
   font-family: "Dancing Script", cursive;
   font-size: 110px;
-  color: #eecd15;
+  color: #FFB01E;
   pointer-events: none;
   z-index: 10;
   white-space: nowrap;
@@ -62,7 +62,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-  color: #107634;
+  color: #366C45;
   font-weight: 500;
   font-size: 16px;
 }
@@ -88,16 +88,24 @@
   margin-bottom: 40px;
 }
 
-.teamBtn {
-  background-color: #107634 !important;
-  color: #ffffff !important;
-  border: none !important;
-}
-
 .marqueeWrapper {
   width: 100%;
   margin-top: 24px;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+/* Hide scrollbars on marquee components */
+.marqueeWrapper :global(.react-fast-marquee),
+.marqueeWrapper :global(.rfm-marquee-container),
+.marqueeWrapper :global(.rfm-marquee-container) > * {
+  overflow: hidden !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+.marqueeWrapper :global(.rfm-marquee-container)::-webkit-scrollbar,
+.marqueeWrapper :global(.react-fast-marquee)::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
 }
 
 .marqueeItem {
@@ -110,8 +118,8 @@
 .marqueeText {
   font-size: 80px;
   font-weight: 800;
-  color: #ededed;
-  -webkit-text-stroke: 1px #ededed;
+  color: #e5efe9;
+  -webkit-text-stroke: 1px #e5efe9;
   text-transform: capitalize;
   white-space: nowrap;
   font-family: "Parkinsans", sans-serif;
@@ -150,13 +158,16 @@
   .mainImageContainer {
     height: 400px;
   }
+
   .heading {
     font-size: 32px;
   }
+
   .decorativeText {
     font-size: 80px;
     bottom: -25px;
   }
+
   .container :global(.ant-row) {
     flex-direction: column-reverse !important;
   }
@@ -166,12 +177,15 @@
   .ourCompanySection {
     padding: 60px 0;
   }
+
   .heading {
     font-size: 28px;
   }
+
   .buttonGroup {
     flex-direction: column;
   }
+
   .decorativeText {
     font-size: 60px;
     bottom: -20px;
@@ -179,4 +193,3 @@
     transform: translateX(-50%) rotate(-8deg);
   }
 }
-

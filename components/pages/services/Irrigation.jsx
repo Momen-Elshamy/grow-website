@@ -60,7 +60,7 @@ export default function Irrigation({ourServicesData}) {
                       icon={benefits[0]?.icon}
                       size="32px"
                       style={{
-                        color: "#107634",
+                        color: "#366C45",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",

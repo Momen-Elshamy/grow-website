@@ -65,7 +65,7 @@ export default function TrainingCourse({ourServicesData}) {
                       icon={benefit?.icon}
                       size="32px"
                       style={{
-                        color: "#107634",
+                        color: "#245631",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",

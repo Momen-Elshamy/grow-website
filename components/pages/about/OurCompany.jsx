@@ -54,7 +54,7 @@ export default function OurCompany( { ourCompanyData } ) {
               className={styles.contentWrapper}
             >
               <div className={styles.tagline}>
-                <Uicons icon={icon} size="20px" color="#107634" />
+                <Uicons icon={icon} size="20px" color="#366C45" />
                 <span>{tagline}</span>
               </div>
 
@@ -67,7 +67,7 @@ export default function OurCompany( { ourCompanyData } ) {
               </p>
 
               <div className={styles.buttonGroup}>
-                <CustomButton href="#experts" className={styles.teamBtn}>
+                <CustomButton href="#experts">
                   Meet Our Experts
                 </CustomButton>
               </div>
@@ -82,7 +82,7 @@ export default function OurCompany( { ourCompanyData } ) {
                         <Uicons
                           icon={item.icon}
                           size="40px"
-                          color="#e0e0e0"
+                          color="#e5efe9"
                           style={{
                             display: "flex",
                             alignItems: "center",

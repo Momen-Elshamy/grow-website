@@ -1,18 +1,11 @@
 import { Carousel, Card, Tag, Flex } from "antd";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import CustomButton from "@/components/UI/Button";
 import styles from "./SuccessStoriesCarousel.module.css";
+import Link from "next/link";
 
 export default function SuccessStoriesCarousel({ cards = [] }) {
-  const router = useRouter();
 
-  const handleCardClick = (course) => {
-    // Navigate to about page success stories section
-    // Use the story title as a query parameter to identify the story
-    const storyTitle = encodeURIComponent(course?.title || "");
-    router.push(`/about${storyTitle ? `?story=${storyTitle}` : ""}#stories`);
-  };
   const settings = {
     dots: true,
     infinite: true,
@@ -47,8 +40,8 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
 
   return (
     <Carousel {...settings} className={`${styles.carousel} carousel`}>
-      {cards.map((course) => (
-        <div key={course.id} className={styles.slide}>
+      {cards.map((course) => (  
+        <Link href={`/about?story=${encodeURIComponent(course?.title || "")}`} key={course.id} className={styles.slide}>
           <Card
             className={styles.card}
             bordered={false}
@@ -81,7 +74,6 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               <div className={styles.btnWrapper}>
                 <CustomButton
                   className={styles.cardBtn}
-                  onClick={() => handleCardClick(course)}
                   style={{
                     height: "100%",
                     borderRadius: "0 10px 10px 0",
@@ -91,7 +83,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               </div>
             </div>
           </Card>
-        </div>
+        </Link>
       ))}
     </Carousel>
   );

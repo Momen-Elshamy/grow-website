@@ -13,7 +13,6 @@ export default function SuccessStories({ successStoriesData }) {
 
   const { icon, tagline, storiesData } = successStoriesData || {};
   const cards = storiesData || [];
-  const title = successStoriesData?.title || "";
 
   const [activeKey, setActiveKey] = useState(cards.length > 0 ? "0" : "");
   const [isModalOpen, setIsModalOpen] = useState(false);

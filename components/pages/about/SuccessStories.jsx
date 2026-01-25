@@ -20,7 +20,17 @@ export default function SuccessStories({ successStoriesData }) {
   // Handle query parameter to select specific story
   useEffect(() => {
     if (router.isReady && router.query.story && cards.length > 0) {
-      const storyTitle = decodeURIComponent(router.query.story);
+      // Guard router.query.story value before calling decodeURIComponent
+      const storyQuery = router.query.story;
+      const storyValue = Array.isArray(storyQuery) 
+        ? storyQuery[0] 
+        : typeof storyQuery === "string" 
+        ? storyQuery 
+        : null;
+      
+      if (!storyValue) return;
+      
+      const storyTitle = decodeURIComponent(storyValue);
       const storyIndex = cards.findIndex(
         (card) => card?.title === storyTitle || card?.heading === storyTitle
       );
@@ -28,12 +38,17 @@ export default function SuccessStories({ successStoriesData }) {
       if (storyIndex >= 0) {
         setActiveKey(storyIndex.toString());
         // Scroll to section after a short delay to ensure component is rendered
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
           const element = document.getElementById("stories");
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         }, 100);
+        
+        // Clear timeout on cleanup to avoid leaks
+        return () => {
+          clearTimeout(timeoutId);
+        };
       }
     }
   }, [router.isReady, router.query.story, cards]);

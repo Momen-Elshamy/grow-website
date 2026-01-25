@@ -82,7 +82,7 @@ export default function OurCompany( { ourCompanyData } ) {
                         <Uicons
                           icon={item.icon}
                           size="40px"
-                          color="#e0e0e0"
+                          color="#e5efe9"
                           style={{
                             display: "flex",
                             alignItems: "center",

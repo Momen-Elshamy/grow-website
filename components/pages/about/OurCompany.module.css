@@ -91,7 +91,21 @@
 .marqueeWrapper {
   width: 100%;
   margin-top: 24px;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+/* Hide scrollbars on marquee components */
+.marqueeWrapper :global(.react-fast-marquee),
+.marqueeWrapper :global(.rfm-marquee-container),
+.marqueeWrapper :global(.rfm-marquee-container) > * {
+  overflow: hidden !important;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+.marqueeWrapper :global(.rfm-marquee-container)::-webkit-scrollbar,
+.marqueeWrapper :global(.react-fast-marquee)::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
 }
 
 .marqueeItem {
@@ -104,8 +118,8 @@
 .marqueeText {
   font-size: 80px;
   font-weight: 800;
-  color: #ededed;
-  -webkit-text-stroke: 1px #ededed;
+  color: #e5efe9;
+  -webkit-text-stroke: 1px #e5efe9;
   text-transform: capitalize;
   white-space: nowrap;
   font-family: "Parkinsans", sans-serif;
@@ -144,13 +158,16 @@
   .mainImageContainer {
     height: 400px;
   }
+
   .heading {
     font-size: 32px;
   }
+
   .decorativeText {
     font-size: 80px;
     bottom: -25px;
   }
+
   .container :global(.ant-row) {
     flex-direction: column-reverse !important;
   }
@@ -160,12 +177,15 @@
   .ourCompanySection {
     padding: 60px 0;
   }
+
   .heading {
     font-size: 28px;
   }
+
   .buttonGroup {
     flex-direction: column;
   }
+
   .decorativeText {
     font-size: 60px;
     bottom: -20px;
@@ -173,4 +193,3 @@
     transform: translateX(-50%) rotate(-8deg);
   }
 }
-

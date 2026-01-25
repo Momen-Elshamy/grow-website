@@ -25,5 +25,6 @@ export const getStaticProps = async () => {
     homePageData === null ? null : JSON.parse(JSON.stringify(homePageData));
   return {
     props: { homePageData: safeHomePageData },
+    revalidate: 1, // Revalidate as soon as possible (minimum valid value)
   };
 };

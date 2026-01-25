@@ -33,7 +33,7 @@ export const getStaticProps = async () => {
     return {
       props: {
         solutionsPageData: null,
-        revalidate: 0, 
+        revalidate: 1, 
       },
     };
   }

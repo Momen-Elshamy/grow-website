@@ -30,7 +30,7 @@ export const getStaticProps = async () => {
     return {
       props: {
         servicesPageData: null,
-        revalidate: 0,
+        revalidate: 1,
       },
     };
   }

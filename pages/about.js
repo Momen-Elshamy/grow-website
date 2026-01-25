@@ -33,7 +33,7 @@ export const getStaticProps = async () => {
     console.error("Error fetching about page data:", error);
     return {
       props: { aboutPageData: null },
-      revalidate: 0, 
+      revalidate: 1, 
     };
   }
 };

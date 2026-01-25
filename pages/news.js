@@ -33,7 +33,7 @@ export const getStaticProps = async () => {
     console.error("Error fetching news page data:", error);
     return {
       props: { newsPageData: null },
-      revalidate: 0, 
+      revalidate: 1, 
     };
   }
 };

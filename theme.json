@@ -4,6 +4,7 @@
       "colorPrimaryHover": "#FFB01E",
       "colorPrimaryText": "#FFFFFF",
       "borderRadius": 6,
-      "fontFamily": "Parkinsans, sans-serif"
+      "fontFamily": "Parkinsans, sans-serif",
+      "boxShadow": "none"
    }
 }

@@ -3,9 +3,9 @@ import MainLayout from "@/components/Layout/MainLayout";
 import ContactMap from "@/components/pages/contact/ContactMap";
 import ContactUs from "@/components/pages/home/ContactUs";
 import { client, GET_FRONT_PAGE_DATA } from "@/src/graphql";
+import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
 export default function ContactPage({ homePageData }) {
-  console.log(homePageData, 'homePageData');
   const contactData = homePageData?.contactUs;
   return (
     <>
@@ -15,11 +15,14 @@ export default function ContactPage({ homePageData }) {
   );
 }
 
-ContactPage.getLayout = function getLayout(page, homePageData) {
-  return <MainLayout homePageData={homePageData}>{page}</MainLayout>;
+ContactPage.getLayout = function getLayout(page, pageProps) {
+  const homePageData = pageProps?.homePageData;
+  const seo = pageProps?.seo || null;
+  
+  return <MainLayout homePageData={homePageData} seo={seo}>{page}</MainLayout>;
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = withWebsiteSettings(async () => {
   const { data } = await client.query({
     query: GET_FRONT_PAGE_DATA,
   });
@@ -30,4 +33,4 @@ export const getStaticProps = async () => {
     props: { homePageData: safeHomePageData },
     revalidate: 1, 
   };
-};
+});

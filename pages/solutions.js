@@ -2,8 +2,9 @@ import Solutions from "@/components/pages/solutions/Solutions";
 import { client } from "@/src/graphql";
 import { GET_FRONT_PAGE_DATA } from "@/src/graphql/queries/solutions";
 import MainLayout from "@/components/Layout/MainLayout";
+import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
-export default function SolutionsPage({ solutionsPageData }) {
+export default function SolutionsPage({ solutionsPageData}) {
   return (
     <>
      <Solutions solutionsPageData={solutionsPageData} />
@@ -11,11 +12,12 @@ export default function SolutionsPage({ solutionsPageData }) {
   );
 }
 
-SolutionsPage.getLayout = function getLayout(page) {
-  return <MainLayout>{page}</MainLayout>;
+SolutionsPage.getLayout = function getLayout(page, pageProps) {
+  const seo = pageProps?.seo || null;
+  return <MainLayout seo={seo}>{page}</MainLayout>;
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = withWebsiteSettings(async () => {
   try {
     const { data } = await client.query({
       query: GET_FRONT_PAGE_DATA,
@@ -37,4 +39,4 @@ export const getStaticProps = async () => {
       },
     };
   }
-};
+});

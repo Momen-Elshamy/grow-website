@@ -3,31 +3,39 @@
   width: 100%;
   height: 100vh;
 }
+
 .carousel {
   height: 100vh;
 }
+
 .carousel :global(.slick-dots li button) {
   background-color: #FFFFFF !important;
   opacity: 0.5 !important;
   transition: all 0.3s ease !important;
 }
+
 .carousel :global(.slick-dots li.slick-active button) {
-  background-color: #E9E7E7 !important; /* Changed from grey to red */
+  background-color: #E9E7E7 !important;
+  /* Changed from grey to red */
   opacity: 1 !important;
 }
+
 /* Specific override for Ant Design's inner active dot styling */
 .carousel :global(.slick-dots li.slick-active::after) {
   background: #e9e7e7 !important;
 }
+
 .slideContainer {
   height: 100vh;
   position: relative;
   overflow: hidden;
 }
+
 .backgroundImage {
   object-fit: cover;
   z-index: 0;
 }
+
 .overlay {
   position: absolute;
   top: 0;
@@ -35,23 +43,26 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 100%);
 }
+
 .contentRow {
   height: 100%;
   position: relative;
   z-index: 2;
 }
+
 .contentCol {
-  padding: 0 140px;
+  padding: 0 32px;
   color: white;
-  max-width: 100%;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
 }
+
 .title {
   font-size: 48px;
   font-weight: bold;
@@ -59,6 +70,7 @@
   line-height: 1.2;
   color: white;
 }
+
 .description {
   font-size: 18px;
   margin-bottom: 32px;
@@ -66,21 +78,25 @@
   color: white;
   max-width: 800px;
 }
+
 .buttonsContainer {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
 }
+
 .aboutButton {
   background-color: transparent;
   color: white;
   border-color: white !important;
 }
+
 .aboutButton:hover {
   color: white !important;
   background-color: transparent !important;
   /* border: white !important; */
 }
+
 .navButton {
   position: absolute;
   top: 50%;
@@ -94,6 +110,7 @@
   justify-content: center;
   box-shadow: none !important;
 }
+
 .navButton:hover,
 .navButton:focus,
 .navButton:active {
@@ -101,74 +118,94 @@
   border: none !important;
   box-shadow: none !important;
 }
+
 .navButtonLeft {
-  left: 20px;
+  left: 8px;
 }
+
 .navButtonRight {
-  right: 20px;
+  right: 8px;
 }
+
 /* Responsive styles */
 @media (max-width: 1200px) {
   .contentCol {
-    padding: 0 80px;
+    padding: 0 60px;
+    max-width: 1300px;
   }
 }
+
 @media (max-width: 1024px) {
   .contentCol {
-    padding: 0 60px;
+    padding: 0 80px;
+    max-width: 1300px;
   }
+
   .title {
     font-size: 40px;
   }
+
   .description {
     font-size: 17px;
   }
 }
+
 @media (max-width: 768px) {
+  .contentCol {
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+
   .title {
     font-size: 32px;
   }
+
   .description {
     font-size: 16px;
     max-width: 100% !important;
   }
-  .contentCol {
-    padding: 0 20px;
-    width: 100%;
-  }
+
   .navButton {
     display: none;
   }
-  
+
 }
+
 @media (max-width: 480px) {
   .heroContainer {
-    min-height:650px;
+    min-height: 650px;
     height: auto;
   }
+
   .carousel {
     min-height: 650px;
     height: auto;
   }
+
   .slideContainer {
     min-height: 650px;
     height: auto;
     padding: 80px 0;
   }
-  .title {
-    font-size: 24px;
-    margin-bottom: 12px;
-  }
-  .description {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
+
   .contentCol {
     padding: 0 16px;
     margin-top: 120px;
     width: 100%;
+    max-width: 100%;
   }
-  
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
   .buttonsContainer {
     flex-direction: column;
     gap: 12px;
@@ -177,8 +214,8 @@
     width: 100%;
     display: flex;
   }
-  
-  .buttonsContainer > :global(*),
+
+  .buttonsContainer> :global(*),
   .buttonsContainer :global(button),
   .buttonsContainer :global(.ant-btn),
   .buttonsContainer :global(.ant-btn-large),
@@ -192,7 +229,7 @@
     flex-shrink: 0 !important;
     flex-grow: 1 !important;
   }
-  
+
   .contentCol .aboutButton,
   .buttonsContainer .aboutButton {
     width: 100% !important;

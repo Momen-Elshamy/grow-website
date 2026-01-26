@@ -7,8 +7,6 @@ import ContactUs from "./ContactUs";
 import ServicesSection from "./ServicesSection";
 
 export default function Home({ homePageData }) {
-
-  
   const heroData = homePageData?.hero;
   const infoboxData = homePageData?.infobox;
   const newsData = homePageData?.newsSection;
@@ -21,13 +19,16 @@ export default function Home({ homePageData }) {
 
   return (
     <>
-      <Hero heroData={heroData} infoboxData={infoboxData} />
-      <NewsSection newsData={newsData} />
-      <ServicesSection  servicesData={servicesData}/>
-      <SolutionsSection  solutionsData={solutionsData}/>
-      <MissionSection missionData={missionData} />
-      <SuccessStories successStoriesData={successStoriesData} />
-      <ContactUs contactData={contactData} socialMediaData={socialMediaData} />
+        <Hero heroData={heroData} infoboxData={infoboxData} />
+        <NewsSection newsData={newsData} />
+        <ServicesSection servicesData={servicesData} />
+        <SolutionsSection solutionsData={solutionsData} />
+        <MissionSection missionData={missionData} />
+        <SuccessStories successStoriesData={successStoriesData} />
+        <ContactUs
+          contactData={contactData}
+          socialMediaData={socialMediaData}
+        />
     </>
   );
 }

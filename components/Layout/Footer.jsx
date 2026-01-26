@@ -24,7 +24,7 @@ export default function Footer({ socialMediaData }) {
 
   const solutionsLinks = [
     { label: "Farm Operation", href: "/solutions#operation" },
-    { label: 'Farm Resource Planning "FRP"', href: "/solutions#frp" },
+    { label: 'Farm Resource Planning', href: "/solutions#frp" },
     { label: "Water Management", href: "/solutions#water" },
     { label: "Human Capital Training", href: "/solutions#training" },
     { label: "Commercial Management", href: "/solutions#commercial" },
@@ -49,7 +49,7 @@ export default function Footer({ socialMediaData }) {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <Row gutter={[40, 40]} className={styles.top}>
+        <Row gutter={[60, 40]} className={styles.top}>
           <Col xs={24} sm={24} md={24} lg={8} xl={7}>
             <div className={styles.logoSection}>
               <Link href="/" className={styles.logo}>

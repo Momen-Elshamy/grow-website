@@ -98,7 +98,7 @@ export default function SolutionsCarousel({ solutionscarousel }) {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0 },
                     hover: {
-                      color: "#107634",
+                      color: "#153E20",
                     },
                   }}
                   transition={{ duration: 0.5 }}

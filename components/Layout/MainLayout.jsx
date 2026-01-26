@@ -12,7 +12,7 @@ export default function MainLayout({ children, socialMediaData, contactData, seo
          {seo?.title && !seo?.head?.includes("<title>") && <title>{seo?.title}</title>}
          {seo?.head && !seo?.head?.includes("<meta") && <meta dangerouslySetInnerHTML={{ __html: seo?.head }} />}
       </Head>
-      <Layout style={{ margin: "0 auto", background: "white" }}>
+      <Layout style={{ margin: "0 auto", background: "white"}}>
          <InfoHeader socialMediaData={socialMediaData} contactData={contactData} />
          <Header />
          <Layout.Content style={{ minHeight: "100vh" }}>{children}</Layout.Content>

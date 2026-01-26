@@ -1,5 +1,6 @@
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
   left: 0;
   right: 0;
   height: 80px;
@@ -302,7 +303,8 @@
 
 @media (max-width: 991px) {
   .header {
-    position: relative;
+    position: sticky;
+    top: 0;
     height: auto;
     padding: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.05);

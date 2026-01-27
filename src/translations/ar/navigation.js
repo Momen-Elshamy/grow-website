@@ -55,7 +55,7 @@ export default {
   ourServicesTitle: "خدماتنا",
   servicesChildren: {
     consultancy: "الاستشارات الفنية",
-    lab: "تحليل المختبرات / يوروفينز",
+    lab: "تحليل المختبرات / Eurofins",
     training: "دورة تدريبية",
     irrigation: "الهندسة وتصميم أنظمة الري والصرف.",
     optimization: "مراجعة وإعادة هندسة وتحسين أنظمة المياه الموجودة.",

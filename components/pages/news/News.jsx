@@ -1,17 +1,34 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import NewsHero from "./NewsHero";
 import RecentNews from "./RecentNews";
 import FeatureVideo from "./FeatureVideo";
 import OtherNews from "./OtherNews";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 
-export default function News({ newsPageData }) {
-  const heroData = newsPageData?.hero;
-  const newsData = newsPageData?.newsFields || [];
-  const featureVideoData = newsPageData?.featureVideo;
+export default function News({
+  newsPageData,
+  newsPageDataArabic,
+}) {
+  const { currentLang } = useLanguage();
+  const newsPageDataToUse = useMemo(() => {
+    if (currentLang === "ar") {
+      return newsPageDataArabic || newsPageData || null;
+    }
+    return newsPageData || null;
+  }, [currentLang, newsPageData, newsPageDataArabic]);
+
+  const heroData = newsPageDataToUse?.hero;
+  const newsData = newsPageDataToUse?.newsFields || [];
+  const featureVideoData = newsPageDataToUse?.featureVideo;
   const recentNewsRef = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [sidebarCount, setSidebarCount] = useState(3);
   const [pinnedIndex, setPinnedIndex] = useState(null);
+
+  useEffect(() => {
+    setSelectedIndex(0);
+    setPinnedIndex(null);
+  }, [currentLang]);
 
   const handleSelectNews = (index, source = "sidebar") => {
     setPinnedIndex(source === "otherNews" ? selectedIndex : null);
@@ -25,8 +42,10 @@ export default function News({ newsPageData }) {
     });
   };
 
+  // Only one "Recent News" section — show content for the current language only.
+  // key on main forces a single block; changing language replaces it instead of adding a second.
   return (
-    <main>
+    <main key={currentLang}>
       <NewsHero heroData={heroData} />
       <RecentNews
         newsData={newsData}

@@ -4,6 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./RecentNews.module.css";
 import CustomButton from "@/components/UI/Button";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 export default function RecentNews({
   newsData,
@@ -13,6 +16,19 @@ export default function RecentNews({
   sidebarCount = 3,
   pinnedIndex = null,
 }) {
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
   if (!newsData || !Array.isArray(newsData) || newsData.length === 0) {
     return null;
   }
@@ -65,24 +81,48 @@ export default function RecentNews({
   const formatDate = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
+    const options = { month: "short", day: "numeric", year: "numeric" };
+
+    if (currentLang === "ar") {
+      // If WordPress sent a pre-formatted Arabic date (e.g. "4 سبتمبر 2025"), parsing fails — show it as-is.
+      if (Number.isNaN(date.getTime())) return dateString;
+      try {
+        const s = new Intl.DateTimeFormat("ar-EG", options).format(date);
+        if (s && s.length > 0) return s;
+      } catch {
+        /* ar-EG not available */
+      }
+      try {
+        const s = new Intl.DateTimeFormat("ar", options).format(date);
+        if (s && s.length > 0) return s;
+      } catch {
+        /* fallback */
+      }
+      return new Intl.DateTimeFormat("en-US", options).format(date);
+    }
+
+    if (Number.isNaN(date.getTime())) return "";
+    return new Intl.DateTimeFormat("en-US", options).format(date);
   };
 
   return (
-    <section className={styles.section} ref={sectionRef}>
+    <section
+      id="recent-news"
+      className={styles.section}
+      ref={sectionRef}
+      aria-labelledby="recent-news-heading"
+      data-section="recent-news"
+    >
       <div className={styles.container}>
         <motion.h2
+          id="recent-news-heading"
           className={styles.title}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          Recent News
+          {t("recentNews")}
         </motion.h2>
 
         <Row gutter={[24, 24]} className={styles.layout}>
@@ -114,8 +154,8 @@ export default function RecentNews({
                   )}
                 </div>
               )}
-              <div className={styles.content}>
-                <p className={styles.date}>{formatDate(selectedNews.date)}</p>
+                    <div className={styles.content}>
+                      <p className={styles.date}>{formatDate(selectedNews.date)}</p>
                 <h3 className={styles.newsTitle}>{selectedNews.title}</h3>
                 <p
                   className={`${styles.description} ${
@@ -156,7 +196,7 @@ export default function RecentNews({
                       className={styles.readMoreButton}
                       onClick={() => setIsExpanded(false)}
                     >
-                      Read Less
+                      {t("readLess")}
                     </CustomButton>
                   </>
                 )}
@@ -166,7 +206,7 @@ export default function RecentNews({
                     className={styles.readMoreButton}
                     onClick={() => setIsExpanded(true)}
                   >
-                    Read More
+                    {t("readMore")}
                   </CustomButton>
                 )}
               </div>
@@ -257,7 +297,7 @@ export default function RecentNews({
                             className={styles.readMoreButton}
                             onClick={() => setExpandedMobileIndex(null)}
                           >
-                            Read Less
+                            {t("readLess")}
                           </CustomButton>
                         </>
                       )}
@@ -267,7 +307,7 @@ export default function RecentNews({
                           className={styles.readMoreButton}
                           onClick={() => setExpandedMobileIndex(itemIndex)}
                         >
-                          Read More
+                          {t("readMore")}
                         </CustomButton>
                       )}
                     </div>
@@ -278,7 +318,7 @@ export default function RecentNews({
           </Col>
           <Col xs={24} lg={8} className={styles.sidebar}>
             <div className={styles.list}>
-              <h3 className={styles.listTitle}>Recent Posts</h3>
+              <h3 className={styles.listTitle}>{t("recentPosts")}</h3>
               {sidebarNews.map((item, index) => {
                 const listImage = item?.relatedImages?.[0]?.image?.node;
                 const itemIndex = normalizedNews.indexOf(item);
@@ -290,7 +330,8 @@ export default function RecentNews({
                     type="button"
                     className={`${styles.listItem} ${
                       isActive ? styles.activeListItem : ""
-                    }`}
+                    } ${currentLang === "ar" ? styles.listItemRTL : ""}`}
+                    dir={currentLang === "ar" ? "rtl" : undefined}
                     onClick={() => {
                       if (itemIndex !== -1) {
                         setSelectedIndex(itemIndex, "sidebar");
@@ -308,8 +349,18 @@ export default function RecentNews({
                         />
                       </div>
                     )}
-                    <div className={styles.listItemContent}>
-                      <p className={`${styles.date} ${styles.listItemDate}`}>
+                    <div
+                      className={`${styles.listItemContent} ${
+                        currentLang === "ar" ? styles.listItemContentRTL : ""
+                      }`}
+                      dir={currentLang === "ar" ? "rtl" : undefined}
+                    >
+                      <p
+                        className={`${styles.date} ${styles.listItemDate} ${
+                          currentLang === "ar" ? styles.listItemDateRTL : ""
+                        }`}
+                        dir={currentLang === "ar" ? "rtl" : undefined}
+                      >
                         {formatDate(item.date)}
                       </p>
                       <h4 className={styles.listItemTitle}>{item.title}</h4>

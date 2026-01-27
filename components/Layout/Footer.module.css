@@ -3,12 +3,16 @@
   color: #ffffff;
   padding: 100px 0 0 0;
   position: relative;
+  direction: ltr;
+  /* Force LTR layout for footer even in RTL mode */
 }
 
 .container {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 16px;
+  direction: ltr;
+  /* Force LTR layout for container even in RTL mode */
 }
 
 .top {

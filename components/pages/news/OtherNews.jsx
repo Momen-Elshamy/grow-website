@@ -3,8 +3,24 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./OtherNews.module.css";
 import CustomButton from "@/components/UI/Button";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 export default function OtherNews({ newsData, onSelectNews }) {
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
   if (!newsData || !Array.isArray(newsData)) {
     return null;
   }
@@ -48,23 +64,26 @@ export default function OtherNews({ newsData, onSelectNews }) {
   }
 
   const shouldCenter = otherNewsItems.length < 3;
+  const isRTL = currentLang === "ar";
+  const prevIcon = isRTL ? "fi-rr-arrow-small-right" : "fi-rr-arrow-small-left";
+  const nextIcon = isRTL ? "fi-rr-arrow-small-left" : "fi-rr-arrow-small-right";
 
   return (
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.heading}>
-          <h2 className={styles.title}>More News</h2>
+          <h2 className={styles.title}>{t("moreNews")}</h2>
         </div>
 
-        <div className={styles.slider}>
+        <div className={styles.slider} dir={isRTL ? "rtl" : "ltr"}>
           <CustomButton
             type="button"
-            icon="fi-rr-arrow-small-left"
+            icon={prevIcon}
             iconColor={canScrollLeft ? "#fff" : "#1f1f1f"}
             className={`${styles.arrow} ${
               canScrollLeft ? styles.arrowActive : styles.arrowDisabled
             }`}
-            aria-label="Previous news"
+            aria-label={isRTL ? "الأخبار السابقة" : "Previous news"}
             aria-disabled={!canScrollLeft}
             onClick={() =>
               sliderRef.current?.scrollBy({
@@ -129,9 +148,11 @@ export default function OtherNews({ newsData, onSelectNews }) {
           </div>
           <CustomButton
             type="button"
-            icon="fi-rr-arrow-small-right"
+            icon={nextIcon}
             iconColor={canScrollRight ? "#fff" : "#1f1f1f"}
             className={`${styles.arrow} ${canScrollRight ? styles.arrowActive : styles.arrowDisabled}`}
+            aria-label={isRTL ? "الأخبار التالية" : "Next news"}
+            aria-disabled={!canScrollRight}
             onClick={() => sliderRef.current?.scrollBy({ left: sliderRef.current.clientWidth, behavior: "smooth" })}
           >
           </CustomButton>

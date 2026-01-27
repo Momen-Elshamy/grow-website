@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Row, Col, Modal, Flex } from "antd";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./NewsSection.module.css";
@@ -14,6 +17,18 @@ const getYouTubeEmbedUrl = (url) => {
 
 export default function NewsSection({ newsData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
 
   const { video, image, taglineicon, title, categoryTitle, features, description, decorativeText, icon } = newsData || {};
   
@@ -96,7 +111,13 @@ export default function NewsSection({ newsData }) {
                     className={styles.playButton}
                     onClick={() => setIsModalOpen(true)}
                   >
-                    <Uicons icon="fi-rr-play" size={16} />
+                    <span
+                      className={
+                        currentLang === "ar" ? styles.playIconRTL : undefined
+                      }
+                    >
+                      <Uicons icon="fi-rr-play" size={16} />
+                    </span>
                   </div>
                 </motion.div>
               </div>
@@ -146,14 +167,14 @@ export default function NewsSection({ newsData }) {
                   className={styles.btn}
                  href="/about"
                 >
-                  More About Us
+                  {t("homeButtons.moreAboutUs")}
                 </CustomButton>
                 <CustomButton
                 href="/contact"
                   className={`${styles.btn} ${styles.secondaryBtn}`}
                   icon={null}
                 >
-                  Contact Us
+                  {t("homeButtons.contactUs")}
                 </CustomButton>
               </motion.div>
             </div>

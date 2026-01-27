@@ -4,8 +4,25 @@ import { Breadcrumb } from "antd";
 import CustomButton from "@/components/UI/Button";
 import styles from "./NewsHero.module.css";
 import Link from "next/link";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import { useMemo } from "react";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 export default function NewsHero({ heroData }) {
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
   return (
     <section className={styles.heroSection}>
       <div className={styles.imageWrapper}>
@@ -47,7 +64,7 @@ export default function NewsHero({ heroData }) {
           >
             <Link href="/contact" className={styles.contactBtnLink}>
               <CustomButton className={styles.transparentBtn}>
-                Contact Us
+                {t("aboutButtons.contactUs")}
               </CustomButton>
             </Link>
           </motion.div>
@@ -64,10 +81,10 @@ export default function NewsHero({ heroData }) {
             separator={<span className={styles.separator}>&gt;</span>}
             items={[
               {
-                title: <Link href="/">Home</Link>,
+                title: <Link href="/">{t("aboutButtons.home")}</Link>,
               },
               {
-                title: <span className={styles.current}>News</span>,
+                title: <span className={styles.current}>{t("news")}</span>,
               },
             ]}
           />

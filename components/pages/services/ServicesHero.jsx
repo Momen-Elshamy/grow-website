@@ -4,8 +4,25 @@ import { Breadcrumb } from "antd";
 import CustomButton from "@/components/UI/Button";
 import styles from "./ServicesHero.module.css";
 import Link from "next/link";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import { useMemo } from "react";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 export default function ServicesHero({ heroData }) {
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
   const { title, description, image, altImage } = heroData || {};
   return (
     <section id="hero" className={styles.heroSection}>
@@ -48,8 +65,8 @@ export default function ServicesHero({ heroData }) {
           >
             {" "}
             <Link href="/contact" className={styles.contactBtnLink}>
-              <CustomButton className={styles.transparentBtn} >
-                Contact Us
+              <CustomButton className={styles.transparentBtn}>
+                {t("aboutButtons.contactUs")}
               </CustomButton>
             </Link>
           </motion.div>
@@ -61,18 +78,18 @@ export default function ServicesHero({ heroData }) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className={styles.breadcrumbWrapper}
         >
-          <Breadcrumb
-            className={styles.breadcrumb}
-            separator={<span className={styles.separator}>&gt;</span>}
-            items={[
-              {
-                title: <Link href="/">Home</Link>,
-              },
-              {
-                title: <span className={styles.current}>services</span>,
-              },
-            ]}
-          />
+            <Breadcrumb
+              className={styles.breadcrumb}
+              separator={<span className={styles.separator}>&gt;</span>}
+              items={[
+                {
+                  title: <Link href="/">{t("aboutButtons.home")}</Link>,
+                },
+                {
+                  title: <span className={styles.current}>{t("services")}</span>,
+                },
+              ]}
+            />
         </motion.div>
       </div>
     </section>

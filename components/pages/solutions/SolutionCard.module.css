@@ -113,10 +113,19 @@ html[lang="ar"] .checkIcon {
   font-family: "Parkinsans", sans-serif;
 }
 
-html[dir="rtl"] .cardNumber,
-html[lang="ar"] .cardNumber {
+.cardNumberRTL {
   right: auto;
-  left: -6rem;
+  left: 0;
+  padding-right: 0;
+  padding-left: 0.5rem;
+  text-align: left !important;
+}
+
+html[dir="rtl"] .cardNumber:not(.cardNumberRTL),
+html[lang="ar"] .cardNumber:not(.cardNumberRTL) {
+  right: auto;
+  left: 0;
+  padding-left: 0.5rem;
   text-align: left !important;
 }
 
@@ -214,6 +223,7 @@ html[lang="ar"] .cardNumber {
     /* Fixed height for image on mobile */
   }
 }
+
 @media (max-width: 480px) {
   .cardNumber {
     font-size: 4rem;

@@ -44,6 +44,10 @@
   background: #0d5d2a;
 }
 
+.leftColumnRTL {
+  text-align: right;
+}
+
 .title {
   font-size: 36px;
   font-weight: 700;
@@ -85,6 +89,16 @@
 .serviceButton.active:hover,
 .serviceButton:focus {
   background-color: #245631 !important;
+}
+
+.serviceButtonRTL {
+  text-align: right;
+  direction: rtl;
+}
+
+.serviceButtonRTL:hover,
+.serviceButtonRTL.active {
+  transform: translateX(-4px);
 }
 
 .serviceText {

@@ -284,10 +284,22 @@
   gap: 8px;
 }
 
+.listItemContentRTL {
+  text-align: right;
+  align-items: flex-end;
+}
+
 .listItemDate {
   margin-bottom: 0;
   font-size: 13px;
   color: #6b6b6b;
+}
+
+.listItemDateRTL {
+  direction: rtl;
+  text-align: right;
+  width: 100%;
+  display: block;
 }
 
 .listItemTitle {

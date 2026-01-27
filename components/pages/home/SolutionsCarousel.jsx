@@ -1,10 +1,27 @@
 import { Carousel } from "antd";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 import CustomButton from "@/components/UI/Button";
 import styles from "./Solutions.module.css";
 
 export default function SolutionsCarousel({ solutionscarousel }) {
+  const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
 
   return (
     <Carousel
@@ -77,7 +94,7 @@ export default function SolutionsCarousel({ solutionscarousel }) {
               />
             </motion.div>
 
-            <div className={styles.cardContentWrapper}>
+            <div className={`${styles.cardContentWrapper} ${isRTL ? styles.cardContentWrapperRTL : ""}`}>
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 30 },
@@ -91,7 +108,7 @@ export default function SolutionsCarousel({ solutionscarousel }) {
                     },
                   },
                 }}
-                className={styles.serviceContent}
+                className={`${styles.serviceContent} ${isRTL ? styles.serviceContentRTL : ""}`}
               >
                 <motion.h3
                   variants={{
@@ -128,7 +145,7 @@ export default function SolutionsCarousel({ solutionscarousel }) {
                   transition={{ duration: 0.5 }}
                 >
                   <CustomButton href="/solutions" className={styles.serviceButton}>
-                    Explore More
+                    {t("homeButtons.exploreMore")}
                   </CustomButton>
                 </motion.div>
               </motion.div>

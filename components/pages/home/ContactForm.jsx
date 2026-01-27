@@ -1,11 +1,14 @@
 import { Form, Input, Select, Row, Col, message } from "antd";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import styles from "./ContactUs.module.css";
 import Uicons from "@/components/UI/Uicons";
 import CustomButton from "@/components/UI/Button";
-import { PROPERTY_SIZES, SERVICES_OPTIONS } from "@/_data/contactUs/constants";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
+import { PROPERTY_SIZES, SERVICE_KEYS } from "@/_data/contactUs/constants";
 import {
   rightContentVariants,
   headingVariants,
@@ -18,6 +21,19 @@ const { Option } = Select;
 export default function ContactForm() {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const { currentLang } = useLanguage();
+
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -34,7 +50,7 @@ export default function ContactForm() {
           phone: values.phone,
           propertySize: values.propertySize,
           location: values.location,
-          services: values.services,
+          services: values.services ? t(`servicesChildren.${values.services}`) : values.services,
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
@@ -48,16 +64,14 @@ export default function ContactForm() {
       );
 
       if (response.status === 200) {
-        message.success(
-          "Form submitted successfully! We'll get back to you soon."
-        );
+        message.success(t("contactForm.successMessage"));
         form.resetFields();
       } else {
         throw new Error("Failed to send email");
       }
     } catch (error) {
       console.error("Error:", error);
-      message.error("Failed to send email. Please try again.");
+      message.error(t("contactForm.errorMessage"));
     } finally {
       setLoading(false);
     }
@@ -69,8 +83,7 @@ export default function ContactForm() {
       variants={rightContentVariants}
     >
       <motion.h2 className={styles.formHeading} variants={headingVariants}>
-        Just fill out the form and our global experts will be in touch right
-        away with the right methods and price to help you!
+        {t("contactForm.heading")}
       </motion.h2>
 
       <motion.div variants={formVariants}>
@@ -85,23 +98,23 @@ export default function ContactForm() {
               <Form.Item
                 name="name"
                 rules={[
-                  { required: true, message: "Please enter your name" },
+                  { required: true, message: t("contactForm.validation.nameRequired") },
                   {
                     min: 2,
-                    message: "Name must be at least 2 characters",
+                    message: t("contactForm.validation.nameMin"),
                   },
                   {
                     max: 100,
-                    message: "Name must not exceed 100 characters",
+                    message: t("contactForm.validation.nameMax"),
                   },
                   {
                     whitespace: true,
-                    message: "Name cannot be only whitespace",
+                    message: t("contactForm.validation.nameWhitespace"),
                   },
                 ]}
               >
                 <Input
-                  placeholder="Your Name"
+                  placeholder={t("contactForm.placeholderName")}
                   size="large"
                   className={styles.input}
                 />
@@ -113,16 +126,16 @@ export default function ContactForm() {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your email",
+                    message: t("contactForm.validation.emailRequired"),
                   },
                   {
                     type: "email",
-                    message: "Please enter a valid email address",
+                    message: t("contactForm.validation.emailInvalid"),
                   },
                 ]}
               >
                 <Input
-                  placeholder="Email Address"
+                  placeholder={t("contactForm.placeholderEmail")}
                   size="large"
                   className={styles.input}
                 />
@@ -137,24 +150,24 @@ export default function ContactForm() {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your company name",
+                    message: t("contactForm.validation.companyRequired"),
                   },
                   {
                     min: 2,
-                    message: "Company name must be at least 2 characters",
+                    message: t("contactForm.validation.companyMin"),
                   },
                   {
                     max: 200,
-                    message: "Company name must not exceed 200 characters",
+                    message: t("contactForm.validation.companyMax"),
                   },
                   {
                     whitespace: true,
-                    message: "Company name cannot be only whitespace",
+                    message: t("contactForm.validation.companyWhitespace"),
                   },
                 ]}
               >
                 <Input
-                  placeholder="Company Name / Farm Owner"
+                  placeholder={t("contactForm.placeholderCompany")}
                   size="large"
                   className={styles.input}
                 />
@@ -166,24 +179,24 @@ export default function ContactForm() {
                 rules={[
                   {
                     required: true,
-                    message: "Please enter your phone number",
+                    message: t("contactForm.validation.phoneRequired"),
                   },
                   {
                     pattern: /^[\d\s\-\+\(\)]+$/,
-                    message: "Please enter a valid phone number",
+                    message: t("contactForm.validation.phoneInvalid"),
                   },
                   {
                     min: 8,
-                    message: "Phone number must be at least 8 digits",
+                    message: t("contactForm.validation.phoneMin"),
                   },
                   {
                     max: 20,
-                    message: "Phone number must not exceed 20 characters",
+                    message: t("contactForm.validation.phoneMax"),
                   },
                 ]}
               >
                 <Input
-                  placeholder="Phone Number"
+                  placeholder={t("contactForm.placeholderPhone")}
                   size="large"
                   className={styles.input}
                 />
@@ -202,7 +215,7 @@ export default function ContactForm() {
                 ]}
               >
                 <Select
-                  placeholder="Property size (Acre)"
+                  placeholder={t("contactForm.placeholderPropertySize")}
                   size="large"
                   suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                   className={styles.select}
@@ -220,7 +233,7 @@ export default function ContactForm() {
                       value={size}
                       className={styles.selectOption}
                     >
-                      {size} Acre
+                      {size} {t("contactForm.acre")}
                     </Option>
                   ))}
                 </Select>
@@ -236,7 +249,7 @@ export default function ContactForm() {
                 ]}
               >
                 <Input
-                  placeholder="Location (Village/City)"
+                  placeholder={t("contactForm.placeholderLocation")}
                   size="large"
                   className={styles.input}
                 />
@@ -255,7 +268,7 @@ export default function ContactForm() {
                 ]}
               >
                 <Select
-                  placeholder="Services"
+                  placeholder={t("contactForm.placeholderServices")}
                   size="large"
                   suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                   className={styles.select}
@@ -267,13 +280,13 @@ export default function ContactForm() {
                     placeholder: { color: "#c9c9c9" },
                   }}
                 >
-                  {SERVICES_OPTIONS.map((service) => (
+                  {SERVICE_KEYS.map((key) => (
                     <Option
-                      key={service}
-                      value={service}
+                      key={key}
+                      value={key}
                       className={styles.selectOption}
                     >
-                      {service}
+                      {t(`servicesChildren.${key}`)}
                     </Option>
                   ))}
                 </Select>
@@ -286,21 +299,21 @@ export default function ContactForm() {
             rules={[
               {
                 required: true,
-                message: "Please provide information about your farm business",
+                message: t("contactForm.validation.messageRequired"),
               },
               {
                 min: 10,
-                message: "Message must be at least 10 characters long",
+                message: t("contactForm.validation.messageMin"),
               },
               {
                 whitespace: true,
-                message: "Message cannot be only whitespace",
+                message: t("contactForm.validation.messageWhitespace"),
               },
             ]}
           >
             <TextArea
               rows={5}
-              placeholder="Kindly discribe your business..."
+              placeholder={t("contactForm.placeholderMessage")}
               showCount
               maxLength={1000}
               className={styles.textarea}
@@ -313,7 +326,7 @@ export default function ContactForm() {
               loading={loading}
               className={styles.submitButton}
             >
-              {loading ? "Sending..." : "Submit Request"}
+              {loading ? t("contactForm.sending") : t("contactForm.submitRequest")}
             </CustomButton>
           </Form.Item>
         </Form>

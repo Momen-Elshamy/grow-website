@@ -8,6 +8,16 @@ export const PROPERTY_SIZES = [
   "<1000",
 ];
 
+/** Keys matching servicesChildren in en/ar navigation (for translated dropdown labels) */
+export const SERVICE_KEYS = [
+  "consultancy",
+  "lab",
+  "training",
+  "irrigation",
+  "optimization",
+  "remote-sensing",
+];
+
 export const SERVICES_OPTIONS = [
   "Technical Consultancy",
   "Lab analysis/Eurofins",

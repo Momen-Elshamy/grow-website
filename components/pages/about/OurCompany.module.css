@@ -45,6 +45,11 @@
   align-items: center;
 }
 
+.decorativeTextAr {
+  font-family: 'Katibeh', serif;
+
+}
+
 @media (max-width: 1200px) {
   .decorativeText {
     font-size: 94px;
@@ -91,21 +96,22 @@
 .marqueeWrapper {
   width: 100%;
   margin-top: 24px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
-/* Hide scrollbars on marquee components */
+/* Outer marquee containers clip; do not clip inner content so scroll works in Arabic too */
 .marqueeWrapper :global(.react-fast-marquee),
-.marqueeWrapper :global(.rfm-marquee-container),
-.marqueeWrapper :global(.rfm-marquee-container) > * {
+.marqueeWrapper :global(.rfm-marquee-container) {
   overflow: hidden !important;
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE and Edge */
+  width: 100% !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 .marqueeWrapper :global(.rfm-marquee-container)::-webkit-scrollbar,
 .marqueeWrapper :global(.react-fast-marquee)::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Opera */
+  display: none !important;
+  /* Chrome, Safari, Opera */
 }
 
 .marqueeItem {
@@ -124,6 +130,13 @@
   white-space: nowrap;
   font-family: "Parkinsans", sans-serif;
   opacity: 0.6;
+}
+
+/* Arabic: stronger contrast so "جرو مصر" is readable on light backgrounds */
+.marqueeTextRTL {
+  color: #b0bdb4;
+  -webkit-text-stroke: 1px #b0bdb4;
+  opacity: 0.85;
 }
 
 .marqueeIcon {

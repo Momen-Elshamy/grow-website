@@ -3,13 +3,16 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./Irrigation.module.css";
 import Uicons from "@/components/UI/Uicons";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 
-export default function Irrigation({ourServicesData}) {
+export default function Irrigation({ ourServicesData }) {
+  const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
   const service = ourServicesData?.services?.[3];
 
   if (!service) return null;
 
-  const { title, description, image, altImage , moreDescription,benefits} = service;
+  const { title, description, image, altImage, moreDescription, benefits } = service;
 
   return (
     <section id="irrigation" className={styles.irrigationSection}>
@@ -53,8 +56,13 @@ export default function Irrigation({ourServicesData}) {
                   fill
                   className={styles.farmerImage}
                 />
-                {/* Yellow Overlay Card */}
-                <div className={styles.overlayCard}>
+                {/* Yellow Overlay Card — in Arabic the card div starts from left */}
+                <div
+                  className={`${styles.overlayCard} ${
+                    isRTL ? styles.overlayCardLeft : ""
+                  }`}
+                  dir={isRTL ? "ltr" : undefined}
+                >
                   <div className={styles.cardIconSection}>
                     <Uicons
                       icon={benefits[0]?.icon}
@@ -67,9 +75,13 @@ export default function Irrigation({ourServicesData}) {
                       }}
                     />
                   </div>
-                  <div className={styles.cardTextSection}>
+                  <div
+                    className={`${styles.cardTextSection} ${
+                      isRTL ? styles.cardTextSectionRTL : ""
+                    }`}
+                  >
                     <p className={styles.cardText}>
-                      {benefits[0]?.description}  
+                      {benefits[0]?.description}
                     </p>
                   </div>
                 </div>

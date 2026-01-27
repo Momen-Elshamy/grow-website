@@ -1,11 +1,19 @@
 import MainLayout from "@/components/Layout/MainLayout";
 import About from "@/components/pages/about/About";
 import { client } from "@/src/graphql";
-import { GET_FRONT_PAGE_DATA } from "@/src/graphql/queries/about";
+import {
+  GET_FRONT_PAGE_DATA,
+  GET_FRONT_PAGE_ARABIC_DATA,
+} from "@/src/graphql/queries/about";
 import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
-export default function AboutPage({ aboutPageData }) {
-  return <About aboutPageData={aboutPageData} />;
+export default function AboutPage({ aboutPageData, aboutPageDataArabic }) {
+  return (
+    <About
+      aboutPageData={aboutPageData}
+      aboutPageDataArabic={aboutPageDataArabic}
+    />
+  );
 }
 
 AboutPage.getLayout = function getLayout(page, pageProps) {
@@ -23,20 +31,36 @@ AboutPage.getLayout = function getLayout(page, pageProps) {
 
 export const getStaticProps = withWebsiteSettings(async () => {
   try {
-    const { data } = await client.query({
-      query: GET_FRONT_PAGE_DATA,
-    });
+    const [englishData, arabicData] = await Promise.all([
+      client.query({
+        query: GET_FRONT_PAGE_DATA,
+        fetchPolicy: "no-cache",
+      }),
+      client.query({
+        query: GET_FRONT_PAGE_ARABIC_DATA,
+        fetchPolicy: "no-cache",
+      }),
+    ]);
 
-    const aboutPageData = data?.nodeByUri?.aboutFields || null;
+    const aboutPageData = englishData?.data?.nodeByUri?.aboutFields || null;
+    const aboutPageDataArabic = arabicData?.data?.nodeByUri?.aboutFields || null;
+
     return {
-      props: { aboutPageData },
+      props: {
+        aboutPageData: aboutPageData
+          ? JSON.parse(JSON.stringify(aboutPageData))
+          : null,
+        aboutPageDataArabic: aboutPageDataArabic
+          ? JSON.parse(JSON.stringify(aboutPageDataArabic))
+          : null,
+      },
       revalidate: 1,
     };
   } catch (error) {
     console.error("Error fetching about page data:", error);
     return {
-      props: { aboutPageData: null },
-      revalidate: 1, 
+      props: { aboutPageData: null, aboutPageDataArabic: null },
+      revalidate: 1,
     };
   }
 });

@@ -7,6 +7,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { ConfigProvider, theme } from "antd";
 import customTheme from "../theme.json";
+import { LanguageProvider } from "@/src/contexts/LanguageContext";
+
+
 
 export default function App({ Component, pageProps }) {
    const router = useRouter();
@@ -33,9 +36,11 @@ export default function App({ Component, pageProps }) {
    // Pass pageProps to getLayout so it can access server-side data (seo, websiteSettings, etc.)
    return (
       <ApolloProvider client={client}>
+         <LanguageProvider>
          <ConfigProvider theme={{ ...customTheme, algorithm: theme.darkAlgorithm }}>
             {getLayout(<Component {...pageProps} />, pageProps)}
          </ConfigProvider>
+      </LanguageProvider>
       </ApolloProvider>
    );
 }

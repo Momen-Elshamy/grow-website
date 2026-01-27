@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Button, Dropdown, Drawer, Menu } from "antd";
 import { useRouter } from "next/router";
 import { navLinks } from "../../_data/navigation";
@@ -7,6 +7,9 @@ import Uicons from "../UI/Uicons";
 import CustomButton from "../UI/Button";
 import styles from "./Header.module.css";
 import Image from "next/image";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 const languages = [
   { key: "en", flag: "/images/flags/united-states.png" },
@@ -17,13 +20,29 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedKeys, setExpandedKeys] = useState([]);
   const router = useRouter();
-  const [ currentLang, setCurrentLang ] = useState("en");
+  const { currentLang, changeLanguage } = useLanguage();
 
   const handleLanguageChange = ({ key }) => {
-    setCurrentLang(key);
+    changeLanguage(key);
   };
 
-  const currentLanguage = languages.find((lang) => lang.key === currentLang);
+  const currentLanguage = languages.find((lang) => lang.key === currentLang) || languages[0];
+  
+  // Translation function: t("key") or t("nested.key") returns value or key as fallback
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
+  const getNavLabel = useCallback((linkName) => t(linkName), [t]);
+  const getChildLabel = useCallback((linkName, childKey) => t(`${linkName}Children.${childKey}`), [t]);
 
   const menuItems = languages
     .filter((lang) => lang.key !== currentLang)
@@ -52,38 +71,40 @@ export default function Header() {
     setExpandedKeys(keys);
   };
   // Build menu items for mobile drawer
-  const mobileMenuItems = navLinks.map((link) => {
-    if (link.hasDropdown) {
+  const mobileMenuItems = useMemo(() => {
+    return navLinks.map((link) => {
+      if (link.hasDropdown) {
+        return {
+          key: link.path,
+          label: <span className={styles.menuLabel}>{getNavLabel(link.name)}</span>,
+          children: link.children.map((child) => ({
+            key: `${link.path}#${child.key}`,
+            label: (
+              <Link
+                href={`${link.path}#${child.key}`}
+                onClick={closeMobileMenu}
+                className={styles.menuChildLink}
+              >
+                {getChildLabel(link.name, child.key)}
+              </Link>
+            ),
+          })),
+        };
+      }
       return {
         key: link.path,
-        label: <span className={styles.menuLabel}>{link.name}</span>,
-        children: link.children.map((child) => ({
-          key: `${link.path}#${child.key}`,
-          label: (
-            <Link
-              href={`${link.path}#${child.key}`}
-              onClick={closeMobileMenu}
-              className={styles.menuChildLink}
-            >
-              {child.label}
-            </Link>
-          ),
-        })),
+        label: (
+          <Link
+            href={link.path}
+            onClick={closeMobileMenu}
+            className={styles.menuLabel}
+          >
+            {getNavLabel(link.name)}
+          </Link>
+        ),
       };
-    }
-    return {
-      key: link.path,
-      label: (
-        <Link
-          href={link.path}
-          onClick={closeMobileMenu}
-          className={styles.menuLabel}
-        >
-          {link.name}
-        </Link>
-      ),
-    };
-  });
+    });
+  }, [currentLang, getNavLabel, getChildLabel]);
 
   return (
     <>
@@ -109,7 +130,7 @@ export default function Header() {
                       router.pathname === link.path ? styles.active : ""
                     } ${styles.dropdownTrigger}`}
                   >
-                    <span className={styles.linkText}>{link.name}</span>
+                    <span className={styles.linkText}>{getNavLabel(link.name)}</span>
                     <span className={styles.iconWrapper}>
                       <Uicons icon="fi-rr-angle-small-down" />
                     </span>
@@ -126,12 +147,12 @@ export default function Header() {
                             href={`${link.path}#${child.key}`}
                             className={styles.dropdownMenuItem}
                           >
-                            {child.label}
+                            {getChildLabel(link.name, child.key)}
                           </Link>
                         ),
                       })),
                     }}
-                    placement="bottomLeft"
+                    placement={currentLang === "ar" ? "bottomRight" : "bottomLeft"}
                     overlayClassName={styles.dropdownOverlay}
                     trigger={["hover", "click"]}
                     mouseEnterDelay={0.1}
@@ -149,7 +170,7 @@ export default function Header() {
                     router.pathname === link.path ? styles.active : ""
                   }`}
                 >
-                  <span className={styles.linkText}>{link.name}</span>
+                  <span className={styles.linkText}>{getNavLabel(link.name)}</span>
                 </Link>
               );
             })}
@@ -172,7 +193,7 @@ export default function Header() {
               </CustomButton>
            </Dropdown>
             <Link href="/contact" passHref className={styles.contactUsButton}>
-              <CustomButton>Contact Us</CustomButton>
+              <CustomButton>{t("contactUs")}</CustomButton>
             </Link>
 
 
@@ -228,7 +249,7 @@ export default function Header() {
           items={mobileMenuItems}
         />
                   <Link href="/contact" passHref className={styles.contactUsLinkMenu}>
-            <CustomButton className={styles.contactUsButtonMenu}>Contact Us</CustomButton>
+            <CustomButton className={styles.contactUsButtonMenu}>{t("contactUs")}</CustomButton>
         </Link>
       </Drawer>
     </>

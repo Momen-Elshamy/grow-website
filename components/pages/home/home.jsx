@@ -39,7 +39,7 @@ export default function Home({ homePageData, homePageDataArabic }) {
   }
 
   return (
-    <div style={{ overflowX: "hidden", width: "100%" }}>
+     <>
         <Hero key={`hero-${currentLang}`} heroData={heroData} infoboxData={infoboxData} />
         <NewsSection newsData={newsData} />
         <ServicesSection servicesData={servicesData} />
@@ -50,6 +50,6 @@ export default function Home({ homePageData, homePageDataArabic }) {
           contactData={contactData}
           socialMediaData={socialMediaData}
         />
-    </div>
+    </>
   );
 }

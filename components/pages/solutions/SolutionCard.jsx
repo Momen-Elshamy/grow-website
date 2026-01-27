@@ -1,5 +1,4 @@
-
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Typography, Flex, Row, Col } from "antd";
 import Image from "next/image";
@@ -7,11 +6,26 @@ import styles from "./SolutionCard.module.css";
 import Uicons from "@/components/UI/Uicons";
 import CustomButton from "@/components/UI/Button";
 import { scrollToSection } from "@/utils/scroll";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 const { Paragraph, Text } = Typography;
 
 export default function Card({ solution, index, progress, range, targetScale }) {
   const container = useRef(null);
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start end", "start start"],
@@ -71,14 +85,17 @@ export default function Card({ solution, index, progress, range, targetScale }) 
                 gap={32}
                 style={{ width: "100%", position: "relative" }}
               >
-                <CustomButton
-                 
-                  onClick={() => scrollToSection("contact")}
-                >
-                  Contact Us
+                <CustomButton onClick={() => scrollToSection("contact")}>
+                  {t("aboutButtons.contactUs")}
                 </CustomButton>
 
-                <div className={styles.cardNumber}>{solution?.number}</div>
+                <div
+                  className={`${styles.cardNumber} ${
+                    currentLang === "ar" ? styles.cardNumberRTL : ""
+                  }`}
+                >
+                  {solution?.number}
+                </div>
               </Flex>
             </Flex>
           </Col>

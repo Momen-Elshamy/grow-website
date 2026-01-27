@@ -1,17 +1,36 @@
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Row, Col, Modal } from "antd";
 import styles from "./OurServices.module.css";
 import Uicons from "@/components/UI/Uicons";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
-
-
-export default function OurServices({ourServicesData}) {
+export default function OurServices({ ourServicesData }) {
   const sectionRef = useRef(null);
-  const [selectedService, setSelectedService] = useState(ourServicesData?.services[0]);
+  const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+  const services = ourServicesData?.services ?? [];
+  const [selectedService, setSelectedService] = useState(services[0] ?? null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const list = ourServicesData?.services ?? [];
+    setSelectedService(list[0] ?? null);
+  }, [ourServicesData]);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -25,7 +44,12 @@ export default function OurServices({ourServicesData}) {
       <div className={styles.container}>
         <Row gutter={[60, 60]}>
           <Col xs={24} lg={10}>
-            <div className={styles.leftColumn}>
+            <div
+              className={`${styles.leftColumn} ${
+                isRTL ? styles.leftColumnRTL : ""
+              }`}
+              dir={isRTL ? "rtl" : "ltr"}
+            >
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -33,19 +57,21 @@ export default function OurServices({ourServicesData}) {
                 transition={{ duration: 0.6 }}
                 className={styles.title}
               >
-                Our Services
+                {t("ourServicesTitle")}
               </motion.h2>
               <Row gutter={[16, 16]} className={styles.servicesList}>
-                {ourServicesData?.services.map((service, index) => (
-                  <Col xs={24} sm={24} md={24} lg={24} key={service.id}>
+                {services.map((service, index) => (
+                  <Col xs={24} sm={24} md={24} lg={24} key={service?.id ?? index}>
                     <motion.customButton
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className={`${styles.serviceButton} ${
-                        selectedService.slug === service.slug ? styles.active : ""
-                      }`}
+                        selectedService?.slug === service?.slug
+                          ? styles.active
+                          : ""
+                      } ${isRTL ? styles.serviceButtonRTL : ""}`}
                       onClick={() => {
                         setSelectedService(service);
                       
@@ -57,7 +83,7 @@ export default function OurServices({ourServicesData}) {
                         {service.title}
                       </span>
                       <Uicons
-                        icon="fi-rr-arrow-small-right"
+                        icon={isRTL ? "fi-rr-arrow-small-left" : "fi-rr-arrow-small-right"}
                         size="20px"
                         style={{ color: "#ffffff" }}
                       />
@@ -70,79 +96,83 @@ export default function OurServices({ourServicesData}) {
 
           <Col xs={24} lg={14}>
             <div className={styles.rightColumn}>
-            <AnimatePresence mode="wait">
-                <motion.p
-                  key={selectedService.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className={styles.title}
-                >
-                  {selectedService.title}
-                </motion.p>
-              </AnimatePresence>
+              {selectedService ? (
+                <>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={selectedService.slug}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.title}
+                    >
+                      {selectedService.title}
+                    </motion.p>
+                  </AnimatePresence>
 
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={selectedService.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className={styles.description}
-                >
-                  {selectedService.description}
-                </motion.p>
-              </AnimatePresence>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={`${selectedService.slug}-desc`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.description}
+                    >
+                      {selectedService.description}
+                    </motion.p>
+                  </AnimatePresence>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={selectedService.slug}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className={styles.videoContainer}
-                >
-                  <Image
-                    src={selectedService.image?.node?.sourceUrl}
-                    alt={selectedService.altImage}
-                    fill
-                    className={styles.videoImage}
-                  />
-                  <button
-                    className={styles.playButton}
-                    onClick={handleOpenModal}
-                  >
-                    <div className={styles.playIconWrapper}>
-                      <Uicons
-                        icon="fi-rr-expand"
-                        size="24px"
-                        style={{
-                          color: "#ffffff",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={`${selectedService.slug}-img`}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.videoContainer}
+                    >
+                      <Image
+                        src={selectedService.image?.node?.sourceUrl}
+                        alt={selectedService.altImage}
+                        fill
+                        className={styles.videoImage}
                       />
-                    </div>
-                  </button>
-                </motion.div>
-              </AnimatePresence>
+                      <button
+                        className={styles.playButton}
+                        onClick={handleOpenModal}
+                      >
+                        <div className={styles.playIconWrapper}>
+                          <Uicons
+                            icon="fi-rr-expand"
+                            size="24px"
+                            style={{
+                              color: "#ffffff",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          />
+                        </div>
+                      </button>
+                    </motion.div>
+                  </AnimatePresence>
 
-              <AnimatePresence mode="wait">
-                <motion.p
-                    key={selectedService.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className={styles.description}
-                >
-                  {selectedService.moreDescription}
-                </motion.p>
-              </AnimatePresence>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={`${selectedService.slug}-more`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4 }}
+                      className={styles.description}
+                    >
+                      {selectedService.moreDescription}
+                    </motion.p>
+                  </AnimatePresence>
+                </>
+              ) : null}
             </div>
           </Col>
         </Row>

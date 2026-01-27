@@ -47,6 +47,7 @@ export default {
     training: "Human Capital Training & Development",
     commercial: "Commercial Management",
   },
+  ourServicesTitle: "Our Services",
   servicesChildren: {
     consultancy: "Technical Consultancy",
     lab: "Lab analysis/Eurofins",

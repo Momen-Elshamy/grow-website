@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import ServicesHero from "@/components/pages/services/ServicesHero";
 import OurServices from "@/components/pages/services/OurServices";
 import TrainingCourse from "@/components/pages/services/TrainingCourse";
@@ -7,9 +8,21 @@ import RemoteSensing from "@/components/pages/services/RemoteSensing";
 import LabAnalysis from "@/components/pages/services/LabAnalysis";
 import HeaderService from "@/components/pages/services/HeaderService";
 import Optimization from "@/components/pages/services/Optimization";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 
-export default function ServicesPageContent({ servicesData }) {
-  const { headerService, hero, ourServices } = servicesData || {};
+export default function ServicesPageContent({
+  servicesPageData,
+  servicesPageDataArabic,
+}) {
+  const { currentLang } = useLanguage();
+  const servicesDataToUse = useMemo(() => {
+    if (currentLang === "ar") {
+      return servicesPageDataArabic || servicesPageData || null;
+    }
+    return servicesPageData || null;
+  }, [currentLang, servicesPageData, servicesPageDataArabic]);
+
+  const { headerService, hero, ourServices } = servicesDataToUse || {};
 
   return (
     <>

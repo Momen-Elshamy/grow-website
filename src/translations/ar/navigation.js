@@ -47,6 +47,7 @@ export default {
     training: "تدريب وتطوير رأس المال البشري",
     commercial: "الإدارة التجارية",
   },
+  ourServicesTitle: "خدماتنا",
   servicesChildren: {
     consultancy: "الاستشارات الفنية",
     lab: "تحليل المختبرات / يوروفينز",

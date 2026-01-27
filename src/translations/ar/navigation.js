@@ -3,6 +3,11 @@ export default {
   solutions: "الحلول",
   services: "الخدمات",
   news: "الأخبار",
+  recentNews: "آخر الأخبار",
+  recentPosts: "أحدث المنشورات",
+  moreNews: "المزيد من الأخبار",
+  readMore: "اقرأ المزيد",
+  readLess: "اقرأ أقل",
   contactUs: "اتصل بنا",
   heroButtons: {
     exploreServices: "استكشف خدماتنا",

@@ -3,6 +3,11 @@ export default {
   solutions: "Solutions",
   services: "Services",
   news: "News",
+  recentNews: "Recent News",
+  recentPosts: "Recent Posts",
+  moreNews: "More News",
+  readMore: "Read More",
+  readLess: "Read Less",
   contactUs: "Contact Us",
   heroButtons: {
     exploreServices: "Explore Our Services",

@@ -1,11 +1,22 @@
 import MainLayout from "@/components/Layout/MainLayout";
 import News from "@/components/pages/news/News";
 import { client } from "@/src/graphql";
-import { GET_NEWS_PAGE_DATA } from "@/src/graphql/queries/news";
+import {
+  GET_NEWS_PAGE_DATA,
+  GET_NEWS_PAGE_ARABIC_DATA,
+} from "@/src/graphql/queries/news";
 import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
-export default function NewsPage({ newsPageData }) {
-  return <News newsPageData={newsPageData} />;
+export default function NewsPage({
+  newsPageData,
+  newsPageDataArabic,
+}) {
+  return (
+    <News
+      newsPageData={newsPageData}
+      newsPageDataArabic={newsPageDataArabic}
+    />
+  );
 }
 
 NewsPage.getLayout = function getLayout(page, pageProps) {
@@ -23,20 +34,39 @@ NewsPage.getLayout = function getLayout(page, pageProps) {
 
 export const getStaticProps = withWebsiteSettings(async () => {
   try {
-    const { data } = await client.query({
-      query: GET_NEWS_PAGE_DATA,
-    });
+    const [englishData, arabicData] = await Promise.all([
+      client.query({
+        query: GET_NEWS_PAGE_DATA,
+        fetchPolicy: "no-cache",
+      }),
+      client.query({
+        query: GET_NEWS_PAGE_ARABIC_DATA,
+        fetchPolicy: "no-cache",
+      }),
+    ]);
 
-    const newsPageData = data?.nodeByUri?.newsFields || null;
+    const newsPageData = englishData?.data?.nodeByUri?.newsFields || null;
+    const newsPageDataArabic = arabicData?.data?.nodeByUri?.newsFields || null;
+
     return {
-      props: { newsPageData },
+      props: {
+        newsPageData: newsPageData
+          ? JSON.parse(JSON.stringify(newsPageData))
+          : null,
+        newsPageDataArabic: newsPageDataArabic
+          ? JSON.parse(JSON.stringify(newsPageDataArabic))
+          : null,
+      },
       revalidate: 1,
     };
   } catch (error) {
     console.error("Error fetching news page data:", error);
     return {
-      props: { newsPageData: null },
-      revalidate: 1, 
+      props: {
+        newsPageData: null,
+        newsPageDataArabic: null,
+      },
+      revalidate: 1,
     };
   }
 });

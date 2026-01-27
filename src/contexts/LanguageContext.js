@@ -3,9 +3,11 @@ import { createContext, useContext, useState, useEffect } from "react";
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
+  // Always start with "en" so server and first client render match (avoids hydration error).
+  // useEffect below applies saved language from localStorage after mount.
   const [currentLang, setCurrentLang] = useState("en");
 
-  // Load language from localStorage on mount and set initial direction
+  // Load saved language from localStorage after mount so server and first paint match
   useEffect(() => {
     const savedLang = localStorage.getItem("language") || "en";
     setCurrentLang(savedLang);

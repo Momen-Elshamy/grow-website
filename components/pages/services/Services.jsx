@@ -25,8 +25,9 @@ export default function ServicesPageContent({
   const { headerService, hero, ourServices } = servicesDataToUse || {};
 
   return (
-    <div style={{ overflowX: "hidden", width: "100%" }}>
+    <>
       <HeaderService headerService={headerService} />
+      <div style={{ overflowX: "hidden", width: "100%" }}>
       <ServicesHero heroData={hero} />
       <OurServices ourServicesData={ourServices} />
       <TechnicalConsultancy ourServicesData={ourServices} />
@@ -35,6 +36,7 @@ export default function ServicesPageContent({
       <LabAnalysis ourServicesData={ourServices} />
       <Irrigation ourServicesData={ourServices} />
       <RemoteSensing ourServicesData={ourServices} />
-    </div>
+      </div>
+    </>
   );
 }

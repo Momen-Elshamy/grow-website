@@ -22,11 +22,12 @@ export default function NewsPage({
 NewsPage.getLayout = function getLayout(page, pageProps) {
   const newsPageFields = pageProps?.newsPageData || {};
   const socialMediaData = newsPageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
-  const contactData = pageProps?.contactDataFromOptions ?? newsPageFields?.contactUs ?? null;
+  const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
+  const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
   const seo = pageProps?.seo || null;
 
   return (
-    <MainLayout socialMediaData={socialMediaData} contactData={contactData} seo={seo}>
+    <MainLayout socialMediaData={socialMediaData} contactDataEn={contactDataEn} contactDataAr={contactDataAr} seo={seo}>
       {page}
     </MainLayout>
   );

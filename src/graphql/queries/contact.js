@@ -1,9 +1,35 @@
 import { gql } from "@apollo/client";
 
+/** English contact from "Contact Info (English)" options page. GraphQL Type Name: ContactInfoFieldsEnglish */
 export const GET_CONTACT_DETAILS = gql`
   query GetContactDetails {
-    contactInfoFields {
-      contactDetailsFields {
+    contactInfoFieldsEnglish {
+      contactDetailsEnglishFields {
+        contactDetails {
+          title
+          info {
+            icon
+            title
+            info {
+              value
+              link
+            }
+            phoneNumbers {
+              number
+              link
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+/** Arabic contact from "Contact Info (Arabic)" options page. contactDetailsArabicFields keeps it separate from English. */
+export const GET_CONTACT_ARABIC_DETAILS = gql`
+  query GetContactArabicDetails {
+    contactInfoFieldsArabic {
+      contactDetailsArabicFields {
         contactDetails {
           title
           info {

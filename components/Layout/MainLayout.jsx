@@ -5,7 +5,7 @@ import WhatsAppWidget from "../UI/WhatsAppWidget";
 import { Layout } from "antd";
 import Head from "next/head";
 
-export default function MainLayout({ children, socialMediaData, contactData, seo }) {
+export default function MainLayout({ children, socialMediaData, contactDataEn, contactDataAr, seo }) {
    return (
       <>
       <Head>
@@ -13,7 +13,11 @@ export default function MainLayout({ children, socialMediaData, contactData, seo
          {seo?.head && !seo?.head?.includes("<meta") && <meta dangerouslySetInnerHTML={{ __html: seo?.head }} />}
       </Head>
       <Layout style={{ margin: "0 auto", background: "white"}}>
-         <InfoHeader socialMediaData={socialMediaData} contactData={contactData} />
+         <InfoHeader
+           socialMediaData={socialMediaData}
+           contactDataEn={contactDataEn}
+           contactDataAr={contactDataAr}
+         />
          <Header />
          <Layout.Content style={{ minHeight: "100vh" }}>{children}</Layout.Content>
          <Footer socialMediaData={socialMediaData} />

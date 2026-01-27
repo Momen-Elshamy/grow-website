@@ -19,11 +19,12 @@ export default function AboutPage({ aboutPageData, aboutPageDataArabic }) {
 AboutPage.getLayout = function getLayout(page, pageProps) {
   const aboutPageFields = pageProps?.aboutPageData || {};
   const socialMediaData = aboutPageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
-  const contactData = pageProps?.contactDataFromOptions ?? aboutPageFields?.contactUs ?? null;
+  const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
+  const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
   const seo = pageProps?.seo || null;
 
   return (
-    <MainLayout socialMediaData={socialMediaData} contactData={contactData} seo={seo}>
+    <MainLayout socialMediaData={socialMediaData} contactDataEn={contactDataEn} contactDataAr={contactDataAr} seo={seo}>
       {page}
     </MainLayout>
   );

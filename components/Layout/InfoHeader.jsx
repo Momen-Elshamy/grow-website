@@ -2,6 +2,7 @@ import { Row, Col } from "antd";
 import Uicons from "../UI/Uicons";
 import styles from "./InfoHeader.module.css";
 import Link from "next/link";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 
 function getSlot(block) {
   if (block?.phoneNumbers?.length > 0) return 0;
@@ -83,7 +84,9 @@ const InfoField = ({ item, fieldKey }) => {
   return <div>{content}</div>;
 };
 
-export default function InfoHeader({ socialMediaData, contactData }) {
+export default function InfoHeader({ socialMediaData, contactDataEn, contactDataAr }) {
+  const { currentLang } = useLanguage();
+  const contactData = currentLang === "ar" ? (contactDataAr ?? contactDataEn) : (contactDataEn ?? contactDataAr);
   const socialIcons = Array.isArray(socialMediaData) && socialMediaData.length > 0 ? socialMediaData : [];
   const infoItems = buildInfoItems(contactData);
 

@@ -46,73 +46,52 @@ export default function ContactInfo({ contactData }) {
                 {item?.info?.map((infoItem, infoIndex) => {
                   const hasValue = infoItem.value;
                   const hasNumber = infoItem.number;
-                  const valueLink = infoItem.valueLink || infoItem.link;
+                  const link = infoItem.valueLink || infoItem.link;
                   const numberLink = infoItem.numberLink || infoItem.link;
-                  
                   if (!hasValue && !hasNumber) return null;
-                  
                   return (
-                    <div key={infoIndex}>
-                      {hasValue && (
-                        <div>
-                          {valueLink ? (
-                            <Link
-                              href={valueLink}
-                              target={valueLink.startsWith("http") ? "_blank" : undefined}
-                              rel={valueLink.startsWith("http") ? "noopener noreferrer" : undefined}
-                              className={styles.contactText}
-                            >
-                              {infoItem.value}
-                            </Link>
-                          ) : (
-                            <p className={styles.contactText}>{infoItem.value}</p>
-                          )}
-                        </div>
-                      )}
-                      {hasNumber && (
-                        <div>
-                          {numberLink ? (
-                            <span
-                              className={styles.contactText}
-                            >
-                              {infoItem.number}
-                            </span>
-                          ) : (
-                            <p className={styles.contactText}>{infoItem.number}</p>
-                          )}
-                        </div>
-                      )}
+                    <div key={`info-${infoIndex}`}>
+                      {hasValue &&
+                        (link ? (
+                          <Link href={link} target={link.startsWith("http") ? "_blank" : undefined} rel={link.startsWith("http") ? "noopener noreferrer" : undefined} className={styles.contactText}>
+                            {infoItem.value}
+                          </Link>
+                        ) : (
+                          <p className={styles.contactText}>{infoItem.value}</p>
+                        ))}
+                      {hasNumber &&
+                        (numberLink ? (
+                          <Link href={numberLink} className={styles.contactText}>{infoItem.number}</Link>
+                        ) : (
+                          <p className={styles.contactText}>{infoItem.number}</p>
+                        ))}
                     </div>
                   );
                 })}
+                {item?.phoneNumbers?.length > 0 && (
+                  <div className={styles.phoneNumbersStack}>
+                    {item.phoneNumbers
+                      .filter((pn) => (pn?.number ?? "").toString().trim())
+                      .map((pn, pnIndex, arr) => (
+                        <React.Fragment key={`phone-${pnIndex}`}>
+                          {pnIndex > 0 && <span className={styles.phoneSeparator}> / </span>}
+                          {pn?.link ? (
+                            <Link href={pn.link} className={styles.contactText}>
+                              {(pn?.number ?? "").toString().trim()}
+                            </Link>
+                          ) : (
+                            <span className={styles.contactText}>{(pn?.number ?? "").toString().trim()}</span>
+                          )}
+                        </React.Fragment>
+                      ))}
+                  </div>
+                )}
               </div>
             </motion.div>
             {index < info?.length - 1 && <Divider style={{ margin: "0" }} />}
           </React.Fragment>
         ))}
       </motion.div>
-
-      {/* {socialMedia?.length > 0 && (
-        <motion.div
-          className={styles.socialMedia}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          {socialMedia?.map((social, index) => (
-            <Link
-              key={index}
-              href={social.link || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialIcon}
-            >
-              <Uicons icon={social?.icon}/>
-            </Link>
-          ))}
-        </motion.div>
-      )} */}
     </motion.div>
   );
 }

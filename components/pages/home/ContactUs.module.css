@@ -103,6 +103,18 @@
   flex: 1;
 }
 
+.phoneNumbersStack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 4px;
+}
+
+.phoneSeparator {
+  color: inherit;
+  margin: 0 2px;
+}
+
 .contactTitle {
   font-size: 1.2rem;
   font-weight: 700;

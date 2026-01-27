@@ -21,7 +21,9 @@ export default function ServicesPage({
 
 ServicesPage.getLayout = function getLayout(page, pageProps) {
   const seo = pageProps?.seo || null;
-  return <MainLayout seo={seo}>{page}</MainLayout>;
+  const socialMediaData = pageProps?.socialMediaFromOptions ?? [];
+  const contactData = pageProps?.contactDataFromOptions ?? null;
+  return <MainLayout seo={seo} socialMediaData={socialMediaData} contactData={contactData}>{page}</MainLayout>;
 };
 
 export const getStaticProps = withWebsiteSettings(async () => {

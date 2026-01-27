@@ -21,8 +21,8 @@ export default function NewsPage({
 
 NewsPage.getLayout = function getLayout(page, pageProps) {
   const newsPageFields = pageProps?.newsPageData || {};
-  const socialMediaData = newsPageFields?.socialMedia || [];
-  const contactData = newsPageFields?.contactUs || null;
+  const socialMediaData = newsPageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
+  const contactData = pageProps?.contactDataFromOptions ?? newsPageFields?.contactUs ?? null;
   const seo = pageProps?.seo || null;
 
   return (

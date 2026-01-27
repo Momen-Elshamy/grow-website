@@ -8,9 +8,9 @@ import SolutionsSection from "./SolutionsSection";
 import ContactUs from "./ContactUs";
 import ServicesSection from "./ServicesSection";
 
-export default function Home({ homePageData, homePageDataArabic }) {
+export default function Home({ homePageData, homePageDataArabic, contactDataFromOptions }) {
   const { currentLang } = useLanguage();
-  
+
   // Select data based on current language
   const homePageDataToUse = useMemo(() => {
     if (currentLang === "ar") {
@@ -26,7 +26,7 @@ export default function Home({ homePageData, homePageDataArabic }) {
   const servicesData = homePageDataToUse?.services;
   const missionData = homePageDataToUse?.missionAndVision;
   const successStoriesData = homePageDataToUse?.successStories;
-  const contactData = homePageDataToUse?.contactUs;
+  const contactData = contactDataFromOptions ?? null;
   const socialMediaData = homePageDataToUse?.socialMedia;
 
   // Show message if no data available for selected language

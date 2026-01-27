@@ -4,17 +4,22 @@ import { client } from "@/src/graphql";
 import { GET_FRONT_PAGE_DATA, GET_FRONT_PAGE_ARABIC_DATA } from "@/src/graphql/queries/home";
 import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
-export default function HomePage({ homePageData, homePageDataArabic }) {
-   return <Home homePageData={homePageData} homePageDataArabic={homePageDataArabic} />;
+export default function HomePage({ homePageData, homePageDataArabic, contactDataFromOptions }) {
+   return (
+     <Home
+       homePageData={homePageData}
+       homePageDataArabic={homePageDataArabic}
+       contactDataFromOptions={contactDataFromOptions}
+     />
+   );
 }
 
 HomePage.getLayout = function getLayout(page, pageProps) {
-   // Extract data from pageProps
    const homePageFields = pageProps?.homePageData || {};
-   const socialMediaData = homePageFields?.socialMedia || [];
-   const contactData = homePageFields?.contactUs || null;
+   const socialMediaData = homePageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
+   const contactData = pageProps?.contactDataFromOptions ?? null;
    const seo = pageProps?.seo || null;
-   
+
    return <MainLayout socialMediaData={socialMediaData} contactData={contactData} seo={seo}>{page}</MainLayout>;
 };
 

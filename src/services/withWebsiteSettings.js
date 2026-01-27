@@ -1,6 +1,7 @@
 import axios from "axios";
 import { client } from "@/src/graphql";
 import { GET_WEBSITE_SETTINGS } from "@/src/graphql/queries/settings";
+import { GET_CONTACT_DETAILS, GET_HEADER_SOCIAL, GET_HOME_SOCIAL_MEDIA } from "@/src/graphql/queries/contact";
 
 // WordPress CMS base URL
 const WORDPRESS_BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL;
@@ -91,6 +92,43 @@ export function withWebsiteSettings(gssp) {
          settingsResponse = { data: null };
       }
 
+      // 1b) Fetch contact details from options page
+      let contactDataFromOptions = null;
+      try {
+         const contactResponse = await client.query({
+            query: GET_CONTACT_DETAILS,
+            fetchPolicy: "no-cache",
+         });
+         let raw = contactResponse?.data?.contactInfoFields?.contactDetailsFields?.contactDetails ?? null;
+         if (Array.isArray(raw) && raw.length > 0) raw = raw[0];
+         contactDataFromOptions = raw;
+      } catch (error) {
+         // Contact options may not exist yet; keep null
+      }
+
+      // 1c) Fetch header social: options first, then home page so all pages can show it
+      let socialMediaFromOptions = [];
+      try {
+         const socialResponse = await client.query({
+            query: GET_HEADER_SOCIAL,
+            fetchPolicy: "no-cache",
+         });
+         const raw = socialResponse?.data?.contactInfoFields?.socialMedia;
+         socialMediaFromOptions = Array.isArray(raw) ? raw : (raw ? [raw] : []);
+      } catch (_) {
+         // Header social from options is optional
+      }
+      if (socialMediaFromOptions.length === 0) {
+         try {
+            const homeSocialResponse = await client.query({
+               query: GET_HOME_SOCIAL_MEDIA,
+               fetchPolicy: "no-cache",
+            });
+            const homeRaw = homeSocialResponse?.data?.nodeByUri?.homePageFields?.socialMedia;
+            socialMediaFromOptions = Array.isArray(homeRaw) ? homeRaw : (homeRaw ? [homeRaw] : []);
+         } catch (_) {}
+      }
+
       // 2) Fetch Rank Math SEO data for current page
       let seoData = { success: false, head: null, title: null };
       try {
@@ -109,11 +147,13 @@ export function withWebsiteSettings(gssp) {
          return originalResult;
       }
 
-      // 4) Merge websiteSettings and SEO data into props
+      // 4) Merge websiteSettings, contact details, social, and SEO data into props
       return {
          props: {
             ...originalResult.props,
             websiteSettings: settingsResponse?.data ?? null,
+            contactDataFromOptions: contactDataFromOptions,
+            socialMediaFromOptions: socialMediaFromOptions,
             seo: seoData,
          },
       };

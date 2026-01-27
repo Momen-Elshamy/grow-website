@@ -18,8 +18,8 @@ export default function AboutPage({ aboutPageData, aboutPageDataArabic }) {
 
 AboutPage.getLayout = function getLayout(page, pageProps) {
   const aboutPageFields = pageProps?.aboutPageData || {};
-  const socialMediaData = aboutPageFields?.socialMedia || [];
-  const contactData = aboutPageFields?.contactUs || null;
+  const socialMediaData = aboutPageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
+  const contactData = pageProps?.contactDataFromOptions ?? aboutPageFields?.contactUs ?? null;
   const seo = pageProps?.seo || null;
 
   return (

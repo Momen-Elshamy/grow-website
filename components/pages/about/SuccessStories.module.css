@@ -171,6 +171,10 @@
   z-index: 10;
 }
 
+.navigationArrowsRTL {
+  flex-direction: row-reverse;
+}
+
 .navBtn {
   width: 45px;
   height: 45px;
@@ -263,11 +267,13 @@
     height: 500px;
   }
 }
+
 @media (max-width: 989px) {
   .mainImageContainer {
     height: 500px !important;
   }
 }
+
 @media (hover: none),
 (pointer: coarse),
 (max-width: 786px) {

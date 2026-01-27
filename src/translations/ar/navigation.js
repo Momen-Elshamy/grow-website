@@ -20,6 +20,19 @@ export default {
     buttonText: "اتصل بنا على واتساب",
     message: "مرحباً، أنا مهتم بخدماتكم.",
   },
+  aboutButtons: {
+    home: "الرئيسية",
+    aboutUs: "من نحن",
+    contactUs: "اتصل بنا",
+    meetOurExperts: "التقِ بفريقنا",
+    subscribe: "اشترك",
+  },
+  newsletter: {
+    subscribeDisclaimer: "بمتابعتك، فإنك توافق على",
+  },
+  ourCompany: {
+    brandName: "جرو مصر",
+  },
   aboutChildren: {
     company: "شركتنا",
     values: "قيمنا",

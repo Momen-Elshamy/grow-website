@@ -20,6 +20,19 @@ export default {
     buttonText: "Contact us on WhatsApp",
     message: "Hello, I'm interested in your services.",
   },
+  aboutButtons: {
+    home: "Home",
+    aboutUs: "About Us",
+    contactUs: "Contact Us",
+    meetOurExperts: "Meet Our Experts",
+    subscribe: "Subscribe",
+  },
+  newsletter: {
+    subscribeDisclaimer: "By subscribing, you accept the",
+  },
+  ourCompany: {
+    brandName: "Grow Egypt",
+  },
   aboutChildren: {
     company: "Our Company",
     values: "Our Values",

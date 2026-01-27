@@ -1,17 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Row, Col, Input } from "antd";
 import { motion } from "framer-motion";
 import CustomButton from "../../UI/Button";
 import styles from "./NewsletterSection.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 export default function NewsletterSection({ newsletterData }) {
+  const { currentLang } = useLanguage();
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
   if (!newsletterData) return null;
 
-  const { title, description, image , email} = newsletterData || {};
+  const { title, description, image, email } = newsletterData || {};
   return (
     <section className={styles.newsletterSection}>
       <div className={styles.container}>
@@ -44,19 +60,17 @@ export default function NewsletterSection({ newsletterData }) {
                 <div className={styles.inputGroup}>
                   <Input
                     type="email"
-                    placeholder="Your Email Address"
+                    placeholder={t("contactForm.placeholderEmail")}
                     className={styles.emailInput}
                   />
                   <Link href={`mailto:${email}`}>
-                    <CustomButton>
-                      Subscribe
-                    </CustomButton>
+                    <CustomButton>{t("aboutButtons.subscribe")}</CustomButton>
                   </Link>
                 </div>
 
                 <p className={styles.privacyText}>
-                  By subscribing, you accept the{" "}
-                  <Link href="/privacy">Privacy Policy</Link>
+                  {t("newsletter.subscribeDisclaimer")}{" "}
+                  <Link href="/privacy">{t("footer.bottomLinks.privacy")}</Link>
                 </p>
               </div>
             </Col>

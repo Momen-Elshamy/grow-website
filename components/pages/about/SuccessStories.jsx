@@ -4,11 +4,14 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import Uicons from "../../UI/Uicons";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 import styles from "./SuccessStories.module.css";
 
 export default function SuccessStories({ successStoriesData }) {
   const router = useRouter();
-  
+  const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
+
   if (!successStoriesData) return null;
 
   const { icon, tagline, storiesData } = successStoriesData || {};
@@ -168,18 +171,21 @@ export default function SuccessStories({ successStoriesData }) {
                     </motion.div>
                   </AnimatePresence>
 
-                  {/* ARROWS */}
-                  <div className={styles.navigationArrows}>
+                  {/* ARROWS — dir="ltr" keeps layout correct when page is RTL; we control order via row-reverse */}
+                  <div
+                    dir="ltr"
+                    className={`${styles.navigationArrows} ${isRTL ? styles.navigationArrowsRTL : ""}`}
+                  >
                     <button onClick={handlePrev} className={styles.navBtn}>
                       <Uicons
-                        icon="fi-rr-angle-left"
+                        icon={isRTL ? "fi-rr-angle-right" : "fi-rr-angle-left"}
                         size="20px"
                         color="white"
                       />
                     </button>
                     <button onClick={handleNext} className={styles.navBtn}>
                       <Uicons
-                        icon="fi-rr-angle-right"
+                        icon={isRTL ? "fi-rr-angle-left" : "fi-rr-angle-right"}
                         size="20px"
                         color="white"
                       />

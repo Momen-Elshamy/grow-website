@@ -3,6 +3,7 @@ import { Typography, Button } from "antd";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Uicons from "../../UI/Uicons";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 import styles from "./MissionSection.module.css";
 
 const { Title, Paragraph } = Typography;
@@ -34,21 +35,24 @@ export default function MissionRightContent({
   handlePrev,
   handleNext,
 }) {
+  const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
+
   return (
     <motion.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
-      className={styles.yellowCard}
+      className={`${styles.yellowCard} ${isRTL ? styles.yellowCardRTL : ""}`}
     >
       <div className={styles.rightContent}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentContent?.id}
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: isRTL ? -30 : 30 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
+            exit={{ opacity: 0, x: isRTL ? 30 : -30 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <Title level={4} className={styles.rightTitle}>
@@ -60,17 +64,25 @@ export default function MissionRightContent({
           </motion.div>
         </AnimatePresence>
 
-        <div className={styles.navigation}>
+        <div className={`${styles.navigation}`}>
           <Button
             icon={
-              <Uicons icon="fi-rr-angle-left" size="16px" color="#0b2414" />
+              <Uicons
+                icon={isRTL ? "fi-rr-angle-right" : "fi-rr-angle-left"}
+                size="16px"
+                color="#0b2414"
+              />
             }
             className={styles.navButton}
             onClick={handlePrev}
           />
           <Button
             icon={
-              <Uicons icon="fi-rr-angle-right" size="16px" color="#0b2414" />
+              <Uicons
+                icon={isRTL ? "fi-rr-angle-left" : "fi-rr-angle-right"}
+                size="16px"
+                color="#0b2414"
+              />
             }
             className={styles.navButton}
             onClick={handleNext}
@@ -78,8 +90,11 @@ export default function MissionRightContent({
         </div>
       </div>
 
-      {/* Leaf Graphic */}
-      <motion.div variants={leafVariants} className={styles.leafGraphic}>
+      {/* Leaf Graphic — position and mirror for RTL */}
+      <motion.div
+        variants={leafVariants}
+        className={`${styles.leafGraphic} ${isRTL ? styles.leafGraphicRTL : ""}`}
+      >
         <Image
           src="/images/hero/banner-1.png"
           alt="Leaf Graphic"

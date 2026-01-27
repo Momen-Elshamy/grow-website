@@ -1,13 +1,30 @@
 import { Button, Carousel, Flex } from "antd";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 import styles from "./HeroCarousel.module.css";
 
 export default function CarouselComponent({ heroDetails }) {
   const carouselRef = useRef(null);
+  const { currentLang } = useLanguage();
+  
+  // Translation function: t("key") or t("nested.key") returns value or key as fallback
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
 
   const next = () => {
     carouselRef.current?.next();
@@ -43,15 +60,15 @@ export default function CarouselComponent({ heroDetails }) {
                 className={styles.backgroundImage}
               />
               {/* Overlay for better text readability */}
-              <div className={styles.overlay} />
+              <div className={`${styles.overlay} ${currentLang === "ar" ? styles.overlayRTL : ""}`} />
 
               {/* Content */}
               <Flex
                 className={styles.contentRow}
                 align="center"
-                justify="flex-start"
+                justify={currentLang === "ar" ? "flex-end" : "flex-start"}
               >
-                <div className={styles.contentCol}>
+                <div className={`${styles.contentCol} ${currentLang === "ar" ? styles.contentColRTL : ""}`}>
                   <div key={`content-${slide.id}`}>
                     <motion.h1
                       initial={{ opacity: 0, y: 30 }}
@@ -88,9 +105,9 @@ export default function CarouselComponent({ heroDetails }) {
                       }}
                       className={styles.buttonsContainer}
                     >
-                      <CustomButton href="/services">Explore Our Services</CustomButton>
+                      <CustomButton href="/services">{t("heroButtons.exploreServices")}</CustomButton>
                       <CustomButton href="/about" className={styles.aboutButton} icon={null}>
-                        About Us
+                        {t("heroButtons.aboutUs")}
                       </CustomButton>
                     </motion.div>
                   </div>
@@ -103,15 +120,13 @@ export default function CarouselComponent({ heroDetails }) {
 
       {/* Custom Navigation Arrows */}
       {carouselArrows.map((nav) => (
-        { onClick: prev, icon: "fi-rr-angle-left", className: styles.navButtonLeft },
-        { onClick: next, icon: "fi-rr-angle-right", className: styles.navButtonRight },
         <Button
           key={nav.id}
           onClick={nav.onClick}
           className={`${styles.navButton} ${nav.className}`}
         >
           <Uicons icon={nav.icon} size="32px" color="white" />
-          </Button>
+        </Button>
       ))}
     </div>
   );

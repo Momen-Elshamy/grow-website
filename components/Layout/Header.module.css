@@ -13,6 +13,8 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  direction: ltr;
+  /* Force LTR layout for header even in RTL mode */
 }
 
 .container {
@@ -22,6 +24,8 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  direction: ltr;
+  /* Force LTR layout for container even in RTL mode */
 }
 
 .logo {
@@ -45,6 +49,8 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  direction: ltr;
+  /* Force LTR layout for nav even in RTL mode */
 }
 
 .navLink {
@@ -175,6 +181,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  direction: ltr;
+  /* Force LTR layout for actions even in RTL mode */
 }
 
 /* -- Mobile Drawer Styles -- */

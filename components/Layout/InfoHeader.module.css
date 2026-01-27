@@ -15,6 +15,8 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-around !important;
+    direction: ltr;
+    /* Force LTR layout for infoHeader even in RTL mode */
 }
 
 .desktopRow {
@@ -24,6 +26,8 @@
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-around !important;
+    direction: ltr;
+    /* Force LTR layout for desktopRow even in RTL mode */
 }
 
 .iconsContainer {
@@ -32,6 +36,8 @@
     flex-direction: row !important;
     align-items: center !important;
     /* justify-content: center !important; */
+    direction: ltr;
+    /* Force LTR layout for iconsContainer even in RTL mode */
 }
 
 .iconsContainer:last-child {
@@ -77,6 +83,8 @@
     flex-direction: row;
     align-items: center;
     gap: 16px;
+    direction: ltr;
+    /* Force LTR layout for infoText even in RTL mode */
 }
 
 .infoTextContent {
@@ -124,6 +132,8 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 10px;
+    direction: ltr;
+    /* Force LTR layout for iconsWrapper even in RTL mode */
 }
 
 /* Mobile Layout */
@@ -131,6 +141,8 @@
     display: none;
     flex-direction: column;
     gap: 1rem;
+    direction: ltr;
+    /* Force LTR layout for mobileLayout even in RTL mode */
 }
 
 .mobileInfoItem {
@@ -140,6 +152,8 @@
     justify-content: center;
     gap: 1rem;
     flex: 1;
+    direction: ltr;
+    /* Force LTR layout for mobileInfoItem even in RTL mode */
 }
 
 .mobileIconsWrapper {
@@ -149,6 +163,8 @@
     justify-content: center;
     gap: 10px;
     margin-top: 0.5rem;
+    direction: ltr;
+    /* Force LTR layout for mobileIconsWrapper even in RTL mode */
 }
 
 .socialIcon {
@@ -178,6 +194,8 @@
         width: 100%;
         gap: 20px;
         flex-wrap: nowrap;
+        direction: ltr;
+        /* Force LTR layout for mobileInfoRow even in RTL mode */
     }
 
     .mobileInfoItem {

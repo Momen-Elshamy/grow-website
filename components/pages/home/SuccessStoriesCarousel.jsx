@@ -1,10 +1,13 @@
 import { Carousel, Card, Tag, Flex } from "antd";
 import Image from "next/image";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 import CustomButton from "@/components/UI/Button";
 import styles from "./SuccessStoriesCarousel.module.css";
 import Link from "next/link";
 
 export default function SuccessStoriesCarousel({ cards = [] }) {
+  const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
 
   const settings = {
     dots: true,
@@ -57,9 +60,9 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               />
             </div>
 
-            <div className={styles.contentWrapper}>
+            <div className={`${styles.contentWrapper} ${isRTL ? styles.contentWrapperRTL : ""}`}>
               <Flex vertical gap={12}>
-                <Flex gap={8} wrap="wrap">
+                <Flex gap={8} wrap="wrap" className={isRTL ? styles.tagsRTL : ""}>
                   {course.contenttag.map((tag) => (
                     <Tag key={tag.id} className={styles.contentTag}>
                       {tag.title}
@@ -71,12 +74,12 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
                   <p className={styles.cardDescription}>{course?.description}</p>
                 )}
               </Flex>
-              <div className={styles.btnWrapper}>
+              <div className={`${styles.btnWrapper} ${isRTL ? styles.btnWrapperRTL : ""}`}>
                 <CustomButton
                   className={styles.cardBtn}
                   style={{
                     height: "100%",
-                    borderRadius: "0 10px 10px 0",
+                    borderRadius: isRTL ? "10px 0 0 10px" : "0 10px 10px 0",
                     border: "none",
                   }}
                 />

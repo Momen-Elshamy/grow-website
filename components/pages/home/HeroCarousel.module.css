@@ -49,6 +49,13 @@
       rgba(0, 0, 0, 0.1) 100%);
 }
 
+.overlayRTL {
+  background: linear-gradient(to left,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 100%);
+}
+
 .contentRow {
   height: 100%;
   position: relative;
@@ -61,6 +68,14 @@
   max-width: 1300px;
   width: 100%;
   margin: 0 auto;
+}
+
+.contentColRTL {
+  text-align: right;
+  direction: rtl;
+  margin-left: auto;
+  margin-right: 0;
+  padding-right: 64px;
 }
 
 .title {
@@ -133,12 +148,22 @@
     padding: 0 60px;
     max-width: 1300px;
   }
+
+  .contentColRTL {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
 }
 
 @media (max-width: 1024px) {
   .contentCol {
     padding: 0 80px;
     max-width: 1300px;
+  }
+
+  .contentColRTL {
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   .title {
@@ -155,6 +180,11 @@
     padding: 0 20px;
     width: 100%;
     max-width: 100%;
+  }
+
+  .contentColRTL {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .title {
@@ -196,6 +226,11 @@
     max-width: 100%;
   }
 
+  .contentColRTL {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .title {
     font-size: 24px;
     margin-bottom: 12px;
@@ -213,6 +248,11 @@
     justify-content: center;
     width: 100%;
     display: flex;
+  }
+
+  .contentColRTL .buttonsContainer {
+    align-items: flex-end;
+    justify-content: flex-end;
   }
 
   .buttonsContainer> :global(*),

@@ -3,9 +3,28 @@ import { Row, Col, Button } from "antd";
 import Image from "next/image";
 import styles from "./Footer.module.css";
 import Uicons from "../UI/Uicons";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import { useMemo } from "react";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 
 export default function Footer({ socialMediaData }) {
+  const { currentLang } = useLanguage();
   const currentYear = new Date().getFullYear();
+  
+  // Translation function: t("key") or t("nested.key") returns value or key as fallback
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+  
   const socialLinks = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0
     ? socialMediaData
     : [
@@ -16,33 +35,33 @@ export default function Footer({ socialMediaData }) {
       ];
 
   const aboutLinks = [
-    { label: "Our Values", href: "/about#values" },
-    { label: "Vision & Mission", href: "/about#mission" },
-    { label: "Meet Our Experts", href: "/about#experts" },
-    { label: "Contact Us", href: "/contact" },
+    { label: t("footer.aboutLinks.values"), href: "/about#values" },
+    { label: t("footer.aboutLinks.mission"), href: "/about#mission" },
+    { label: t("footer.aboutLinks.experts"), href: "/about#experts" },
+    { label: t("footer.aboutLinks.contactUs"), href: "/contact" },
   ];
 
   const solutionsLinks = [
-    { label: "Farm Operation", href: "/solutions#operation" },
-    { label: 'Farm Resource Planning', href: "/solutions#frp" },
-    { label: "Water Management", href: "/solutions#water" },
-    { label: "Human Capital Training", href: "/solutions#training" },
-    { label: "Commercial Management", href: "/solutions#commercial" },
+    { label: t("footer.solutionsLinks.operation"), href: "/solutions#operation" },
+    { label: t("footer.solutionsLinks.frp"), href: "/solutions#frp" },
+    { label: t("footer.solutionsLinks.water"), href: "/solutions#water" },
+    { label: t("footer.solutionsLinks.training"), href: "/solutions#training" },
+    { label: t("footer.solutionsLinks.commercial"), href: "/solutions#commercial" },
   ];
 
   const servicesLinks = [
-    { label: "Technical Consultancy", href: "/services#consultancy" },
-    { label: "Lab analysis", href: "/services#lab" },
-    { label: "Course", href: "/services#training" },
-    { label: "Irrigation", href: "/services#irrigation" },
-    { label: "Optimization", href: "/services#optimization" },
-    { label: "Remote sensing", href: "/services#remote-sensing" },
+    { label: t("footer.servicesLinks.consultancy"), href: "/services#consultancy" },
+    { label: t("footer.servicesLinks.lab"), href: "/services#lab" },
+    { label: t("footer.servicesLinks.course"), href: "/services#training" },
+    { label: t("footer.servicesLinks.irrigation"), href: "/services#irrigation" },
+    { label: t("footer.servicesLinks.optimization"), href: "/services#optimization" },
+    { label: t("footer.servicesLinks.remoteSensing"), href: "/services#remote-sensing" },
   ];
 
   const bottomLinks = [
-    { label: "Terms & Conditions", href: "/terms" },
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Sitemap", href: "/sitemap" },
+    { label: t("footer.bottomLinks.terms"), href: "/terms" },
+    { label: t("footer.bottomLinks.privacy"), href: "/privacy" },
+    { label: t("footer.bottomLinks.sitemap"), href: "/sitemap" },
   ];
 
 
@@ -62,9 +81,7 @@ export default function Footer({ socialMediaData }) {
             />
               </Link>
               <p className={styles.description}>
-                Our commitment is to help farmers have the technologies they
-                need to protect the crops and empowering the future of food
-                production!
+                {t("footer.description")}
               </p>
               <div className={styles.socials}>
                 {socialLinks.map((social, index) => (
@@ -88,7 +105,7 @@ export default function Footer({ socialMediaData }) {
 
           <Col xs={12} sm={12} md={6} lg={4} xl={3}>
             <div className={styles.column}>
-              <h4>About</h4>
+              <h4>{t("footer.about")}</h4>
               <ul className={styles.links}>
                 {aboutLinks.map((link, index) => (
                   <li key={index}>
@@ -101,7 +118,7 @@ export default function Footer({ socialMediaData }) {
 
           <Col xs={12} sm={12} md={6} lg={4} xl={4}>
             <div className={styles.column}>
-              <h4>Solutions</h4>
+              <h4>{t("footer.solutions")}</h4>
               <ul className={styles.links}>
                 {solutionsLinks.map((link, index) => (
                   <li key={index}>
@@ -114,7 +131,7 @@ export default function Footer({ socialMediaData }) {
 
           <Col xs={12} sm={12} md={6} lg={4} xl={4}>
             <div className={styles.column}>
-              <h4>Services</h4>
+              <h4>{t("footer.services")}</h4>
               <ul className={styles.links}>
                 {servicesLinks.map((link, index) => (
                   <li key={index}>
@@ -127,7 +144,7 @@ export default function Footer({ socialMediaData }) {
 
           <Col xs={12} sm={12} md={6} lg={4} xl={6}>
             <div className={styles.column}>
-              <h4>Quick Contact</h4>
+              <h4>{t("footer.quickContact")}</h4>
               <div className={styles.contactInfo}>
                 <p className={styles.contactItem}>
                   <Link
@@ -165,7 +182,7 @@ export default function Footer({ socialMediaData }) {
       <div className={styles.bottom}>
         <div className={`${styles.container} ${styles.bottomContainer}`}>
           <p className={styles.copyright}>
-            ©{currentYear} <span>Grow</span>, All Rights Reserved. With Love by
+            ©{currentYear} <span>Grow</span>, {t("footer.copyright")}{" "}
             premastlab.com
           </p>
           <ul className={styles.bottomLinks}>

@@ -107,6 +107,11 @@
   background-color: #FFC65C;
 }
 
+.playIconRTL {
+  display: inline-flex;
+  transform: scaleX(-1);
+}
+
 .decorativeText {
   position: absolute;
   bottom: -45px;

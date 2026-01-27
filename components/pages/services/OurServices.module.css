@@ -328,6 +328,7 @@
 @media (max-width: 480px) {
   .servicesSection {
     padding: 40px 0;
+    overflow: hidden;
   }
 
   .container {

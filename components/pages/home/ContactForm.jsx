@@ -8,7 +8,7 @@ import CustomButton from "@/components/UI/Button";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
-import { PROPERTY_SIZES, SERVICES_OPTIONS } from "@/_data/contactUs/constants";
+import { PROPERTY_SIZES, SERVICE_KEYS } from "@/_data/contactUs/constants";
 import {
   rightContentVariants,
   headingVariants,
@@ -50,7 +50,7 @@ export default function ContactForm() {
           phone: values.phone,
           propertySize: values.propertySize,
           location: values.location,
-          services: values.services,
+          services: values.services ? t(`servicesChildren.${values.services}`) : values.services,
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
@@ -280,13 +280,13 @@ export default function ContactForm() {
                     placeholder: { color: "#c9c9c9" },
                   }}
                 >
-                  {SERVICES_OPTIONS.map((service) => (
+                  {SERVICE_KEYS.map((key) => (
                     <Option
-                      key={service}
-                      value={service}
+                      key={key}
+                      value={key}
                       className={styles.selectOption}
                     >
-                      {service}
+                      {t(`servicesChildren.${key}`)}
                     </Option>
                   ))}
                 </Select>

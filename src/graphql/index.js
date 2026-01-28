@@ -6,3 +6,4 @@ export * from "./hooks";
 export * from "./queries/services";
 export * from "./queries/about";
 export * from "./queries/solutions";
+export * from "./queries/TermsandConditions";

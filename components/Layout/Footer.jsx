@@ -59,9 +59,13 @@ export default function Footer({ socialMediaData }) {
   ];
 
   const bottomLinks = [
-    { label: t("footer.bottomLinks.terms"), href: "/terms" },
-    { label: t("footer.bottomLinks.privacy"), href: "/privacy" },
-    { label: t("footer.bottomLinks.sitemap"), href: "/sitemap" },
+    { label: t("footer.bottomLinks.terms"), href: "/terms-and-conditions" },
+    // { label: t("footer.bottomLinks.privacy"), href: "/privacy" },
+    {
+      label: t("footer.bottomLinks.sitemap"),
+      href: "https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt",
+      external: true,
+    },
   ];
 
 
@@ -188,7 +192,14 @@ export default function Footer({ socialMediaData }) {
           <ul className={styles.bottomLinks}>
             {bottomLinks.map((link, index) => (
               <li key={index}>
-                <Link href={link.href}>{link.label}</Link>
+                <Link
+                  href={link.href}
+                  {...(link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>

@@ -27,6 +27,12 @@ export const GET_FRONT_PAGE_DATA = gql`
               icon
               feature
             }
+            image {
+              node {
+                altText
+                sourceUrl
+              }
+            }
           }
           newsSection {
             icon
@@ -146,6 +152,12 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
             features {
               icon
               feature
+            }
+            image {
+              node {
+                altText
+                sourceUrl
+              }
             }
           }
           newsSection {

@@ -5,7 +5,7 @@ import MissionSection from "./MissionSection";
 import NewsSection from "./NewsSection";
 import SuccessStories from "./SuccessStories";
 import SolutionsSection from "./SolutionsSection";
-import ContactUs from "./ContactUs";
+import ContactUs from "../contact/ContactUs";
 import ServicesSection from "./ServicesSection";
 
 export default function Home({ homePageData, homePageDataArabic, contactDataFromOptionsEn, contactDataFromOptionsAr }) {

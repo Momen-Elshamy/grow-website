@@ -41,7 +41,7 @@ export default function Home({ homePageData, homePageDataArabic, contactDataFrom
   }
 
   return (
-    <>
+     <>
         <Hero key={`hero-${currentLang}`} heroData={heroData} infoboxData={infoboxData} />
         <NewsSection newsData={newsData} />
         <ServicesSection servicesData={servicesData} />

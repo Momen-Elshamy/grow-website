@@ -2,6 +2,8 @@
   width: 100%;
   padding: 100px 0;
   background-color: #ffffff;
+  overflow: hidden;
+  width: 100%;
 }
 
 .container {
@@ -131,15 +133,18 @@
   .featureTitle {
     font-size: 22px;
   }
+
   .imageColumn {
     width: 100%;
     min-height: 400px;
   }
+
   .imageWrapper {
     width: 100%;
     min-height: 400px;
     aspect-ratio: 22 / 9;
   }
+
   .container :global(.ant-row) {
     flex-direction: column-reverse;
   }

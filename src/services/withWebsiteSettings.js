@@ -122,7 +122,7 @@ export function withWebsiteSettings(gssp) {
             query: GET_HEADER_SOCIAL,
             fetchPolicy: "no-cache",
          });
-         const raw = socialResponse?.data?.contactInfoFieldsEnglish?.socialMedia;
+         const raw = socialResponse?.data?.contactInfoFields?.socialMedia;
          socialMediaFromOptions = Array.isArray(raw) ? raw : (raw ? [raw] : []);
       } catch (_) {
          // Header social from options is optional

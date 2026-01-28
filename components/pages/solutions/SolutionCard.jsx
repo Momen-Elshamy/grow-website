@@ -2,10 +2,10 @@ import React, { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Typography, Flex, Row, Col } from "antd";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./SolutionCard.module.css";
 import Uicons from "@/components/UI/Uicons";
 import CustomButton from "@/components/UI/Button";
-import { scrollToSection } from "@/utils/scroll";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
@@ -85,9 +85,9 @@ export default function Card({ solution, index, progress, range, targetScale }) 
                 gap={32}
                 style={{ width: "100%", position: "relative" }}
               >
-                <CustomButton onClick={() => scrollToSection("contact")}>
-                  {t("aboutButtons.contactUs")}
-                </CustomButton>
+                <Link href="/contact" style={{ textDecoration: "none" }}>
+                  <CustomButton>{t("aboutButtons.contactUs")}</CustomButton>
+                </Link>
 
                 <div
                   className={`${styles.cardNumber} ${

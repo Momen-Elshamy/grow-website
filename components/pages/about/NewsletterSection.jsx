@@ -70,7 +70,7 @@ export default function NewsletterSection({ newsletterData }) {
 
                 <p className={styles.privacyText}>
                   {t("newsletter.subscribeDisclaimer")}{" "}
-                  <Link href="/privacy">{t("footer.bottomLinks.privacy")}</Link>
+                  <Link href="/terms-and-conditions">{t("footer.bottomLinks.terms")}</Link>
                 </p>
               </div>
             </Col>

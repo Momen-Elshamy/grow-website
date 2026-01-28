@@ -1,0 +1,118 @@
+.page {
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.hero {
+  padding: 80px 24px 0px;
+  color: #fff;
+}
+
+.heroContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  color: #0b3d1b;
+}
+
+.contentSection {
+  padding: 48px 20px 80px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contentList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contentBlock {
+  padding-bottom: 0;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.description :global(p) {
+  margin: 0 0 1rem;
+}
+
+.description :global(p:last-child) {
+  margin-bottom: 0;
+}
+
+.description :global(ul),
+.description :global(ol) {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.description :global(li) {
+  margin-bottom: 0.5rem;
+}
+
+.description :global(h2),
+.description :global(h3) {
+  margin: 1.5rem 0 0.75rem;
+  color: #0b3d1b;
+  font-weight: 600;
+}
+
+.description :global(h2:first-child),
+.description :global(h3:first-child) {
+  margin-top: 0;
+}
+
+.description :global(a) {
+  color: #11672f;
+  text-decoration: underline;
+}
+
+.description :global(a:hover) {
+  color: #0b3d1b;
+}
+
+.emptyState {
+  text-align: center;
+  color: #888;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 32px 16px 0;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .contentSection {
+    padding: 40px 16px 60px;
+  }
+
+  .contentList {
+    gap: 0.8rem;
+  }
+
+  .contentBlock {
+    padding-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 0.9375rem;
+  }
+}

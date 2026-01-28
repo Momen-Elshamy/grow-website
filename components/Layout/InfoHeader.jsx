@@ -2,54 +2,80 @@ import { Row, Col } from "antd";
 import Uicons from "../UI/Uicons";
 import styles from "./InfoHeader.module.css";
 import Link from "next/link";
+import { useLanguage } from "@/src/contexts/LanguageContext";
 
-const infoItems = [
-  {
-    icons: ["fi-rr-phone-rotary", "fi-brands-whatsapp"],
-    text: "+20235380720",
-    info: "+201080200887",
-    infoLink: "https://wa.me/201080200887",
-    desktopSize: 18,
-    mobileSize: 8,
-  },
-  {
-    icon: "fi-rr-newsletter-subscribe",
-    // text: "+201080200887",
-    // textLink: "https://wa.me/201080200887",
-    info: "info@grow-egypt.com",
-    infoLink: "mailto:info@grow-egypt.com",
+function getSlot(block) {
+  if (block?.phoneNumbers?.length > 0) return 0;
+  const v = (block?.info?.[0]?.value ?? "").toLowerCase();
+  const t = (block?.title ?? "").toLowerCase();
+  if (/@|email|mail|ايميل|بريد|newsletter|subscribe/.test(v + " " + t)) return 1;
+  if (/address|location|map|عنوان|موقع/.test(t)) return 2;
+  return -1;
+}
+
+function toItem(block, slot) {
+  const phones = block?.phoneNumbers ?? [];
+  const infos = block?.info ?? [];
+
+  if (slot === 0 && phones.length > 0) {
+    const n0 = (phones[0]?.number ?? "").toString().trim();
+    const n1 = phones[1] ? (phones[1]?.number ?? "").toString().trim() : "";
+    return {
+      icon: block?.icon,
+      icons: phones.length >= 2 ? ["fi-rr-phone-rotary", "fi-brands-whatsapp"] : undefined,
+      text: n0,
+      info: n1,
+      textLink: phones[0]?.link ?? null,
+      infoLink: phones[1]?.link ?? null,
+      desktopSize: 18,
+      mobileSize: 8,
+    };
+  }
+
+  const d = infos[0];
+  const value = (d?.value ?? "").trim();
+  const link = d?.link ?? null;
+  const value2 = infos[1] ? (infos[1]?.value ?? "").trim() : "";
+  return {
+    icon: block?.icon,
+    icons: undefined,
+    text: value,
+    info: value2,
+    textLink: link,
+    infoLink: infos[1]?.link ?? link,
     desktopSize: 30,
-    mobileSize: 40,
-  },
-  {
-    icon: "fi-rr-land-layer-location",
-    text: "A105 LINX building, Smart Village",
-    textLink:
-      "https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt",
-    info: "12577 Giza, Egypt",
-    infoLink:
-      "https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt",
-    desktopSize: 30,
-    mobileSize: 40,
-  },
-];
+    mobileSize: 30,
+  };
+}
+
+function buildInfoItems(contactData) {
+  const data = Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
+  if (!data?.info?.length) return [];
+  const blocks = data.info;
+  const slots = [null, null, null];
+  for (const b of blocks) {
+    const i = getSlot(b);
+    if (i >= 0 && slots[i] == null) slots[i] = b;
+  }
+  return slots
+    .map((block, i) => (block ? toItem(block, i) : null))
+    .filter(Boolean);
+}
 
 const INFO_FIELDS = ["text", "info"];
 
 const InfoField = ({ item, fieldKey }) => {
-  const fieldValue = item[fieldKey];
-  if (!fieldValue) return null;
-
-  const content = <p className={styles[fieldKey]}>{fieldValue}</p>;
+  const val = item[fieldKey];
+  if (!val) return null;
+  const content = <p className={styles[fieldKey]}>{val}</p>;
   const link = item[`${fieldKey}Link`];
-
   if (link) {
     return (
       <Link
         href={link}
         target={link.startsWith("http") ? "_blank" : undefined}
         rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
-        className={styles.link}
+        className={`${styles.link} ${styles[fieldKey]}`}
       >
         {content}
       </Link>
@@ -58,68 +84,38 @@ const InfoField = ({ item, fieldKey }) => {
   return <div>{content}</div>;
 };
 
-export default function InfoHeader({ socialMediaData }) {
-  const socialIcons =
-    socialMediaData &&
-    Array.isArray(socialMediaData) &&
-    socialMediaData.length > 0
-      ? socialMediaData
-      : [
-          {
-            icon: "fi-brands-linkedin",
-            link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU",
-          },
-          { icon: "fi-brands-facebook", link: "#" },
-          { icon: "fi-brands-instagram", link: "#" },
-          { icon: "fi-brands-youtube", link: "#" },
-        ];
+export default function InfoHeader({ socialMediaData, contactDataEn, contactDataAr }) {
+  const { currentLang } = useLanguage();
+  const contactData = currentLang === "ar" ? (contactDataAr ?? contactDataEn) : (contactDataEn ?? contactDataAr);
+  const socialIcons = Array.isArray(socialMediaData) && socialMediaData.length > 0 ? socialMediaData : [];
+  const infoItems = buildInfoItems(contactData);
+
   return (
     <div className={styles.infoHeader}>
       <Row gutter={16} justify="center" className={styles.desktopRow}>
-        {/* Social Icons Column */}
-        <Col span={6} className={styles.iconsContainer}>
-          <div className={styles.iconsWrapper}>
-            {socialIcons.map((social, index) => (
-              <div key={index} className={styles.iconBox}>
-                <Link
-                  href={social?.link || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Uicons
-                    icon={social?.icon}
-                    size={20}
-                    color="#17311E"
-                    className={styles.socialIcon}
-                  />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </Col>
-
-        {/* Info Items Columns */}
-        {infoItems.map((item, index) => (
-          <Col key={index} span={6} className={styles.iconsContainer}>
+        {socialIcons.length > 0 && (
+          <Col span={6} className={styles.iconsContainer}>
+            <div className={styles.iconsWrapper}>
+              {socialIcons.map((s, i) => (
+                <div key={i} className={styles.iconBox}>
+                  <Link href={s?.link || "#"} target="_blank" rel="noopener noreferrer">
+                    <Uicons icon={s?.icon} size={20} color="#17311E" className={styles.socialIcon} />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </Col>
+        )}
+        {infoItems.map((item, i) => (
+          <Col key={i} span={6} className={styles.iconsContainer}>
             <div className={styles.infoText}>
               <div className={styles.infoIconWrapper}>
                 {item.icons ? (
-                  item.icons.map((icon, iconIndex) => (
-                    <Uicons
-                      key={iconIndex}
-                      icon={icon}
-                      size={item.desktopSize}
-                      color="#17311E"
-                      className={styles.infoIcon}
-                    />
+                  item.icons.map((icon, j) => (
+                    <Uicons key={j} icon={icon} size={item.desktopSize} color="#17311E" className={styles.infoIcon} />
                   ))
                 ) : (
-                  <Uicons
-                    icon={item.icon}
-                    size={item.desktopSize}
-                    color="#17311E"
-                    className={styles.infoIcon}
-                  />
+                  <Uicons icon={item.icon} size={item.desktopSize} color="#17311E" className={styles.infoIcon} />
                 )}
               </div>
               <div className={styles.infoTextContent}>
@@ -131,7 +127,6 @@ export default function InfoHeader({ socialMediaData }) {
           </Col>
         ))}
       </Row>
-      {/* Mobile Layout */}
       <div className={styles.mobileLayout}>
         <div className={styles.mobileInfoRow}>
           {infoItems.map((item, index) => (
@@ -139,49 +134,31 @@ export default function InfoHeader({ socialMediaData }) {
               {item.icons ? (
                 <div className={styles.infoIconWrapper}>
                   {item.icons.map((icon, iconIndex) => (
-                    <Uicons
-                      key={iconIndex}
-                      icon={icon}
-                      size={item.mobileSize}
-                      color="#17311E"
-                      className={styles.infoIcon}
-                    />
+                    <Uicons key={iconIndex} icon={icon} size={item.mobileSize} color="#17311E" className={styles.infoIcon} />
                   ))}
                 </div>
               ) : (
-                <Uicons
-                  icon={item.icon}
-                  size={item.mobileSize}
-                  color="#17311E"
-                  className={styles.infoIcon}
-                />
+                <Uicons icon={item.icon} size={item.mobileSize} color="#17311E" className={styles.infoIcon} />
               )}
               <div className={styles.infoTextContent}>
-                {INFO_FIELDS.map((key) => (
-                  <InfoField key={key} item={item} fieldKey={key} />
+                {INFO_FIELDS.map((k) => (
+                  <InfoField key={k} item={item} fieldKey={k} />
                 ))}
               </div>
             </div>
           ))}
         </div>
-        <div className={styles.mobileIconsWrapper}>
-          {socialIcons.map((social, index) => (
-            <div key={index} className={styles.iconBox}>
-              <Link
-                href={social?.link || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Uicons
-                  icon={social?.icon}
-                  size={18}
-                  color="#17311E"
-                  className={styles.socialIcon}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
+        {socialIcons.length > 0 && (
+          <div className={styles.mobileIconsWrapper}>
+            {socialIcons.map((s, i) => (
+              <div key={i} className={styles.iconBox}>
+                <Link href={s?.link || "#"} target="_blank" rel="noopener noreferrer">
+                  <Uicons icon={s?.icon} size={18} color="#17311E" className={styles.socialIcon} />
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

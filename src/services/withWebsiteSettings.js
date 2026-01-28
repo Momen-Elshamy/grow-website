@@ -1,6 +1,7 @@
 import axios from "axios";
 import { client } from "@/src/graphql";
 import { GET_WEBSITE_SETTINGS } from "@/src/graphql/queries/settings";
+import { GET_CONTACT_DETAILS, GET_CONTACT_ARABIC_DETAILS, GET_HEADER_SOCIAL, GET_HOME_SOCIAL_MEDIA } from "@/src/graphql/queries/contact";
 
 // WordPress CMS base URL
 const WORDPRESS_BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL;
@@ -91,6 +92,52 @@ export function withWebsiteSettings(gssp) {
          settingsResponse = { data: null };
       }
 
+      // 1b) Fetch contact details: English and Arabic from their options pages
+      let contactDataFromOptionsEn = null;
+      let contactDataFromOptionsAr = null;
+      try {
+         const contactEnResponse = await client.query({
+            query: GET_CONTACT_DETAILS,
+            fetchPolicy: "no-cache",
+         });
+         let rawEn = contactEnResponse?.data?.contactInfoFieldsEnglish?.contactDetailsEnglishFields?.contactDetails ?? null;
+         if (Array.isArray(rawEn) && rawEn.length > 0) rawEn = rawEn[0];
+         contactDataFromOptionsEn = rawEn;
+      } catch (_) {}
+      try {
+         const contactArResponse = await client.query({
+            query: GET_CONTACT_ARABIC_DETAILS,
+            fetchPolicy: "no-cache",
+         });
+         let rawAr = contactArResponse?.data?.contactInfoFieldsArabic?.contactDetailsArabicFields?.contactDetails ?? null;
+         if (Array.isArray(rawAr) && rawAr.length > 0) rawAr = rawAr[0];
+         contactDataFromOptionsAr = rawAr;
+      } catch (_) {}
+      const contactDataFromOptions = contactDataFromOptionsEn ?? contactDataFromOptionsAr;
+
+      // 1c) Fetch header social: options first, then home page so all pages can show it
+      let socialMediaFromOptions = [];
+      try {
+         const socialResponse = await client.query({
+            query: GET_HEADER_SOCIAL,
+            fetchPolicy: "no-cache",
+         });
+         const raw = socialResponse?.data?.contactInfoFields?.socialMedia;
+         socialMediaFromOptions = Array.isArray(raw) ? raw : (raw ? [raw] : []);
+      } catch (_) {
+         // Header social from options is optional
+      }
+      if (socialMediaFromOptions.length === 0) {
+         try {
+            const homeSocialResponse = await client.query({
+               query: GET_HOME_SOCIAL_MEDIA,
+               fetchPolicy: "no-cache",
+            });
+            const homeRaw = homeSocialResponse?.data?.nodeByUri?.homePageFields?.socialMedia;
+            socialMediaFromOptions = Array.isArray(homeRaw) ? homeRaw : (homeRaw ? [homeRaw] : []);
+         } catch (_) {}
+      }
+
       // 2) Fetch Rank Math SEO data for current page
       let seoData = { success: false, head: null, title: null };
       try {
@@ -109,13 +156,19 @@ export function withWebsiteSettings(gssp) {
          return originalResult;
       }
 
-      // 4) Merge websiteSettings and SEO data into props
-      return {
+      // 4) Merge websiteSettings, contact details (EN + AR), social, and SEO data into props; keep revalidate for ISR
+      const merged = {
          props: {
             ...originalResult.props,
             websiteSettings: settingsResponse?.data ?? null,
+            contactDataFromOptions: contactDataFromOptions,
+            contactDataFromOptionsEn: contactDataFromOptionsEn,
+            contactDataFromOptionsAr: contactDataFromOptionsAr,
+            socialMediaFromOptions: socialMediaFromOptions,
             seo: seoData,
          },
       };
+      if ("revalidate" in originalResult) merged.revalidate = originalResult.revalidate;
+      return merged;
    };
 }

@@ -4,18 +4,34 @@ import { client } from "@/src/graphql";
 import { GET_FRONT_PAGE_DATA, GET_FRONT_PAGE_ARABIC_DATA } from "@/src/graphql/queries/home";
 import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
-export default function HomePage({ homePageData, homePageDataArabic }) {
-   return <Home homePageData={homePageData} homePageDataArabic={homePageDataArabic} />;
+export default function HomePage({ homePageData, homePageDataArabic, contactDataFromOptionsEn, contactDataFromOptionsAr }) {
+   return (
+     <Home
+       homePageData={homePageData}
+       homePageDataArabic={homePageDataArabic}
+       contactDataFromOptionsEn={contactDataFromOptionsEn}
+       contactDataFromOptionsAr={contactDataFromOptionsAr}
+     />
+   );
 }
 
 HomePage.getLayout = function getLayout(page, pageProps) {
-   // Extract data from pageProps
    const homePageFields = pageProps?.homePageData || {};
-   const socialMediaData = homePageFields?.socialMedia || [];
-   const contactData = homePageFields?.contactUs || null;
+   const socialMediaData = homePageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
+   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
+   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
    const seo = pageProps?.seo || null;
-   
-   return <MainLayout socialMediaData={socialMediaData} contactData={contactData} seo={seo}>{page}</MainLayout>;
+
+   return (
+     <MainLayout
+       socialMediaData={socialMediaData}
+       contactDataEn={contactDataEn}
+       contactDataAr={contactDataAr}
+       seo={seo}
+     >
+       {page}
+     </MainLayout>
+   );
 };
 
 export const getStaticProps = withWebsiteSettings(async () => {

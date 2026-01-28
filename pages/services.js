@@ -21,7 +21,14 @@ export default function ServicesPage({
 
 ServicesPage.getLayout = function getLayout(page, pageProps) {
   const seo = pageProps?.seo || null;
-  return <MainLayout seo={seo}>{page}</MainLayout>;
+  const socialMediaData = pageProps?.socialMediaFromOptions ?? [];
+  const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
+  const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
+  return (
+    <MainLayout seo={seo} socialMediaData={socialMediaData} contactDataEn={contactDataEn} contactDataAr={contactDataAr}>
+      {page}
+    </MainLayout>
+  );
 };
 
 export const getStaticProps = withWebsiteSettings(async () => {

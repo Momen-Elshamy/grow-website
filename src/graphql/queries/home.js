@@ -110,18 +110,6 @@ export const GET_FRONT_PAGE_DATA = gql`
               }
             }
           }
-          contactUs {
-            title
-            info {
-              icon
-              title
-              info {
-                value
-                number
-                link
-              }
-            }
-          }
           socialMedia {
             icon
             link
@@ -239,18 +227,6 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
               description
               contenttag {
                 title
-              }
-            }
-          }
-          contactUs {
-            title
-            info {
-              icon
-              title
-              info {
-                value
-                number
-                link
               }
             }
           }

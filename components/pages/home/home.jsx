@@ -5,12 +5,12 @@ import MissionSection from "./MissionSection";
 import NewsSection from "./NewsSection";
 import SuccessStories from "./SuccessStories";
 import SolutionsSection from "./SolutionsSection";
-import ContactUs from "./ContactUs";
+import ContactUs from "../contact/ContactUs";
 import ServicesSection from "./ServicesSection";
 
-export default function Home({ homePageData, homePageDataArabic }) {
+export default function Home({ homePageData, homePageDataArabic, contactDataFromOptionsEn, contactDataFromOptionsAr }) {
   const { currentLang } = useLanguage();
-  
+
   // Select data based on current language
   const homePageDataToUse = useMemo(() => {
     if (currentLang === "ar") {
@@ -26,7 +26,9 @@ export default function Home({ homePageData, homePageDataArabic }) {
   const servicesData = homePageDataToUse?.services;
   const missionData = homePageDataToUse?.missionAndVision;
   const successStoriesData = homePageDataToUse?.successStories;
-  const contactData = homePageDataToUse?.contactUs;
+  const contactData = currentLang === "ar"
+    ? (contactDataFromOptionsAr ?? contactDataFromOptionsEn)
+    : (contactDataFromOptionsEn ?? contactDataFromOptionsAr);
   const socialMediaData = homePageDataToUse?.socialMedia;
 
   // Show message if no data available for selected language

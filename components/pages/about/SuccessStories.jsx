@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+"use client";
+
+import React, { useState, useEffect, useMemo } from "react";
 import { Row, Col, Modal } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -14,92 +16,69 @@ export default function SuccessStories({ successStoriesData }) {
 
   if (!successStoriesData) return null;
 
-  const { icon, tagline, storiesData } = successStoriesData || {};
-  const cards = storiesData || [];
+  const { icon, tagline, storiesData = [] } = successStoriesData || {};
 
-  const [activeKey, setActiveKey] = useState(cards.length > 0 ? "0" : "");
+  const [activeKey, setActiveKey] = useState(storiesData.length > 0 ? "0" : "");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Handle query parameter to select specific story
+  // Handle query param for specific story
   useEffect(() => {
-    if (router.isReady && router.query.story && cards.length > 0) {
-      // Guard router.query.story value before calling decodeURIComponent
-      const storyQuery = router.query.story;
-      const storyValue = Array.isArray(storyQuery)
-        ? storyQuery[0]
-        : typeof storyQuery === "string"
-          ? storyQuery
-          : null;
+    if (!router.isReady || !router.query.story || storiesData.length === 0) return;
 
-      if (!storyValue) return;
+    const storyQuery = Array.isArray(router.query.story)
+      ? router.query.story[0]
+      : router.query.story;
 
-      const storyTitle = decodeURIComponent(storyValue);
-      const storyIndex = cards.findIndex(
-        (card) => card?.title === storyTitle || card?.heading === storyTitle
-      );
+    if (!storyQuery) return;
 
-      if (storyIndex >= 0) {
-        setActiveKey(storyIndex.toString());
-        // Scroll to section after a short delay to ensure component is rendered
-        const timeoutId = setTimeout(() => {
-          const element = document.getElementById("stories");
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, 100);
+    const storyTitle = decodeURIComponent(storyQuery);
+    const storyIndex = storiesData.findIndex(
+      (story) => story?.title === storyTitle || story?.heading === storyTitle
+    );
 
-        // Clear timeout on cleanup to avoid leaks
-        return () => {
-          clearTimeout(timeoutId);
-        };
-      }
+    if (storyIndex >= 0) {
+      setActiveKey(storyIndex.toString());
+
+      // Scroll to section after render
+      const timeoutId = setTimeout(() => {
+        const el = document.getElementById("stories");
+        el?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+
+      return () => clearTimeout(timeoutId);
     }
-  }, [router.isReady, router.query.story, cards]);
+  }, [router.isReady, router.query.story, storiesData]);
 
-  const currentIndex =
-    cards.length > 0
-      ? parseInt(activeKey) >= 0 && parseInt(activeKey) < cards.length
-        ? parseInt(activeKey)
-        : 0
-      : -1;
-  const currentStory = currentIndex >= 0 ? cards[currentIndex] : null;
+  const currentIndex = useMemo(() => {
+    const idx = parseInt(activeKey, 10);
+    return idx >= 0 && idx < storiesData.length ? idx : 0;
+  }, [activeKey, storiesData]);
 
-  // MEDIA HELPERS
-  const videoMedia = currentStory?.video
-    ? { type: "video", src: currentStory.video }
-    : null;
-  const imageMedia = currentStory?.image
-    ? { type: "image", src: currentStory.image }
-    : null;
+  const currentStory = storiesData[currentIndex] || null;
 
-  // VIEW IMAGE RULE
-  const viewImage = videoMedia?.src || imageMedia?.src;
+  const currentMedia = useMemo(() => {
+    if (!currentStory) return null;
+    if (currentStory.video) return { type: "video", src: currentStory.video };
+    if (currentStory.image?.node?.sourceUrl)
+      return { type: "image", src: currentStory.image.node.sourceUrl };
+    return null;
+  }, [currentStory]);
 
-  const handleOpenModal = () => setIsModalOpen(true);
+  const handleOpenModal = () => currentMedia && setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleNext = () => {
-    if (cards.length === 0) return;
-    const nextIndex = (currentIndex + 1) % cards.length;
-    setActiveKey(nextIndex.toString());
-  };
+  const handleNext = () => setActiveKey(((currentIndex + 1) % storiesData.length).toString());
+  const handlePrev = () =>
+    setActiveKey(((currentIndex - 1 + storiesData.length) % storiesData.length).toString());
 
-  const handlePrev = () => {
-    if (cards.length === 0) return;
-    const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
-    setActiveKey(prevIndex.toString());
-  };
-
-  if (!currentStory || cards.length === 0) {
-    return null;
-  }
+  if (!currentStory || storiesData.length === 0) return null;
 
   return (
     <section id="stories" className={styles.containerSuccessStories}>
       <div className={styles.successStoriesSection}>
         <div className={styles.container}>
           <Row gutter={[60, 40]} align="stretch">
-            {/* LEFT */}
+            {/* LEFT: Image & Navigation */}
             <Col xs={24} lg={12}>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -119,71 +98,64 @@ export default function SuccessStories({ successStoriesData }) {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <Image
-                        src={currentStory?.image?.node?.sourceUrl}
-                        alt={
-                          currentStory?.image?.node?.altText ||
-                          currentStory?.altImage
-                        }
-                        width={600}
-                        height={900}
-                        className={styles.mainImage}
-                      />
+                        <Image
+                          src={currentStory.image.node.sourceUrl}
+                          alt={currentStory.image.node.altText || currentStory.altImage || ""}
+                          width={600}
+                          height={900}
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          loading="lazy"
+                          className={styles.mainImage}
+                        />
 
                       {/* ICON ONLY CLICKABLE */}
-                      <div
-                        className={styles.playButton}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenModal();
-                        }}
-                      >
-                        <Uicons
-                          icon={videoMedia ? "fi-rr-play" : "fi-rr-expand"}
-                          size="24px"
-                          color="white"
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
+                        <div
+                          className={styles.playButton}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenModal();
                           }}
-                        />
-                      </div>
+                          aria-label={currentMedia.type === "video" ? "Play Video" : "View Image"}
+                        >
+                          <Uicons
+                            icon={currentMedia.type === "video" ? "fi-rr-play" : "fi-rr-expand"}
+                            size="24px"
+                            color="white"
+                          />
+                        </div>
                     </motion.div>
                   </AnimatePresence>
 
                   {/* CARD */}
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={activeKey}
+                      key={`card-${activeKey}`}
                       initial={{ opacity: 0, scale: 0.9, y: 20 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.9, y: 20 }}
                       transition={{ duration: 0.4 }}
                       className={styles.overlappingCard}
                     >
-                      <h4 className={styles.cardTitle}>
-                        {currentStory?.title || currentStory?.heading}
-                      </h4>
-                      <p className={styles.cardDescription}>
-                        {currentStory?.description}
-                      </p>
+                      <h4 className={styles.cardTitle}>{currentStory?.title || currentStory?.heading}</h4>
+                      <p className={styles.cardDescription}>{currentStory?.description}</p>
                     </motion.div>
                   </AnimatePresence>
 
-                  {/* ARROWS — dir="ltr" keeps layout correct when page is RTL; we control order via row-reverse */}
+                  {/* ARROWS */}
                   <div
                     dir="ltr"
-                    className={`${styles.navigationArrows} ${isRTL ? styles.navigationArrowsRTL : ""}`}
+                    className={`${styles.navigationArrows} ${
+                      isRTL ? styles.navigationArrowsRTL : ""
+                    }`}
                   >
-                    <button onClick={handlePrev} className={styles.navBtn}>
+                    <button onClick={handlePrev} className={styles.navBtn} aria-label="Previous Story">
                       <Uicons
                         icon={isRTL ? "fi-rr-angle-right" : "fi-rr-angle-left"}
                         size="20px"
                         color="white"
                       />
                     </button>
-                    <button onClick={handleNext} className={styles.navBtn}>
+                    <button onClick={handleNext} className={styles.navBtn} aria-label="Next Story">
                       <Uicons
                         icon={isRTL ? "fi-rr-angle-left" : "fi-rr-angle-right"}
                         size="20px"
@@ -195,26 +167,26 @@ export default function SuccessStories({ successStoriesData }) {
               </motion.div>
             </Col>
 
-            {/* RIGHT */}
+            {/* RIGHT: Story List & Content */}
             <Col xs={24} lg={12}>
               <motion.div className={styles.contentWrapper} style={{ height: "100%" }}>
-                <div className={styles.tagline}>
-                  <Uicons icon={icon} size="20px" />
-                  <span>{tagline}</span>
-                </div>
-                <h2 className={styles.heading}> {currentStory?.heading}</h2>
-                <p className={styles.description}>
-                  {" "}
-                  {currentStory?.description}
-                </p>
+               
+                  <div className={styles.tagline}>
+                   <Uicons icon={icon} size="20px" />
+                    <span>{tagline}</span>
+                  </div>
+              
+                <h2 className={styles.heading}>{currentStory?.heading}</h2>
+                <p className={styles.description}>{currentStory?.description}</p>
 
                 <div className={styles.storiesList}>
-                  {cards.map((story, idx) => (
+                  {storiesData.map((story, idx) => (
                     <motion.div
                       key={idx}
                       className={`${styles.storyItem} ${activeKey === idx.toString() ? styles.activeItem : ""
                         }`}
                       onClick={() => setActiveKey(idx.toString())}
+                      aria-label={`Select story ${story?.title || story?.heading}`}
                     >
                       <h3 className={styles.storyTitle}>{story?.title}</h3>
                     </motion.div>
@@ -238,10 +210,10 @@ export default function SuccessStories({ successStoriesData }) {
         className={styles.videoModal}
         bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
       >
-        {videoMedia ? (
+        {currentMedia?.type === "video" ? (
           <div className={styles.videoResponsive}>
             <iframe
-              src={currentStory?.video}
+              src={currentMedia.src}
               width="100%"
               height="100%"
               frameBorder="0"
@@ -250,14 +222,17 @@ export default function SuccessStories({ successStoriesData }) {
             />
           </div>
         ) : (
-          <div className={styles.videoResponsive}>
-            <Image
-              src={currentStory?.image?.node?.sourceUrl}
-              alt={currentStory?.image?.node?.altText || currentStory?.altImage}
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
+          
+            <div className={styles.videoResponsive}>
+              <Image
+                src={currentMedia.src}
+                alt={currentStory?.image?.node?.altText || currentStory?.altImage || ""}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: "contain" }}
+              />
+            </div> 
         )}
       </Modal>
     </section>

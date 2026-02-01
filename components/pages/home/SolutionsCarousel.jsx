@@ -1,7 +1,7 @@
 import { Carousel } from "antd";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
@@ -9,6 +9,8 @@ import CustomButton from "@/components/UI/Button";
 import styles from "./Solutions.module.css";
 
 export default function SolutionsCarousel({ solutionscarousel }) {
+  const carouselRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const { currentLang } = useLanguage();
   const isRTL = currentLang === "ar";
   const t = useMemo(() => {
@@ -23,11 +25,14 @@ export default function SolutionsCarousel({ solutionscarousel }) {
     };
   }, [currentLang]);
 
+
   return (
     <Carousel
+      ref={carouselRef}
       dots={true}
       autoplay
-      infinite={false}
+      infinite={true}
+      afterChange={(current) => setCurrentSlide(current)}
       slidesToShow={3}
       slidesToScroll={3}
       className={`${styles.carousel} services-carousel`}
@@ -91,6 +96,7 @@ export default function SolutionsCarousel({ solutionscarousel }) {
                 alt={solution.image?.node?.altText}
                 fill
                 className={styles.serviceImage}
+                sizes="(max-width: 580px) 100vw, (max-width: 868px) 50vw, 33vw"
               />
             </motion.div>
 
@@ -144,7 +150,7 @@ export default function SolutionsCarousel({ solutionscarousel }) {
                   }}
                   transition={{ duration: 0.5 }}
                 >
-                  <CustomButton href="/solutions" className={styles.serviceButton}>
+                  <CustomButton href="/solutions" className={styles.serviceButton} aria-label={t("homeButtons.exploreMore") + " - " + (solution?.title || "")}>
                     {t("homeButtons.exploreMore")}
                   </CustomButton>
                 </motion.div>

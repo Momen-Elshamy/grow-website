@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import { dancingScript, parkinsans } from "@/src/utils/fonts";
 import "antd/dist/reset.css";
 import MainLayout from "@/components/Layout/MainLayout";
 import { ApolloProvider } from "@apollo/client/react";
@@ -37,10 +38,12 @@ export default function App({ Component, pageProps }) {
    return (
       <ApolloProvider client={client}>
          <LanguageProvider>
-         <ConfigProvider theme={{ ...customTheme, algorithm: theme.darkAlgorithm }}>
-            {getLayout(<Component {...pageProps} />, pageProps)}
-         </ConfigProvider>
-      </LanguageProvider>
+            <div className={`${dancingScript.variable} ${parkinsans.variable} font-sans`}>
+               <ConfigProvider theme={{ ...customTheme, algorithm: theme.darkAlgorithm }}>
+                  {getLayout(<Component {...pageProps} />, pageProps)}
+               </ConfigProvider>
+            </div>
+         </LanguageProvider>
       </ApolloProvider>
    );
 }

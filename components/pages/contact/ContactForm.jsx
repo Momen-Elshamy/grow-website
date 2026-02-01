@@ -115,6 +115,7 @@ export default function ContactForm() {
               >
                 <Input
                   placeholder={t("contactForm.placeholderName")}
+                  aria-label={t("contactForm.placeholderName")}
                   size="large"
                   className={styles.input}
                 />
@@ -136,6 +137,7 @@ export default function ContactForm() {
               >
                 <Input
                   placeholder={t("contactForm.placeholderEmail")}
+                  aria-label={t("contactForm.placeholderEmail")}
                   size="large"
                   className={styles.input}
                 />
@@ -168,6 +170,7 @@ export default function ContactForm() {
               >
                 <Input
                   placeholder={t("contactForm.placeholderCompany")}
+                  aria-label={t("contactForm.placeholderCompany")}
                   size="large"
                   className={styles.input}
                 />
@@ -197,6 +200,7 @@ export default function ContactForm() {
               >
                 <Input
                   placeholder={t("contactForm.placeholderPhone")}
+                  aria-label={t("contactForm.placeholderPhone")}
                   size="large"
                   className={styles.input}
                 />
@@ -216,6 +220,7 @@ export default function ContactForm() {
               >
                 <Select
                   placeholder={t("contactForm.placeholderPropertySize")}
+                  aria-label={t("contactForm.placeholderPropertySize")}
                   size="large"
                   suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                   className={styles.select}
@@ -250,6 +255,7 @@ export default function ContactForm() {
               >
                 <Input
                   placeholder={t("contactForm.placeholderLocation")}
+                  aria-label={t("contactForm.placeholderLocation")}
                   size="large"
                   className={styles.input}
                 />
@@ -269,6 +275,7 @@ export default function ContactForm() {
               >
                 <Select
                   placeholder={t("contactForm.placeholderServices")}
+                  aria-label={t("contactForm.placeholderServices")}
                   size="large"
                   suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                   className={styles.select}
@@ -314,6 +321,7 @@ export default function ContactForm() {
             <TextArea
               rows={5}
               placeholder={t("contactForm.placeholderMessage")}
+              aria-label={t("contactForm.placeholderMessage")}
               showCount
               maxLength={1000}
               className={styles.textarea}

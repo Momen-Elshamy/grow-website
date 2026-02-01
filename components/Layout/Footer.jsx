@@ -11,7 +11,7 @@ import ar from "@/src/translations/ar/navigation";
 export default function Footer({ socialMediaData }) {
   const { currentLang } = useLanguage();
   const currentYear = new Date().getFullYear();
-  
+
   // Translation function: t("key") or t("nested.key") returns value or key as fallback
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
@@ -24,15 +24,15 @@ export default function Footer({ socialMediaData }) {
       return val ?? key;
     };
   }, [currentLang]);
-  
+
   const socialLinks = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0
     ? socialMediaData
     : [
-        { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
-        { icon: "fi-brands-facebook", link: "#" },
-        { icon: "fi-brands-instagram", link: "#" },
-        { icon: "fi-brands-youtube", link: "#" },
-      ];
+      { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
+      { icon: "fi-brands-facebook", link: "#" },
+      { icon: "fi-brands-instagram", link: "#" },
+      { icon: "fi-brands-youtube", link: "#" },
+    ];
 
   const aboutLinks = [
     { label: t("footer.aboutLinks.values"), href: "/about#values" },
@@ -76,13 +76,13 @@ export default function Footer({ socialMediaData }) {
           <Col xs={24} sm={24} md={24} lg={8} xl={7}>
             <div className={styles.logoSection}>
               <Link href="/" className={styles.logo}>
-              <Image
-              src="/images/logo2.png"
-              alt="Grow Logo"
-              width={90}
-              height={40}
-              className={styles.logoImage}
-            />
+                <Image
+                  src="/images/logo2.png"
+                  alt="Grow Logo"
+                  width={90}
+                  height={40}
+                  className={styles.logoImage}
+                />
               </Link>
               <p className={styles.description}>
                 {t("footer.description")}
@@ -99,7 +99,7 @@ export default function Footer({ socialMediaData }) {
                       type="primary"
                       shape="default"
                       icon={<Uicons icon={social.icon} />}
-                      aria-label={social.icon}
+                      aria-label={t(`footer.social.${social.icon.split('-').pop()}`)}
                     />
                   </Link>
                 ))}
@@ -107,48 +107,28 @@ export default function Footer({ socialMediaData }) {
             </div>
           </Col>
 
-          <Col xs={12} sm={12} md={6} lg={4} xl={3}>
-            <div className={styles.column}>
-              <h4>{t("footer.about")}</h4>
-              <ul className={styles.links}>
-                {aboutLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Col>
-
-          <Col xs={12} sm={12} md={6} lg={4} xl={4}>
-            <div className={styles.column}>
-              <h4>{t("footer.solutions")}</h4>
-              <ul className={styles.links}>
-                {solutionsLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Col>
-
-          <Col xs={12} sm={12} md={6} lg={4} xl={4}>
-            <div className={styles.column}>
-              <h4>{t("footer.services")}</h4>
-              <ul className={styles.links}>
-                {servicesLinks.map((link, index) => (
-                  <li key={index}>
-                    <Link href={link.href}>{link.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Col>
+          {[
+            { title: t("footer.about"), links: aboutLinks, xl: 3 },
+            { title: t("footer.solutions"), links: solutionsLinks, xl: 4 },
+            { title: t("footer.services"), links: servicesLinks, xl: 4 },
+          ].map((col, idx) => (
+            <Col key={idx} xs={12} sm={12} md={6} lg={4} xl={col.xl}>
+              <div className={styles.column}>
+                <h3 className={styles.columnTitle}>{col.title}</h3>
+                <ul className={styles.links}>
+                  {col.links.map((link, index) => (
+                    <li key={index}>
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Col>
+          ))}
 
           <Col xs={12} sm={12} md={6} lg={4} xl={6}>
             <div className={styles.column}>
-              <h4>{t("footer.quickContact")}</h4>
+              <h3 className={styles.columnTitle}>{t("footer.quickContact")}</h3>
               <div className={styles.contactInfo}>
                 <p className={styles.contactItem}>
                   <Link

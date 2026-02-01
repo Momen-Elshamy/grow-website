@@ -21,7 +21,11 @@ AboutPage.getLayout = function getLayout(page, pageProps) {
   const socialMediaData = aboutPageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
-  const seo = pageProps?.seo || null;
+  const seo = pageProps?.seo ? { ...pageProps.seo } : {};
+
+  if (!seo.head || !seo.head.includes('name="description"')) {
+    seo.description = "Learn more about Grow, our mission, vision, and the expert team dedicated to driving your business growth.";
+  }
 
   return (
     <MainLayout socialMediaData={socialMediaData} contactDataEn={contactDataEn} contactDataAr={contactDataAr} seo={seo}>

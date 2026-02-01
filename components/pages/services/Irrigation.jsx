@@ -28,15 +28,15 @@ export default function Irrigation({ ourServicesData }) {
               className={styles.textContent}
             >
               <h2 className={styles.mainTitle}>
-              {title}
+                {title}
               </h2>
               <p className={styles.paragraph}>
-               {description}
+                {description}
               </p>
               <p className={styles.paragraph}>
-              {moreDescription}
+                {moreDescription}
               </p>
-             
+
             </motion.div>
           </Col>
 
@@ -58,9 +58,8 @@ export default function Irrigation({ ourServicesData }) {
                 />
                 {/* Yellow Overlay Card — in Arabic the card div starts from left */}
                 <div
-                  className={`${styles.overlayCard} ${
-                    isRTL ? styles.overlayCardLeft : ""
-                  }`}
+                  className={`${styles.overlayCard} ${isRTL ? styles.overlayCardLeft : ""
+                    }`}
                   dir={isRTL ? "ltr" : undefined}
                 >
                   <div className={styles.cardIconSection}>
@@ -76,9 +75,8 @@ export default function Irrigation({ ourServicesData }) {
                     />
                   </div>
                   <div
-                    className={`${styles.cardTextSection} ${
-                      isRTL ? styles.cardTextSectionRTL : ""
-                    }`}
+                    className={`${styles.cardTextSection} ${isRTL ? styles.cardTextSectionRTL : ""
+                      }`}
                   >
                     <p className={styles.cardText}>
                       {benefits[0]?.description}

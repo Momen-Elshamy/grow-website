@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import styles from "./Optimization.module.css";
 import CustomButton from "@/components/UI/Button";
 
-export default function Optimization({ourServicesData}) {
+export default function Optimization({ ourServicesData }) {
   const service = ourServicesData?.services?.[4];
 
-  if (!service) return null; 
+  if (!service) return null;
 
   const { title, description, image, altImage, moreDescription } = service;
   return (
-    <section id="optimization" className={styles.labAnalysisSection}>   
+    <section id="optimization" className={styles.labAnalysisSection}>
       <div className={styles.backgroundImageWrapper}>
         <Image
           src={image?.node?.sourceUrl}
@@ -31,7 +31,7 @@ export default function Optimization({ourServicesData}) {
             transition={{ duration: 0.6 }}
             className={styles.title}
           >
-           {title}
+            {title}
           </motion.h2>
 
           <motion.p
@@ -41,7 +41,7 @@ export default function Optimization({ourServicesData}) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={styles.description}
           >
-         {description}
+            {description}
           </motion.p>
 
           <motion.p

@@ -20,7 +20,11 @@ export default function ServicesPage({
 }
 
 ServicesPage.getLayout = function getLayout(page, pageProps) {
-  const seo = pageProps?.seo || null;
+  const seo = pageProps?.seo ? { ...pageProps.seo } : {};
+
+  if (!seo.head || !seo.head.includes('name="description"')) {
+    seo.description = "Explore our comprehensive range of digital services designed to help your business thrive in the modern landscape.";
+  }
   const socialMediaData = pageProps?.socialMediaFromOptions ?? [];
   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;

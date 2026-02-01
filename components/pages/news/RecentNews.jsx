@@ -154,13 +154,12 @@ export default function RecentNews({
                   )}
                 </div>
               )}
-                    <div className={styles.content}>
-                      <p className={styles.date}>{formatDate(selectedNews.date)}</p>
+              <div className={styles.content}>
+                <p className={styles.date}>{formatDate(selectedNews.date)}</p>
                 <h3 className={styles.newsTitle}>{selectedNews.title}</h3>
                 <p
-                  className={`${styles.description} ${
-                    isExpanded ? styles.expandedDescription : styles.featuredDescription
-                  }`}
+                  className={`${styles.description} ${isExpanded ? styles.expandedDescription : styles.featuredDescription
+                    }`}
                 >
                   {selectedNews.description}
                 </p>
@@ -224,9 +223,8 @@ export default function RecentNews({
                 return (
                   <div
                     key={`${item?.title || index}-mobile`}
-                    className={`${styles.newsCard} ${styles.mobileCard} ${
-                      isActive ? styles.activeMobileCard : ""
-                    }`}
+                    className={`${styles.newsCard} ${styles.mobileCard} ${isActive ? styles.activeMobileCard : ""
+                      }`}
                   >
                     {listImage?.sourceUrl && (
                       <div
@@ -254,11 +252,10 @@ export default function RecentNews({
                       <p className={styles.date}>{formatDate(item.date)}</p>
                       <h3 className={styles.newsTitle}>{item.title}</h3>
                       <p
-                        className={`${styles.description} ${
-                          isMobileExpanded
+                        className={`${styles.description} ${isMobileExpanded
                             ? styles.expandedDescription
                             : styles.featuredDescription
-                        }`}
+                          }`}
                       >
                         {item.description}
                       </p>
@@ -328,9 +325,8 @@ export default function RecentNews({
                   <button
                     key={item?.title || index}
                     type="button"
-                    className={`${styles.listItem} ${
-                      isActive ? styles.activeListItem : ""
-                    } ${currentLang === "ar" ? styles.listItemRTL : ""}`}
+                    className={`${styles.listItem} ${isActive ? styles.activeListItem : ""
+                      } ${currentLang === "ar" ? styles.listItemRTL : ""}`}
                     dir={currentLang === "ar" ? "rtl" : undefined}
                     onClick={() => {
                       if (itemIndex !== -1) {
@@ -350,15 +346,13 @@ export default function RecentNews({
                       </div>
                     )}
                     <div
-                      className={`${styles.listItemContent} ${
-                        currentLang === "ar" ? styles.listItemContentRTL : ""
-                      }`}
+                      className={`${styles.listItemContent} ${currentLang === "ar" ? styles.listItemContentRTL : ""
+                        }`}
                       dir={currentLang === "ar" ? "rtl" : undefined}
                     >
                       <p
-                        className={`${styles.date} ${styles.listItemDate} ${
-                          currentLang === "ar" ? styles.listItemDateRTL : ""
-                        }`}
+                        className={`${styles.date} ${styles.listItemDate} ${currentLang === "ar" ? styles.listItemDateRTL : ""
+                          }`}
                         dir={currentLang === "ar" ? "rtl" : undefined}
                       >
                         {formatDate(item.date)}

@@ -5,12 +5,12 @@ import styles from "./TechnicalConsultancy.module.css";
 import CustomButton from "@/components/UI/Button";
 
 export default function TechnicalConsultancy({ ourServicesData }) {
-  
+
   const service = ourServicesData?.services?.[0];
 
   if (!service) return null;
 
-  const { title, description, image, altImage , moreDescription} = service;
+  const { title, description, image, altImage, moreDescription } = service;
 
   return (
     <section id="consultancy" className={styles.consultancySection}>

@@ -31,7 +31,7 @@ export default function NewsSection({ newsData }) {
   }, [currentLang]);
 
   const { video, image, taglineicon, title, categoryTitle, features, description, decorativeText, icon } = newsData || {};
-  
+
   const embedUrl = getYouTubeEmbedUrl(video);
 
   const containerVariants = {
@@ -165,12 +165,12 @@ export default function NewsSection({ newsData }) {
               <motion.div className={styles.actions} variants={rightVariants}>
                 <CustomButton
                   className={styles.btn}
-                 href="/about"
+                  href="/about"
                 >
                   {t("homeButtons.moreAboutUs")}
                 </CustomButton>
                 <CustomButton
-                href="/contact"
+                  href="/contact"
                   className={`${styles.btn} ${styles.secondaryBtn}`}
                   icon={null}
                 >

@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import styles from "./LabAnalysis.module.css";
 import Uicons from "@/components/UI/Uicons";
 
-export default function LabAnalysis({ourServicesData}) {
+export default function LabAnalysis({ ourServicesData }) {
   const service = ourServicesData?.services?.[1];
 
   if (!service) return null;
 
-  const { title, description, image, altImage , moreDescription,benefits} = service;
+  const { title, description, image, altImage, moreDescription, benefits } = service;
   return (
     <section id="lab" className={styles.labAnalysisSection}>
       <div className={styles.container}>
@@ -43,13 +43,13 @@ export default function LabAnalysis({ourServicesData}) {
               transition={{ duration: 0.8 }}
               className={styles.textContent}
             >
-            
+
               <h2 className={styles.title}>{title}</h2>
               <p className={styles.description}>
-              {description}
+                {description}
               </p>
               <p className={styles.intro}>
-              {moreDescription}
+                {moreDescription}
               </p>
 
               <div className={styles.iconBlocksContainer}>

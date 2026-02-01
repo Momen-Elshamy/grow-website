@@ -67,8 +67,8 @@ export default function Card({ solution, index, progress, range, targetScale }) 
                   {solution?.features?.map((feature, i) => (
                     <li key={i} className={styles.featureItem}>
                       <span className={styles.checkIcon}>
-                        <Uicons 
-                          icon={feature.icon || "fi-rr-check"} 
+                        <Uicons
+                          icon={feature.icon || "fi-rr-check"}
                           className={styles.checkmark}
                         />
                       </span>
@@ -90,9 +90,8 @@ export default function Card({ solution, index, progress, range, targetScale }) 
                 </Link>
 
                 <div
-                  className={`${styles.cardNumber} ${
-                    currentLang === "ar" ? styles.cardNumberRTL : ""
-                  }`}
+                  className={`${styles.cardNumber} ${currentLang === "ar" ? styles.cardNumberRTL : ""
+                    }`}
                 >
                   {solution?.number}
                 </div>

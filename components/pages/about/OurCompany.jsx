@@ -57,9 +57,8 @@ export default function OurCompany({ ourCompanyData }) {
                 />
               </div>
               <div
-                className={`${styles.decorativeText} ${
-                  currentLang === "ar" ? styles.decorativeTextAr : ""
-                }`}
+                className={`${styles.decorativeText} ${currentLang === "ar" ? styles.decorativeTextAr : ""
+                  }`}
               >
                 {decorativeText}
               </div>
@@ -105,9 +104,8 @@ export default function OurCompany({ ourCompanyData }) {
                   {marqueeData.map((item, index) => (
                     <div key={index} className={styles.marqueeItem}>
                       <span
-                        className={`${styles.marqueeText} ${
-                          currentLang === "ar" ? styles.marqueeTextRTL : ""
-                        }`}
+                        className={`${styles.marqueeText} ${currentLang === "ar" ? styles.marqueeTextRTL : ""
+                          }`}
                       >
                         {item.text}
                       </span>

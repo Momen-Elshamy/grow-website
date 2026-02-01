@@ -80,9 +80,8 @@ export default function OtherNews({ newsData, onSelectNews }) {
             type="button"
             icon={prevIcon}
             iconColor={canScrollLeft ? "#fff" : "#1f1f1f"}
-            className={`${styles.arrow} ${
-              canScrollLeft ? styles.arrowActive : styles.arrowDisabled
-            }`}
+            className={`${styles.arrow} ${canScrollLeft ? styles.arrowActive : styles.arrowDisabled
+              }`}
             aria-label={isRTL ? "الأخبار السابقة" : "Previous news"}
             aria-disabled={!canScrollLeft}
             onClick={() =>
@@ -94,9 +93,8 @@ export default function OtherNews({ newsData, onSelectNews }) {
           >
           </CustomButton>
           <div
-            className={`${styles.track} ${
-              shouldCenter ? styles.trackCentered : ""
-            }`}
+            className={`${styles.track} ${shouldCenter ? styles.trackCentered : ""
+              }`}
             ref={sliderRef}
           >
             {otherNewsItems.map((item, index) => {

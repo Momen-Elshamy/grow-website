@@ -36,7 +36,6 @@ export default function FeatureVideo({ featureVideoData }) {
               />
             )}
             <div className={styles.overlay} />
-            
             <div className={styles.contentOverlay}>
               <motion.div
                 className={styles.textContent}

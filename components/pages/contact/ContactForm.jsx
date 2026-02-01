@@ -1,4 +1,4 @@
-import { Form, Input, Select, Row, Col, message } from "antd";
+import { Form, Input, Select, Row, Col, message, ConfigProvider, theme } from "antd";
 import { useState, useMemo } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -87,249 +87,264 @@ export default function ContactForm() {
       </motion.h2>
 
       <motion.div variants={formVariants}>
-        <Form
-          form={form}
-          layout="vertical"
-          onFinish={onFinish}
-          className={styles.contactForm}
+        <ConfigProvider
+          theme={{
+            algorithm: theme.defaultAlgorithm,
+            token: {
+              colorBgContainer: "#ffffff",
+              colorTextPlaceholder: "#757575",
+              colorText: "#2d583c",
+              colorBorder: "#c9c9c9",
+            },
+          }}
         >
-          <Row gutter={16}>
-            <Col xs={24} sm={24} md={12}>
-              <Form.Item
-                name="name"
-                rules={[
-                  { required: true, message: t("contactForm.validation.nameRequired") },
-                  {
-                    min: 2,
-                    message: t("contactForm.validation.nameMin"),
-                  },
-                  {
-                    max: 100,
-                    message: t("contactForm.validation.nameMax"),
-                  },
-                  {
-                    whitespace: true,
-                    message: t("contactForm.validation.nameWhitespace"),
-                  },
-                ]}
-              >
-                <Input
-                  placeholder={t("contactForm.placeholderName")}
-                  size="large"
-                  className={styles.input}
-                />
-              </Form.Item>
-            </Col>
-            <Col xs={24} sm={24} md={12}>
-              <Form.Item
-                name="email"
-                rules={[
-                  {
-                    required: true,
-                    message: t("contactForm.validation.emailRequired"),
-                  },
-                  {
-                    type: "email",
-                    message: t("contactForm.validation.emailInvalid"),
-                  },
-                ]}
-              >
-                <Input
-                  placeholder={t("contactForm.placeholderEmail")}
-                  size="large"
-                  className={styles.input}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col xs={24} sm={24} md={12}>
-              <Form.Item
-                name="company"
-                rules={[
-                  {
-                    required: true,
-                    message: t("contactForm.validation.companyRequired"),
-                  },
-                  {
-                    min: 2,
-                    message: t("contactForm.validation.companyMin"),
-                  },
-                  {
-                    max: 200,
-                    message: t("contactForm.validation.companyMax"),
-                  },
-                  {
-                    whitespace: true,
-                    message: t("contactForm.validation.companyWhitespace"),
-                  },
-                ]}
-              >
-                <Input
-                  placeholder={t("contactForm.placeholderCompany")}
-                  size="large"
-                  className={styles.input}
-                />
-              </Form.Item>
-            </Col>
-            <Col xs={24} sm={24} md={12}>
-              <Form.Item
-                name="phone"
-                rules={[
-                  {
-                    required: true,
-                    message: t("contactForm.validation.phoneRequired"),
-                  },
-                  {
-                    pattern: /^[\d\s\-\+\(\)]+$/,
-                    message: t("contactForm.validation.phoneInvalid"),
-                  },
-                  {
-                    min: 8,
-                    message: t("contactForm.validation.phoneMin"),
-                  },
-                  {
-                    max: 20,
-                    message: t("contactForm.validation.phoneMax"),
-                  },
-                ]}
-              >
-                <Input
-                  placeholder={t("contactForm.placeholderPhone")}
-                  size="large"
-                  className={styles.input}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col xs={24} sm={24} md={12}>
-              <Form.Item
-                name="propertySize"
-                rules={[
-                  {
-                    required: false,
-                  },
-                ]}
-              >
-                <Select
-                  placeholder={t("contactForm.placeholderPropertySize")}
-                  size="large"
-                  suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
-                  className={styles.select}
-                  dropdownStyle={{
-                    backgroundColor: "white",
-                    border: "none",
-                  }}
-                  styles={{
-                    placeholder: { color: "#c9c9c9" },
-                  }}
-                >
-                  {PROPERTY_SIZES.map((size) => (
-                    <Option
-                      key={size}
-                      value={size}
-                      className={styles.selectOption}
-                    >
-                      {size} {t("contactForm.acre")}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col xs={24} sm={24} md={12}>
-              <Form.Item
-                name="location"
-                rules={[
-                  {
-                    required: false,
-                  },
-                ]}
-              >
-                <Input
-                  placeholder={t("contactForm.placeholderLocation")}
-                  size="large"
-                  className={styles.input}
-                />
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={16}>
-            <Col span={24}>
-              <Form.Item
-                name="services"
-                rules={[
-                  {
-                    required: false,
-                  },
-                ]}
-              >
-                <Select
-                  placeholder={t("contactForm.placeholderServices")}
-                  size="large"
-                  suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
-                  className={styles.select}
-                  dropdownStyle={{
-                    backgroundColor: "white",
-                    border: "none",
-                  }}
-                  styles={{
-                    placeholder: { color: "#c9c9c9" },
-                  }}
-                >
-                  {SERVICE_KEYS.map((key) => (
-                    <Option
-                      key={key}
-                      value={key}
-                      className={styles.selectOption}
-                    >
-                      {t(`servicesChildren.${key}`)}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Form.Item
-            name="message"
-            rules={[
-              {
-                required: true,
-                message: t("contactForm.validation.messageRequired"),
-              },
-              {
-                min: 10,
-                message: t("contactForm.validation.messageMin"),
-              },
-              {
-                whitespace: true,
-                message: t("contactForm.validation.messageWhitespace"),
-              },
-            ]}
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={onFinish}
+            className={styles.contactForm}
           >
-            <TextArea
-              rows={5}
-              placeholder={t("contactForm.placeholderMessage")}
-              showCount
-              maxLength={1000}
-              className={styles.textarea}
-            />
-          </Form.Item>
+            {/* ... rest of your Form ... */}
+            <Row gutter={16}>
+              <Col xs={24} sm={24} md={12}>
+                <Form.Item
+                  name="name"
+                  rules={[
+                    { required: true, message: t("contactForm.validation.nameRequired") },
+                    {
+                      min: 2,
+                      message: t("contactForm.validation.nameMin"),
+                    },
+                    {
+                      max: 100,
+                      message: t("contactForm.validation.nameMax"),
+                    },
+                    {
+                      whitespace: true,
+                      message: t("contactForm.validation.nameWhitespace"),
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("contactForm.placeholderName")}
+                    aria-label={t("contactForm.placeholderName")}
+                    size="large"
+                    className={styles.input}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={24} md={12}>
+                <Form.Item
+                  name="email"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("contactForm.validation.emailRequired"),
+                    },
+                    {
+                      type: "email",
+                      message: t("contactForm.validation.emailInvalid"),
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("contactForm.placeholderEmail")}
+                    aria-label={t("contactForm.placeholderEmail")}
+                    size="large"
+                    className={styles.input}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
 
-          <Form.Item>
-            <CustomButton
-              htmlType="submit"
-              loading={loading}
-              className={styles.submitButton}
+            <Row gutter={16}>
+              <Col xs={24} sm={24} md={12}>
+                <Form.Item
+                  name="company"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("contactForm.validation.companyRequired"),
+                    },
+                    {
+                      min: 2,
+                      message: t("contactForm.validation.companyMin"),
+                    },
+                    {
+                      max: 200,
+                      message: t("contactForm.validation.companyMax"),
+                    },
+                    {
+                      whitespace: true,
+                      message: t("contactForm.validation.companyWhitespace"),
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("contactForm.placeholderCompany")}
+                    aria-label={t("contactForm.placeholderCompany")}
+                    size="large"
+                    className={styles.input}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={24} md={12}>
+                <Form.Item
+                  name="phone"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("contactForm.validation.phoneRequired"),
+                    },
+                    {
+                      pattern: /^[\d\s\-\+\(\)]+$/,
+                      message: t("contactForm.validation.phoneInvalid"),
+                    },
+                    {
+                      min: 8,
+                      message: t("contactForm.validation.phoneMin"),
+                    },
+                    {
+                      max: 20,
+                      message: t("contactForm.validation.phoneMax"),
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("contactForm.placeholderPhone")}
+                    aria-label={t("contactForm.placeholderPhone")}
+                    size="large"
+                    className={styles.input}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row gutter={16}>
+              <Col xs={24} sm={24} md={12}>
+                <Form.Item
+                  name="propertySize"
+                  rules={[
+                    {
+                      required: false,
+                    },
+                  ]}
+                >
+                  <Select
+                    placeholder={t("contactForm.placeholderPropertySize")}
+                    aria-label={t("contactForm.placeholderPropertySize")}
+                    size="large"
+                    suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
+                    className={styles.select}
+                    dropdownStyle={{
+                      backgroundColor: "white",
+                      border: "none",
+                    }}
+                  >
+                    {PROPERTY_SIZES.map((size) => (
+                      <Option
+                        key={size}
+                        value={size}
+                        className={styles.selectOption}
+                      >
+                        {size} {t("contactForm.acre")}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col xs={24} sm={24} md={12}>
+                <Form.Item
+                  name="location"
+                  rules={[
+                    {
+                      required: false,
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder={t("contactForm.placeholderLocation")}
+                    aria-label={t("contactForm.placeholderLocation")}
+                    size="large"
+                    className={styles.input}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Row gutter={16}>
+              <Col span={24}>
+                <Form.Item
+                  name="services"
+                  rules={[
+                    {
+                      required: false,
+                    },
+                  ]}
+                >
+                  <Select
+                    placeholder={t("contactForm.placeholderServices")}
+                    aria-label={t("contactForm.placeholderServices")}
+                    size="large"
+                    suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
+                    className={styles.select}
+                    dropdownStyle={{
+                      backgroundColor: "white",
+                      border: "none",
+                    }}
+                  >
+                    {SERVICE_KEYS.map((key) => (
+                      <Option
+                        key={key}
+                        value={key}
+                        className={styles.selectOption}
+                      >
+                        {t(`servicesChildren.${key}`)}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+
+            <Form.Item
+              name="message"
+              rules={[
+                {
+                  required: true,
+                  message: t("contactForm.validation.messageRequired"),
+                },
+                {
+                  min: 10,
+                  message: t("contactForm.validation.messageMin"),
+                },
+                {
+                  whitespace: true,
+                  message: t("contactForm.validation.messageWhitespace"),
+                },
+              ]}
             >
-              {loading ? t("contactForm.sending") : t("contactForm.submitRequest")}
-            </CustomButton>
-          </Form.Item>
-        </Form>
+              <TextArea
+                rows={5}
+                placeholder={t("contactForm.placeholderMessage")}
+                aria-label={t("contactForm.placeholderMessage")}
+                showCount
+                maxLength={1000}
+                className={styles.textarea}
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <CustomButton
+                htmlType="submit"
+                loading={loading}
+                className={styles.submitButton}
+              >
+                {loading ? t("contactForm.sending") : t("contactForm.submitRequest")}
+              </CustomButton>
+            </Form.Item>
+          </Form>
+        </ConfigProvider>
       </motion.div>
     </motion.div>
   );

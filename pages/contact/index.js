@@ -14,8 +14,8 @@ export default function ContactPage({ homePageData, contactDataFromOptionsEn, co
       : (contactDataFromOptionsEn ?? contactDataFromOptionsAr);
   return (
     <>
-      <ContactMap />
       <ContactUs noBackground={true} contactData={contactData} />
+      <ContactMap />
     </>
   );
 }

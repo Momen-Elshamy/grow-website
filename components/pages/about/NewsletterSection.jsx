@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { Row, Col, Input } from "antd";
 import { motion } from "framer-motion";
 import CustomButton from "../../UI/Button";
@@ -28,14 +28,17 @@ export default function NewsletterSection({ newsletterData }) {
   if (!newsletterData) return null;
 
   const { title, description, image, email } = newsletterData || {};
+
   return (
     <section className={styles.newsletterSection}>
       <div className={styles.container}>
         <div className={styles.backgroundWrapper}>
           <Image
-            src={image?.node?.sourceUrl}
-            alt={image?.node?.altText}
+            src={image.node.sourceUrl}
+            alt={image.node.altText || "Newsletter Background"}
             fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
             className={styles.backgroundImage}
           />
         </div>
@@ -62,15 +65,23 @@ export default function NewsletterSection({ newsletterData }) {
                     type="email"
                     placeholder={t("contactForm.placeholderEmail")}
                     className={styles.emailInput}
+                    aria-label={t("contactForm.placeholderEmail")}
                   />
-                  <Link href={`mailto:${email}`}>
-                    <CustomButton>{t("aboutButtons.subscribe")}</CustomButton>
+                  <Link href={email} passHref>
+                    <CustomButton
+                      aria-label={`Subscribe via email to ${email}`}
+                      style={{ width: "100%" }}
+                    >
+                      {t("aboutButtons.subscribe")}
+                    </CustomButton>
                   </Link>
                 </div>
 
                 <p className={styles.privacyText}>
                   {t("newsletter.subscribeDisclaimer")}{" "}
-                  <Link href="/terms-and-conditions">{t("footer.bottomLinks.terms")}</Link>
+                  <Link href="/terms-and-conditions">
+                    {t("footer.bottomLinks.terms")}
+                  </Link>
                 </p>
               </div>
             </Col>

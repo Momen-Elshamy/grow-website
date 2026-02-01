@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useMemo } from "react";
 import { Row, Col } from "antd";
 import Image from "next/image";
@@ -12,6 +14,8 @@ import ar from "@/src/translations/ar/navigation";
 
 export default function OurCompany({ ourCompanyData }) {
   const { currentLang } = useLanguage();
+
+  // Translation helper
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
     return (key) => {
@@ -26,14 +30,20 @@ export default function OurCompany({ ourCompanyData }) {
 
   if (!ourCompanyData) return null;
 
-  const { title, description, image, decorativeText, icon, tagline } = ourCompanyData || {};
+  const { title, description, image, decorativeText, icon, tagline } =
+    ourCompanyData || {};
+
   const brandName = t("ourCompany.brandName");
-  /* More items when Arabic so multiple "جرو مصر" are visible; always use enough for a long strip */
-  const marqueeCount = currentLang === "ar" ? 25 : 12;
-  const marqueeData = Array.from({ length: marqueeCount }, () => ({
-    text: brandName,
-    icon: "fi-rr-leaf",
-  }));
+
+  // Memoize marquee data to prevent re-creation
+  const marqueeData = useMemo(() => {
+    const count = currentLang === "ar" ? 25 : 12;
+    return Array.from({ length: count }, () => ({
+      text: brandName,
+      icon: "fi-rr-leaf",
+    }));
+  }, [brandName, currentLang]);
+
   return (
     <section id="company" className={styles.ourCompanySection}>
       <div className={styles.container}>
@@ -49,10 +59,12 @@ export default function OurCompany({ ourCompanyData }) {
             >
               <div className={styles.mainImageContainer}>
                 <Image
-                  src={image?.node?.sourceUrl}
-                  alt={image?.node?.altText}
+                  src={image.node.sourceUrl}
+                  alt={image.node.altText || "Our company image"}
                   width={600}
                   height={600}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
                   className={styles.mainImage}
                 />
               </div>
@@ -80,13 +92,11 @@ export default function OurCompany({ ourCompanyData }) {
                 <span>{tagline}</span>
               </div>
 
-              <h2 className={styles.heading}>
-                {title}
-              </h2>
+              <h2 className={styles.heading}>{title}</h2>
 
-              <p className={styles.description}>
-                {description}
-              </p>
+
+                <p className={styles.description}>{description}</p>
+
 
               <div className={styles.buttonGroup}>
                 <CustomButton href="#experts">
@@ -94,7 +104,7 @@ export default function OurCompany({ ourCompanyData }) {
                 </CustomButton>
               </div>
 
-              {/* Marquee Section — in Arabic: dir="ltr" so it works, direction="right" for RTL scroll */}
+              {/* Marquee Section */}
               <div className={styles.marqueeWrapper} dir="ltr">
                 <Marquee
                   key={currentLang}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { Button, Dropdown, Drawer, Menu } from "antd";
 import { useRouter } from "next/router";
 import { navLinks } from "../../_data/navigation";
@@ -26,9 +26,9 @@ export default function Header() {
     changeLanguage(key);
   };
 
-  const currentLanguage = languages.find((lang) => lang.key === currentLang) || languages[0];
-  
-  // Translation function: t("key") or t("nested.key") returns value or key as fallback
+  const currentLanguage =
+    languages.find((lang) => lang.key === currentLang) || languages[0];
+
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
     return (key) => {
@@ -42,41 +42,49 @@ export default function Header() {
   }, [currentLang]);
 
   const getNavLabel = useCallback((linkName) => t(linkName), [t]);
-  const getChildLabel = useCallback((linkName, childKey) => t(`${linkName}Children.${childKey}`), [t]);
+  const getChildLabel = useCallback(
+    (linkName, childKey) => t(`${linkName}Children.${childKey}`),
+    [t]
+  );
 
   const menuItems = languages
     .filter((lang) => lang.key !== currentLang)
     .map((lang) => ({
       key: lang.key,
       label: (
-          <span style={{display : "flex" , justifyContent : "center"}} >
-            <Image
-              src={lang?.flag}
-              alt={lang?.label}
-              width={32}
-              height={32} 
-              className={styles.flag}
-            />
-          </span>
+        <span style={{ display: "flex", justifyContent: "center" }}>
+          <Image
+            src={lang?.flag}
+            alt={`Switch to ${lang.key.toUpperCase()}`}
+            width={32}
+            height={32}
+            className={styles.flag}
+          />
+        </span>
       ),
     }));
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
     setExpandedKeys([]);
   };
+
   const handleOpenChange = (keys) => {
     setExpandedKeys(keys);
   };
-  // Build menu items for mobile drawer
+
   const mobileMenuItems = useMemo(() => {
     return navLinks.map((link) => {
       if (link.hasDropdown) {
         return {
           key: link.path,
-          label: <span className={styles.menuLabel}>{getNavLabel(link.name)}</span>,
+          label: (
+            <span className={styles.menuLabel}>{getNavLabel(link.name)}</span>
+          ),
           children: link.children.map((child) => ({
             key: `${link.path}#${child.key}`,
             label: (
@@ -84,6 +92,7 @@ export default function Header() {
                 href={`${link.path}#${child.key}`}
                 onClick={closeMobileMenu}
                 className={styles.menuChildLink}
+                aria-label={`Go to ${getChildLabel(link.name, child.key)}`}
               >
                 {getChildLabel(link.name, child.key)}
               </Link>
@@ -98,6 +107,7 @@ export default function Header() {
             href={link.path}
             onClick={closeMobileMenu}
             className={styles.menuLabel}
+            aria-label={`Go to ${getNavLabel(link.name)}`}
           >
             {getNavLabel(link.name)}
           </Link>
@@ -110,16 +120,20 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          <Link href="/" className={styles.logo}>
-            {/* Grow */}
+          <Link href="/" className={styles.logo} aria-label="Go to homepage">
             <Image
               src="/images/logo1.png"
               alt="Grow Logo"
               width={90}
               height={40}
-              className={styles.logoImage}
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              quality={80}
+              loading="eager"
+              style={{ aspectRatio: '180 / 80' }}
             />
           </Link>
+
           <nav className={styles.nav}>
             {navLinks.map((link) => {
               if (link.hasDropdown) {
@@ -129,8 +143,11 @@ export default function Header() {
                     className={`${styles.navLink} ${
                       router.pathname === link.path ? styles.active : ""
                     } ${styles.dropdownTrigger}`}
+                    aria-label={`Go to ${getNavLabel(link.name)}`}
                   >
-                    <span className={styles.linkText}>{getNavLabel(link.name)}</span>
+                    <span className={styles.linkText}>
+                      {getNavLabel(link.name)}
+                    </span>
                     <span className={styles.iconWrapper}>
                       <Uicons icon="fi-rr-angle-small-down" />
                     </span>
@@ -146,13 +163,19 @@ export default function Header() {
                           <Link
                             href={`${link.path}#${child.key}`}
                             className={styles.dropdownMenuItem}
+                            aria-label={`Go to ${getChildLabel(
+                              link.name,
+                              child.key
+                            )}`}
                           >
                             {getChildLabel(link.name, child.key)}
                           </Link>
                         ),
                       })),
                     }}
-                    placement={currentLang === "ar" ? "bottomRight" : "bottomLeft"}
+                    placement={
+                      currentLang === "ar" ? "bottomRight" : "bottomLeft"
+                    }
                     overlayClassName={styles.dropdownOverlay}
                     trigger={["hover", "click"]}
                     mouseEnterDelay={0.1}
@@ -169,33 +192,47 @@ export default function Header() {
                   className={`${styles.navLink} ${
                     router.pathname === link.path ? styles.active : ""
                   }`}
+                  aria-label={`Go to ${getNavLabel(link.name)}`}
                 >
-                  <span className={styles.linkText}>{getNavLabel(link.name)}</span>
+                  <span className={styles.linkText}>
+                    {getNavLabel(link.name)}
+                  </span>
                 </Link>
               );
             })}
           </nav>
+
           <div className={styles.actions}>
-          <Dropdown
-                  menu={{ items: menuItems, onClick: handleLanguageChange }}
-                  trigger={["click"]}
-                >
-              <CustomButton icon="" className={styles.languageButton} type="text">
-                  <span>
-                    <Image
-                      src={currentLanguage.flag}
-                      alt="language flag"
-                      width={32}
-                      height={32} 
-                      className={styles.flag}
-                    />
-                  </span>
+            <Dropdown
+              menu={{ items: menuItems, onClick: handleLanguageChange }}
+              trigger={["click"]}
+            >
+              <CustomButton
+                icon=""
+                className={styles.languageButton}
+                type="text"
+                aria-label="Change language"
+              >
+                <span>
+                  <Image
+                    src={currentLanguage.flag}
+                    alt={`Current language: ${currentLanguage.key}`}
+                    width={32}
+                    height={32}
+                    className={styles.flag}
+                  />
+                </span>
               </CustomButton>
-           </Dropdown>
-            <Link href="/contact" passHref className={styles.contactUsButton}>
+            </Dropdown>
+
+            <Link
+              href="/contact"
+              passHref
+              className={styles.contactUsButton}
+              aria-label="Go to Contact page"
+            >
               <CustomButton>{t("contactUs")}</CustomButton>
             </Link>
-
 
             <Button
               className="mobileMenuBtn"
@@ -207,11 +244,12 @@ export default function Header() {
                   color="#17311E"
                 />
               }
+              aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
             />
           </div>
         </div>
       </header>
-      {/* Mobile Menu Drawer */}
+
       <Drawer
         placement="right"
         onClose={closeMobileMenu}
@@ -224,22 +262,27 @@ export default function Header() {
           wrapper: { zIndex: 20001 },
         }}
         className={styles.mobileDrawer}
+        aria-label="Mobile menu drawer"
       >
         <div className={styles.mobileMenuHeader}>
           <Link
             href="/"
             className={styles.mobileLogo}
             onClick={closeMobileMenu}
+            aria-label="Go to homepage"
           >
             Grow
           </Link>
+
           <Button
             type="text"
             className={styles.mobileCloseBtn}
             onClick={closeMobileMenu}
             icon={<Uicons icon="fi-rr-cross" />}
+            aria-label="Close mobile menu"
           />
         </div>
+
         <Menu
           mode="inline"
           selectedKeys={[router.pathname]}
@@ -248,8 +291,16 @@ export default function Header() {
           className={styles.mobileMenu}
           items={mobileMenuItems}
         />
-                  <Link href="/contact" passHref className={styles.contactUsLinkMenu}>
-            <CustomButton className={styles.contactUsButtonMenu}>{t("contactUs")}</CustomButton>
+
+        <Link
+          href="/contact"
+          passHref
+          className={styles.contactUsLinkMenu}
+          aria-label="Go to Contact page"
+        >
+          <CustomButton className={styles.contactUsButtonMenu}>
+            {t("contactUs")}
+          </CustomButton>
         </Link>
       </Drawer>
     </>

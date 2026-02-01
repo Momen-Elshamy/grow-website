@@ -20,7 +20,11 @@ export default function TermsAndConditionsPage({
 }
 
 TermsAndConditionsPage.getLayout = function getLayout(page, pageProps) {
-  const seo = pageProps?.seo || null;
+  const seo = pageProps?.seo ? { ...pageProps.seo } : {};
+
+  if (!seo.head || !seo.head.includes('name="description"')) {
+    seo.description = "Read our terms and conditions to understand the rules and guidelines for using Grow's services and website.";
+  }
   const socialMediaData = pageProps?.socialMediaFromOptions ?? [];
   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;

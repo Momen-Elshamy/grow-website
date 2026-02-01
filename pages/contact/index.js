@@ -6,7 +6,7 @@ import { useLanguage } from "@/src/contexts/LanguageContext";
 import { client, GET_FRONT_PAGE_DATA } from "@/src/graphql";
 import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
-export default function ContactPage({ homePageData, contactDataFromOptionsEn, contactDataFromOptionsAr }) {
+export default function ContactPage({ contactDataFromOptionsEn, contactDataFromOptionsAr }) {
   const { currentLang } = useLanguage();
   const contactData =
     currentLang === "ar"
@@ -25,7 +25,11 @@ ContactPage.getLayout = function getLayout(page, pageProps) {
   const socialMediaData = homePageData?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
-  const seo = pageProps?.seo || null;
+  const seo = pageProps?.seo ? { ...pageProps.seo } : {};
+
+  if (!seo.head || !seo.head.includes('name="description"')) {
+    seo.description = "Get in touch with Grow. We are here to answer your questions and help you start your journey toward digital excellence.";
+  }
 
   return (
     <MainLayout
@@ -49,6 +53,6 @@ export const getStaticProps = withWebsiteSettings(async () => {
     homePageData === null ? null : JSON.parse(JSON.stringify(homePageData));
   return {
     props: { homePageData: safeHomePageData },
-    revalidate: 1, 
+    revalidate: 1,
   };
 });

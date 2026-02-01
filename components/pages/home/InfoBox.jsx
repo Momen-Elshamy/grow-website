@@ -7,7 +7,6 @@ import styles from "./InfoBox.module.css";
 export default function InfoBox({ infoboxData }) {
   const { currentLang } = useLanguage();
   const { title, description, features, image } = infoboxData || {};
-  console.log(infoboxData, "infoboxData");
 
   return (
     <motion.div
@@ -16,15 +15,13 @@ export default function InfoBox({ infoboxData }) {
       viewport={{ once: false, amount: 0.3 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       style={{ y: "-50%" }}
-      className={`${styles.infoBox} ${
-        currentLang === "ar" ? styles.infoBoxRTL : ""
-      }`}
+      className={`${styles.infoBox} ${currentLang === "ar" ? styles.infoBoxRTL : ""
+        }`}
     >
       {/* Logo */}
       <div
-        className={`${styles.logoContainer} ${
-          currentLang === "ar" ? styles.logoContainerRTL : ""
-        }`}
+        className={`${styles.logoContainer} ${currentLang === "ar" ? styles.logoContainerRTL : ""
+          }`}
       >
         <Image
           src={image?.node?.sourceUrl}
@@ -74,9 +71,8 @@ export default function InfoBox({ infoboxData }) {
 
       {/* Decorative Plant */}
       <div
-        className={`${styles.plantDecoration} ${
-          currentLang === "ar" ? styles.plantDecorationRTL : ""
-        }`}
+        className={`${styles.plantDecoration} ${currentLang === "ar" ? styles.plantDecorationRTL : ""
+          }`}
       >
         <Image
           src="/images/hero/banner-1.png"

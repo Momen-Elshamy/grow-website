@@ -4,6 +4,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Parkinsans:wght@300;400;500;600;700;800&display=swap"
@@ -11,10 +13,12 @@ export default function Document() {
         <link
           rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css"
+          crossOrigin="anonymous"
         />
         <link
           rel="stylesheet"
           href="https://cdn-uicons.flaticon.com/2.1.0/uicons-brands/css/uicons-brands.css"
+          crossOrigin="anonymous"
         />
       </Head>
       <body>

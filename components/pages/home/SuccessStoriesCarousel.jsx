@@ -43,7 +43,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
 
   return (
     <Carousel {...settings} className={`${styles.carousel} carousel`}>
-      {cards.map((course) => (  
+      {cards.map((course) => (
         <Link href={`/about?story=${encodeURIComponent(course?.title || "")}`} key={course.id} className={styles.slide}>
           <Card
             className={styles.card}

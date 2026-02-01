@@ -12,7 +12,6 @@ import styles from "./HeroCarousel.module.css";
 export default function CarouselComponent({ heroDetails }) {
   const carouselRef = useRef(null);
   const { currentLang } = useLanguage();
-  
   // Translation function: t("key") or t("nested.key") returns value or key as fallback
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;

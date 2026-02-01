@@ -5,33 +5,37 @@ import { GET_FRONT_PAGE_DATA, GET_FRONT_PAGE_ARABIC_DATA } from "@/src/graphql/q
 import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 
 export default function HomePage({ homePageData, homePageDataArabic, contactDataFromOptionsEn, contactDataFromOptionsAr }) {
-   return (
-     <Home
-       homePageData={homePageData}
-       homePageDataArabic={homePageDataArabic}
-       contactDataFromOptionsEn={contactDataFromOptionsEn}
-       contactDataFromOptionsAr={contactDataFromOptionsAr}
-     />
-   );
+  return (
+    <Home
+      homePageData={homePageData}
+      homePageDataArabic={homePageDataArabic}
+      contactDataFromOptionsEn={contactDataFromOptionsEn}
+      contactDataFromOptionsAr={contactDataFromOptionsAr}
+    />
+  );
 }
 
 HomePage.getLayout = function getLayout(page, pageProps) {
-   const homePageFields = pageProps?.homePageData || {};
-   const socialMediaData = homePageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
-   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
-   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
-   const seo = pageProps?.seo || null;
+  const homePageFields = pageProps?.homePageData || {};
+  const socialMediaData = homePageFields?.socialMedia ?? pageProps?.socialMediaFromOptions ?? [];
+  const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
+  const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
+  const seo = pageProps?.seo ? { ...pageProps.seo } : {};
 
-   return (
-     <MainLayout
-       socialMediaData={socialMediaData}
-       contactDataEn={contactDataEn}
-       contactDataAr={contactDataAr}
-       seo={seo}
-     >
-       {page}
-     </MainLayout>
-   );
+  if (!seo.head || !seo.head.includes('name="description"')) {
+    seo.description = "Grow is your partner for digital growth, offering data-driven solutions and innovative strategies in the Middle East.";
+  }
+
+  return (
+    <MainLayout
+      socialMediaData={socialMediaData}
+      contactDataEn={contactDataEn}
+      contactDataAr={contactDataAr}
+      seo={seo}
+    >
+      {page}
+    </MainLayout>
+  );
 };
 
 export const getStaticProps = withWebsiteSettings(async () => {

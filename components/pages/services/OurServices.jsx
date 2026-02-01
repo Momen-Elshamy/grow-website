@@ -45,9 +45,8 @@ export default function OurServices({ ourServicesData }) {
         <Row gutter={[60, 60]}>
           <Col xs={24} lg={10}>
             <div
-              className={`${styles.leftColumn} ${
-                isRTL ? styles.leftColumnRTL : ""
-              }`}
+              className={`${styles.leftColumn} ${isRTL ? styles.leftColumnRTL : ""
+                }`}
               dir={isRTL ? "rtl" : "ltr"}
             >
               <motion.h2
@@ -67,14 +66,13 @@ export default function OurServices({ ourServicesData }) {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`${styles.serviceButton} ${
-                        selectedService?.slug === service?.slug
+                      className={`${styles.serviceButton} ${selectedService?.slug === service?.slug
                           ? styles.active
                           : ""
-                      } ${isRTL ? styles.serviceButtonRTL : ""}`}
+                        } ${isRTL ? styles.serviceButtonRTL : ""}`}
                       onClick={() => {
                         setSelectedService(service);
-                      
+
                       }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}

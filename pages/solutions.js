@@ -20,7 +20,11 @@ export default function SolutionsPage({
 }
 
 SolutionsPage.getLayout = function getLayout(page, pageProps) {
-  const seo = pageProps?.seo || null;
+  const seo = pageProps?.seo ? { ...pageProps.seo } : {};
+
+  if (!seo.head || !seo.head.includes('name="description"')) {
+    seo.description = "Discover our innovative solutions tailored to meet the unique challenges of your industry and business.";
+  }
   const socialMediaData = pageProps?.socialMediaFromOptions ?? [];
   const contactDataEn = pageProps?.contactDataFromOptionsEn ?? null;
   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;

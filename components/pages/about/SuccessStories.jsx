@@ -183,9 +183,8 @@ export default function SuccessStories({ successStoriesData }) {
                   {storiesData.map((story, idx) => (
                     <motion.div
                       key={idx}
-                      className={`${styles.storyItem} ${
-                        activeKey === idx.toString() ? styles.activeItem : ""
-                      }`}
+                      className={`${styles.storyItem} ${activeKey === idx.toString() ? styles.activeItem : ""
+                        }`}
                       onClick={() => setActiveKey(idx.toString())}
                       aria-label={`Select story ${story?.title || story?.heading}`}
                     >

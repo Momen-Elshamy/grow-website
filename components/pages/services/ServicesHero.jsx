@@ -78,18 +78,18 @@ export default function ServicesHero({ heroData }) {
           transition={{ duration: 0.8, delay: 0.6 }}
           className={styles.breadcrumbWrapper}
         >
-            <Breadcrumb
-              className={styles.breadcrumb}
-              separator={<span className={styles.separator}>&gt;</span>}
-              items={[
-                {
-                  title: <Link href="/">{t("aboutButtons.home")}</Link>,
-                },
-                {
-                  title: <span className={styles.current}>{t("services")}</span>,
-                },
-              ]}
-            />
+          <Breadcrumb
+            className={styles.breadcrumb}
+            separator={<span className={styles.separator}>&gt;</span>}
+            items={[
+              {
+                title: <Link href="/">{t("aboutButtons.home")}</Link>,
+              },
+              {
+                title: <span className={styles.current}>{t("services")}</span>,
+              },
+            ]}
+          />
         </motion.div>
       </div>
     </section>

@@ -5,12 +5,12 @@ import styles from "./TrainingCourse.module.css";
 import Uicons from "@/components/UI/Uicons";
 
 
-export default function TrainingCourse({ourServicesData}) {
+export default function TrainingCourse({ ourServicesData }) {
   const service = ourServicesData?.services?.[2];
 
   if (!service) return null;
 
-  const { title, description, image, altImage , moreDescription,benefits} = service;
+  const { title, description, image, altImage, moreDescription, benefits } = service;
   return (
     <section id="training" className={styles.featuresSection}>
       <div className={styles.container}>
@@ -51,7 +51,7 @@ export default function TrainingCourse({ourServicesData}) {
               {/* <p className={styles.sectionDescription}>{moreDescription}</p> */}
             </motion.div>
             <div className={styles.featuresList}>
-              { benefits?.map((benefit, index) => (
+              {benefits?.map((benefit, index) => (
                 <motion.div
                   key={benefit?.id}
                   initial={{ opacity: 0, y: 30 }}

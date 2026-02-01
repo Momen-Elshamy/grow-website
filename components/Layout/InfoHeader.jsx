@@ -67,8 +67,10 @@ const INFO_FIELDS = ["text", "info"];
 const InfoField = ({ item, fieldKey }) => {
   const val = item[fieldKey];
   if (!val) return null;
-  const content = <p className={styles[fieldKey]}>{val}</p>;
   const link = item[`${fieldKey}Link`];
+
+  const content = <p className={styles[fieldKey]}>{val}</p>;
+
   if (link) {
     return (
       <Link
@@ -76,11 +78,13 @@ const InfoField = ({ item, fieldKey }) => {
         target={link.startsWith("http") ? "_blank" : undefined}
         rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
         className={`${styles.link} ${styles[fieldKey]}`}
+        aria-label={val} // Added for screen readers
       >
         {content}
       </Link>
     );
   }
+
   return <div>{content}</div>;
 };
 
@@ -92,13 +96,19 @@ export default function InfoHeader({ socialMediaData, contactDataEn, contactData
 
   return (
     <div className={styles.infoHeader}>
+      {/* Desktop Layout */}
       <Row gutter={16} justify="center" className={styles.desktopRow}>
         {socialIcons.length > 0 && (
           <Col span={6} className={styles.iconsContainer}>
             <div className={styles.iconsWrapper}>
               {socialIcons.map((s, i) => (
                 <div key={i} className={styles.iconBox}>
-                  <Link href={s?.link || "#"} target="_blank" rel="noopener noreferrer">
+                  <Link
+                    href={s?.link || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${s?.title || "social media link"}`} // Added
+                  >
                     <Uicons icon={s?.icon} size={20} color="#17311E" className={styles.socialIcon} />
                   </Link>
                 </div>
@@ -106,6 +116,7 @@ export default function InfoHeader({ socialMediaData, contactDataEn, contactData
             </div>
           </Col>
         )}
+
         {infoItems.map((item, i) => (
           <Col key={i} span={6} className={styles.iconsContainer}>
             <div className={styles.infoText}>
@@ -127,6 +138,8 @@ export default function InfoHeader({ socialMediaData, contactDataEn, contactData
           </Col>
         ))}
       </Row>
+
+      {/* Mobile Layout */}
       <div className={styles.mobileLayout}>
         <div className={styles.mobileInfoRow}>
           {infoItems.map((item, index) => (
@@ -148,11 +161,17 @@ export default function InfoHeader({ socialMediaData, contactDataEn, contactData
             </div>
           ))}
         </div>
+
         {socialIcons.length > 0 && (
           <div className={styles.mobileIconsWrapper}>
             {socialIcons.map((s, i) => (
               <div key={i} className={styles.iconBox}>
-                <Link href={s?.link || "#"} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={s?.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${s?.title || "social media link"}`} // Added
+                >
                   <Uicons icon={s?.icon} size={18} color="#17311E" className={styles.socialIcon} />
                 </Link>
               </div>

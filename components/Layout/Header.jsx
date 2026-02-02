@@ -125,13 +125,12 @@ export default function Header() {
             <Image
               src="/images/logo1.png"
               alt="Grow Logo"
-              width={90}
+              width={83}
               height={40}
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
               quality={80}
               loading="eager"
-              style={{ aspectRatio: '180 / 80' }}
             />
           </Link>
 
@@ -141,9 +140,8 @@ export default function Header() {
                 const dropdownTrigger = (
                   <Link
                     href={link.path}
-                    className={`${styles.navLink} ${
-                      router.pathname === link.path ? styles.active : ""
-                    } ${styles.dropdownTrigger}`}
+                    className={`${styles.navLink} ${router.pathname === link.path ? styles.active : ""
+                      } ${styles.dropdownTrigger}`}
                     aria-label={`Go to ${getNavLabel(link.name)}`}
                   >
                     <span className={styles.linkText}>
@@ -190,9 +188,8 @@ export default function Header() {
                 <Link
                   key={link.path}
                   href={link.path}
-                  className={`${styles.navLink} ${
-                    router.pathname === link.path ? styles.active : ""
-                  }`}
+                  className={`${styles.navLink} ${router.pathname === link.path ? styles.active : ""
+                    }`}
                   aria-label={`Go to ${getNavLabel(link.name)}`}
                 >
                   <span className={styles.linkText}>

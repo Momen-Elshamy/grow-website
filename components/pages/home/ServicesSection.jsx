@@ -106,6 +106,7 @@ export default function ServicesSection({ servicesData }) {
                 alt={image?.node?.altText}
                 fill
                 className={styles.mainImage}
+                sizes="(max-width: 992px) 100vw, 50vw"
               />
               <motion.div
                 initial={{ opacity: 0, x: 50 }}

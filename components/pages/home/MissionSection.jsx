@@ -37,6 +37,7 @@ export default function MissionSection({ missionData }) {
           fill
           className={styles.backgroundImage}
           priority={false}
+          sizes="100vw"
         />
         <div className={styles.backgroundOverlay} />
       </div>

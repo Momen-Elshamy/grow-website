@@ -118,7 +118,7 @@
   bottom: -45px;
   left: 50%;
   transform: translateX(-50%) rotate(-8deg) !important;
-  font-family: "Dancing Script", cursive, sans-serif;
+  font-family: var(--font-dancing-script), cursive, sans-serif;
   font-size: 7rem;
   color: #eecd15;
   line-height: 1;

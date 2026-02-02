@@ -3,6 +3,9 @@ export default {
   solutions: "الحلول",
   services: "الخدمات",
   news: "الأخبار",
+  newsSection: {
+    playVideo: "شغل الفيديو",
+  },
   recentNews: "آخر الأخبار",
   recentPosts: "أحدث المنشورات",
   moreNews: "المزيد من الأخبار",
@@ -20,6 +23,10 @@ export default {
     exploreMore: "استكشف المزيد",
     submitRequest: "إرسال الطلب",
     sending: "جاري الإرسال...",
+  },
+  carousel: {
+    prev: "الشريحة السابقة",
+    next: "الشريحة التالية",
   },
   whatsapp: {
     headerText: "اترك لنا رسالة وسنعود إليك.",
@@ -95,6 +102,12 @@ export default {
       sitemap: "خريطة الموقع",
     },
     copyright: "جميع الحقوق محفوظة. مع الحب من",
+    social: {
+      linkedin: "لينكد إن",
+      facebook: "فيسبوك",
+      instagram: "إنستغرام",
+      youtube: "يوتيوب",
+    },
   },
   contactForm: {
     heading:

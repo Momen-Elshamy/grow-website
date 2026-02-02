@@ -98,31 +98,31 @@ export default function SuccessStories({ successStoriesData }) {
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5 }}
                     >
-                        <Image
-                          src={currentStory.image.node.sourceUrl}
-                          alt={currentStory.image.node.altText || currentStory.altImage || ""}
-                          width={600}
-                          height={900}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          loading="lazy"
-                          className={styles.mainImage}
-                        />
+                      <Image
+                        src={currentStory.image.node.sourceUrl}
+                        alt={currentStory.image.node.altText || currentStory.altImage || ""}
+                        width={600}
+                        height={900}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        loading="lazy"
+                        className={styles.mainImage}
+                      />
 
                       {/* ICON ONLY CLICKABLE */}
-                        <div
-                          className={styles.playButton}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleOpenModal();
-                          }}
-                          aria-label={currentMedia.type === "video" ? "Play Video" : "View Image"}
-                        >
-                          <Uicons
-                            icon={currentMedia.type === "video" ? "fi-rr-play" : "fi-rr-expand"}
-                            size="24px"
-                            color="white"
-                          />
-                        </div>
+                      <button
+                        className={styles.playButton}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenModal();
+                        }}
+                        aria-label={currentMedia.type === "video" ? "Play Video" : "View Image"}
+                      >
+                        <Uicons
+                          icon={currentMedia.type === "video" ? "fi-rr-play" : "fi-rr-expand"}
+                          size="24px"
+                          color="white"
+                        />
+                      </button>
                     </motion.div>
                   </AnimatePresence>
 
@@ -144,9 +144,8 @@ export default function SuccessStories({ successStoriesData }) {
                   {/* ARROWS */}
                   <div
                     dir="ltr"
-                    className={`${styles.navigationArrows} ${
-                      isRTL ? styles.navigationArrowsRTL : ""
-                    }`}
+                    className={`${styles.navigationArrows} ${isRTL ? styles.navigationArrowsRTL : ""
+                      }`}
                   >
                     <button onClick={handlePrev} className={styles.navBtn} aria-label="Previous Story">
                       <Uicons
@@ -170,12 +169,12 @@ export default function SuccessStories({ successStoriesData }) {
             {/* RIGHT: Story List & Content */}
             <Col xs={24} lg={12}>
               <motion.div className={styles.contentWrapper} style={{ height: "100%" }}>
-               
-                  <div className={styles.tagline}>
-                   <Uicons icon={icon} size="20px" />
-                    <span>{tagline}</span>
-                  </div>
-              
+
+                <div className={styles.tagline}>
+                  <Uicons icon={icon} size="20px" />
+                  <span>{tagline}</span>
+                </div>
+
                 <h2 className={styles.heading}>{currentStory?.heading}</h2>
                 <p className={styles.description}>{currentStory?.description}</p>
 
@@ -222,17 +221,17 @@ export default function SuccessStories({ successStoriesData }) {
             />
           </div>
         ) : (
-          
-            <div className={styles.videoResponsive}>
-              <Image
-                src={currentMedia.src}
-                alt={currentStory?.image?.node?.altText || currentStory?.altImage || ""}
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{ objectFit: "contain" }}
-              />
-            </div> 
+
+          <div className={styles.videoResponsive}>
+            <Image
+              src={currentMedia.src}
+              alt={currentStory?.image?.node?.altText || currentStory?.altImage || ""}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
         )}
       </Modal>
     </section>

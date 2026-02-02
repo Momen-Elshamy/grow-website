@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import styles from "./TechnicalConsultancy.module.css";
 
 export default function TechnicalConsultancy({ ourServicesData }) {
-  
+
   const service = ourServicesData?.services?.[0];
 
   if (!service) return null;
@@ -43,7 +43,7 @@ export default function TechnicalConsultancy({ ourServicesData }) {
             style={{ contentVisibility: "auto", willChange: "transform, opacity" }}
           >
             <Image
-              src={image.node.sourceUrl}
+              src={image?.node?.sourceUrl}
               alt={altImage || title}
               fill
               loading="lazy"
@@ -51,7 +51,7 @@ export default function TechnicalConsultancy({ ourServicesData }) {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className={styles.cropImage}
               style={{ objectFit: "cover" }}
-            
+
             />
           </motion.div>
         </Col>

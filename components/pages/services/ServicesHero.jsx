@@ -26,7 +26,7 @@ export default function ServicesHero({ heroData }) {
     <section id="hero" className={styles.heroSection}>
       <div className={styles.imageWrapper}>
         <Image
-          src={image.node.sourceUrl}
+          src={image?.node?.sourceUrl}
           alt={altImage || title}
           fill
           priority

@@ -12,6 +12,7 @@ export default {
   heroButtons: {
     exploreServices: "استكشف خدماتنا",
     aboutUs: "من نحن",
+    expandImage: "تكبير الصورة",
   },
   homeButtons: {
     contactUs: "اتصل بنا",

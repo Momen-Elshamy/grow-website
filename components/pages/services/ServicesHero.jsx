@@ -16,9 +16,7 @@ export default function ServicesHero({ heroData }) {
     return (key) => {
       const keys = key.split(".");
       let val = dict;
-      for (const k of keys) {
-        val = val?.[k];
-      }
+      for (const k of keys) val = val?.[k];
       return val ?? key;
     };
   }, [currentLang]);
@@ -28,11 +26,15 @@ export default function ServicesHero({ heroData }) {
     <section id="hero" className={styles.heroSection}>
       <div className={styles.imageWrapper}>
         <Image
-          src={image?.node?.sourceUrl}
-          alt={altImage}
+          src={image.node.sourceUrl}
+          alt={altImage || title}
           fill
           priority
+          quality={85}
+          sizes="100vw"
           className={styles.heroImage}
+          style={{ objectFit: "cover", objectPosition: "center" }}
+          fetchPriority="high"
         />
         <div className={styles.overlay} />
       </div>
@@ -44,6 +46,10 @@ export default function ServicesHero({ heroData }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className={styles.title}
+            style={{
+              contentVisibility: "auto",
+              willChange: "transform, opacity",
+            }}
           >
             {title}
           </motion.h1>
@@ -53,6 +59,10 @@ export default function ServicesHero({ heroData }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className={styles.description}
+            style={{
+              contentVisibility: "auto",
+              willChange: "transform, opacity",
+            }}
           >
             {description}
           </motion.p>
@@ -63,7 +73,6 @@ export default function ServicesHero({ heroData }) {
             transition={{ duration: 0.6, delay: 0.4 }}
             className={styles.buttonGroup}
           >
-            {" "}
             <Link href="/contact" className={styles.contactBtnLink}>
               <CustomButton className={styles.transparentBtn}>
                 {t("aboutButtons.contactUs")}
@@ -83,7 +92,11 @@ export default function ServicesHero({ heroData }) {
             separator={<span className={styles.separator}>&gt;</span>}
             items={[
               {
-                title: <Link href="/">{t("aboutButtons.home")}</Link>,
+                title: (
+                  <Link rel="prefetch" href="/">
+                    {t("aboutButtons.home")}
+                  </Link>
+                ),
               },
               {
                 title: <span className={styles.current}>{t("services")}</span>,

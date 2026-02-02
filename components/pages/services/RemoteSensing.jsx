@@ -9,13 +9,13 @@ export default function RemoteSensing({ ourServicesData }) {
 
   if (!service) return null;
 
-  const { title, description, image, altImage, moreDescription, benefits } =
-    service;
+  const { title, description, image, altImage, moreDescription, benefits } = service || {};
+
   return (
     <section id="remote-sensing" className={styles.remoteSensingSection}>
       <div className={styles.container}>
         <Row gutter={0} className={styles.row}>
-          {/* Left Column: Image with Overlays */}
+          {/* Left Column: Image */}
           <Col xs={24} lg={12} className={styles.imageColumn}>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -27,9 +27,14 @@ export default function RemoteSensing({ ourServicesData }) {
               <div className={styles.imageContainer}>
                 <Image
                   src={image?.node?.sourceUrl}
-                  alt={altImage}
+                  alt={altImage || title}
                   fill
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.farmerImage}
+                  style={{ objectFit: "cover" }}
+                 
                 />
               </div>
             </motion.div>
@@ -44,14 +49,29 @@ export default function RemoteSensing({ ourServicesData }) {
               transition={{ duration: 0.8 }}
               className={styles.textContent}
             >
-              <h2 className={styles.title}>{title}</h2>
-              <p className={styles.intro}>{description}</p>
-              <p className={styles.intro}>{moreDescription}</p>
+              <h2
+                className={styles.title}
+                style={{ contentVisibility: "auto", willChange: "transform, opacity" }}
+              >
+                {title}
+              </h2>
+              <p
+                className={styles.intro}
+                style={{ contentVisibility: "auto", willChange: "transform, opacity" }}
+              >
+                {description}
+              </p>
+              <p
+                className={styles.intro}
+                style={{ contentVisibility: "auto", willChange: "transform, opacity" }}
+              >
+                {moreDescription}
+              </p>
 
               <div className={styles.benefitsList}>
                 {benefits?.map((benefit, index) => (
                   <motion.div
-                    key={benefit?.id}
+                    key={benefit?.id ?? index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -72,9 +92,7 @@ export default function RemoteSensing({ ourServicesData }) {
                     </div>
                     <div className={styles.benefitContent}>
                       <h3 className={styles.benefitTitle}>{benefit?.title}</h3>
-                      <p className={styles.benefitDescription}>
-                        {benefit?.description}
-                      </p>
+                      <p className={styles.benefitDescription}>{benefit?.description}</p>
                     </div>
                   </motion.div>
                 ))}

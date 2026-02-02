@@ -45,8 +45,9 @@ export default function OurServices({ ourServicesData }) {
         <Row gutter={[60, 60]}>
           <Col xs={24} lg={10}>
             <div
-              className={`${styles.leftColumn} ${isRTL ? styles.leftColumnRTL : ""
-                }`}
+              className={`${styles.leftColumn} ${
+                isRTL ? styles.leftColumnRTL : ""
+              }`}
               dir={isRTL ? "rtl" : "ltr"}
             >
               <motion.h2
@@ -60,19 +61,25 @@ export default function OurServices({ ourServicesData }) {
               </motion.h2>
               <Row gutter={[16, 16]} className={styles.servicesList}>
                 {services.map((service, index) => (
-                  <Col xs={24} sm={24} md={24} lg={24} key={service?.id ?? index}>
+                  <Col
+                    xs={24}
+                    sm={24}
+                    md={24}
+                    lg={24}
+                    key={service?.id ?? index}
+                  >
                     <motion.customButton
                       initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`${styles.serviceButton} ${selectedService?.slug === service?.slug
+                      className={`${styles.serviceButton} ${
+                        selectedService?.slug === service?.slug
                           ? styles.active
                           : ""
-                        } ${isRTL ? styles.serviceButtonRTL : ""}`}
+                      } ${isRTL ? styles.serviceButtonRTL : ""}`}
                       onClick={() => {
                         setSelectedService(service);
-
                       }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -81,7 +88,11 @@ export default function OurServices({ ourServicesData }) {
                         {service.title}
                       </span>
                       <Uicons
-                        icon={isRTL ? "fi-rr-arrow-small-left" : "fi-rr-arrow-small-right"}
+                        icon={
+                          isRTL
+                            ? "fi-rr-arrow-small-left"
+                            : "fi-rr-arrow-small-right"
+                        }
                         size="20px"
                         style={{ color: "#ffffff" }}
                       />
@@ -135,7 +146,11 @@ export default function OurServices({ ourServicesData }) {
                         src={selectedService.image?.node?.sourceUrl}
                         alt={selectedService.altImage}
                         fill
+                        loading="lazy"
+                        quality={85}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         className={styles.videoImage}
+                        style={{ objectFit: "cover" }}
                       />
                       <button
                         className={styles.playButton}
@@ -186,15 +201,19 @@ export default function OurServices({ ourServicesData }) {
         className={styles.modal}
         bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
       >
-        <div className={styles.modalImageWrapper}>
+        <div
+          className={styles.modalImageWrapper}
+          style={{ position: "relative", width: "100%", height: "80vh" }}
+        >
           <Image
             src={selectedService?.image?.node?.sourceUrl}
-            alt={selectedService?.altImage}
-            width={1200}
-            height={800}
+            alt={selectedService?.altImage || "Service Image"}
+            fill
+            priority
+            quality={85}
+            sizes="100vw"
             className={styles.modalImage}
-            style={{ width: "100%", height: "auto" }}
-            unoptimized
+            style={{ objectFit: "contain" }}
           />
         </div>
       </Modal>

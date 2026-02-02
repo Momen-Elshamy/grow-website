@@ -305,6 +305,9 @@
   .cardDescription {
     font-size: 12px;
   }
+  .mainImage {
+    height: 100vh !important;
+  }
 }
 
 @media (max-width: 344px) {

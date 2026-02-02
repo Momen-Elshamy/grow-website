@@ -100,7 +100,7 @@ export default function SuccessStories({ successStoriesData }) {
                       style={{
                         position: "relative",
                         width: "100%",
-                        height: "90vh",
+                        height: "83vh",
                       }}
                     >
                       <Image
@@ -112,7 +112,7 @@ export default function SuccessStories({ successStoriesData }) {
                         }
                         width={600}
                         height={900}
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 968px) 100vw, 50vw"
                         loading="lazy"
                         className={styles.mainImage}
                       />

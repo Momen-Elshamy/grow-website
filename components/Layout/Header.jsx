@@ -59,6 +59,7 @@ export default function Header() {
             width={32}
             height={32}
             className={styles.flag}
+            sizes="32px" 
           />
         </span>
       ),

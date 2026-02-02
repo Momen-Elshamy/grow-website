@@ -96,7 +96,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               <div className={`${styles.btnWrapper} ${isRTL ? styles.btnWrapperRTL : ""}`}>
                 <CustomButton
                   className={styles.cardBtn}
-                  aria-label={t("homeButtons.exploreMore") + " - " + (course?.title || "")}
+                  aria-label={course?.title ? `Read more about ${course.title}` : "Read more"}
                   style={{
                     height: "100%",
                     borderRadius: isRTL ? "10px 0 0 10px" : "0 10px 10px 0",

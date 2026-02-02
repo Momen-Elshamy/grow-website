@@ -18,7 +18,7 @@ export default function Irrigation({ ourServicesData }) {
     <section id="irrigation" className={styles.irrigationSection}>
       <div className={styles.container}>
         <Row gutter={[60, 40]} align="middle">
-          {/* Left Column: Text Content */}
+          {/* Left: Text */}
           <Col xs={24} lg={12}>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -27,20 +27,13 @@ export default function Irrigation({ ourServicesData }) {
               transition={{ duration: 0.8 }}
               className={styles.textContent}
             >
-              <h2 className={styles.mainTitle}>
-                {title}
-              </h2>
-              <p className={styles.paragraph}>
-                {description}
-              </p>
-              <p className={styles.paragraph}>
-                {moreDescription}
-              </p>
-
+              <h2 className={styles.mainTitle}>{title}</h2>
+              <p className={styles.paragraph}>{description}</p>
+              <p className={styles.paragraph}>{moreDescription}</p>
             </motion.div>
           </Col>
 
-          {/* Right Column: Image with Overlay Card */}
+          {/* Right: Image with Overlay Card */}
           <Col xs={24} lg={12}>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -52,35 +45,30 @@ export default function Irrigation({ ourServicesData }) {
               <div className={styles.imageContainer}>
                 <Image
                   src={image?.node?.sourceUrl}
-                  alt={altImage}
+                  alt={altImage || title}
                   fill
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.farmerImage}
+                  style={{ objectFit: "cover" }}
+                 
                 />
-                {/* Yellow Overlay Card — in Arabic the card div starts from left */}
+
+                {/* Overlay Card */}
                 <div
-                  className={`${styles.overlayCard} ${isRTL ? styles.overlayCardLeft : ""
-                    }`}
+                  className={`${styles.overlayCard} ${isRTL ? styles.overlayCardLeft : ""}`}
                   dir={isRTL ? "ltr" : undefined}
                 >
                   <div className={styles.cardIconSection}>
                     <Uicons
                       icon={benefits[0]?.icon}
                       size="32px"
-                      style={{
-                        color: "#366C45",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
+                      style={{ color: "#366C45", display: "flex", justifyContent: "center", alignItems: "center" }}
                     />
                   </div>
-                  <div
-                    className={`${styles.cardTextSection} ${isRTL ? styles.cardTextSectionRTL : ""
-                      }`}
-                  >
-                    <p className={styles.cardText}>
-                      {benefits[0]?.description}
-                    </p>
+                  <div className={`${styles.cardTextSection} ${isRTL ? styles.cardTextSectionRTL : ""}`}>
+                    <p className={styles.cardText}>{benefits?.[0]?.description}</p>
                   </div>
                 </div>
               </div>

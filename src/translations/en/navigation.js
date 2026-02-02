@@ -15,6 +15,7 @@ export default {
   heroButtons: {
     exploreServices: "Explore Our Services",
     aboutUs: "About Us",
+    expandImage: "Expand Image",
   },
   homeButtons: {
     contactUs: "Contact Us",

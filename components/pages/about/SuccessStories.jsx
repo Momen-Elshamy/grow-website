@@ -139,6 +139,7 @@ export default function SuccessStories({ successStoriesData }) {
                           }
                           size="24px"
                           color="white"
+                          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                         />
                       </button>
                     </motion.div>

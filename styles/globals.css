@@ -13,9 +13,13 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Parkinsans", sans-serif;
+  font-family: var(--font-parkinsans), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.font-sans {
+  font-family: var(--font-parkinsans), sans-serif;
 }
 
 * {
@@ -57,11 +61,13 @@ a {
 .mobileMenuBtn {
   display: none !important;
 }
+
 @media (max-width: 1400px) {
   body {
     overflow-x: hidden;
   }
 }
+
 @media (max-width: 991px) {
   .mobileMenuBtn {
     display: flex !important;

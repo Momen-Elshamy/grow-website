@@ -34,7 +34,7 @@
   bottom: -40px;
   left: 50%;
   transform: translateX(-50%) rotate(-8deg);
-  font-family: "Dancing Script", cursive;
+  font-family: var(--font-dancing-script), cursive;
   font-size: 110px;
   color: #FFB01E;
   pointer-events: none;
@@ -128,7 +128,7 @@
   -webkit-text-stroke: 1px #e5efe9;
   text-transform: capitalize;
   white-space: nowrap;
-  font-family: "Parkinsans", sans-serif;
+  font-family: var(--font-parkinsans), sans-serif;
   opacity: 0.6;
 }
 

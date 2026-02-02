@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Typography, Button } from "antd";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Uicons from "../../UI/Uicons";
 import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 import styles from "./MissionSection.module.css";
 
 const { Title, Paragraph } = Typography;
@@ -38,6 +40,18 @@ export default function MissionRightContent({
   const { currentLang } = useLanguage();
   const isRTL = currentLang === "ar";
 
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
+
   return (
     <motion.div
       variants={containerVariants}
@@ -55,7 +69,7 @@ export default function MissionRightContent({
             exit={{ opacity: 0, x: isRTL ? 30 : -30 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <Title level={4} className={styles.rightTitle}>
+            <Title level={3} className={styles.rightTitle}>
               {currentContent?.title}
             </Title>
             <Paragraph className={styles.rightParagraph}>
@@ -75,6 +89,7 @@ export default function MissionRightContent({
             }
             className={styles.navButton}
             onClick={handlePrev}
+            aria-label={isRTL ? t("carousel.next") : t("carousel.prev")}
           />
           <Button
             icon={
@@ -86,6 +101,7 @@ export default function MissionRightContent({
             }
             className={styles.navButton}
             onClick={handleNext}
+            aria-label={isRTL ? t("carousel.prev") : t("carousel.next")}
           />
         </div>
       </div>
@@ -98,7 +114,7 @@ export default function MissionRightContent({
         <Image
           src="/images/hero/banner-1.png"
           alt="Leaf Graphic"
-          width={160}
+          width={168}
           height={120}
           className={styles.leafImage}
         />

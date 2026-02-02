@@ -9,7 +9,7 @@ export default function LabAnalysis({ ourServicesData }) {
 
   if (!service) return null;
 
-  const { title, description, image, altImage, moreDescription, benefits } = service;
+  const { title, description, image, altImage, moreDescription, benefits } = service || {};
   return (
     <section id="lab" className={styles.labAnalysisSection}>
       <div className={styles.container}>
@@ -25,10 +25,15 @@ export default function LabAnalysis({ ourServicesData }) {
             >
               <div className={styles.imageContainer}>
                 <Image
-                  src={image?.node?.sourceUrl}
-                  alt={altImage}
+                  src={image.node.sourceUrl}
+                  alt={altImage || title}    
                   fill
+                  loading="lazy"
+                  quality={85}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className={styles.farmerImage}
+                  style={{ objectFit: "cover" }}
+                 
                 />
               </div>
             </motion.div>
@@ -43,33 +48,31 @@ export default function LabAnalysis({ ourServicesData }) {
               transition={{ duration: 0.8 }}
               className={styles.textContent}
             >
-
-              <h2 className={styles.title}>{title}</h2>
-              <p className={styles.description}>
+              <h2 className={styles.title} style={{ contentVisibility: "auto", willChange: "transform, opacity" }}>
+                {title}
+              </h2>
+              <p className={styles.description} style={{ contentVisibility: "auto", willChange: "transform, opacity" }}>
                 {description}
               </p>
-              <p className={styles.intro}>
+              <p className={styles.intro} style={{ contentVisibility: "auto", willChange: "transform, opacity" }}>
                 {moreDescription}
               </p>
 
               <div className={styles.iconBlocksContainer}>
-                {benefits.map((benefit, index) => (
-                  <motion.div key={index}
+                {benefits?.map((benefit, index) => (
+                  <motion.div
+                    key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className={`${styles.iconBlock} ${styles[`iconBlock${index + 1}`]}`}
+                    style={{ contentVisibility: "auto", willChange: "transform, opacity" }}
                   >
                     <Uicons
                       icon={benefit?.icon}
                       size="32px"
-                      style={{
-                        color: "#ffffff",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
+                      style={{ color: "#ffffff", display: "flex", justifyContent: "center", alignItems: "center" }}
                     />
                     <p className={styles.blockLabel}>{benefit?.title}</p>
                   </motion.div>

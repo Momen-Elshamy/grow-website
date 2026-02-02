@@ -178,9 +178,12 @@
   width: 100%;
 }
 
-.contactForm input,
-.contactForm .select {
-  height: 48px;
+.contactForm .input,
+.contactForm .select,
+.contactForm .select :global(.ant-select-selector) {
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .contactForm .select i {
@@ -200,28 +203,43 @@
   border-color: #0a471f !important;
 }  */
 
-.contactForm .input::placeholder {
-  color: #939393 !important;
+/* Standard placeholder color for all elements */
+.contactForm .input::placeholder,
+.contactForm .textarea::placeholder,
+.contactForm .select :global(.ant-select-selection-placeholder) {
+  color: #757575 !important;
+  opacity: 1 !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
-.contactForm .ant-select .ant-select-selection-placeholder {
-  color: #939393 !important;
+/* Fix accessibility contrast for TextArea character count */
+.contactForm :global(.ant-input-data-count) {
+  color: #757575 !important;
+  font-weight: 500;
+}
+
+/* Ensure Select root and selector have consistent borders */
+.contactForm .input,
+.contactForm .select,
+.contactForm .select :global(.ant-select-selector),
+.contactForm .textarea {
+  background-color: #ffffff !important;
+  border: 1px solid #c9c9c9 !important;
+  border-radius: 8px !important;
+}
+
+.contactForm .select :global(.ant-select-selector) {
+  border: none !important;
+  /* Remove internal border as we use root border */
+  box-shadow: none !important;
+  width: 100% !important;
 }
 
 .contactForm .input,
 .contactForm .select,
 .contactForm .textarea {
-  background-color: #ffffff !important;
-  border: 1px solid #c9c9c9 !important;
-}
-
-.contactForm .input,
-.contactForm .textarea {
   color: #2d583c !important;
-}
-
-.contactForm .select {
-  color: #c9c9c9 !important;
 }
 
 .contactForm .input:hover,
@@ -231,7 +249,8 @@
 }
 
 .contactForm .input,
-.contactForm .select {
+.contactForm .select :global(.ant-select-selector),
+.contactForm .textarea {
   padding: 0 16px !important;
 }
 
@@ -241,7 +260,6 @@
 
 .contactForm textarea::placeholder {
   font-size: 16px !important;
-  color: #939393 !important;
 }
 
 .selectOption {

@@ -5,8 +5,17 @@ const nextConfig = {
     removeConsole: true
   },
   images: {
-    unoptimized: true,
-    formats: ["image/avif", "image/webp"], // Support modern high-compression formats
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "grow-wordpress-2a16da-72-61-111-171.traefik.me",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+    formats: ["image/avif", "image/webp"],
   },
 };
 

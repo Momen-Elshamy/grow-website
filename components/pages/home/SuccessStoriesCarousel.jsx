@@ -1,13 +1,30 @@
+import { useMemo, useState, useEffect, useRef } from "react";
 import { Carousel, Card, Tag, Flex } from "antd";
 import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
+import en from "@/src/translations/en/navigation";
+import ar from "@/src/translations/ar/navigation";
 import CustomButton from "@/components/UI/Button";
 import styles from "./SuccessStoriesCarousel.module.css";
 import Link from "next/link";
 
 export default function SuccessStoriesCarousel({ cards = [] }) {
+  const carouselRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const { currentLang } = useLanguage();
   const isRTL = currentLang === "ar";
+
+  const t = useMemo(() => {
+    const dict = currentLang === "ar" ? ar : en;
+    return (key) => {
+      const keys = key.split(".");
+      let val = dict;
+      for (const k of keys) {
+        val = val?.[k];
+      }
+      return val ?? key;
+    };
+  }, [currentLang]);
 
   const settings = {
     dots: true,
@@ -16,6 +33,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
+    afterChange: (current) => setCurrentSlide(current),
     draggable: false,
     swipe: false,
     touchMove: false,
@@ -41,8 +59,9 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
     ],
   };
 
+
   return (
-    <Carousel {...settings} className={`${styles.carousel} carousel`}>
+    <Carousel ref={carouselRef} {...settings} className={`${styles.carousel} carousel`}>
       {cards.map((course) => (
         <Link href={`/about?story=${encodeURIComponent(course?.title || "")}`} key={course.id} className={styles.slide}>
           <Card
@@ -77,6 +96,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               <div className={`${styles.btnWrapper} ${isRTL ? styles.btnWrapperRTL : ""}`}>
                 <CustomButton
                   className={styles.cardBtn}
+                  aria-label={t("homeButtons.exploreMore") + " - " + (course?.title || "")}
                   style={{
                     height: "100%",
                     borderRadius: isRTL ? "10px 0 0 10px" : "0 10px 10px 0",

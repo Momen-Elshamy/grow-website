@@ -57,6 +57,7 @@ export default function CarouselComponent({ heroDetails }) {
                 fill
                 priority={index === 0}
                 className={styles.backgroundImage}
+                sizes="100vw"
               />
               {/* Overlay for better text readability */}
               <div className={`${styles.overlay} ${currentLang === "ar" ? styles.overlayRTL : ""}`} />
@@ -104,8 +105,10 @@ export default function CarouselComponent({ heroDetails }) {
                       }}
                       className={styles.buttonsContainer}
                     >
-                      <CustomButton href="/services">{t("heroButtons.exploreServices")}</CustomButton>
-                      <CustomButton href="/about" className={styles.aboutButton} icon={null}>
+                      <CustomButton href="/services" aria-label={t("heroButtons.exploreServices") + " - " + slide.title}>
+                        {t("heroButtons.exploreServices")}
+                      </CustomButton>
+                      <CustomButton href="/about" className={styles.aboutButton} icon={null} aria-label={t("heroButtons.aboutUs") + " - " + slide.title}>
                         {t("heroButtons.aboutUs")}
                       </CustomButton>
                     </motion.div>
@@ -123,6 +126,7 @@ export default function CarouselComponent({ heroDetails }) {
           key={nav.id}
           onClick={nav.onClick}
           className={`${styles.navButton} ${nav.className}`}
+          aria-label={nav.id === 1 ? t("carousel.prev") : t("carousel.next")}
         >
           <Uicons icon={nav.icon} size="32px" color="white" />
         </Button>

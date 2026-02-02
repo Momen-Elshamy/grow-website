@@ -10,7 +10,8 @@ export default function MainLayout({ children, socialMediaData, contactDataEn, c
       <>
          <Head>
             {seo?.title && <title>{seo.title}</title>}
-            {seo?.description && <meta name="description" content={seo.description} />}      </Head>
+            {seo?.description && <meta name="description" content={seo.description} />}
+         </Head>
          <Layout style={{ margin: "0 auto", background: "white" }}>
             <InfoHeader
                socialMediaData={socialMediaData}

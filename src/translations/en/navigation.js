@@ -3,6 +3,9 @@ export default {
   solutions: "Solutions",
   services: "Services",
   news: "News",
+  newsSection: {
+    playVideo: "Play video",
+  },
   recentNews: "Recent News",
   recentPosts: "Recent Posts",
   moreNews: "More News",
@@ -19,6 +22,10 @@ export default {
     exploreMore: "Explore More",
     submitRequest: "Submit Request",
     sending: "Sending...",
+  },
+  carousel: {
+    prev: "Previous slide",
+    next: "Next slide",
   },
   whatsapp: {
     headerText: "Leave us a message and we'll get back to you.",
@@ -94,6 +101,12 @@ export default {
       sitemap: "Sitemap",
     },
     copyright: "All Rights Reserved. With Love by",
+    social: {
+      linkedin: "LinkedIn",
+      facebook: "Facebook",
+      instagram: "Instagram",
+      youtube: "YouTube",
+    },
   },
   contactForm: {
     heading:

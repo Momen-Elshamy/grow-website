@@ -107,9 +107,11 @@ export default function NewsSection({ newsData }) {
                       <h3>{categoryTitle}</h3>
                     </div>
                   </Flex>
-                  <div
+                  <CustomButton
                     className={styles.playButton}
                     onClick={() => setIsModalOpen(true)}
+                    aria-label={t("newsSection.playVideo")}
+                    icon={null}
                   >
                     <span
                       className={
@@ -118,7 +120,7 @@ export default function NewsSection({ newsData }) {
                     >
                       <Uicons icon="fi-rr-play" size={16} />
                     </span>
-                  </div>
+                  </CustomButton>
                 </motion.div>
               </div>
               <motion.div
@@ -155,7 +157,7 @@ export default function NewsSection({ newsData }) {
                       <Uicons icon={feature?.icon} className={styles.icon} />
                     </div>
                     <div className={styles.featureText}>
-                      <h4>{feature?.title}</h4>
+                      <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{feature?.title}</h3>
                       <p>{feature?.description}</p>
                     </div>
                   </motion.div>

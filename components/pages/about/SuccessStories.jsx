@@ -97,10 +97,19 @@ export default function SuccessStories({ successStoriesData }) {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5 }}
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "90vh",
+                      }}
                     >
                       <Image
                         src={currentStory.image.node.sourceUrl}
-                        alt={currentStory.image.node.altText || currentStory.altImage || ""}
+                        alt={
+                          currentStory.image.node.altText ||
+                          currentStory.altImage ||
+                          ""
+                        }
                         width={600}
                         height={900}
                         sizes="(max-width: 768px) 100vw, 50vw"
@@ -111,14 +120,23 @@ export default function SuccessStories({ successStoriesData }) {
                       {/* ICON ONLY CLICKABLE */}
                       <button
                         className={styles.playButton}
+                        style={{ border:'none'}}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleOpenModal();
                         }}
-                        aria-label={currentMedia.type === "video" ? "Play Video" : "View Image"}
+                        aria-label={
+                          currentMedia.type === "video"
+                            ? "Play Video"
+                            : "View Image"
+                        }
                       >
                         <Uicons
-                          icon={currentMedia.type === "video" ? "fi-rr-play" : "fi-rr-expand"}
+                          icon={
+                            currentMedia.type === "video"
+                              ? "fi-rr-play"
+                              : "fi-rr-expand"
+                          }
                           size="24px"
                           color="white"
                         />
@@ -136,25 +154,38 @@ export default function SuccessStories({ successStoriesData }) {
                       transition={{ duration: 0.4 }}
                       className={styles.overlappingCard}
                     >
-                      <h4 className={styles.cardTitle}>{currentStory?.title || currentStory?.heading}</h4>
-                      <p className={styles.cardDescription}>{currentStory?.description}</p>
+                      <h4 className={styles.cardTitle}>
+                        {currentStory?.title || currentStory?.heading}
+                      </h4>
+                      <p className={styles.cardDescription}>
+                        {currentStory?.description}
+                      </p>
                     </motion.div>
                   </AnimatePresence>
 
                   {/* ARROWS */}
                   <div
                     dir="ltr"
-                    className={`${styles.navigationArrows} ${isRTL ? styles.navigationArrowsRTL : ""
-                      }`}
+                    className={`${styles.navigationArrows} ${
+                      isRTL ? styles.navigationArrowsRTL : ""
+                    }`}
                   >
-                    <button onClick={handlePrev} className={styles.navBtn} aria-label="Previous Story">
+                    <button
+                      onClick={handlePrev}
+                      className={styles.navBtn}
+                      aria-label="Previous Story"
+                    >
                       <Uicons
                         icon={isRTL ? "fi-rr-angle-right" : "fi-rr-angle-left"}
                         size="20px"
                         color="white"
                       />
                     </button>
-                    <button onClick={handleNext} className={styles.navBtn} aria-label="Next Story">
+                    <button
+                      onClick={handleNext}
+                      className={styles.navBtn}
+                      aria-label="Next Story"
+                    >
                       <Uicons
                         icon={isRTL ? "fi-rr-angle-left" : "fi-rr-angle-right"}
                         size="20px"
@@ -168,24 +199,31 @@ export default function SuccessStories({ successStoriesData }) {
 
             {/* RIGHT: Story List & Content */}
             <Col xs={24} lg={12}>
-              <motion.div className={styles.contentWrapper} style={{ height: "100%" }}>
-
+              <motion.div
+                className={styles.contentWrapper}
+                style={{ height: "100%" }}
+              >
                 <div className={styles.tagline}>
                   <Uicons icon={icon} size="20px" />
                   <span>{tagline}</span>
                 </div>
 
                 <h2 className={styles.heading}>{currentStory?.heading}</h2>
-                <p className={styles.description}>{currentStory?.description}</p>
+                <p className={styles.description}>
+                  {currentStory?.description}
+                </p>
 
                 <div className={styles.storiesList}>
                   {storiesData.map((story, idx) => (
                     <motion.div
                       key={idx}
-                      className={`${styles.storyItem} ${activeKey === idx.toString() ? styles.activeItem : ""
-                        }`}
+                      className={`${styles.storyItem} ${
+                        activeKey === idx.toString() ? styles.activeItem : ""
+                      }`}
                       onClick={() => setActiveKey(idx.toString())}
-                      aria-label={`Select story ${story?.title || story?.heading}`}
+                      aria-label={`Select story ${
+                        story?.title || story?.heading
+                      }`}
                     >
                       <h3 className={styles.storyTitle}>{story?.title}</h3>
                     </motion.div>
@@ -221,11 +259,14 @@ export default function SuccessStories({ successStoriesData }) {
             />
           </div>
         ) : (
-
           <div className={styles.videoResponsive}>
             <Image
               src={currentMedia.src}
-              alt={currentStory?.image?.node?.altText || currentStory?.altImage || ""}
+              alt={
+                currentStory?.image?.node?.altText ||
+                currentStory?.altImage ||
+                ""
+              }
               fill
               priority
               sizes="(max-width: 768px) 100vw, 50vw"

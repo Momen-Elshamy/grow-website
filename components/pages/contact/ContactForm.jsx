@@ -54,6 +54,7 @@ export default function ContactForm() {
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
+          _template: "table",
         },
         {
           headers: {

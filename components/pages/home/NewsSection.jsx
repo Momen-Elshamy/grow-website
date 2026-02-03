@@ -137,6 +137,7 @@ export default function NewsSection({ newsData }) {
 
           <Col xs={24} lg={12}>
             <div className={styles.content}>
+              <motion.h3 style={{ fontSize: "2rem", color: "#17311E",fontWeight: 700 }} variants={rightVariants}>{categoryTitle}</motion.h3>
               {description && (
                 <motion.p
                   className={styles.descriptionOne}
@@ -157,7 +158,7 @@ export default function NewsSection({ newsData }) {
                       <Uicons icon={feature?.icon} className={styles.icon} />
                     </div>
                     <div className={styles.featureText}>
-                      <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{feature?.title}</h3>
+                      <h4 style={{ fontSize: "1.2rem",fontWeight: 700, color: "#17311E" }}>{feature?.title}</h4>
                       <p>{feature?.description}</p>
                     </div>
                   </motion.div>

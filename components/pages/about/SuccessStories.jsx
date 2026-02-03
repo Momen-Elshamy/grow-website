@@ -209,7 +209,7 @@ export default function SuccessStories({ successStoriesData }) {
                   <span>{tagline}</span>
                 </div>
 
-                <h2 className={styles.heading}>{currentStory?.heading}</h2>
+                <h2 className={styles.heading}>{currentStory?.title || currentStory?.heading}</h2>
                 <p className={styles.description}>
                   {currentStory?.description}
                 </p>

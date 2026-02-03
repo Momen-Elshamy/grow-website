@@ -158,7 +158,7 @@ export default function NewsSection({ newsData }) {
                       <Uicons icon={feature?.icon} className={styles.icon} />
                     </div>
                     <div className={styles.featureText}>
-                      <h4 style={{ fontSize: "1.2rem",fontWeight: 700, color: "#17311E" }}>{feature?.title}</h4>
+                      <h4 style={{ fontSize: "1.2rem",fontWeight: 600, color: "#17311E" }}>{feature?.title}</h4>
                       <p>{feature?.description}</p>
                     </div>
                   </motion.div>

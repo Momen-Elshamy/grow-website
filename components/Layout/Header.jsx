@@ -13,7 +13,7 @@ import ar from "@/src/translations/ar/navigation";
 
 const languages = [
   { key: "en", flag: "/images/flags/united-states.png" },
-  { key: "ar", flag: "/images/flags/saudi-arabia.png" },
+  { key: "ar", flag: "/images/flags/egyptian-flag.png" },
 ];
 
 export default function Header() {
@@ -125,8 +125,8 @@ export default function Header() {
             <Image
               src="/images/logo1.png"
               alt="Grow Logo"
-              width={83}
-              height={40}
+              width={110}
+              height={52}
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
               quality={80}

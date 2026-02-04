@@ -23,7 +23,8 @@ export default function SuccessStories({ successStoriesData }) {
 
   // Handle query param for specific story
   useEffect(() => {
-    if (!router.isReady || !router.query.story || storiesData.length === 0) return;
+    if (!router.isReady || !router.query.story || storiesData.length === 0)
+      return;
 
     const storyQuery = Array.isArray(router.query.story)
       ? router.query.story[0]
@@ -33,7 +34,7 @@ export default function SuccessStories({ successStoriesData }) {
 
     const storyTitle = decodeURIComponent(storyQuery);
     const storyIndex = storiesData.findIndex(
-      (story) => story?.title === storyTitle || story?.heading === storyTitle
+      (story) => story?.title === storyTitle || story?.heading === storyTitle,
     );
 
     if (storyIndex >= 0) {
@@ -67,9 +68,12 @@ export default function SuccessStories({ successStoriesData }) {
   const handleOpenModal = () => currentMedia && setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleNext = () => setActiveKey(((currentIndex + 1) % storiesData.length).toString());
+  const handleNext = () =>
+    setActiveKey(((currentIndex + 1) % storiesData.length).toString());
   const handlePrev = () =>
-    setActiveKey(((currentIndex - 1 + storiesData.length) % storiesData.length).toString());
+    setActiveKey(
+      ((currentIndex - 1 + storiesData.length) % storiesData.length).toString(),
+    );
 
   if (!currentStory || storiesData.length === 0) return null;
 
@@ -120,7 +124,7 @@ export default function SuccessStories({ successStoriesData }) {
                       {/* ICON ONLY CLICKABLE */}
                       <button
                         className={styles.playButton}
-                        style={{ border:'none'}}
+                        style={{ border: "none" }}
                         onClick={(e) => {
                           e.stopPropagation();
                           handleOpenModal();
@@ -139,7 +143,11 @@ export default function SuccessStories({ successStoriesData }) {
                           }
                           size="24px"
                           color="white"
-                          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
                         />
                       </button>
                     </motion.div>
@@ -209,7 +217,9 @@ export default function SuccessStories({ successStoriesData }) {
                   <span>{tagline}</span>
                 </div>
 
-                <h2 className={styles.heading}>{currentStory?.title || currentStory?.heading}</h2>
+                <h2 className={styles.heading}>
+                  {currentStory?.title || currentStory?.heading}
+                </h2>
                 <p className={styles.description}>
                   {currentStory?.description}
                 </p>
@@ -244,9 +254,9 @@ export default function SuccessStories({ successStoriesData }) {
         footer={null}
         width="90%"
         centered
-        destroyOnClose
+        destroyOnHidden
         className={styles.videoModal}
-        bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
+        styles={{ body: { padding: 0, backgroundColor: "transparent" } }}
       >
         {currentMedia?.type === "video" ? (
           <div className={styles.videoResponsive}>

@@ -88,14 +88,20 @@ export default function ExpertsSection({ expertsData }) {
                         handleOpenModal(expert, isVideo ? "video" : "image");
                       }}
                       aria-label={
-                        isVideo ? `Play video of ${expert.name}` : `View image of ${expert.name}`
+                        isVideo
+                          ? `Play video of ${expert.name}`
+                          : `View image of ${expert.name}`
                       }
                     >
                       <Uicons
                         icon={isVideo ? "fi-rr-play" : "fi-rr-expand"}
                         size="22px"
                         color="#fff"
-                        style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
                       />
                     </motion.div>
 
@@ -127,9 +133,9 @@ export default function ExpertsSection({ expertsData }) {
         footer={null}
         width="90%"
         centered
-        destroyOnClose
+        destroyOnHidden
         className={styles.imageModal}
-        bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
+        styles={{ body: { padding: 0, backgroundColor: "transparent" } }}
       >
         {selectedMedia?.mediaType === "video" && selectedMedia.video && (
           <div className={styles.videoResponsive}>
@@ -145,19 +151,24 @@ export default function ExpertsSection({ expertsData }) {
           </div>
         )}
 
-        {selectedMedia?.mediaType === "image" && selectedMedia.image?.node?.sourceUrl && (
-          <Image
-            src={selectedMedia.image.node.sourceUrl}
-            alt={selectedMedia.image.node.altText || selectedMedia.altImage || selectedMedia.name}
-            width={1200}
-            height={1500}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-            quality={75}
-            loading="lazy"
-            className={styles.modalImage}
-            style={{ width: "100%", height: "auto" }}
-          />
-        )}
+        {selectedMedia?.mediaType === "image" &&
+          selectedMedia.image?.node?.sourceUrl && (
+            <Image
+              src={selectedMedia.image.node.sourceUrl}
+              alt={
+                selectedMedia.image.node.altText ||
+                selectedMedia.altImage ||
+                selectedMedia.name
+              }
+              width={1200}
+              height={1500}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+              quality={75}
+              loading="lazy"
+              className={styles.modalImage}
+              style={{ width: "100%", height: "auto" }}
+            />
+          )}
       </Modal>
     </section>
   );

@@ -170,11 +170,13 @@
   background: transparent !important;
 }
 
-.dropdownMenuItem {
+.dropdownMenuItem,
+.menuChildLink {
   color: inherit !important;
   text-decoration: none !important;
   display: block;
   width: 100%;
+  cursor: pointer;
 }
 
 .actions {

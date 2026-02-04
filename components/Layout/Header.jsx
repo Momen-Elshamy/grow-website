@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
+import { scrollToSection } from "@/utils/scroll";
 
 const languages = [
   { key: "en", flag: "/images/flags/united-states.png" },
@@ -44,7 +45,7 @@ export default function Header() {
   const getNavLabel = useCallback((linkName) => t(linkName), [t]);
   const getChildLabel = useCallback(
     (linkName, childKey) => t(`${linkName}Children.${childKey}`),
-    [t]
+    [t],
   );
 
   const menuItems = languages
@@ -59,7 +60,7 @@ export default function Header() {
             width={32}
             height={32}
             className={styles.flag}
-            sizes="32px" 
+            sizes="32px"
           />
         </span>
       ),
@@ -78,6 +79,24 @@ export default function Header() {
     setExpandedKeys(keys);
   };
 
+  const handleDropdownItemClick = useCallback(
+    (e, path, sectionId) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileMenu();
+      if (typeof window !== "undefined" && router.pathname === path) {
+        scrollToSection(sectionId);
+      } else {
+        router
+          .push(`${path}#${sectionId}`, undefined, { scroll: false })
+          .then(() => {
+            setTimeout(() => scrollToSection(sectionId), 250);
+          });
+      }
+    },
+    [router],
+  );
+
   const mobileMenuItems = useMemo(() => {
     return navLinks.map((link) => {
       if (link.hasDropdown) {
@@ -89,14 +108,23 @@ export default function Header() {
           children: link.children.map((child) => ({
             key: `${link.path}#${child.key}`,
             label: (
-              <Link
-                href={`${link.path}#${child.key}`}
-                onClick={closeMobileMenu}
+              <span
+                role="link"
+                tabIndex={0}
                 className={styles.menuChildLink}
                 aria-label={`Go to ${getChildLabel(link.name, child.key)}`}
+                onClick={(e) =>
+                  handleDropdownItemClick(e, link.path, child.key)
+                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleDropdownItemClick(e, link.path, child.key);
+                  }
+                }}
               >
                 {getChildLabel(link.name, child.key)}
-              </Link>
+              </span>
             ),
           })),
         };
@@ -115,7 +143,7 @@ export default function Header() {
         ),
       };
     });
-  }, [currentLang, getNavLabel, getChildLabel]);
+  }, [currentLang, getNavLabel, getChildLabel, handleDropdownItemClick]);
 
   return (
     <>
@@ -140,8 +168,9 @@ export default function Header() {
                 const dropdownTrigger = (
                   <Link
                     href={link.path}
-                    className={`${styles.navLink} ${router.pathname === link.path ? styles.active : ""
-                      } ${styles.dropdownTrigger}`}
+                    className={`${styles.navLink} ${
+                      router.pathname === link.path ? styles.active : ""
+                    } ${styles.dropdownTrigger}`}
                     aria-label={`Go to ${getNavLabel(link.name)}`}
                   >
                     <span className={styles.linkText}>
@@ -159,23 +188,37 @@ export default function Header() {
                       items: link.children.map((child) => ({
                         key: child.key,
                         label: (
-                          <Link
-                            href={`${link.path}#${child.key}`}
+                          <span
+                            role="link"
+                            tabIndex={0}
                             className={styles.dropdownMenuItem}
                             aria-label={`Go to ${getChildLabel(
                               link.name,
-                              child.key
+                              child.key,
                             )}`}
+                            onClick={(e) =>
+                              handleDropdownItemClick(e, link.path, child.key)
+                            }
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault();
+                                handleDropdownItemClick(
+                                  e,
+                                  link.path,
+                                  child.key,
+                                );
+                              }
+                            }}
                           >
                             {getChildLabel(link.name, child.key)}
-                          </Link>
+                          </span>
                         ),
                       })),
                     }}
                     placement={
                       currentLang === "ar" ? "bottomRight" : "bottomLeft"
                     }
-                    overlayClassName={styles.dropdownOverlay}
+                    classNames={{ root: styles.dropdownOverlay }}
                     trigger={["hover", "click"]}
                     mouseEnterDelay={0.1}
                     mouseLeaveDelay={0.1}
@@ -188,8 +231,9 @@ export default function Header() {
                 <Link
                   key={link.path}
                   href={link.path}
-                  className={`${styles.navLink} ${router.pathname === link.path ? styles.active : ""
-                    }`}
+                  className={`${styles.navLink} ${
+                    router.pathname === link.path ? styles.active : ""
+                  }`}
                   aria-label={`Go to ${getNavLabel(link.name)}`}
                 >
                   <span className={styles.linkText}>
@@ -242,7 +286,9 @@ export default function Header() {
                   color="#17311E"
                 />
               }
-              aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+              aria-label={
+                mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"
+              }
             />
           </div>
         </div>
@@ -252,13 +298,12 @@ export default function Header() {
         placement="right"
         onClose={closeMobileMenu}
         open={mobileMenuOpen}
-        width="85%"
-        zIndex={20001}
         styles={{
           body: { padding: 0 },
           header: { display: "none" },
-          wrapper: { zIndex: 20001 },
+          wrapper: { width: "85%", zIndex: 20001 },
         }}
+        zIndex={20001}
         className={styles.mobileDrawer}
         aria-label="Mobile menu drawer"
       >

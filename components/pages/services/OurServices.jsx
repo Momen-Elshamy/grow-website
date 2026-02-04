@@ -84,7 +84,11 @@ export default function OurServices({ ourServicesData }) {
                         if (el) {
                           const top =
                             el.getBoundingClientRect().top + window.scrollY;
-                          window.scrollTo({ top: top - 80, left: 0, behavior: "smooth" });
+                          window.scrollTo({
+                            top: top - 80,
+                            left: 0,
+                            behavior: "smooth",
+                          });
                         }
                       }}
                       whileHover={{ scale: 1.02 }}
@@ -204,9 +208,9 @@ export default function OurServices({ ourServicesData }) {
         footer={null}
         width="90%"
         centered
-        destroyOnClose
+        destroyOnHidden
         className={styles.modal}
-        bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
+        styles={{ body: { padding: 0, backgroundColor: "transparent" } }}
       >
         <div
           className={styles.modalImageWrapper}

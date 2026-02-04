@@ -1,4 +1,13 @@
-import { Form, Input, Select, Row, Col, message, ConfigProvider, theme } from "antd";
+import {
+  Form,
+  Input,
+  Select,
+  Row,
+  Col,
+  message,
+  ConfigProvider,
+  theme,
+} from "antd";
 import { useState, useMemo } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -50,7 +59,9 @@ export default function ContactForm() {
           phone: values.phone,
           propertySize: values.propertySize,
           location: values.location,
-          services: values.services ? t(`servicesChildren.${values.services}`) : values.services,
+          services: values.services
+            ? t(`servicesChildren.${values.services}`)
+            : values.services,
           message: values.message,
           _replyto: values.email, // Replies go to form submitter
           _subject: `New Contact Form Submission from ${values.name}`,
@@ -61,7 +72,7 @@ export default function ContactForm() {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -111,7 +122,10 @@ export default function ContactForm() {
                 <Form.Item
                   name="name"
                   rules={[
-                    { required: true, message: t("contactForm.validation.nameRequired") },
+                    {
+                      required: true,
+                      message: t("contactForm.validation.nameRequired"),
+                    },
                     {
                       min: 2,
                       message: t("contactForm.validation.nameMin"),
@@ -237,9 +251,13 @@ export default function ContactForm() {
                     size="large"
                     suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                     className={styles.select}
-                    dropdownStyle={{
-                      backgroundColor: "white",
-                      border: "none",
+                    styles={{
+                      popup: {
+                        root: {
+                          backgroundColor: "white",
+                          border: "none",
+                        },
+                      },
                     }}
                   >
                     {PROPERTY_SIZES.map((size) => (
@@ -289,9 +307,13 @@ export default function ContactForm() {
                     size="large"
                     suffixIcon={<Uicons icon="fi-rr-angle-small-down" />}
                     className={styles.select}
-                    dropdownStyle={{
-                      backgroundColor: "white",
-                      border: "none",
+                    styles={{
+                      popup: {
+                        root: {
+                          backgroundColor: "white",
+                          border: "none",
+                        },
+                      },
                     }}
                   >
                     {SERVICE_KEYS.map((key) => (
@@ -341,7 +363,9 @@ export default function ContactForm() {
                 loading={loading}
                 className={styles.submitButton}
               >
-                {loading ? t("contactForm.sending") : t("contactForm.submitRequest")}
+                {loading
+                  ? t("contactForm.sending")
+                  : t("contactForm.submitRequest")}
               </CustomButton>
             </Form.Item>
           </Form>

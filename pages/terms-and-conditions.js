@@ -77,4 +77,4 @@ export const getStaticProps = withWebsiteSettings(async () => {
       revalidate: 1,
     };
   }
-});
+}, { fallbackPath: "/terms-and-conditions" });

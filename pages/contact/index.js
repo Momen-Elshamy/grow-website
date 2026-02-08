@@ -55,4 +55,4 @@ export const getStaticProps = withWebsiteSettings(async () => {
     props: { homePageData: safeHomePageData },
     revalidate: 1,
   };
-});
+}, { fallbackPath: "/contact" });

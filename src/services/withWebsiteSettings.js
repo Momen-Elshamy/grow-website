@@ -3,83 +3,34 @@ import { client } from "@/src/graphql";
 import { GET_WEBSITE_SETTINGS } from "@/src/graphql/queries/settings";
 import { GET_CONTACT_DETAILS, GET_CONTACT_ARABIC_DETAILS, GET_HEADER_SOCIAL, GET_HOME_SOCIAL_MEDIA } from "@/src/graphql/queries/contact";
 
-// WordPress CMS base URL
 const WORDPRESS_BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 
-/**
- * Extract title from og:title meta tag in HTML head string
- * Handles various meta tag formats from Rank Math
- * @param {string} headHTML - HTML string containing head tags
- * @returns {string|null} Extracted title or null
- */
+function decodeHtmlEntities(str) {
+   if (!str || typeof str !== "string") return str;
+   return str.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+}
+
 function extractTitleFromHead(headHTML) {
    if (!headHTML) return null;
-
-   // Try og:title meta tag (flexible regex for different formats)
-   // Handles: <meta property="og:title" content="..." /> or <meta content="..." property="og:title" />
-   const ogTitlePatterns = [
-      /<meta[^>]*property\s*=\s*["']og:title["'][^>]*content\s*=\s*["']([^"']+)["'][^>]*>/i,
-      /<meta[^>]*content\s*=\s*["']([^"']+)["'][^>]*property\s*=\s*["']og:title["'][^>]*>/i,
-   ];
-
-   for (const pattern of ogTitlePatterns) {
-      const match = headHTML.match(pattern);
-      if (match && match[1]) {
-         return match[1].trim();
-      }
-   }
-
-   return null;
+   const m = headHTML.match(/<title[^>]*>([^<]+)<\/title>/i);
+   if (m?.[1]) return decodeHtmlEntities(m[1].trim());
+   const og = headHTML.match(/<meta[^>]*property\s*=\s*["']og:title["'][^>]*content\s*=\s*["']([^"']+)["']/i) || headHTML.match(/<meta[^>]*content\s*=\s*["']([^"']+)["'][^>]*property\s*=\s*["']og:title["']/i);
+   return og?.[1] ? decodeHtmlEntities(og[1].trim()) : null;
 }
 
-/**
- * Fetch SEO data from Rank Math REST API
- * @param {string} pageUrl - The full URL of the current page
- * @returns {Promise<{success: boolean, head: string|null, title: string|null}>}
- */
 async function fetchRankMathSEO(pageUrl) {
    try {
-      const rankMathEndpoint = `${WORDPRESS_BASE_URL}/wp-json/rankmath/v1/getHead?url=${encodeURIComponent(pageUrl)}`;
-
-      const response = await axios.get(rankMathEndpoint, {
-         headers: {
-            "Content-Type": "application/json",
-         },
-      });
-
-      const data = response.data;
-      const head = data.head || null;
-      const title = extractTitleFromHead(head);
-
-      return {
-         success: data.success || false,
-         head: head,
-         title: title,
-      };
-   } catch (error) {
-      return {
-         success: false,
-         head: null,
-         title: null,
-      };
+      const { data } = await axios.get(`${WORDPRESS_BASE_URL}/wp-json/rankmath/v1/getHead?url=${encodeURIComponent(pageUrl)}`);
+      const title = extractTitleFromHead(data?.head);
+      return { success: data?.success, head: data?.head ?? null, title };
+   } catch {
+      return { success: false, head: null, title: null };
    }
 }
 
-/**
- * Build the WordPress page URL from Next.js context
- * Rank Math needs the WordPress site URL, not the Next.js frontend URL
- * @param {Object} ctx - Next.js getServerSideProps context
- * @returns {string} Full WordPress URL of the current page
- */
-function buildWordPressPageUrl(ctx) {
-   const path = ctx?.resolvedUrl || ctx?.req?.url || "/";
-   // Remove query string if present
-   const cleanPath = path.split("?")[0];
-   // Construct WordPress URL
-   return `${WORDPRESS_BASE_URL}${cleanPath}`;
-}
-
-export function withWebsiteSettings(gssp) {
+/** withWebsiteSettings(gssp, { fallbackPath: "/" }) - fallbackPath used for Rank Math URL */
+export function withWebsiteSettings(gssp, options = {}) {
+   const path = options.fallbackPath ?? "/";
    return async (ctx) => {
       // 1) Fetch settings ONCE per request
       let settingsResponse;
@@ -138,17 +89,12 @@ export function withWebsiteSettings(gssp) {
          } catch (_) {}
       }
 
-      // 2) Fetch Rank Math SEO data for current page
-      let seoData = { success: false, head: null, title: null };
-      try {
-         const wordPressPageUrl = buildWordPressPageUrl(ctx);
-         seoData = await fetchRankMathSEO(wordPressPageUrl);
-      } catch (error) {
-         console.error("[SEO] Unexpected error in SEO fetch:", error);
-      }
+      // 2) Fetch SEO from Rank Math (fallbackPath must match WordPress URL exactly)
+      const base = (WORDPRESS_BASE_URL || "").replace(/\/$/, "");
+      const pageUrl = path === "/" ? `${base}/` : `${base}${path}/`;
+      const seoData = await fetchRankMathSEO(pageUrl);
 
-      // 3) Call the page's original getServerSideProps (if any)
-      // If the page has its own getServerSideProps, execute it; otherwise use empty props
+      // 3) Call page's getStaticProps
       const originalResult = gssp ? await gssp(ctx) : { props: {} };
 
       // If the page did redirect / notFound, just return it

@@ -72,4 +72,4 @@ export const getStaticProps = withWebsiteSettings(async () => {
       revalidate: 1,
     };
   }
-});
+}, { fallbackPath: "/" });

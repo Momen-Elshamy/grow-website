@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
-import { scrollToSection } from "@/utils/scroll";
+import { scrollToSection, scrollToSectionAfterNavigate } from "@/utils/scroll";
 
 const languages = [
   { key: "en", flag: "/images/flags/united-states.png" },
@@ -85,13 +85,11 @@ export default function Header() {
       e.stopPropagation();
       closeMobileMenu();
       if (typeof window !== "undefined" && router.pathname === path) {
-        scrollToSection(sectionId);
+        scrollToSection(sectionId, path === "/services" ? 140 : 80);
       } else {
         router
           .push(`${path}#${sectionId}`, undefined, { scroll: false })
-          .then(() => {
-            setTimeout(() => scrollToSection(sectionId), 250);
-          });
+          .then(() => scrollToSectionAfterNavigate(sectionId));
       }
     },
     [router],

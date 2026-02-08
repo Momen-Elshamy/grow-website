@@ -7,7 +7,7 @@ export default {
     playVideo: "شغل الفيديو",
   },
   recentNews: "آخر الأخبار",
-  recentPosts: "أحدث المنشورات",
+  recentPosts: "آخر الأخبار",
   moreNews: "المزيد من الأخبار",
   readMore: "اقرأ المزيد",
   readLess: "اقرأ أقل",

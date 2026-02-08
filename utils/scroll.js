@@ -1,4 +1,4 @@
-const SERVICES_HEADER_OFFSET = 140; // main header (80px) + services sub-nav (~60px)
+export const SERVICES_HEADER_OFFSET = 140; // main header (80px) + services sub-nav (~60px)
 
 export const scrollToSection = (sectionId, headerOffset = 80) => {
   const element = document.getElementById(sectionId);

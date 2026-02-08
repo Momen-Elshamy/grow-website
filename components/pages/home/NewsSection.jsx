@@ -11,7 +11,9 @@ import styles from "./NewsSection.module.css";
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return "";
-  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/)?.[1];
+  const videoId = url.match(
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/,
+  )?.[1];
   return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 };
 
@@ -30,7 +32,17 @@ export default function NewsSection({ newsData }) {
     };
   }, [currentLang]);
 
-  const { video, image, taglineicon, title, categoryTitle, features, description, decorativeText, icon } = newsData || {};
+  const {
+    video,
+    image,
+    taglineicon,
+    title,
+    categoryTitle,
+    features,
+    description,
+    decorativeText,
+    icon,
+  } = newsData || {};
 
   const embedUrl = getYouTubeEmbedUrl(video);
 
@@ -137,7 +149,12 @@ export default function NewsSection({ newsData }) {
 
           <Col xs={24} lg={12}>
             <div className={styles.content}>
-              <motion.h3 style={{ fontSize: "2rem", color: "#17311E",fontWeight: 700 }} variants={rightVariants}>{categoryTitle}</motion.h3>
+              <motion.h3
+                style={{ fontSize: "2rem", color: "#17311E", fontWeight: 700 }}
+                variants={rightVariants}
+              >
+                {categoryTitle}
+              </motion.h3>
               {description && (
                 <motion.p
                   className={styles.descriptionOne}
@@ -158,7 +175,15 @@ export default function NewsSection({ newsData }) {
                       <Uicons icon={feature?.icon} className={styles.icon} />
                     </div>
                     <div className={styles.featureText}>
-                      <h4 style={{ fontSize: "1.2rem",fontWeight: 600, color: "#17311E" }}>{feature?.title}</h4>
+                      <h4
+                        style={{
+                          fontSize: "1.2rem",
+                          fontWeight: 600,
+                          color: "#17311E",
+                        }}
+                      >
+                        {feature?.title}
+                      </h4>
                       <p>{feature?.description}</p>
                     </div>
                   </motion.div>
@@ -166,10 +191,7 @@ export default function NewsSection({ newsData }) {
               </div>
 
               <motion.div className={styles.actions} variants={rightVariants}>
-                <CustomButton
-                  className={styles.btn}
-                  href="/about"
-                >
+                <CustomButton className={styles.btn} href="/about">
                   {t("homeButtons.moreAboutUs")}
                 </CustomButton>
                 <CustomButton
@@ -192,8 +214,8 @@ export default function NewsSection({ newsData }) {
         footer={null}
         width={1100}
         centered
-        destroyOnClose
-        bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
+        destroyOnHidden
+        styles={{ body: { padding: 0, backgroundColor: "transparent" } }}
         className={styles.videoModal}
       >
         <div className={styles.videoResponsive}>

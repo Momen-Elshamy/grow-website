@@ -59,14 +59,21 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
     ],
   };
 
-
   return (
-    <Carousel ref={carouselRef} {...settings} className={`${styles.carousel} carousel`}>
+    <Carousel
+      ref={carouselRef}
+      {...settings}
+      className={`${styles.carousel} carousel`}
+    >
       {cards.map((course) => (
-        <Link href={`/about?story=${encodeURIComponent(course?.title || "")}`} key={course.id} className={styles.slide}>
+        <Link
+          href={`/about?story=${encodeURIComponent(course?.title || "")}`}
+          key={course.id}
+          className={styles.slide}
+        >
           <Card
             className={styles.card}
-            bordered={false}
+            variant="borderless"
             styles={{ body: { padding: 0 } }}
           >
             <div className={styles.imageWrapper}>
@@ -79,24 +86,44 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               />
             </div>
 
-            <div className={`${styles.contentWrapper} ${isRTL ? styles.contentWrapperRTL : ""}`}>
+            <div
+              className={`${styles.contentWrapper} ${isRTL ? styles.contentWrapperRTL : ""}`}
+            >
               <Flex vertical gap={12}>
-                <Flex gap={8} wrap="wrap" className={isRTL ? styles.tagsRTL : ""}>
-                  {course.contenttag.map((tag) => (
-                    <Tag key={tag.id} className={styles.contentTag}>
+                <Flex
+                  key="tags"
+                  gap={8}
+                  wrap="wrap"
+                  className={isRTL ? styles.tagsRTL : ""}
+                >
+                  {(course.contenttag ?? []).map((tag, tagIndex) => (
+                    <Tag
+                      key={tag?.id ?? tag?.title ?? `tag-${tagIndex}`}
+                      className={styles.contentTag}
+                    >
                       {tag.title}
                     </Tag>
                   ))}
                 </Flex>
-                <h3 className={styles.cardTitle}>{course?.title}</h3>
+                <h3 key="title" className={styles.cardTitle}>
+                  {course?.title}
+                </h3>
                 {course?.description && (
-                  <p className={styles.cardDescription}>{course?.description}</p>
+                  <p key="desc" className={styles.cardDescription}>
+                    {course?.description}
+                  </p>
                 )}
               </Flex>
-              <div className={`${styles.btnWrapper} ${isRTL ? styles.btnWrapperRTL : ""}`}>
+              <div
+                className={`${styles.btnWrapper} ${isRTL ? styles.btnWrapperRTL : ""}`}
+              >
                 <CustomButton
                   className={styles.cardBtn}
-                  aria-label={course?.title ? `Read more about ${course.title}` : "Read more"}
+                  aria-label={
+                    course?.title
+                      ? `Read more about ${course.title}`
+                      : "Read more"
+                  }
                   style={{
                     height: "100%",
                     borderRadius: isRTL ? "10px 0 0 10px" : "0 10px 10px 0",

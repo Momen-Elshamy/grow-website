@@ -7,7 +7,9 @@ import styles from "./FeatureVideo.module.css";
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return "";
-  const match = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&\s]+)/);
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&\s]+)/,
+  );
   return match ? `https://www.youtube.com/embed/${match[1]}` : url;
 };
 
@@ -44,9 +46,7 @@ export default function FeatureVideo({ featureVideoData }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {title && (
-                  <h2 className={styles.title}>{title}</h2>
-                )}
+                {title && <h2 className={styles.title}>{title}</h2>}
                 {description && (
                   <p className={styles.description}>{description}</p>
                 )}
@@ -91,8 +91,8 @@ export default function FeatureVideo({ featureVideoData }) {
         width="90%"
         style={{ maxWidth: "1400px" }}
         centered
-        destroyOnClose
-        bodyStyle={{ padding: 0, backgroundColor: "transparent" }}
+        destroyOnHidden
+        styles={{ body: { padding: 0, backgroundColor: "transparent" } }}
         className={styles.videoModal}
       >
         <div className={styles.videoResponsive}>

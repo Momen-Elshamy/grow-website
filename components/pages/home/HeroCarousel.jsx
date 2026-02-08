@@ -34,8 +34,18 @@ export default function CarouselComponent({ heroDetails }) {
   };
 
   const carouselArrows = [
-    { onClick: prev, icon: "fi-rr-angle-left", className: styles.navButtonLeft, id: 1 },
-    { onClick: next, icon: "fi-rr-angle-right", className: styles.navButtonRight, id: 2 },
+    {
+      onClick: prev,
+      icon: "fi-rr-angle-left",
+      className: styles.navButtonLeft,
+      id: 1,
+    },
+    {
+      onClick: next,
+      icon: "fi-rr-angle-right",
+      className: styles.navButtonRight,
+      id: 2,
+    },
   ];
 
   return (
@@ -44,7 +54,7 @@ export default function CarouselComponent({ heroDetails }) {
         ref={carouselRef}
         autoplay
         dots={true}
-        dotPosition="bottom"
+        dotPlacement="bottom"
         effect="fade"
         className={styles.carousel}
       >
@@ -60,7 +70,9 @@ export default function CarouselComponent({ heroDetails }) {
                 sizes="100vw"
               />
               {/* Overlay for better text readability */}
-              <div className={`${styles.overlay} ${currentLang === "ar" ? styles.overlayRTL : ""}`} />
+              <div
+                className={`${styles.overlay} ${currentLang === "ar" ? styles.overlayRTL : ""}`}
+              />
 
               {/* Content */}
               <Flex
@@ -68,7 +80,9 @@ export default function CarouselComponent({ heroDetails }) {
                 align="center"
                 justify={currentLang === "ar" ? "flex-end" : "flex-start"}
               >
-                <div className={`${styles.contentCol} ${currentLang === "ar" ? styles.contentColRTL : ""}`}>
+                <div
+                  className={`${styles.contentCol} ${currentLang === "ar" ? styles.contentColRTL : ""}`}
+                >
                   <div key={`content-${slide.id}`}>
                     <motion.h1
                       initial={{ opacity: 0, y: 30 }}
@@ -105,10 +119,22 @@ export default function CarouselComponent({ heroDetails }) {
                       }}
                       className={styles.buttonsContainer}
                     >
-                      <CustomButton href="/services" aria-label={t("heroButtons.exploreServices") + " - " + slide.title}>
+                      <CustomButton
+                        href="/services"
+                        aria-label={
+                          t("heroButtons.exploreServices") + " - " + slide.title
+                        }
+                      >
                         {t("heroButtons.exploreServices")}
                       </CustomButton>
-                      <CustomButton href="/about" className={styles.aboutButton} icon={null} aria-label={t("heroButtons.aboutUs") + " - " + slide.title}>
+                      <CustomButton
+                        href="/about"
+                        className={styles.aboutButton}
+                        icon={null}
+                        aria-label={
+                          t("heroButtons.aboutUs") + " - " + slide.title
+                        }
+                      >
                         {t("heroButtons.aboutUs")}
                       </CustomButton>
                     </motion.div>

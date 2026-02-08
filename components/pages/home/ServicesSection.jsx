@@ -8,7 +8,8 @@ import styles from "./ServicesSection.module.css";
 const { Title, Text } = Typography;
 
 export default function ServicesSection({ servicesData }) {
-  const { icon, subtitle, title, steps, image, overlaytext } = servicesData || {};
+  const { icon, subtitle, title, steps, image, overlaytext } =
+    servicesData || {};
   const [current, setCurrent] = useState(0);
 
   const onChange = (value) => {
@@ -36,7 +37,7 @@ export default function ServicesSection({ servicesData }) {
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
     const stepElements = document.querySelectorAll(
-      `.${styles.customSteps} .ant-steps-item`
+      `.${styles.customSteps} .ant-steps-item`,
     );
     stepElements.forEach((el, index) => {
       el.setAttribute("data-step-index", index.toString());
@@ -58,9 +59,7 @@ export default function ServicesSection({ servicesData }) {
           <Flex vertical gap="small" className={styles.header}>
             <Flex align="center" gap="small">
               <Uicons icon={icon} className={styles.leafIcon} />
-              <Text className={styles.subtitle}>
-                {subtitle}
-              </Text>
+              <Text className={styles.subtitle}>{subtitle}</Text>
             </Flex>
             <Title level={2} className={styles.mainTitle}>
               {title}
@@ -77,12 +76,14 @@ export default function ServicesSection({ servicesData }) {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
               <Steps
-                direction="vertical"
+                orientation="vertical"
                 current={current}
                 onChange={onChange}
                 items={steps?.map((step, index) => ({
-                  title: <span className={styles.stepTitle}>{step?.title}</span>,
-                  description: (
+                  title: (
+                    <span className={styles.stepTitle}>{step?.title}</span>
+                  ),
+                  content: (
                     <span className={styles.stepDescription}>
                       {step?.description}
                     </span>
@@ -119,9 +120,7 @@ export default function ServicesSection({ servicesData }) {
                   <Uicons icon={icon} size={40} color="#0b3d1b" />
                 </div>
                 <div className={styles.overlayTextWrapper}>
-                  <Text className={styles.overlayText}>
-                    {overlaytext}
-                  </Text>
+                  <Text className={styles.overlayText}>{overlaytext}</Text>
                 </div>
               </motion.div>
             </motion.div>

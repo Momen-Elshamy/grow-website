@@ -91,8 +91,13 @@ export function withWebsiteSettings(gssp, options = {}) {
 
       // 2) Fetch SEO from Rank Math (fallbackPath must match WordPress URL exactly)
       const base = (WORDPRESS_BASE_URL || "").replace(/\/$/, "");
-      const pageUrl = path === "/" ? `${base}/` : `${base}${path}/`;
-      const seoData = await fetchRankMathSEO(pageUrl);
+      let pageUrl = path === "/" ? `${base}/` : `${base}${path}/`;
+      let seoData = await fetchRankMathSEO(pageUrl);
+      // Homepage: / often returns incomplete title; try /home/ (WordPress static front page slug)
+      if (path === "/" && (!seoData.title || seoData.title.endsWith(" | ") || seoData.title === "Grow Egypt |")) {
+         const alt = await fetchRankMathSEO(`${base}/home/`);
+         if (alt?.title && !alt.title.endsWith(" | ")) seoData = alt;
+      }
 
       // 3) Call page's getStaticProps
       const originalResult = gssp ? await gssp(ctx) : { props: {} };

@@ -27,6 +27,10 @@ ContactPage.getLayout = function getLayout(page, pageProps) {
   const contactDataAr = pageProps?.contactDataFromOptionsAr ?? null;
   const seo = pageProps?.seo ? { ...pageProps.seo } : {};
 
+  // Contact page doesn't exist in WordPress; use static title
+  if (!seo.title || seo.title.includes("Page Not Found")) {
+    seo.title = "Contact | Get in Touch for Agriculture Solutions Partnership";
+  }
   if (!seo.head || !seo.head.includes('name="description"')) {
     seo.description = "Get in touch with Grow. We are here to answer your questions and help you start your journey toward digital excellence.";
   }

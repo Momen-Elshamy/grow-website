@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import CustomButton from "../../UI/Button";
 import Uicons from "../../UI/Uicons";
+import { scrollToSection } from "@/utils/scroll";
 import styles from "./OurCompany.module.css";
 import Marquee from "react-fast-marquee";
 import { useLanguage } from "@/src/contexts/LanguageContext";
@@ -98,7 +99,10 @@ export default function OurCompany({ ourCompanyData }) {
 
 
               <div className={styles.buttonGroup}>
-                <CustomButton href="#experts">
+                <CustomButton
+                  onClick={() => scrollToSection("experts")}
+                  style={{ cursor: "pointer" }}
+                >
                   {t("aboutButtons.meetOurExperts")}
                 </CustomButton>
               </div>

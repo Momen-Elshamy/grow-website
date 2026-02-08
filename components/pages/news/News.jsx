@@ -4,6 +4,7 @@ import RecentNews from "./RecentNews";
 import FeatureVideo from "./FeatureVideo";
 import OtherNews from "./OtherNews";
 import { useLanguage } from "@/src/contexts/LanguageContext";
+import { scrollToSection } from "@/utils/scroll";
 
 export default function News({
   newsPageData,
@@ -35,10 +36,7 @@ export default function News({
     setSidebarCount(source === "otherNews" ? 4 : 3);
     setSelectedIndex(index);
     requestAnimationFrame(() => {
-      recentNewsRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      scrollToSection("recent-news");
     });
   };
 

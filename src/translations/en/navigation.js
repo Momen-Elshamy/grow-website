@@ -7,7 +7,7 @@ export default {
     playVideo: "Play video",
   },
   recentNews: "Recent News",
-  recentPosts: "Recent Posts",
+  recentPosts: "Recent News",
   moreNews: "More News",
   readMore: "Read More",
   readLess: "Read Less",

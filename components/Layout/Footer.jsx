@@ -145,7 +145,7 @@ export default function Footer({ socialMediaData }) {
                   </Link>
                 </p>
                 <p className={`${styles.contactItem} ${styles.phone}`}>
-                  +201080200887
+                  +201501515014
                 </p>
               </div>
             </div>

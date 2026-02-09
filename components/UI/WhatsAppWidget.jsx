@@ -23,7 +23,7 @@ export default function WhatsAppWidget() {
   }, [currentLang]);
   const isRTL = currentLang === "ar";
   
-  const phoneNumber = "+201080200887"; // Based on earlier info 01080200887
+  const phoneNumber = "+201501515014"; // Based on earlier info 01501515014
   const message = t("whatsapp.message");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
     message

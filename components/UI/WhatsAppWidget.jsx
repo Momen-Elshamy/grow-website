@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Button } from "antd";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
@@ -7,27 +6,48 @@ import Uicons from "./Uicons";
 import styles from "./WhatsAppWidget.module.css";
 import Link from "next/link";
 
-export default function WhatsAppWidget() {
+function getWhatsAppNumber(contactData) {
+  const data = Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
+  const blocks = data?.info ?? [];
+  for (const block of blocks) {
+    const phones = block?.phoneNumbers ?? [];
+    if (phones.length >= 2) {
+      const p = phones[1];
+      const num = (p?.number ?? "").toString().replace(/\D/g, "");
+      if (num.length >= 10) return num.startsWith("2") ? num : "2" + num;
+    }
+    for (const p of phones) {
+      const link = (p?.link ?? "").toString();
+      if (link.includes("wa.me") || link.includes("whatsapp")) {
+        const m = link.match(/wa\.me\/(\d+)/);
+        if (m?.[1]) return m[1];
+      }
+    }
+    if (phones.length === 1) {
+      const num = (phones[0]?.number ?? "").toString().replace(/\D/g, "");
+      if (num.length >= 10) return num.startsWith("2") ? num : "2" + num;
+    }
+  }
+  return null;
+}
+
+export default function WhatsAppWidget({ contactDataEn, contactDataAr }) {
   const { currentLang } = useLanguage();
-  // Translation function: t("key") or t("nested.key") returns value or key as fallback
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
     return (key) => {
       const keys = key.split(".");
       let val = dict;
-      for (const k of keys) {
-        val = val?.[k];
-      }
+      for (const k of keys) val = val?.[k];
       return val ?? key;
     };
   }, [currentLang]);
   const isRTL = currentLang === "ar";
-  
-  const phoneNumber = "+201501515014"; // Based on earlier info 01501515014
+
+  const contactData = currentLang === "ar" ? (contactDataAr ?? contactDataEn) : (contactDataEn ?? contactDataAr);
+  const digits = getWhatsAppNumber(contactData);
   const message = t("whatsapp.message");
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message
-  )}`;
+  const whatsappUrl = `https://wa.me/${digits || "201501515014"}?text=${encodeURIComponent(message)}`;
 
   return (
     <div className={`${styles.widgetWrapper} ${isRTL ? styles.widgetWrapperRTL : ""}`}>

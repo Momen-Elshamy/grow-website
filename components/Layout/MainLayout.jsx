@@ -20,7 +20,7 @@ export default function MainLayout({ children, socialMediaData, contactDataEn, c
             />
             <Header />          <Layout.Content style={{ minHeight: "100vh" }}>{children}</Layout.Content>
             <Footer socialMediaData={socialMediaData} />
-            <WhatsAppWidget />
+            <WhatsAppWidget contactDataEn={contactDataEn} contactDataAr={contactDataAr} />
          </Layout>
       </>
    );

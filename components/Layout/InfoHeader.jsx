@@ -13,6 +13,12 @@ function getSlot(block) {
   return -1;
 }
 
+function toWaLink(num) {
+  const digits = (num ?? "").toString().replace(/\D/g, "");
+  if (digits.length < 10) return null;
+  return `https://wa.me/${digits.startsWith("2") ? digits : "2" + digits}`;
+}
+
 function toItem(block, slot) {
   const phones = block?.phoneNumbers ?? [];
   const infos = block?.info ?? [];
@@ -25,8 +31,8 @@ function toItem(block, slot) {
       icons: phones.length >= 2 ? ["fi-rr-phone-rotary", "fi-brands-whatsapp"] : undefined,
       text: n0,
       info: n1,
-      textLink: phones[0]?.link ?? null,
-      infoLink: phones[1]?.link ?? null,
+      textLink: n0 ? `tel:${n0.replace(/\D/g, "")}` : null,
+      infoLink: toWaLink(n1) || toWaLink(n0),
       desktopSize: 18,
       mobileSize: 8,
     };

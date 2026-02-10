@@ -8,31 +8,149 @@ import { useMemo } from "react";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
 
-export default function Footer({ socialMediaData }) {
+/* ===============================
+   Quick Contact Helper Functions
+================================ */
+function getSlot(block) {
+  if (block?.phoneNumbers?.length > 0) return 0;
+  const v = (block?.info?.[0]?.value ?? "").toLowerCase();
+  const t = (block?.title ?? "").toLowerCase();
+  if (/@|email|mail|ايميل|بريد|newsletter|subscribe/.test(v + " " + t))
+    return 1;
+  if (/address|location|map|عنوان|موقع/.test(t)) return 2;
+  return -1;
+}
+
+function toWaLink(num) {
+  const digits = (num ?? "").toString().replace(/\D/g, "");
+  if (digits.length < 10) return null;
+  return `https://wa.me/${digits.startsWith("2") ? digits : "2" + digits}`;
+}
+
+function toItem(block, slot) {
+  const phones = block?.phoneNumbers ?? [];
+  const infos = block?.info ?? [];
+
+  if (slot === 0 && phones.length > 0) {
+    const n0 = (phones[0]?.number ?? "").toString().trim();
+    const n1 = phones[1] ? (phones[1]?.number ?? "").toString().trim() : "";
+    return {
+      icon: block?.icon,
+      icons:
+        phones.length >= 2
+          ? ["fi-rr-phone-rotary", "fi-brands-whatsapp"]
+          : undefined,
+      text: n0,
+      info: n1,
+      textLink: n0 ? `tel:${n0.replace(/\D/g, "")}` : null,
+      infoLink: toWaLink(n1) || toWaLink(n0),
+    };
+  }
+
+  const d = infos[0];
+  const value = (d?.value ?? "").trim();
+  const link = d?.link ?? null;
+  const value2 = infos[1] ? (infos[1]?.value ?? "").trim() : "";
+
+  return {
+    icon: block?.icon,
+    icons: undefined,
+    text: value,
+    info: value2,
+    textLink: link,
+    infoLink: infos[1]?.link ?? link,
+  };
+}
+
+function buildInfoItems(contactData) {
+  const data =
+    Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
+
+  if (!data?.info?.length) return [];
+
+  const slots = [null, null, null];
+
+  for (const block of data.info) {
+    const i = getSlot(block);
+    if (i >= 0 && slots[i] == null) slots[i] = block;
+  }
+
+  return slots
+    .map((block, i) => (block ? toItem(block, i) : null))
+    .filter(Boolean);
+}
+
+const InfoField = ({ item }) => {
+  return (
+    <div className={styles.contactItemWrapper}>
+      {/* Text with textLink (e.g., email or phone tel:) */}
+      {item.text &&
+        (item.textLink ? (
+          <Link
+            href={item.textLink}
+            className={styles.link}
+            target={item.textLink.startsWith("http") ? "_blank" : undefined}
+            rel={
+              item.textLink.startsWith("http")
+                ? "noopener noreferrer"
+                : undefined
+            }
+          >
+            <p className={styles.text}>{item.text}</p>
+          </Link>
+        ) : (
+          <p className={styles.text}>{item.text}</p>
+        ))}
+
+      {/* Info with infoLink (e.g., WhatsApp) */}
+      {item.info &&
+        (item.infoLink ? (
+          <Link
+            href={item.infoLink}
+            className={styles.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p className={styles.text}>{item.info}</p>
+          </Link>
+        ) : (
+          <p className={styles.text}>{item.info}</p>
+        ))}
+    </div>
+  );
+};
+
+export default function Footer({
+  socialMediaData,
+  contactDataEn,
+  contactDataAr,
+}) {
   const { currentLang } = useLanguage();
   const currentYear = new Date().getFullYear();
 
-  // Translation function: t("key") or t("nested.key") returns value or key as fallback
+  const contactData =
+    currentLang === "ar"
+      ? (contactDataAr ?? contactDataEn)
+      : (contactDataEn ?? contactDataAr);
+
+  const infoItems = useMemo(() => buildInfoItems(contactData), [contactData]);
+
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
-    return (key) => {
-      const keys = key.split(".");
-      let val = dict;
-      for (const k of keys) {
-        val = val?.[k];
-      }
-      return val ?? key;
-    };
+    return (key) => key.split(".").reduce((o, k) => o?.[k], dict) ?? key;
   }, [currentLang]);
 
-  const socialLinks = socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0
-    ? socialMediaData
-    : [
-      { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool?utm_source=share&utm_medium=member_ios&rcm=ACoAAFS3wzMBHKeBGCZwlmhQTglgFYpfJj7BShU" },
-      { icon: "fi-brands-facebook", link: "#" },
-      { icon: "fi-brands-instagram", link: "#" },
-      { icon: "fi-brands-youtube", link: "#" },
-    ];
+  const socialLinks =
+    socialMediaData &&
+    Array.isArray(socialMediaData) &&
+    socialMediaData.length > 0
+      ? socialMediaData
+      : [
+          { icon: "fi-brands-linkedin", link: "#" },
+          { icon: "fi-brands-facebook", link: "#" },
+          { icon: "fi-brands-instagram", link: "#" },
+          { icon: "fi-brands-youtube", link: "#" },
+        ];
 
   const aboutLinks = [
     { label: t("footer.aboutLinks.values"), href: "/about#values" },
@@ -42,32 +160,48 @@ export default function Footer({ socialMediaData }) {
   ];
 
   const solutionsLinks = [
-    { label: t("footer.solutionsLinks.operation"), href: "/solutions#operation" },
+    {
+      label: t("footer.solutionsLinks.operation"),
+      href: "/solutions#operation",
+    },
     { label: t("footer.solutionsLinks.frp"), href: "/solutions#frp" },
     { label: t("footer.solutionsLinks.water"), href: "/solutions#water" },
     { label: t("footer.solutionsLinks.training"), href: "/solutions#training" },
-    { label: t("footer.solutionsLinks.commercial"), href: "/solutions#commercial" },
+    {
+      label: t("footer.solutionsLinks.commercial"),
+      href: "/solutions#commercial",
+    },
   ];
 
   const servicesLinks = [
-    { label: t("footer.servicesLinks.consultancy"), href: "/services#consultancy" },
+    {
+      label: t("footer.servicesLinks.consultancy"),
+      href: "/services#consultancy",
+    },
     { label: t("footer.servicesLinks.lab"), href: "/services#lab" },
     { label: t("footer.servicesLinks.course"), href: "/services#training" },
-    { label: t("footer.servicesLinks.irrigation"), href: "/services#irrigation" },
-    { label: t("footer.servicesLinks.optimization"), href: "/services#optimization" },
-    { label: t("footer.servicesLinks.remoteSensing"), href: "/services#remote-sensing" },
+    {
+      label: t("footer.servicesLinks.irrigation"),
+      href: "/services#irrigation",
+    },
+    {
+      label: t("footer.servicesLinks.optimization"),
+      href: "/services#optimization",
+    },
+    {
+      label: t("footer.servicesLinks.remoteSensing"),
+      href: "/services#remote-sensing",
+    },
   ];
 
   const bottomLinks = [
     { label: t("footer.bottomLinks.terms"), href: "/terms-and-conditions" },
-    // { label: t("footer.bottomLinks.privacy"), href: "/privacy" },
     {
       label: t("footer.bottomLinks.sitemap"),
       href: "https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt",
       external: true,
     },
   ];
-
 
   return (
     <footer className={styles.footer}>
@@ -84,9 +218,7 @@ export default function Footer({ socialMediaData }) {
                   className={styles.logoImage}
                 />
               </Link>
-              <p className={styles.description}>
-                {t("footer.description")}
-              </p>
+              <p className={styles.description}>{t("footer.description")}</p>
               <div className={styles.socials}>
                 {socialLinks.map((social, index) => (
                   <Link
@@ -99,7 +231,6 @@ export default function Footer({ socialMediaData }) {
                       type="primary"
                       shape="default"
                       icon={<Uicons icon={social.icon} />}
-                      aria-label={t(`footer.social.${social.icon.split('-').pop()}`)}
                     />
                   </Link>
                 ))}
@@ -116,8 +247,8 @@ export default function Footer({ socialMediaData }) {
               <div className={styles.column}>
                 <h3 className={styles.columnTitle}>{col.title}</h3>
                 <ul className={styles.links}>
-                  {col.links.map((link, index) => (
-                    <li key={index}>
+                  {col.links.map((link, i) => (
+                    <li key={i}>
                       <Link href={link.href}>{link.label}</Link>
                     </li>
                   ))}
@@ -125,28 +256,16 @@ export default function Footer({ socialMediaData }) {
               </div>
             </Col>
           ))}
-
           <Col xs={12} sm={12} md={6} lg={4} xl={6}>
             <div className={styles.column}>
               <h3 className={styles.columnTitle}>{t("footer.quickContact")}</h3>
               <div className={styles.contactInfo}>
-                <p className={styles.contactItem}>
-                  <Link
-                    href="https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    A105 LINX building, Smart Village
-                  </Link>
-                </p>
-                <p className={styles.contactItem}>
-                  <Link href="mailto:info@grow-egypt.com">
-                    info@grow-egypt.com
-                  </Link>
-                </p>
-                <p className={`${styles.contactItem} ${styles.phone}`}>
-                  +201501515014
-                </p>
+                {infoItems
+                  .slice()
+                  .reverse()
+                  .map((item, i) => (
+                    <InfoField key={i} item={item} fieldKey={item} />
+                  ))}
               </div>
             </div>
           </Col>

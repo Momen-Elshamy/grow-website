@@ -8,9 +8,7 @@ import { useMemo } from "react";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
 
-/* ===============================
-   Quick Contact Helper Functions
-================================ */
+// Determine slot: 0=phones, 1=email, 2=address
 function getSlot(block) {
   if (block?.phoneNumbers?.length > 0) return 0;
   const v = (block?.info?.[0]?.value ?? "").toLowerCase();
@@ -44,6 +42,7 @@ function toItem(block, slot) {
       info: n1,
       textLink: n0 ? `tel:${n0.replace(/\D/g, "")}` : null,
       infoLink: toWaLink(n1) || toWaLink(n0),
+      slot, // added slot
     };
   }
 
@@ -59,6 +58,7 @@ function toItem(block, slot) {
     info: value2,
     textLink: link,
     infoLink: infos[1]?.link ?? link,
+    slot, // added slot
   };
 }
 
@@ -80,43 +80,22 @@ function buildInfoItems(contactData) {
     .filter(Boolean);
 }
 
-const InfoField = ({ item }) => {
-  return (
-    <div className={styles.contactItemWrapper}>
-      {/* Text with textLink (e.g., email or phone tel:) */}
-      {item.text &&
-        (item.textLink ? (
-          <Link
-            href={item.textLink}
-            className={styles.link}
-            target={item.textLink.startsWith("http") ? "_blank" : undefined}
-            rel={
-              item.textLink.startsWith("http")
-                ? "noopener noreferrer"
-                : undefined
-            }
-          >
-            <p className={styles.text}>{item.text}</p>
-          </Link>
-        ) : (
-          <p className={styles.text}>{item.text}</p>
-        ))}
+// Updated InfoField
+const InfoField = ({ item, isInfo }) => {
+  const text = isInfo ? item.info : item.text;
+  const link = isInfo ? item.infoLink : item.textLink;
 
-      {/* Info with infoLink (e.g., WhatsApp) */}
-      {item.info &&
-        (item.infoLink ? (
-          <Link
-            href={item.infoLink}
-            className={styles.link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <p className={styles.text}>{item.info}</p>
-          </Link>
-        ) : (
-          <p className={styles.text}>{item.info}</p>
-        ))}
-    </div>
+  if (!text) return null;
+
+  return (
+    <Link
+      href={link || "#"}
+      className={styles.link}
+      target={link?.startsWith("http") ? "_blank" : undefined}
+      rel={link?.startsWith("http") ? "noopener noreferrer" : undefined}
+    >
+      <p className={styles.text}>{text}</p>
+    </Link>
   );
 };
 
@@ -139,6 +118,18 @@ export default function Footer({
     const dict = currentLang === "ar" ? ar : en;
     return (key) => key.split(".").reduce((o, k) => o?.[k], dict) ?? key;
   }, [currentLang]);
+
+  // Extract first address, email
+  const firstAddress = infoItems.find((item) => item.slot === 2)?.text;
+  const email = infoItems.find((item) => item.slot === 1)?.text;
+
+  // Fix last phone number: check both text and info of slot 0
+  const phoneItems = infoItems.filter((item) => item.slot === 0);
+  let lastNumber = null;
+  if (phoneItems.length > 0) {
+    const lastItem = phoneItems[phoneItems.length - 1];
+    lastNumber = lastItem.info || lastItem.text;
+  }
 
   const socialLinks =
     socialMediaData &&
@@ -203,6 +194,11 @@ export default function Footer({
     },
   ];
 
+  const addressItem = infoItems.find((item) => item.slot === 2);
+  const emailItem = infoItems.find((item) => item.slot === 1);
+  const lastPhoneItem =
+    phoneItems.length > 0 ? phoneItems[phoneItems.length - 1] : null;
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -260,12 +256,14 @@ export default function Footer({
             <div className={styles.column}>
               <h3 className={styles.columnTitle}>{t("footer.quickContact")}</h3>
               <div className={styles.contactInfo}>
-                {infoItems
-                  .slice()
-                  .reverse()
-                  .map((item, i) => (
-                    <InfoField key={i} item={item} fieldKey={item} />
-                  ))}
+                {/* {firstAddress && <InfoField item={firstAddress} />}
+                {email && <InfoField item={email} />} */}
+                {/* {lastNumber && <InfoField item={lastNumber} />} */}
+                {addressItem && <InfoField item={addressItem} isInfo={false} />}
+                {emailItem && <InfoField item={emailItem} isInfo={false} />}
+                {lastPhoneItem && (
+                  <InfoField item={lastPhoneItem} isInfo={true} />
+                )}
               </div>
             </div>
           </Col>

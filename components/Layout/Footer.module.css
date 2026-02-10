@@ -111,9 +111,17 @@
   flex-direction: column;
   gap: 16px;
 }
-
+.link:active {
+  color: #FFB01E !important;
+}
+.link:hover {
+  color: #FFB01E !important;
+}
+.text:active {
+  color: #FFB01E !important;
+}
 .text:hover {
-  color: #FFB01E;
+  color: #FFB01E !important;
 }
 
 .links li a {

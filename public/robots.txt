@@ -1,0 +1,17 @@
+# robots.txt for Grow Website
+# This file tells search engines which pages they can and cannot crawl
+
+# Allow all robots to access all content
+User-agent: *
+Allow: /
+
+# Disallow access to API routes
+Disallow: /api/
+
+# Sitemap location
+Sitemap: http://grow-main-kdfyam-9f4106-72-61-111-171.traefik.me/sitemap.xml
+
+# Allow Google Image Bot
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /public/images/

@@ -157,6 +157,12 @@
   color: #002e1b;
   margin: 0;
   line-height: 1.3;
+   display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .cardDescription {
@@ -310,5 +316,11 @@
 
   .cardTitle {
     font-size: 18px;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 }

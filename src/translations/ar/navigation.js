@@ -79,6 +79,7 @@ export default {
       values: "قيمنا",
       mission: "الرؤية والرسالة",
       experts: "التق بفريقنا",
+      stories: "قصص النجاح",
       contactUs: "اتصل بنا",
     },
     solutionsLinks: {

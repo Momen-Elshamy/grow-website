@@ -79,6 +79,7 @@ export default {
       values: "Our Values",
       mission: "Vision & Mission",
       experts: "Meet Our Experts",
+      stories: "Success Stories",
       contactUs: "Contact Us",
     },
     solutionsLinks: {

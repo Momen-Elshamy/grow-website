@@ -13,10 +13,112 @@ import {
   scrollToSectionAfterNavigate,
 } from "@/utils/scroll";
 
-export default function Footer({ socialMediaData }) {
+// Determine slot: 0=phones, 1=email, 2=address
+function getSlot(block) {
+  if (block?.phoneNumbers?.length > 0) return 0;
+  const v = (block?.info?.[0]?.value ?? "").toLowerCase();
+  const t = (block?.title ?? "").toLowerCase();
+  if (/@|email|mail|ايميل|بريد|newsletter|subscribe/.test(v + " " + t))
+    return 1;
+  if (/address|location|map|عنوان|موقع/.test(t)) return 2;
+  return -1;
+}
+
+function toWaLink(num) {
+  const digits = (num ?? "").toString().replace(/\D/g, "");
+  if (digits.length < 10) return null;
+  return `https://wa.me/${digits.startsWith("2") ? digits : "2" + digits}`;
+}
+
+function toItem(block, slot) {
+  const phones = block?.phoneNumbers ?? [];
+  const infos = block?.info ?? [];
+
+  if (slot === 0 && phones.length > 0) {
+    const n0 = (phones[0]?.number ?? "").toString().trim();
+    const n1 = phones[1] ? (phones[1]?.number ?? "").toString().trim() : "";
+    return {
+      icon: block?.icon,
+      icons:
+        phones.length >= 2
+          ? ["fi-rr-phone-rotary", "fi-brands-whatsapp"]
+          : undefined,
+      text: n0,
+      info: n1,
+      textLink: n0 ? `tel:${n0.replace(/\D/g, "")}` : null,
+      infoLink: toWaLink(n1) || toWaLink(n0),
+      slot, // added slot
+    };
+  }
+
+  const d = infos[0];
+  const value = (d?.value ?? "").trim();
+  const link = d?.link ?? null;
+  const value2 = infos[1] ? (infos[1]?.value ?? "").trim() : "";
+
+  return {
+    icon: block?.icon,
+    icons: undefined,
+    text: value,
+    info: value2,
+    textLink: link,
+    infoLink: infos[1]?.link ?? link,
+    slot, // added slot
+  };
+}
+
+function buildInfoItems(contactData) {
+  const data =
+    Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
+
+  if (!data?.info?.length) return [];
+
+  const slots = [null, null, null];
+
+  for (const block of data.info) {
+    const i = getSlot(block);
+    if (i >= 0 && slots[i] == null) slots[i] = block;
+  }
+
+  return slots
+    .map((block, i) => (block ? toItem(block, i) : null))
+    .filter(Boolean);
+}
+
+// Updated InfoField
+const InfoField = ({ item, isInfo }) => {
+  const text = isInfo ? item.info : item.text;
+  const link = isInfo ? item.infoLink : item.textLink;
+
+  if (!text) return null;
+
+  return (
+    <Link
+      href={link}
+      className={styles.link}
+      target={link?.startsWith("http") ? "_blank" : undefined}
+      rel={link?.startsWith("http") ? "noopener noreferrer" : undefined}
+    >
+      <p className={styles.text}>{text}</p>
+    </Link>
+  );
+};
+
+export default function Footer({
+  socialMediaData,
+  contactDataEn,
+  contactDataAr,
+}) {
   const { currentLang } = useLanguage();
   const router = useRouter();
   const currentYear = new Date().getFullYear();
+
+  const contactData =
+    currentLang === "ar"
+      ? (contactDataAr ?? contactDataEn)
+      : (contactDataEn ?? contactDataAr);
+
+  const infoItems = useMemo(() => buildInfoItems(contactData), [contactData]);
 
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
@@ -28,8 +130,18 @@ export default function Footer({ socialMediaData }) {
     };
   }, [currentLang]);
 
+  // Fix last phone number: check both text and info of slot 0
+  const phoneItems = infoItems.filter((item) => item.slot === 0);
+  let lastNumber = null;
+  if (phoneItems.length > 0) {
+    const lastItem = phoneItems[phoneItems.length - 1];
+    lastNumber = lastItem.info || lastItem.text;
+  }
+
   const socialLinks =
-    socialMediaData && Array.isArray(socialMediaData) && socialMediaData.length > 0
+    socialMediaData &&
+    Array.isArray(socialMediaData) &&
+    socialMediaData.length > 0
       ? socialMediaData
       : [
           { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool" },
@@ -87,6 +199,10 @@ export default function Footer({ socialMediaData }) {
     },
   ];
 
+  const addressItem = infoItems.find((item) => item.slot === 2);
+  const emailItem = infoItems.find((item) => item.slot === 1);
+  const lastPhoneItem =
+    phoneItems.length > 0 ? phoneItems[phoneItems.length - 1] : null;
   // Scroll handlers
   const handleScrollClick = (e, type, key) => {
     e.preventDefault();
@@ -150,15 +266,11 @@ export default function Footer({ socialMediaData }) {
             <div className={styles.column}>
               <h3 className={styles.columnTitle}>{t("footer.quickContact")}</h3>
               <div className={styles.contactInfo}>
-                <p className={styles.contactItem}>
-                  <Link href="https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt" target="_blank" rel="noopener noreferrer">
-                    A105 LINX building, Smart Village
-                  </Link>
-                </p>
-                <p className={styles.contactItem}>
-                  <Link href="mailto:info@grow-egypt.com">info@grow-egypt.com</Link>
-                </p>
-                <p className={`${styles.contactItem} ${styles.phone}`}>+201501515014</p>
+                {addressItem && <InfoField item={addressItem} isInfo={false} />}
+                {emailItem && <InfoField item={emailItem} isInfo={false} />}
+                {lastPhoneItem && (
+                  <InfoField item={lastPhoneItem} isInfo={true} />
+                )}
               </div>
             </div>
           </Col>

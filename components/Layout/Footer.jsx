@@ -89,7 +89,7 @@ const InfoField = ({ item, isInfo }) => {
 
   return (
     <Link
-      href={link || "#"}
+      href={link}
       className={styles.link}
       target={link?.startsWith("http") ? "_blank" : undefined}
       rel={link?.startsWith("http") ? "noopener noreferrer" : undefined}
@@ -118,10 +118,6 @@ export default function Footer({
     const dict = currentLang === "ar" ? ar : en;
     return (key) => key.split(".").reduce((o, k) => o?.[k], dict) ?? key;
   }, [currentLang]);
-
-  // Extract first address, email
-  const firstAddress = infoItems.find((item) => item.slot === 2)?.text;
-  const email = infoItems.find((item) => item.slot === 1)?.text;
 
   // Fix last phone number: check both text and info of slot 0
   const phoneItems = infoItems.filter((item) => item.slot === 0);

@@ -105,20 +105,20 @@
 }
 
 .text {
-    font-size: 14px;
-    font-weight: 500;
-    color: #666;
-    margin: 0;
-    padding-bottom: 2px;
-    line-height: 1.2;
+  font-size: 14px;
+  font-weight: 600;
+  color: #17311E;
+  margin: 0;
+  padding-bottom: 2px;
+  line-height: 1.2;
 }
 
 .info {
-    font-size: 14px;
-    font-weight: 600;
-    color: #000;
-    margin: 0;
-    line-height: 1.2;
+  font-size: 14px;
+  font-weight: 600;
+  color: #17311E;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .iconsContainerLeft {

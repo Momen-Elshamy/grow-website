@@ -1,5 +1,5 @@
-import React, { useRef, useMemo } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useMemo } from "react";
+import { motion } from "framer-motion";
 import { Typography, Flex, Row, Col } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,9 +12,19 @@ import ar from "@/src/translations/ar/navigation";
 
 const { Paragraph, Text } = Typography;
 
-export default function Card({ solution, index, progress, range, targetScale }) {
-  const container = useRef(null);
+const contentVariants = {
+  hidden: (isRTL) => ({ opacity: 0, x: isRTL ? 60 : -60 }),
+  visible: { opacity: 1, x: 0 },
+};
+
+const imageVariants = {
+  hidden: (isRTL) => ({ opacity: 0, x: isRTL ? -60 : 60 }),
+  visible: { opacity: 1, x: 0 },
+};
+
+export default function Card({ solution, sectionId }) {
   const { currentLang } = useLanguage();
+  const isRTL = currentLang === "ar";
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
     return (key) => {
@@ -26,77 +36,73 @@ export default function Card({ solution, index, progress, range, targetScale }) 
       return val ?? key;
     };
   }, [currentLang]);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "start start"],
-  });
-
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className={styles.cardWrapper} id={solution?.id}>
-      <motion.div
-        style={{
-          scale,
-          top: `calc(-10% + ${index * 25}px)`,
-          transformOrigin: "top center",
-        }}
-        className={styles.card}
-      >
+    <div className={styles.cardWrapper} id={sectionId}>
+      <div className={styles.card}>
         <Row className={styles.cardRow}>
           <Col
             xs={{ span: 24, order: 2 }}
             md={{ span: 11, order: 1 }}
             className={styles.cardContent}
             dir="auto"
+            // style={{ borderRadius: 20 }}
           >
-            <Flex
-              vertical
-              justify="space-between"
+            <motion.div
+              custom={isRTL}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={contentVariants}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               style={{ width: "100%", height: "100%" }}
             >
-              <div>
-                <h3 className={styles.cardTitle}>
-                  {solution?.title}
-                </h3>
-                <Paragraph className={styles.cardDescription}>
-                  {solution?.description}
-                </Paragraph>
-                <ul className={styles.featureList}>
-                  {solution?.features?.map((feature, i) => (
-                    <li key={i} className={styles.featureItem}>
-                      <span className={styles.checkIcon}>
-                        <Uicons
-                          icon={feature.icon || "fi-rr-check"}
-                          className={styles.checkmark}
-                        />
-                      </span>
-                      <Text className={styles.featureText}>
-                        {feature.textIcon}
-                      </Text>
-                    </li>
-                  ))}
-                </ul>
-              </div>
               <Flex
-                align="end"
+                vertical
                 justify="space-between"
-                gap={32}
-                style={{ width: "100%", position: "relative" }}
+                style={{ width: "100%", height: "100%" }}
               >
-                <Link href="/contact" style={{ textDecoration: "none" }}>
-                  <CustomButton>{t("aboutButtons.contactUs")}</CustomButton>
-                </Link>
-
-                <div
-                  className={`${styles.cardNumber} ${currentLang === "ar" ? styles.cardNumberRTL : ""
-                    }`}
-                >
-                  {solution?.number}
+                <div>
+                  <h3 className={styles.cardTitle}>{solution?.title}</h3>
+                  <Paragraph className={styles.cardDescription}>
+                    {solution?.description}
+                  </Paragraph>
+                  <ul className={styles.featureList}>
+                    {solution?.features?.map((feature, i) => (
+                      <li key={i} className={styles.featureItem}>
+                        <span className={styles.checkIcon}>
+                          <Uicons
+                            icon={feature.icon || "fi-rr-check"}
+                            className={styles.checkmark}
+                          />
+                        </span>
+                        <Text className={styles.featureText}>
+                          {feature.textIcon}
+                        </Text>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+                <Flex
+                  align="end"
+                  justify="space-between"
+                  gap={32}
+                  style={{ width: "100%", position: "relative" }}
+                >
+                  <Link href="/contact" style={{ textDecoration: "none" }}>
+                    <CustomButton>{t("aboutButtons.contactUs")}</CustomButton>
+                  </Link>
+
+                  <div
+                    className={`${styles.cardNumber} ${
+                      currentLang === "ar" ? styles.cardNumberRTL : ""
+                    }`}
+                  >
+                    {solution?.number}
+                  </div>
+                </Flex>
               </Flex>
-            </Flex>
+            </motion.div>
           </Col>
 
           <Col
@@ -105,13 +111,20 @@ export default function Card({ solution, index, progress, range, targetScale }) 
             className={styles.cardImageContainer}
           >
             <motion.div
+              custom={isRTL}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={imageVariants}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className={styles.inner}
-              style={{ scale: imageScale, width: "100%", height: "100%" }}
             >
               {solution?.image && (
                 <Image
                   src={solution.image}
-                  alt={solution?.altImage || solution?.title || "Solution image"}
+                  alt={
+                    solution?.altImage || solution?.title || "Solution image"
+                  }
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className={styles.cardImage}
@@ -120,12 +133,7 @@ export default function Card({ solution, index, progress, range, targetScale }) 
             </motion.div>
           </Col>
         </Row>
-      </motion.div>
+      </div>
     </div>
   );
 }
-
-
-
-
-

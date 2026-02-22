@@ -136,12 +136,12 @@
 }
 
 .contentTag {
-  background-color: #002e1b;
-  color: #fff;
+  background-color: #FFB01E;
+  color: #002e1b;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
   padding: 2px 10px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .tagsRTL {

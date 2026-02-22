@@ -8,10 +8,7 @@ import { useMemo } from "react";
 import { useRouter } from "next/router";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
-import {
-  scrollToSection,
-  scrollToSectionAfterNavigate,
-} from "@/utils/scroll";
+import { scrollToSection, scrollToSectionAfterNavigate } from "@/utils/scroll";
 
 // Determine slot: 0=phones, 1=email, 2=address
 function getSlot(block) {
@@ -144,7 +141,10 @@ export default function Footer({
     socialMediaData.length > 0
       ? socialMediaData
       : [
-          { icon: "fi-brands-linkedin", link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool" },
+          {
+            icon: "fi-brands-linkedin",
+            link: "https://www.linkedin.com/posts/grow-management-egypt_grow-management-growmanagement-activity-7331199004807946240-rool",
+          },
           { icon: "fi-brands-facebook", link: "#" },
           { icon: "fi-brands-instagram", link: "#" },
           { icon: "fi-brands-youtube", link: "#" },
@@ -165,14 +165,14 @@ export default function Footer({
     },
     {
       title: t("footer.solutions"),
-      type: "link",
+      type: "solutions",
       xl: 4,
       links: [
-        { label: t("footer.solutionsLinks.operation"), href: "/solutions#operation" },
-        { label: t("footer.solutionsLinks.frp"), href: "/solutions#frp" },
-        { label: t("footer.solutionsLinks.water"), href: "/solutions#water" },
-        { label: t("footer.solutionsLinks.training"), href: "/solutions#training" },
-        { label: t("footer.solutionsLinks.commercial"), href: "/solutions#commercial" },
+        { label: t("footer.solutionsLinks.operation"), key: "operation" },
+        { label: t("footer.solutionsLinks.frp"), key: "frp" },
+        { label: t("footer.solutionsLinks.water"), key: "water" },
+        { label: t("footer.solutionsLinks.training"), key: "training" },
+        { label: t("footer.solutionsLinks.commercial"), key: "commercial" },
       ],
     },
     {
@@ -185,7 +185,10 @@ export default function Footer({
         { label: t("footer.servicesLinks.course"), key: "training" },
         { label: t("footer.servicesLinks.irrigation"), key: "irrigation" },
         { label: t("footer.servicesLinks.optimization"), key: "optimization" },
-        { label: t("footer.servicesLinks.remoteSensing"), key: "remote-sensing" },
+        {
+          label: t("footer.servicesLinks.remoteSensing"),
+          key: "remote-sensing",
+        },
       ],
     },
   ];
@@ -203,10 +206,17 @@ export default function Footer({
   const emailItem = infoItems.find((item) => item.slot === 1);
   const lastPhoneItem =
     phoneItems.length > 0 ? phoneItems[phoneItems.length - 1] : null;
-  // Scroll handlers
+  // Scroll handlers (about, solutions, services)
   const handleScrollClick = (e, type, key) => {
     e.preventDefault();
-    let path = type === "services" ? "/services" : type === "about" ? "/about" : null;
+    const path =
+      type === "services"
+        ? "/services"
+        : type === "about"
+          ? "/about"
+          : type === "solutions"
+            ? "/solutions"
+            : null;
     if (!path) return;
 
     if (router.pathname === path) {
@@ -226,13 +236,31 @@ export default function Footer({
           <Col xs={24} sm={24} md={24} lg={8} xl={7}>
             <div className={styles.logoSection}>
               <Link href="/" className={styles.logo}>
-                <Image src="/images/logo2.png" alt="Grow Logo" width={90} height={40} className={styles.logoImage} />
+                <Image
+                  src="/images/logo2.png"
+                  alt="Grow Logo"
+                  width={90}
+                  height={40}
+                  className={styles.logoImage}
+                />
               </Link>
               <p className={styles.description}>{t("footer.description")}</p>
               <div className={styles.socials}>
                 {socialLinks.map((social, index) => (
-                  <Link key={index} href={social.link || "#"} target="_blank" rel="noopener noreferrer">
-                    <Button type="primary" shape="default" icon={<Uicons icon={social.icon} />} aria-label={t(`footer.social.${social.icon.split('-').pop()}`)} />
+                  <Link
+                    key={index}
+                    href={social.link || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      type="primary"
+                      shape="default"
+                      icon={<Uicons icon={social.icon} />}
+                      aria-label={t(
+                        `footer.social.${social.icon.split("-").pop()}`,
+                      )}
+                    />
                   </Link>
                 ))}
               </div>
@@ -250,7 +278,16 @@ export default function Footer({
                       {col.type === "link" ? (
                         <Link href={link.href}>{link.label}</Link>
                       ) : (
-                        <a href={`#${link.key}`} onClick={(e) => handleScrollClick(e, col.type, link.key)}>
+                        <a
+                          href={
+                            col.type === "solutions"
+                              ? `/solutions#${link.key}`
+                              : `#${link.key}`
+                          }
+                          onClick={(e) =>
+                            handleScrollClick(e, col.type, link.key)
+                          }
+                        >
                           {link.label}
                         </a>
                       )}
@@ -278,20 +315,29 @@ export default function Footer({
       </div>
 
       <div className={styles.graphicContainer}>
-        <Image src="/images/footergraphic.svg" alt="" className={styles.footerGraphic} width={1920} height={400} />
+        <Image
+          src="/images/footergraphic.svg"
+          alt=""
+          className={styles.footerGraphic}
+          width={1920}
+          height={400}
+        />
       </div>
 
       <div className={styles.bottom}>
         <div className={`${styles.container} ${styles.bottomContainer}`}>
           <p className={styles.copyright}>
-            ©{currentYear} <span>Grow</span>, {t("footer.copyright")} premastlab.com
+            ©{currentYear} <span>Grow</span>, {t("footer.copyright")}{" "}
+            premastlab.com
           </p>
           <ul className={styles.bottomLinks}>
             {bottomLinks.map((link, index) => (
               <li key={index}>
                 <Link
                   href={link.href}
-                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  {...(link.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                 >
                   {link.label}
                 </Link>

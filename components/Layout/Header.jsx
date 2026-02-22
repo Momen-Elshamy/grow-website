@@ -158,8 +158,8 @@ export default function Header() {
             <Image
               src="/images/logo1.png"
               alt="Grow Logo"
-              width={110}
-              height={52}
+              width={120}
+              height={56}
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
               quality={80}

@@ -156,18 +156,25 @@
 }
 
 .dropdownOverlay :global(.ant-dropdown-menu-item:hover) {
-  background-color: transparent !important;
+  background-color: rgba(11, 61, 27, 0.1) !important;
+  background: rgba(11, 61, 27, 0.1) !important;
 }
 
 .dropdownOverlay :global(.ant-dropdown-menu-item:hover .ant-dropdown-menu-title-content) {
-  color: #17311E !important;
+  color: #0b3d1b !important;
 }
 
 .dropdownOverlay :global(.ant-dropdown-menu-item-active),
 .dropdownOverlay :global(.ant-dropdown-menu-item-selected),
 .dropdownOverlay :global(.ant-dropdown-menu-item-hover) {
-  background-color: transparent !important;
-  background: transparent !important;
+  background-color: rgba(11, 61, 27, 0.1) !important;
+  background: rgba(11, 61, 27, 0.1) !important;
+}
+
+.dropdownOverlay :global(.ant-dropdown-menu-item-active .ant-dropdown-menu-title-content),
+.dropdownOverlay :global(.ant-dropdown-menu-item-selected .ant-dropdown-menu-title-content),
+.dropdownOverlay :global(.ant-dropdown-menu-item-hover .ant-dropdown-menu-title-content) {
+  color: #0b3d1b !important;
 }
 
 .dropdownMenuItem,

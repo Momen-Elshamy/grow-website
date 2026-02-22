@@ -6,6 +6,10 @@ export default {
   newsSection: {
     playVideo: "Play video",
   },
+  newsCta: {
+    headline: "Check more videos and updates in Grow Egypt Youtube channel.",
+    button: "Visit YouTube",
+  },
   recentNews: "Recent News",
   recentPosts: "Recent News",
   moreNews: "More News",
@@ -66,7 +70,8 @@ export default {
     lab: "Lab analysis/Eurofins",
     training: "Training Course",
     irrigation: "Engineering & design of Irrigation and drainage systems.",
-    optimization: "Revision, Re-engineering and optimization of existing water systems.",
+    optimization:
+      "Revision, Re-engineering and optimization of existing water systems.",
     "remote-sensing": "Remote sensing",
   },
   footer: {
@@ -74,7 +79,8 @@ export default {
     about: "About",
     solutions: "Solutions",
     services: "Services",
-    description: "Our commitment is to help farmers have the technologies they need to protect the crops and empowering the future of food production!",
+    description:
+      "Our commitment is to help farmers have the technologies they need to protect the crops and empowering the future of food production!",
     aboutLinks: {
       values: "Our Values",
       mission: "Vision & Mission",

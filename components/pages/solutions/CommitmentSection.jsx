@@ -1,42 +1,30 @@
-import React, { useRef, useEffect } from "react";
-import { useScroll } from "framer-motion";
+import React from "react";
 import { Typography, Flex } from "antd";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./CommitmentSection.module.css";
 import Card from "./SolutionCard";
-import Lenis from "lenis";
 
 const { Text } = Typography;
 
-export default function CommitmentSection({ solutionsSection, solutionCardsData}) {
-  const { title = "", description = "", icon, subtitle } = solutionsSection || {};
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-  const lenisRef = useRef(null);
+// Section IDs matching header dropdown keys (nav) for scroll-to-card
+const SOLUTION_SECTION_IDS = [
+  "operation",
+  "frp",
+  "water",
+  "training",
+  "commercial",
+];
 
-  useEffect(() => {
-    if (!lenisRef.current) {
-      const lenis = new Lenis();
-      lenisRef.current = lenis;
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-    }
-
-    return () => {
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-        lenisRef.current = null;
-      }
-    };
-  }, []);
+export default function CommitmentSection({
+  solutionsSection,
+  solutionCardsData,
+}) {
+  const {
+    title = "",
+    description = "",
+    icon,
+    subtitle,
+  } = solutionsSection || {};
 
   // Map GraphQL solutionCards data to Card component structure
   const mappedSolutions =
@@ -55,7 +43,7 @@ export default function CommitmentSection({ solutionsSection, solutionCardsData}
     })) || [];
 
   return (
-    <section className={styles.container} ref={container}>
+    <section className={styles.container}>
       <Flex vertical gap={24} className={styles.header}>
         <div className={styles.contentWrapper}>
           <Flex align="center" gap="small" className={styles.subtitleWrapper}>
@@ -68,20 +56,13 @@ export default function CommitmentSection({ solutionsSection, solutionCardsData}
       </Flex>
 
       <div className={styles.cardsContainer}>
-        {mappedSolutions.map((solution, i) => {
-          // Scale logic: The last card stays 100%, previous ones scale down to look like they are "behind"
-          const targetScale = 1 - (mappedSolutions.length - 1 - i) * 0.05;
-          return (
-            <Card
-              key={solution.id}
-              solution={solution}
-              index={i}
-              progress={scrollYProgress}
-              range={[i * 0.25, 1]}
-              targetScale={targetScale}
-            />
-          );
-        })}
+        {mappedSolutions.map((solution, index) => (
+          <Card
+            key={solution.id}
+            solution={solution}
+            sectionId={SOLUTION_SECTION_IDS[index] ?? `card-${index}`}
+          />
+        ))}
       </div>
     </section>
   );

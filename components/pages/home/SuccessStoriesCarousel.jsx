@@ -119,6 +119,7 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
               >
                 <CustomButton
                   className={styles.cardBtn}
+                  // iconColor="#e67e22"
                   aria-label={
                     course?.title
                       ? `Read more about ${course.title}`

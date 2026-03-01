@@ -7,7 +7,7 @@ import NewsCTA from "./NewsCTA";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { scrollToSection } from "@/utils/scroll";
 
-export default function News({ newsPageData, newsPageDataArabic }) {
+export default function News({ newsPageData, newsPageDataArabic, socialMediaData }) {
   const { currentLang } = useLanguage();
   const newsPageDataToUse = useMemo(() => {
     if (currentLang === "ar") {
@@ -53,7 +53,7 @@ export default function News({ newsPageData, newsPageDataArabic }) {
       />
       <FeatureVideo featureVideoData={featureVideoData} />
       <OtherNews newsData={newsData} onSelectNews={handleSelectNews} />
-      <NewsCTA />
+      <NewsCTA socialMediaData={socialMediaData} />
     </main>
   );
 }

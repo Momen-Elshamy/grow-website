@@ -73,6 +73,7 @@ export default {
     optimization:
       "Revision, Re-engineering and optimization of existing water systems.",
     "remote-sensing": "Remote sensing",
+    management: "Farm Management",
   },
   footer: {
     quickContact: "Quick Contact",
@@ -98,10 +99,11 @@ export default {
     servicesLinks: {
       consultancy: "Technical Consultancy",
       lab: "Lab analysis",
-      course: "Course",
+      training: "Training",
       irrigation: "Irrigation",
       optimization: "Optimization",
       remoteSensing: "Remote sensing",
+      management: "Farm Management",
     },
     bottomLinks: {
       terms: "Terms & Conditions",

@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 60px;
+  padding: 32px;
   border-radius: 16px;
 }
 
@@ -31,18 +31,18 @@
   font-size: 38px;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
   line-height: 1.2;
 }
 
 .description {
-  font-size: 20px;
-  line-height: 1.7;
-  color: #ffffff;
+  font-size: 18px;
+  font-weight: 500 !important;
+  line-height: 1.4;
+  color: #e4e4e4;
   margin: 0;
   opacity: 0.95;
 }
-
 
 .imageColumn {
   padding: 0;
@@ -67,18 +67,36 @@
   height: 100%;
 }
 
+.iconBlocksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+  
+}
+.iconBlock {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center !important;
+  gap: 16px;
+  transition: transform 0.3s ease;
+  min-height: 21px; 
+}
+
+.blockLabel {
+  margin: 0;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
-  .textColumn {
-    padding: 60px 40px;
-  }
 
   .title {
     font-size: 42px;
   }
 
   .description {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .imageColumn {
@@ -100,7 +118,6 @@
   }
 
   .textColumn {
-    padding: 60px 40px;
     border-radius: 16px;
   }
 

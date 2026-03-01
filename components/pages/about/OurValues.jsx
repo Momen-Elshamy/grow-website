@@ -37,21 +37,32 @@ export default function OurValues({ ourValuesData }) {
         </motion.div>
 
         {/* Values Grid */}
-        <motion.div
+         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <Row gutter={[16, 16]} className={styles.valuesGrid}>
+          <Row className={styles.gridRow} >
             {valueItem?.map((value, index) => (
-              <Col key={index} xs={24} md={8}>
-                <motion.div variants={itemVariants} className={styles.valueItem}>        
-                    <div className={styles.iconWrapper}>
+              <Col
+                key={index}
+                xs={24}
+                sm={12}
+                md={8}
+                lg={6}
+                className={styles.gridCol}
+              >
+                <motion.div
+                  variants={itemVariants}
+                  className={styles.itemWrapper}
+                >
+                  {value.icon && (
+                    <div className={styles.iconContainer}>
                       <Uicons
-                        icon={value?.icon}
-                        size="24px"
-                        color="#245631"
+                        icon={value.icon}
+                        size="32px"
+                        color="#17311E"
                         style={{
                           display: "flex",
                           alignItems: "center",
@@ -59,7 +70,13 @@ export default function OurValues({ ourValuesData }) {
                         }}
                       />
                     </div>
-                    <span className={styles.valueText}>{value.valueText}</span>
+                  )}
+                  {value.valueText && (
+                    <h3 className={styles.itemTitle}>{value.valueText}</h3>
+                  )}
+                  {value.description && (
+                    <p className={styles.itemDescription}>{value.description}</p>
+                  )}
                 </motion.div>
               </Col>
             ))}

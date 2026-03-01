@@ -1,6 +1,6 @@
 "use client";
 
-import { Row, Col } from "antd";
+import { Row, Col, Flex } from "antd";
 import { motion } from "framer-motion";
 import Uicons from "../../UI/Uicons";
 import styles from "./VisionAndMission.module.css";
@@ -19,7 +19,8 @@ const itemVariants = {
 export default function VisionAndMission({ visionAndMissionData }) {
   if (!visionAndMissionData) return null;
 
-  const { title, description, missionItems = [] } = visionAndMissionData || {};
+  const { title, description, vissionDescription, missionDescription } =
+    visionAndMissionData || {};
 
   return (
     <section id="mission" className={styles.visionMissionSection}>
@@ -43,44 +44,10 @@ export default function VisionAndMission({ visionAndMissionData }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <Row className={styles.gridRow} >
-            {missionItems?.map((item, index) => (
-              <Col
-                key={index}
-                xs={24}
-                sm={12}
-                md={8}
-                lg={6}
-                className={styles.gridCol}
-              >
-                <motion.div
-                  variants={itemVariants}
-                  className={styles.itemWrapper}
-                >
-                  {item.icon && (
-                    <div className={styles.iconContainer}>
-                      <Uicons
-                        icon={item.icon}
-                        size="32px"
-                        color="#17311E"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      />
-                    </div>
-                  )}
-                  {item.title && (
-                    <h3 className={styles.itemTitle}>{item.title}</h3>
-                  )}
-                  {item.description && (
-                    <p className={styles.itemDescription}>{item.description}</p>
-                  )}
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
+          <div>
+            <p className={styles.itemDescription}>{vissionDescription}</p>
+            <p className={styles.itemDescription}>{missionDescription}</p>
+          </div>
         </motion.div>
       </div>
     </section>

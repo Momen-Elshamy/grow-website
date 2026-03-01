@@ -180,15 +180,14 @@ export default function Footer({
       type: "services",
       xl: 4,
       links: [
-        { label: t("footer.servicesLinks.consultancy"), key: "consultancy" },
-        { label: t("footer.servicesLinks.lab"), key: "lab" },
-        { label: t("footer.servicesLinks.course"), key: "training" },
-        { label: t("footer.servicesLinks.irrigation"), key: "irrigation" },
-        { label: t("footer.servicesLinks.optimization"), key: "optimization" },
+        { label:  t("footer.servicesLinks.management"), key: "management" },
+        { label: t("footer.servicesLinks.training"), key: "training" },
         {
-          label: t("footer.servicesLinks.remoteSensing"),
-          key: "remote-sensing",
+          label:  t("footer.servicesLinks.consultancy"),
+          key: "consultancy",
         },
+        { label: t( "footer.servicesLinks.lab"), key: "lab" },
+        { label:  t("footer.servicesLinks.remoteSensing"), key: "remote-sensing" },
       ],
     },
   ];

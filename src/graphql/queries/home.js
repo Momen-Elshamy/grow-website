@@ -51,7 +51,7 @@ export const GET_FRONT_PAGE_DATA = gql`
             features {
               title
               icon
-              description
+              link
             }
           }
           services {
@@ -177,7 +177,7 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
             features {
               title
               icon
-              description
+              link
             }
           }
           services {

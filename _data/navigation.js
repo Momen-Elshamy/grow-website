@@ -28,19 +28,15 @@ export const navLinks = [
     path: "/services",
     hasDropdown: true,
     children: [
-      { label: "Technical Consultancy", key: "consultancy" },
-      { label: "Lab analysis/Eurofins", key: "lab" },
+      { label: "Farm Management", key: "management" },
       { label: "Training Course", key: "training" },
       {
-        label: "Engineering & design of Irrigation and drainage systems.",
-        key: "irrigation",
+        label: "Technical Consultancy",
+        key: "consultancy",
       },
-      {
-        label:
-          "Revision, Re-engineering and optimization of existing water systems.",
-        key: "optimization",
-      },
+      { label: "Lab analysis/Eurofins", key: "lab" },
       { label: "Remote sensing", key: "remote-sensing" },
+      // { label: "footer.servicesLinks.irrigation", key: "irrigation" },
     ],
   },
   { name: "news", path: "/news", hasDropdown: false },

@@ -35,7 +35,7 @@ const itemVariants = {
   },
 };
 
-export default function NewsCTA() {
+export default function NewsCTA({ socialMediaData }) {
   const { currentLang } = useLanguage();
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
@@ -48,6 +48,8 @@ export default function NewsCTA() {
       return val ?? key;
     };
   }, [currentLang]);
+
+  const youtubeLink = socialMediaData?.youtube?.link || "#";
 
   const headline = t("newsCta.headline");
   const buttonLabel = t("newsCta.button");
@@ -67,7 +69,7 @@ export default function NewsCTA() {
         </motion.h2>
         <motion.span variants={itemVariants} className={styles.ctaButtonWrap}>
           <Link
-            href="https://www.youtube.com/"
+            href={youtubeLink}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaButtonLink}

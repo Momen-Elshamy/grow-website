@@ -33,8 +33,8 @@ function toItem(block, slot) {
       info: n1,
       textLink: n0 ? `tel:${n0.replace(/\D/g, "")}` : null,
       infoLink: toWaLink(n1) || toWaLink(n0),
-      desktopSize: 18,
-      mobileSize: 8,
+      desktopSize: 16,
+      mobileSize: 1,
     };
   }
 
@@ -49,8 +49,8 @@ function toItem(block, slot) {
     info: value2,
     textLink: link,
     infoLink: infos[1]?.link ?? link,
-    desktopSize: 30,
-    mobileSize: 30,
+    desktopSize: 24,
+    mobileSize: 24,
   };
 }
 
@@ -115,7 +115,7 @@ export default function InfoHeader({ socialMediaData, contactDataEn, contactData
                     rel="noopener noreferrer"
                     aria-label={`Visit ${s?.title || "social media link"}`} // Added
                   >
-                    <Uicons icon={s?.icon} size={20} color="#17311E" className={styles.socialIcon} />
+                    <Uicons icon={s?.icon} size={18} color="#17311E" className={styles.socialIcon} />
                   </Link>
                 </div>
               ))}

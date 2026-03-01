@@ -1,10 +1,10 @@
 import { Row, Col } from "antd";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import styles from "./TrainingCourse.module.css";
+import styles from "./Consultancy.module.css";
 import Uicons from "@/components/UI/Uicons";
 
-export default function TrainingCourse({ ourServicesData }) {
+export default function Consultancy({ ourServicesData }) {
   const service = ourServicesData?.services?.[2];
 
   if (!service) return null;
@@ -12,7 +12,7 @@ export default function TrainingCourse({ ourServicesData }) {
   const { title, description, image, altImage, moreDescription, benefits } =
     service || {};
   return (
-    <section id="training" className={styles.featuresSection}>
+    <section id="consultancy" className={styles.featuresSection}>
       <div className={styles.container}>
         <Row gutter={[60, 40]} align="middle">
           {/* Left Column: Farmer Image */}
@@ -58,7 +58,7 @@ export default function TrainingCourse({ ourServicesData }) {
             >
               <h2 className={styles.sectionTitle}>{title}</h2>
               <p className={styles.sectionDescription}>{description}</p>
-              {/* <p className={styles.sectionDescription}>{moreDescription}</p> */}
+              <p className={styles.sectionDescription}>{moreDescription}</p>
             </motion.div>
 
             <div className={styles.featuresList}>
@@ -78,7 +78,7 @@ export default function TrainingCourse({ ourServicesData }) {
                   <div className={styles.iconWrapper}>
                     <Uicons
                       icon={benefit?.icon}
-                      size="32px"
+                      size="20px"
                       style={{
                         color: "#245631",
                         display: "flex",

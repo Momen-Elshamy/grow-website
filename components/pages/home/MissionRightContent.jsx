@@ -1,12 +1,15 @@
-import React, { useMemo } from "react";
-import { Typography, Button } from "antd";
+import React, { useMemo, useCallback } from "react";
+import { Typography, Button, Flex } from "antd";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 import Uicons from "../../UI/Uicons";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
 import styles from "./MissionSection.module.css";
+import CustomButton from "@/components/UI/Button";
+import { scrollToSection, scrollToSectionAfterNavigate } from "@/utils/scroll";
 
 const { Title, Paragraph } = Typography;
 
@@ -37,6 +40,7 @@ export default function MissionRightContent({
   handlePrev,
   handleNext,
 }) {
+  const router = useRouter();
   const { currentLang } = useLanguage();
   const isRTL = currentLang === "ar";
 
@@ -51,6 +55,23 @@ export default function MissionRightContent({
       return val ?? key;
     };
   }, [currentLang]);
+
+  const handleSeeMore = useCallback(
+    (e) => {
+      e.preventDefault();
+      const path = "/about";
+      const sectionId = "mission";
+
+      if (typeof window !== "undefined" && router.pathname === path) {
+        scrollToSection(sectionId, 80);
+      } else {
+        router
+          .push(`${path}#${sectionId}`, undefined, { scroll: false })
+          .then(() => scrollToSectionAfterNavigate(sectionId));
+      }
+    },
+    [router],
+  );
 
   return (
     <motion.div
@@ -75,6 +96,17 @@ export default function MissionRightContent({
             <Paragraph className={styles.rightParagraph}>
               {currentContent?.description}
             </Paragraph>
+            <Flex justify="end">
+              <CustomButton
+                className={styles.seeMore}
+                // icon={null}
+                href="/about#mission"
+                onClick={handleSeeMore}
+                iconColor="#17311E"
+              >
+                {t("readMore")}
+              </CustomButton>
+            </Flex>
           </motion.div>
         </AnimatePresence>
 

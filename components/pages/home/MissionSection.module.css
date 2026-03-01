@@ -57,7 +57,7 @@
   background-color: #17311E;
   /* Dark Forest Green */
   border-radius: 20px;
-  padding: 44px;
+  padding: 32px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -142,7 +142,7 @@
 .yellowCard {
   background-color: #FFB01E;
   border-radius: 20px;
-  padding: 44px;
+  padding: 32px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -155,22 +155,41 @@
 .rightContent {
   position: relative;
   z-index: 5;
+  
 }
 
 .rightTitle {
   color: #17311E !important;
   font-size: 24px !important;
   font-weight: 700 !important;
-  margin-bottom: 24px !important;
 }
 
 .rightParagraph {
   color: #17311E !important;
   font-size: 16px !important;
-  margin-bottom: 40px !important;
-  max-width: 300px;
+  max-width: 330px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;   /* number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+}
+.seeMore {
+  background: none !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #17311E;
+  transition: transform 0.3s ease;
+  height: 100%;
+  /* text-decoration: underline; */
 }
 
+.seeMore:hover{
+  color: #17311E !important;
+  /* text-decoration: underline; */
+  transform: translateX(6px);
+}
 .navigation {
   display: flex;
   gap: 12px;

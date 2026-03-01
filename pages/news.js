@@ -10,11 +10,15 @@ import { withWebsiteSettings } from "@/src/services/withWebsiteSettings";
 export default function NewsPage({
   newsPageData,
   newsPageDataArabic,
+  socialMediaData,
+  socialMediaFromOptions,
 }) {
+  const socialMedia = socialMediaData || socialMediaFromOptions || [];
   return (
     <News
       newsPageData={newsPageData}
       newsPageDataArabic={newsPageDataArabic}
+      socialMediaData={socialMedia}
     />
   );
 }
@@ -53,6 +57,9 @@ export const getStaticProps = withWebsiteSettings(async () => {
     const newsPageData = englishData?.data?.nodeByUri?.newsFields || null;
     const newsPageDataArabic = arabicData?.data?.nodeByUri?.newsFields || null;
 
+    // Extract social media data from either page
+    const socialMediaData = newsPageData?.socialMedia || newsPageDataArabic?.socialMedia || null;
+
     return {
       props: {
         newsPageData: newsPageData
@@ -61,6 +68,7 @@ export const getStaticProps = withWebsiteSettings(async () => {
         newsPageDataArabic: newsPageDataArabic
           ? JSON.parse(JSON.stringify(newsPageDataArabic))
           : null,
+        socialMediaData: socialMediaData ?? null,
       },
       revalidate: 1,
     };

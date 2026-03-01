@@ -37,6 +37,7 @@ export const GET_FRONT_PAGE_DATA = gql`
             valueItem {
               icon
               valueText
+              description
             }
           }
           successStories {
@@ -58,11 +59,8 @@ export const GET_FRONT_PAGE_DATA = gql`
           visionAndMission {
             title
             description
-            missionItems {
-              icon
-              title
-              description
-            }
+            vissionDescription
+            missionDescription
           }
           meetOurExperts {
             title
@@ -77,6 +75,7 @@ export const GET_FRONT_PAGE_DATA = gql`
               video
               name
               description
+              jobTitle
             }
           }
           updatedSection {
@@ -133,6 +132,7 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
             valueItem {
               icon
               valueText
+              description
             }
           }
           successStories {
@@ -154,11 +154,8 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
           visionAndMission {
             title
             description
-            missionItems {
-              icon
-              title
-              description
-            }
+            vissionDescription
+            missionDescription
           }
           meetOurExperts {
             title
@@ -173,6 +170,7 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
               video
               name
               description
+              jobTitle
             }
           }
           updatedSection {

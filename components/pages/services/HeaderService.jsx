@@ -5,16 +5,6 @@ import { navLinks } from "../../../_data/navigation";
 import styles from "./HeaderService.module.css";
 import { scrollToSection, scrollToSectionAfterNavigate } from "@/utils/scroll";
 
-const SECTION_IDS =
-  navLinks.find((l) => l.path === "/services")?.children?.map((c) => c.key) ?? [
-    "consultancy",
-    "lab",
-    "training",
-    "irrigation",
-    "optimization",
-    "remote-sensing",
-  ];
-
 export default function HeaderService({ headerService }) {
   const [activeService, setActiveService] = useState("");
   const router = useRouter();
@@ -38,7 +28,7 @@ export default function HeaderService({ headerService }) {
       <div className={styles.container}>
         <nav className={styles.nav}>
           {services.map((service, index) => {
-            const sectionId = SECTION_IDS[index] ?? service.slug;
+            const sectionId = service.slug;
             return (
               <Link
                 key={sectionId}

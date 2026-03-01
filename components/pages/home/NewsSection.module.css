@@ -181,10 +181,22 @@
   color: #0d3b1e;
   font-size: 25px;
   transition: transform 0.3s ease;
+  direction: ltr !important;
+  unicode-bidi: isolate;
 }
 
 .featureItem:hover .icon {
   transform: translateX(6px);
+  color: #FFB01E;
+}
+
+/* Arabic/RTL: flip arrow so it points left (reading direction) */
+html[dir="rtl"] .icon {
+  transform: scaleX(-1);
+}
+
+html[dir="rtl"] .featureItem:hover .icon {
+  transform: scaleX(-1) translateX(-6px);
   color: #FFB01E;
 } 
 .featureItem:hover .featureText h4{

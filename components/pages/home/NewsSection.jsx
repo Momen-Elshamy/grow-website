@@ -176,11 +176,6 @@ export default function NewsSection({ newsData }) {
                       <div className={styles.featureText}>
                         <h4>{feature?.title}</h4>
                       </div>
-                      {/* <Link
-                      className={styles.featureIcon}
-                      href={feature.link || "#"}
-                      target="_blank"
-                    > */}
                       <Uicons icon={feature?.icon} className={styles.icon} />
                     </Link>
                   </motion.div>

@@ -113,7 +113,7 @@ export default function ExpertsSection({ expertsData }) {
                           variants={overlayVariants}
                           transition={{ duration: 0.3 }}
                         >
-                          {expert.description}
+                          {expert.jobTitle}
                         </motion.p>
                       </div>
                     </div>
@@ -135,40 +135,49 @@ export default function ExpertsSection({ expertsData }) {
         centered
         destroyOnHidden
         className={styles.imageModal}
-        styles={{ body: { padding: 0, backgroundColor: "transparent" } }}
+        styles={{ body: { padding: 20 } }}
       >
-        {selectedMedia?.mediaType === "video" && selectedMedia.video && (
-          <div className={styles.videoResponsive}>
-            <iframe
-              width="100%"
-              height="100%"
-              src={selectedMedia.video}
-              title={`Video of ${selectedMedia.name}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        )}
+        <Row gutter={[30, 30]} align="middle">
+          {/* LEFT — MEDIA */}
+          <Col xs={24} md={12}>
+            {selectedMedia?.mediaType === "video" && selectedMedia.video && (
+              <div className={styles.videoResponsive}>
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={selectedMedia.video}
+                  title={`Video of ${selectedMedia.name}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
 
-        {selectedMedia?.mediaType === "image" &&
-          selectedMedia.image?.node?.sourceUrl && (
-            <Image
-              src={selectedMedia.image.node.sourceUrl}
-              alt={
-                selectedMedia.image.node.altText ||
-                selectedMedia.altImage ||
-                selectedMedia.name
-              }
-              width={1200}
-              height={1500}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
-              quality={75}
-              loading="lazy"
-              className={styles.modalImage}
-              style={{ width: "100%", height: "auto" }}
-            />
-          )}
+            {selectedMedia?.mediaType === "image" &&
+              selectedMedia.image?.node?.sourceUrl && (
+                <Image
+                  src={selectedMedia.image.node.sourceUrl}
+                  alt={
+                    selectedMedia.image.node.altText ||
+                    selectedMedia.altImage ||
+                    selectedMedia.name
+                  }
+                  width={1200}
+                  height={1500}
+                  className={styles.modalImage}
+                  style={{ width: "100%", height: "auto" }}
+                />
+              )}
+          </Col>
+
+          {/* RIGHT — DESCRIPTION */}
+          <Col xs={24} md={12}>
+            <h2 style={{fontWeight:'700'}}>{selectedMedia?.name}</h2>
+            <p style={{fontWeight:'600'}}>{selectedMedia?.jobTitle}</p>
+            {selectedMedia?.description && <p>{selectedMedia.description}</p>}
+          </Col>
+        </Row>
       </Modal>
     </section>
   );

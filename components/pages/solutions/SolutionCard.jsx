@@ -42,11 +42,10 @@ export default function Card({ solution, sectionId }) {
       <div className={styles.card}>
         <Row className={styles.cardRow}>
           <Col
-            xs={{ span: 24, order: 2 }}
-            md={{ span: 11, order: 1 }}
+            md={{ span: 24, order: 2 }}
+            lg={{ span: 11, order: 1 }}
             className={styles.cardContent}
             dir="auto"
-            // style={{ borderRadius: 20 }}
           >
             <motion.div
               custom={isRTL}
@@ -72,7 +71,7 @@ export default function Card({ solution, sectionId }) {
                       <li key={i} className={styles.featureItem}>
                         <span className={styles.checkIcon}>
                           <Uicons
-                            icon={feature.icon || "fi-rr-check"}
+                            icon={feature.icon}
                             className={styles.checkmark}
                           />
                         </span>
@@ -89,7 +88,7 @@ export default function Card({ solution, sectionId }) {
                   gap={32}
                   style={{ width: "100%", position: "relative" }}
                 >
-                  <Link href="/contact" style={{ textDecoration: "none" }}>
+                  <Link href="/contact" style={{ textDecoration: "none", paddingTop:'8px' }}>
                     <CustomButton>{t("aboutButtons.contactUs")}</CustomButton>
                   </Link>
 
@@ -106,8 +105,8 @@ export default function Card({ solution, sectionId }) {
           </Col>
 
           <Col
-            xs={{ span: 24, order: 1 }}
-            md={{ span: 13, order: 2 }}
+            md={{ span: 24, order: 1 }}
+            lg={{ span: 13, order: 2 }}
             className={styles.cardImageContainer}
           >
             <motion.div

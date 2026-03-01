@@ -44,8 +44,8 @@ export default function Home({ homePageData, homePageDataArabic, contactDataFrom
      <>
         <Hero key={`hero-${currentLang}`} heroData={heroData} infoboxData={infoboxData} />
         <NewsSection newsData={newsData} />
-        <ServicesSection servicesData={servicesData} />
         <SolutionsSection solutionsData={solutionsData} />
+        <ServicesSection servicesData={servicesData} />
         <MissionSection missionData={missionData} />
         <SuccessStories successStoriesData={successStoriesData} />
         <ContactUs

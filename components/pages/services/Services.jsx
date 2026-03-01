@@ -1,13 +1,13 @@
 import { useMemo } from "react";
 import ServicesHero from "@/components/pages/services/ServicesHero";
 import OurServices from "@/components/pages/services/OurServices";
-import TrainingCourse from "@/components/pages/services/TrainingCourse";
-import Irrigation from "@/components/pages/services/Irrigation";
-import TechnicalConsultancy from "@/components/pages/services/TechnicalConsultancy";
+import Consultancy from "@/components/pages/services/Consultancy";
 import RemoteSensing from "@/components/pages/services/RemoteSensing";
+import Management from "@/components/pages/services/FarmManagement";
+import IrrigationSection from "@/components/pages/services/IrrigationSection";
 import LabAnalysis from "@/components/pages/services/LabAnalysis";
 import HeaderService from "@/components/pages/services/HeaderService";
-import Optimization from "@/components/pages/services/Optimization";
+import Training from "@/components/pages/services/Training";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 
 export default function ServicesPageContent({
@@ -29,12 +29,12 @@ export default function ServicesPageContent({
       <HeaderService headerService={headerService} />
       <ServicesHero heroData={hero} />
       <OurServices ourServicesData={ourServices} />
-      <TechnicalConsultancy ourServicesData={ourServices} />
-      <TrainingCourse ourServicesData={ourServices} />
-      <Optimization ourServicesData={ourServices} />
+      <Management ourServicesData={ourServices} />
+      <Consultancy ourServicesData={ourServices} />
+      <Training ourServicesData={ourServices} />
       <LabAnalysis ourServicesData={ourServices} />
-      <Irrigation ourServicesData={ourServices} />
       <RemoteSensing ourServicesData={ourServices} />
+      <IrrigationSection ourServicesData={ourServices} />
     </>
   );
 }

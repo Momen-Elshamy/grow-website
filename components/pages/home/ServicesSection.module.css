@@ -1,5 +1,5 @@
 .container {
-  padding: 80px 0;
+  padding: 40px 0 120px 0;
   margin: 0 auto;
   width: 100%;
   overflow: hidden;
@@ -12,7 +12,7 @@
 }
 
 .header {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   max-width: 900px;
 }
 
@@ -129,7 +129,7 @@
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
-  aspect-ratio: 6 / 7;
+  aspect-ratio: 7 / 7;
 }
 
 .mainImage {

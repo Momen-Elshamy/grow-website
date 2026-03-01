@@ -73,6 +73,7 @@ export default {
     irrigation: "الهندسة وتصميم أنظمة الري والصرف.",
     optimization: "مراجعة وإعادة هندسة وتحسين أنظمة المياه الموجودة.",
     "remote-sensing": "الاستشعار عن بُعد",
+    management: "إدارة المزارع",
   },
   footer: {
     quickContact: "اتصال سريع",
@@ -98,10 +99,11 @@ export default {
     servicesLinks: {
       consultancy: "الاستشارات الفنية",
       lab: "تحليل المختبرات",
-      course: "دورة",
+      training: "تدريب",
       irrigation: "الري",
       optimization: "التحسين",
       remoteSensing: "الاستشعار عن بُعد",
+      management: "إدارة المزارع",
     },
     bottomLinks: {
       terms: "الشروط والأحكام",

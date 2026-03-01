@@ -8,6 +8,7 @@ import ar from "@/src/translations/ar/navigation";
 import CustomButton from "@/components/UI/Button";
 import Uicons from "@/components/UI/Uicons";
 import styles from "./NewsSection.module.css";
+import Link from "next/link";
 
 const getYouTubeEmbedUrl = (url) => {
   if (!url) return "";
@@ -149,12 +150,7 @@ export default function NewsSection({ newsData }) {
 
           <Col xs={24} lg={12}>
             <div className={styles.content}>
-              <motion.h3
-                style={{ fontSize: "2rem", color: "#17311E", fontWeight: 700 }}
-                variants={rightVariants}
-              >
-                {categoryTitle}
-              </motion.h3>
+              <motion.h3 variants={rightVariants}>{categoryTitle}</motion.h3>
               {description && (
                 <motion.p
                   className={styles.descriptionOne}
@@ -171,21 +167,22 @@ export default function NewsSection({ newsData }) {
                     className={styles.featureItem}
                     variants={rightVariants}
                   >
-                    <div className={styles.featureIcon}>
+                    <Link
+                      // className={styles.featureIcon}
+                      href={feature.link || "#"}
+                      target="_blank"
+                      className={styles.featureItem}
+                    >
+                      <div className={styles.featureText}>
+                        <h4>{feature?.title}</h4>
+                      </div>
+                      {/* <Link
+                      className={styles.featureIcon}
+                      href={feature.link || "#"}
+                      target="_blank"
+                    > */}
                       <Uicons icon={feature?.icon} className={styles.icon} />
-                    </div>
-                    <div className={styles.featureText}>
-                      <h4
-                        style={{
-                          fontSize: "1.2rem",
-                          fontWeight: 600,
-                          color: "#17311E",
-                        }}
-                      >
-                        {feature?.title}
-                      </h4>
-                      <p>{feature?.description}</p>
-                    </div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>

@@ -5,9 +5,9 @@
 }
 
 .container {
-  max-width: 1290px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
 .imageWrapper {
@@ -66,18 +66,18 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: #366C45;
   font-weight: 500;
   font-size: 16px;
 }
 
 .heading {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
   color: #062a1a;
   line-height: 1.2;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .description {
@@ -90,12 +90,11 @@
 .buttonGroup {
   display: flex;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
 }
 
 .marqueeWrapper {
   width: 100%;
-  margin-top: 24px;
   overflow: hidden;
 }
 

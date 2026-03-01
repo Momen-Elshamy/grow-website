@@ -87,6 +87,24 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(144, 238, 144, 0.3);
 }
+
+.iconBlock {
+  /* flex: 1; */
+  min-width: 120px;
+  /* aspect-ratio: 1; */
+  border-radius: 12px;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center !important;
+  /* justify-content: center; */
+  gap: 8px;
+  padding: 16px 0;
+  transition: transform 0.3s ease;
+}
+.blockLabel {
+  margin: 0;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
   .contentContainer {

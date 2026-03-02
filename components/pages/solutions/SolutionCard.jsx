@@ -91,14 +91,6 @@ export default function Card({ solution, sectionId }) {
                   <Link href="/contact" style={{ textDecoration: "none", paddingTop:'8px' }}>
                     <CustomButton>{t("aboutButtons.contactUs")}</CustomButton>
                   </Link>
-
-                  <div
-                    className={`${styles.cardNumber} ${
-                      currentLang === "ar" ? styles.cardNumberRTL : ""
-                    }`}
-                  >
-                    {solution?.number}
-                  </div>
                 </Flex>
               </Flex>
             </motion.div>

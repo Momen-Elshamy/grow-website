@@ -111,12 +111,13 @@
   display: flex;
   /* align-items: center !important; */
   gap: 12px;
-  padding: 16px 0;
+  padding: 12px 0;
   transition: transform 0.3s ease;
 }
 .blockLabel {
   color: black;
-  margin: 4px 0;
+  line-height: 1.4;
+  margin-bottom: 6px !important;
 }
 .checkIcon {
   width: 40px;

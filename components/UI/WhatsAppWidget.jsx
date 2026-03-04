@@ -8,7 +8,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 function getWhatsAppNumber(contactData) {
-  const data = Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
+  const data =
+    Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
   const blocks = data?.info ?? [];
   for (const block of blocks) {
     const phones = block?.phoneNumbers ?? [];
@@ -45,23 +46,33 @@ export default function WhatsAppWidget({ contactDataEn, contactDataAr }) {
   }, [currentLang]);
   const isRTL = currentLang === "ar";
 
-  const contactData = currentLang === "ar" ? (contactDataAr ?? contactDataEn) : (contactDataEn ?? contactDataAr);
+  const contactData =
+    currentLang === "ar"
+      ? (contactDataAr ?? contactDataEn)
+      : (contactDataEn ?? contactDataAr);
   const digits = getWhatsAppNumber(contactData);
   const message = t("whatsapp.message");
   const whatsappUrl = `https://wa.me/${digits || "201501515014"}?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className={`${styles.widgetWrapper} ${isRTL ? styles.widgetWrapperRTL : ""}`}>
-      <div className={`${styles.container} ${isRTL ? styles.containerRTL : ""}`}>
+    <div
+      className={`${styles.widgetWrapper} ${isRTL ? styles.widgetWrapperRTL : ""}`}
+    >
+      <div
+        className={`${styles.container} ${isRTL ? styles.containerRTL : ""}`}
+      >
         <div className={styles.header}>
           <div className={styles.logoCircle}>
             {/* Using a placeholder Grow 'G' or similar if logo not easily available as icon */}
-            {/* <span className={styles.logoText}>G</span> */}
-            <Image src="/images/Group 19.png" alt="Grow Logo" width={18} height={33} />
+
+            <Image
+              src="/images/Group 19.png"
+              alt="Grow Logo"
+              width={18}
+              height={33}
+            />
           </div>
-          <p className={styles.headerText}>
-            {t("whatsapp.headerText")}
-          </p>
+          <p className={styles.headerText}>{t("whatsapp.headerText")}</p>
         </div>
         <Link
           href={whatsappUrl}

@@ -45,12 +45,6 @@
   flex-shrink: 0;
 }
 
-.logoText {
-  color: white;
-  font-weight: 800;
-  font-size: 20px;
-}
-
 .headerText {
   margin: 0;
   font-size: 15px;

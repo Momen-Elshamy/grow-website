@@ -49,7 +49,7 @@ export default {
     subscribeDisclaimer: "بمتابعتك، فإنك توافق على",
   },
   ourCompany: {
-    brandName: "جرو مصر",
+    brandName: "جرو إيچيبت",
   },
   aboutChildren: {
     company: "شركتنا",

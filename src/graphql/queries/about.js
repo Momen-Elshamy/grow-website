@@ -61,6 +61,8 @@ export const GET_FRONT_PAGE_DATA = gql`
             description
             vissionDescription
             missionDescription
+            titleMission
+            titleVision
           }
           meetOurExperts {
             title
@@ -156,6 +158,8 @@ export const GET_FRONT_PAGE_ARABIC_DATA = gql`
             description
             vissionDescription
             missionDescription
+            titleMission
+            titleVision
           }
           meetOurExperts {
             title

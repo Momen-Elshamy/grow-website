@@ -129,6 +129,8 @@
   white-space: nowrap;
   font-family: var(--font-parkinsans), sans-serif;
   opacity: 0.6;
+  line-height: 1.25;
+  display: inline-block;
 }
 
 /* Arabic: stronger contrast so "جرو مصر" is readable on light backgrounds */
@@ -136,6 +138,8 @@
   color: #b0bdb4;
   -webkit-text-stroke: 1px #b0bdb4;
   opacity: 0.85;
+  line-height: 1.3;
+  padding-block: 0.1em 0.1em;
 }
 
 .marqueeIcon {

@@ -29,13 +29,14 @@ export const navLinks = [
     hasDropdown: true,
     children: [
       { label: "Farm Management", key: "management" },
-      { label: "Training Course", key: "training" },
+      { label: "Lab analysis/Eurofins", key: "lab" },
       {
         label: "Technical Consultancy",
         key: "consultancy",
       },
-      { label: "Lab analysis/Eurofins", key: "lab" },
       { label: "Remote sensing", key: "remote-sensing" },
+      { label: "Training Course", key: "training" },
+      
       // { label: "footer.servicesLinks.irrigation", key: "irrigation" },
     ],
   },

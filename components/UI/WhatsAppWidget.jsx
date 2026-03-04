@@ -5,6 +5,7 @@ import ar from "@/src/translations/ar/navigation";
 import Uicons from "./Uicons";
 import styles from "./WhatsAppWidget.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
 function getWhatsAppNumber(contactData) {
   const data = Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
@@ -55,7 +56,8 @@ export default function WhatsAppWidget({ contactDataEn, contactDataAr }) {
         <div className={styles.header}>
           <div className={styles.logoCircle}>
             {/* Using a placeholder Grow 'G' or similar if logo not easily available as icon */}
-            <span className={styles.logoText}>G</span>
+            {/* <span className={styles.logoText}>G</span> */}
+            <Image src="/images/Group 19.png" alt="Grow Logo" width={18} height={33} />
           </div>
           <p className={styles.headerText}>
             {t("whatsapp.headerText")}

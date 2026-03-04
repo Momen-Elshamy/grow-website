@@ -21,7 +21,13 @@
   color: #062a1a;
   margin-bottom: 20px;
 }
-
+.titleVision,
+.titleMission {
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  color: #062a1a !important;
+  margin-bottom: 12px !important;
+}
 .description {
   font-size: 18px;
   line-height: 1.6;

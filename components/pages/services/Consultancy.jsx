@@ -1,8 +1,7 @@
-import { Row, Col } from "antd";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./Consultancy.module.css";
-import Uicons from "@/components/UI/Uicons";
+import { Row, Col, Flex } from "antd";
 
 export default function Consultancy({ ourServicesData }) {
   const service = ourServicesData?.services?.[2];
@@ -12,92 +11,87 @@ export default function Consultancy({ ourServicesData }) {
   const { title, description, image, altImage, moreDescription, benefits } =
     service || {};
   return (
-    <section id="consultancy" className={styles.featuresSection}>
-      <div className={styles.container}>
-        <Row gutter={[60, 40]} align="middle">
-          {/* Left Column: Farmer Image */}
-          <Col xs={24} lg={12}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className={styles.imageWrapper}
-              style={{
-                contentVisibility: "auto",
-                willChange: "transform, opacity",
-              }}
-            >
-              <div className={styles.imageContainer}>
-                <Image
-                  src={image.node.sourceUrl}
-                  alt={altImage || title}
-                  fill
-                  loading="lazy"
-                  quality={85}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className={styles.farmerImage}
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-            </motion.div>
-          </Col>
+    <section id="consultancy" className={styles.labAnalysisSection}>
+      <div className={styles.backgroundImageWrapper}>
+        <Image
+          src={image?.node?.sourceUrl}
+          alt={altImage || title}
+          fill
+          loading="lazy"
+          quality={85}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className={styles.backgroundImage}
+          style={{ objectFit: "cover" }}
+        />
+        <div className={styles.overlay} />
+      </div>
 
-          {/* Right Column: Features */}
-          <Col xs={24} lg={12}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className={styles.sectionHeader}
-              style={{
-                contentVisibility: "auto",
-                willChange: "transform, opacity",
-              }}
-            >
-              <h2 className={styles.sectionTitle}>{title}</h2>
-              <p className={styles.sectionDescription}>{description}</p>
-              <p className={styles.sectionDescription}>{moreDescription}</p>
-            </motion.div>
+      <div className={styles.contentContainer}>
+        <div className={styles.textWrapper}>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={styles.title}
+          >
+            {title}
+          </motion.h2>
 
-            <div className={styles.featuresList}>
-              {benefits?.map((benefit, index) => (
-                <motion.div
-                  key={benefit?.id ?? `benefit-${index}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className={styles.featureItem}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={styles.description}
+          >
+            {description}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className={styles.description}
+          >
+            {moreDescription}
+          </motion.p>
+
+          <div className={styles.iconBlocksContainer}>
+            {benefits?.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className={`${styles.iconBlock} ${
+                  styles[`iconBlock${index + 1}`]
+                }`}
+                style={{
+                  contentVisibility: "auto",
+                  willChange: "transform, opacity",
+                }}
+              >
+                <Uicons
+                  icon={benefit?.icon}
+                  size="20px"
                   style={{
-                    contentVisibility: "auto",
-                    willChange: "transform, opacity",
+                    color: "#ffffff",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
-                >
-                  <div className={styles.iconWrapper}>
-                    <Uicons
-                      icon={benefit?.icon}
-                      size="20px"
-                      style={{
-                        color: "#245631",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    />
-                  </div>
-                  <div className={styles.featureContent}>
-                    <h3 className={styles.featureTitle}>{benefit?.title}</h3>
-                    <p className={styles.featureDescription}>
-                      {benefit?.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </Col>
-        </Row>
+                />
+                <Flex vertical>
+                  <h3 className={styles.blockLabel}>{benefit?.title}</h3>
+                  <p className={styles.blockLabel}>{benefit?.description}</p>
+                </Flex>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

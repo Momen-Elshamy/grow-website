@@ -3,7 +3,6 @@ import NewsHero from "./NewsHero";
 import RecentNews from "./RecentNews";
 import FeatureVideo from "./FeatureVideo";
 import OtherNews from "./OtherNews";
-import NewsCTA from "./NewsCTA";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import { scrollToSection } from "@/utils/scroll";
 
@@ -53,7 +52,7 @@ export default function News({ newsPageData, newsPageDataArabic, socialMediaData
       />
       <FeatureVideo featureVideoData={featureVideoData} />
       <OtherNews newsData={newsData} onSelectNews={handleSelectNews} />
-      <NewsCTA socialMediaData={socialMediaData} />
+
     </main>
   );
 }

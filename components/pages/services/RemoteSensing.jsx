@@ -98,7 +98,7 @@ export default function RemoteSensing({ ourServicesData }) {
                 />
 
                 {/* Overlay Card */}
-                <div
+                {/* <div
                   className={`${styles.overlayCard} ${
                     isRTL ? styles.overlayCardLeft : ""
                   }`}
@@ -123,7 +123,7 @@ export default function RemoteSensing({ ourServicesData }) {
                   >
                     <h3 className={styles.cardText}>{benefits?.[0]?.title}</h3>
                   </div>
-                </div>
+                </div> */}
               </div>
             </motion.div>
           </Col>

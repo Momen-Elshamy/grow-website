@@ -19,8 +19,14 @@ const itemVariants = {
 export default function VisionAndMission({ visionAndMissionData }) {
   if (!visionAndMissionData) return null;
 
-  const { title, description, vissionDescription, missionDescription } =
-    visionAndMissionData || {};
+  const {
+    title,
+    description,
+    vissionDescription,
+    missionDescription,
+    titleVision,
+    titleMission,
+  } = visionAndMissionData || {};
 
   return (
     <section id="mission" className={styles.visionMissionSection}>
@@ -45,7 +51,11 @@ export default function VisionAndMission({ visionAndMissionData }) {
           viewport={{ once: true, amount: 0.1 }}
         >
           <div>
+            <h3 className={styles.titleVision}>{titleVision}</h3>
             <p className={styles.itemDescription}>{vissionDescription}</p>
+          </div>
+          <div>
+            <h3 className={styles.titleMission}>{titleMission}</h3>
             <p className={styles.itemDescription}>{missionDescription}</p>
           </div>
         </motion.div>

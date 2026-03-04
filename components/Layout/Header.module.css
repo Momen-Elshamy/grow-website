@@ -53,6 +53,11 @@
   /* Force LTR layout for nav even in RTL mode */
 }
 
+/* Arabic: switch desktop nav flow to RTL */
+html[dir="rtl"] .nav {
+  direction: rtl;
+}
+
 .navLink {
   color: #4A4A4A;
   font-size: 0.95rem;

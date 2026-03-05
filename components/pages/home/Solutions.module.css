@@ -76,13 +76,6 @@
   line-height: 1.2;
 }
 
-.leafIconContainer {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-bottom: 40px;
-}
-
 .carousel {
   width: 100%;
 }

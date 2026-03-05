@@ -27,6 +27,7 @@
 
 .tagline {
   color: #366C45;
+  font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -37,13 +38,6 @@
   color: #002e1b;
   line-height: 1.2;
   margin-bottom: 20px;
-}
-
-.iconContainer {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  font-size: 20px;
 }
 
 .carousel :global(.slick-track) {

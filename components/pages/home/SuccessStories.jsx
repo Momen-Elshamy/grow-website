@@ -22,18 +22,6 @@ export default function SuccessStories({ successStoriesData }) {
                 <p className={styles.tagline}>{subtitle}</p>
 
                 <h2 className={styles.heading}>{title}</h2>
-                <Flex
-                  justify="center"
-                  gap={10}
-                  className={styles.iconContainer}
-                >
-                  <Uicons icon="fi-rr-leaf" color="#366C45" />
-                  <Uicons
-                    icon="fi-rr-leaf"
-                    color="#366C45"
-                    style={{ transform: "scaleX(-1)" }}
-                  />
-                </Flex>
               </Col>
             </Row>
           </motion.div>

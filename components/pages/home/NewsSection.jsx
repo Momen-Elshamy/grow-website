@@ -85,7 +85,7 @@ export default function NewsSection({ newsData }) {
         variants={containerVariants}
       >
         <motion.div className={styles.tagline} variants={leftVariants}>
-          <Uicons icon={icon} className={styles.taglineIcon} />
+         <Image src="/images/logo.jpeg" alt="Grow logo" width={18} height={30} />
           <span>{taglineicon}</span>
         </motion.div>
 

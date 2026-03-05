@@ -16,7 +16,7 @@ export default function SuccessStories({ successStoriesData }) {
 
   if (!successStoriesData) return null;
 
-  const { icon, tagline, storiesData = [] } = successStoriesData || {};
+  const { tagline, storiesData = [] } = successStoriesData || {};
 
   const [activeKey, setActiveKey] = useState(storiesData.length > 0 ? "0" : "");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -104,7 +104,7 @@ export default function SuccessStories({ successStoriesData }) {
                       style={{
                         position: "relative",
                         width: "100%",
-                        height: "83vh",
+                        height: "100%",
                       }}
                     >
                       <Image
@@ -114,8 +114,7 @@ export default function SuccessStories({ successStoriesData }) {
                           currentStory.altImage ||
                           ""
                         }
-                        width={600}
-                        height={900}
+                        fill
                         sizes="(max-width: 968px) 100vw, 50vw"
                         loading="lazy"
                         className={styles.mainImage}
@@ -213,7 +212,13 @@ export default function SuccessStories({ successStoriesData }) {
                 style={{ height: "100%" }}
               >
                 <div className={styles.tagline}>
-                  <Uicons icon={icon} size="20px" />
+                  <Image
+                    src="/images/logo22.png"
+                    alt="Grow logo"
+                    width={14}
+                    height={25}
+                   
+                  />
                   <span>{tagline}</span>
                 </div>
 

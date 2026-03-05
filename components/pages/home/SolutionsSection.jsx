@@ -22,15 +22,6 @@ export default function SolutionsSection({ solutionsData }) {
         >
           <p className={styles.subtitle}>{subtitle}</p>
           <h2 className={styles.mainTitle}>{title}</h2>
-          <div className={styles.leafIconContainer}>
-            <Uicons icon="fi-rr-leaf" size="20px" color="#366C45" />
-            <Uicons
-              icon="fi-rr-leaf"
-              size="20px"
-              color="#366C45"
-              style={{ transform: "scaleX(-1)" }}
-            />
-          </div>
         </motion.div>
 
         <SolutionsCarousel solutionscarousel={solutionscarousel} />

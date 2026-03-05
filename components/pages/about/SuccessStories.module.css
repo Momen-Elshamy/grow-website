@@ -48,7 +48,7 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
   height: 100%;
-  min-height: 600px;
+  min-height: clamp(420px, 68vh, 640px);
 }
 
 .imageMotionWrapper {
@@ -159,6 +159,7 @@
   margin-bottom: 0 !important;
 
   display: -webkit-box;
+  line-clamp: 5;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -217,19 +218,21 @@
   font-size: 18px;
 }
 
+
+
 .heading {
   font-size: 32px;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .description {
   font-size: 18px;
   line-height: 1.6;
   color: #e0e0e0;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .storiesList {
@@ -311,7 +314,7 @@
     font-size: 12px;
   }
   .mainImage {
-    height: 100vh !important;
+    height: 100% !important;
   }
 }
 

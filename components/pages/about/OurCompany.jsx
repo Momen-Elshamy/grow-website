@@ -69,12 +69,6 @@ export default function OurCompany({ ourCompanyData }) {
                   className={styles.mainImage}
                 />
               </div>
-              <div
-                className={`${styles.decorativeText} ${currentLang === "ar" ? styles.decorativeTextAr : ""
-                  }`}
-              >
-                {decorativeText}
-              </div>
             </motion.div>
           </Col>
 
@@ -88,15 +82,18 @@ export default function OurCompany({ ourCompanyData }) {
               className={styles.contentWrapper}
             >
               <div className={styles.tagline}>
-                <Uicons icon={icon} size="20px" color="#366C45" />
+                <Image
+                  src="/images/logo.jpeg"
+                  alt="Grow Logo"
+                  width={18}
+                  height={30}
+                />
                 <span>{tagline}</span>
               </div>
 
               <h2 className={styles.heading}>{title}</h2>
 
-
-                <p className={styles.description}>{description}</p>
-
+              <p className={styles.description}>{description}</p>
 
               <div className={styles.buttonGroup}>
                 <CustomButton
@@ -118,21 +115,19 @@ export default function OurCompany({ ourCompanyData }) {
                   {marqueeData.map((item, index) => (
                     <div key={index} className={styles.marqueeItem}>
                       <span
-                        className={`${styles.marqueeText} ${currentLang === "ar" ? styles.marqueeTextRTL : ""
-                          }`}
+                        className={`${styles.marqueeText} ${
+                          currentLang === "ar" ? styles.marqueeTextRTL : ""
+                        }`}
                       >
                         {item.text}
                       </span>
                       <div className={styles.marqueeIcon}>
-                        <Uicons
-                          icon={item.icon}
-                          size="40px"
-                          color="#e5efe9"
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
+                        <Image
+                          src="/images/logo.jpeg"
+                          alt="Grow logo"
+                          width={30}
+                          height={40}
+                          className={styles.marqueeLogo}
                         />
                       </div>
                     </div>

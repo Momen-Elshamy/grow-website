@@ -43,13 +43,15 @@
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  height: 560px;
+  height: auto;
+  aspect-ratio: 1/1;
   width: 100%;
 }
 
 .mainImage {
   border-radius: 20px;
   object-fit: cover;
+  object-position: center top;
 }
 
 .overlayCard {
@@ -65,8 +67,8 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   z-index: 2;
-  height: 180px;
-  width: 250px;
+  height: 80px;
+  width: 130px;
 }
 
 .overlayCard :global(.ant-flex) {
@@ -142,7 +144,7 @@
   font-size: 1.1rem;
   color: #3e3d3d;
   line-height: 1.6;
-  margin-bottom: 25px;
+  margin-bottom: 32px;
   font-weight: 500;
 }
 
@@ -299,6 +301,10 @@ html[dir="rtl"] .featureItem:hover .icon {
 }
 
 @media (max-width: 991px) {
+  .mainImageContainer {
+    aspect-ratio: 1 / 1;
+  }
+
   .section {
     padding: 40px 0;
   }
@@ -321,6 +327,10 @@ html[dir="rtl"] .featureItem:hover .icon {
 }
 
 @media (max-width: 576px) {
+  .mainImageContainer {
+    aspect-ratio: 1 / 1;
+  }
+
   .heading {
     font-size: 1.5rem;
   }

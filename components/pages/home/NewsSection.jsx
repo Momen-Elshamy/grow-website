@@ -93,7 +93,7 @@ export default function NewsSection({ newsData }) {
           {title}
         </motion.h2>
 
-        <Row gutter={[40, 40]}>
+        <Row gutter={[40, 40]} align="middle">
           <Col xs={24} lg={12}>
             <motion.div className={styles.imageWrapper} variants={leftVariants}>
               <div className={styles.mainImageContainer}>
@@ -116,9 +116,9 @@ export default function NewsSection({ newsData }) {
                     <div className={styles.overlayIconBox}>
                       <Uicons icon={icon} size={32} color="#245631" />
                     </div>
-                    <div className={styles.overlayContent}>
+                    {/* <div className={styles.overlayContent}>
                       <h3>{title}</h3>
-                    </div>
+                    </div> */}
                   </Flex>
                   <CustomButton
                     className={styles.playButton}

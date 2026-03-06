@@ -70,7 +70,7 @@
   border-radius: 15px;
   overflow: hidden;
   position: relative;
-  height: 450px;
+  height: clamp(340px, 56vw, 450px);
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -86,6 +86,7 @@
 
 .courseImage {
   object-fit: cover;
+  object-position: center top;
   transition: transform 0.4s ease-in-out;
 }
 
@@ -273,7 +274,7 @@
 
 @media (max-width: 900px) {
   .card {
-    height: 400px;
+    height: clamp(320px, 62vw, 400px);
   }
 }
 
@@ -287,7 +288,7 @@
   }
 
   .card {
-    height: 380px;
+    height: clamp(300px, 78vw, 480px);
   }
 
   .contentWrapper {
@@ -304,6 +305,10 @@
 }
 
 @media (max-width: 480px) {
+  .card {
+    height: clamp(290px, 92vw, 360px);
+  }
+
   .heading {
     font-size: 24px !important;
   }

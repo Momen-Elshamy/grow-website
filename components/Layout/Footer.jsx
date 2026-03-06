@@ -181,13 +181,13 @@ export default function Footer({
       xl: 4,
       links: [
         { label:  t("footer.servicesLinks.management"), key: "management" },
-        { label: t("footer.servicesLinks.training"), key: "training" },
         {
           label:  t("footer.servicesLinks.consultancy"),
           key: "consultancy",
         },
         { label: t( "footer.servicesLinks.lab"), key: "lab" },
         { label:  t("footer.servicesLinks.remoteSensing"), key: "remote-sensing" },
+        { label: t("footer.servicesLinks.training"), key: "training" },
       ],
     },
   ];

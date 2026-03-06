@@ -12,7 +12,7 @@ export default function Training({ ourServicesData }) {
   const { title, description, image, altImage, moreDescription, benefits } =
     service || {};
   return (
-    <section id="=training" className={styles.featuresSection}>
+    <section id="training" className={styles.featuresSection}>
       <div className={styles.container}>
         <Row gutter={[60, 40]} align="middle">
           {/* Left Column: Farmer Image */}

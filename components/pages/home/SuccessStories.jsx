@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Row, Col, Flex } from "antd";
-import Uicons from "@/components/UI/Uicons";
 import SuccessStoriesCarousel from "./SuccessStoriesCarousel";
 import styles from "./SuccessStoriesCarousel.module.css";
 

@@ -7,12 +7,15 @@ import ar from "@/src/translations/ar/navigation";
 import CustomButton from "@/components/UI/Button";
 import styles from "./SuccessStoriesCarousel.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { scrollToSectionAfterNavigate } from "@/utils/scroll";
 
 export default function SuccessStoriesCarousel({ cards = [] }) {
   const carouselRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const { currentLang } = useLanguage();
   const isRTL = currentLang === "ar";
+  const router = useRouter();
 
   const t = useMemo(() => {
     const dict = currentLang === "ar" ? ar : en;
@@ -67,9 +70,18 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
     >
       {cards.map((course) => (
         <Link
-          href={`/about?story=${encodeURIComponent(course?.title || "")}`}
+          href={`/about?story=${encodeURIComponent(course?.title || "")}#stories`}
           key={course.id}
           className={styles.slide}
+          onClick={(e) => {
+            e.preventDefault();
+            const target = `/about?story=${encodeURIComponent(
+              course?.title || "",
+            )}#stories`;
+            router
+              .push(target, undefined, { scroll: false })
+              .then(() => scrollToSectionAfterNavigate("stories"));
+          }}
         >
           <Card
             className={styles.card}
@@ -124,6 +136,16 @@ export default function SuccessStoriesCarousel({ cards = [] }) {
                       ? `Read more about ${course.title}`
                       : "Read more"
                   }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const target = `/about?story=${encodeURIComponent(
+                      course?.title || "",
+                    )}#stories`;
+                    router
+                      .push(target, undefined, { scroll: false })
+                      .then(() => scrollToSectionAfterNavigate("stories"));
+                  }}
                   style={{
                     height: "100%",
                     borderRadius: isRTL ? "10px 0 0 10px" : "0 10px 10px 0",

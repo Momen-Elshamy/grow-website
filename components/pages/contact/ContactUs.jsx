@@ -7,7 +7,6 @@ import ContactForm from "./ContactForm";
 import { containerVariants } from "@/_data/contactUs/animations";
 
 export default function ContactUs({ noBackground = false, contactData }) {
-
   return (
     <motion.section
       className={`${styles.contactSection} ${
@@ -22,7 +21,7 @@ export default function ContactUs({ noBackground = false, contactData }) {
         <>
           <div className={styles.backgroundImageWrapper}>
             <Image
-              src="/images/bg-contact.webp"
+              src="/images/bg-contact.png"
               alt="Contact background"
               fill
               className={styles.backgroundImage}

@@ -48,7 +48,7 @@ export default function ContactForm() {
     setLoading(true);
     try {
       // 👇 CHANGE THIS EMAIL TO YOUR EMAIL - THAT'S IT! NO SIGNUP NEEDED!
-      const YOUR_EMAIL = "mayarmohamed775@gmail.com";
+      const YOUR_EMAIL = "info@grow-egypt.com";
 
       const response = await axios.post(
         `https://formsubmit.co/ajax/${YOUR_EMAIL}`,

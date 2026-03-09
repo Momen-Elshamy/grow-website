@@ -84,7 +84,7 @@
 
 .iconBlocksContainer {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   margin-top: 24px;
   flex-wrap: wrap;
   overflow: hidden;
@@ -93,7 +93,7 @@
 
 .iconBlock {
   flex: 1;
-  min-width: 90px;
+  min-width: 80px;
   aspect-ratio: 1;
   border-radius: 12px;
   display: flex;
@@ -105,7 +105,8 @@
   transition: transform 0.3s ease;
 }
 
-.iconBlock1 {
+.iconBlock1,
+.iconBlock23 {
   background-color: #599C6B;
 }
 
@@ -120,7 +121,8 @@
 .iconBlock17,
 .iconBlock6,
 .iconBlock20,
-.iconBlock15  {
+.iconBlock15, 
+.iconBlock7 {
   background-color: #FFB01E;
 }
 .iconBlock4,
@@ -134,16 +136,16 @@
   background-color: #6ea57d;
 }
 
-.iconBlock7,
+
 .iconBlock21,
 .iconBlock10,
-.iconBlock13  {
+.iconBlock14  {
   background-color: #599C6B;
 }
 
 .iconBlock8,
-.iconBlock22,
-.iconBlock14  {
+.iconBlock13,
+.iconBlock22{
   background-color:  #7ead8b;
 }
 

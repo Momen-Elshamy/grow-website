@@ -45,6 +45,7 @@ export default {
     subscribe: "Subscribe",
   },
   newsletter: {
+    placeholderEmail: "Email Address",
     subscribeDisclaimer: "By subscribing, you accept the",
   },
   ourCompany: {
@@ -125,10 +126,10 @@ export default {
     placeholderEmail: "Email Address",
     placeholderCompany: "Company Name / Farm Owner",
     placeholderPhone: "Phone Number",
-    placeholderPropertySize: "Property size (Acre)",
+    placeholderPropertySize: "Farm size (Acre)",
     placeholderLocation: "Location (Village/City)",
     placeholderServices: "Services",
-    placeholderMessage: "Kindly describe your business...",
+    placeholderMessage: "More details about your request...",
     acre: "Acre",
     submitRequest: "Submit Request",
     sending: "Sending...",

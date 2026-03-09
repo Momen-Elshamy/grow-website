@@ -10,19 +10,17 @@ export const PROPERTY_SIZES = [
 
 /** Keys matching servicesChildren in en/ar navigation (for translated dropdown labels) */
 export const SERVICE_KEYS = [
-  "consultancy",
+  "management",
   "lab",
-  "training",
-  "irrigation",
-  "optimization",
+  "consultancy",
   "remote-sensing",
+  "training",
 ];
 
 export const SERVICES_OPTIONS = [
-  "Technical Consultancy",
+  "Farm Management",
   "Lab analysis/Eurofins",
-  "Training Course",
-  "Engineering & design of Irrigation and drainage systems.",
-  "Revision, Re-engineering and optimization of existing water systems.",
+  "Technical Consultancy",
   "Remote sensing",
+  "Training Course",
 ];

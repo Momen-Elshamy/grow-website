@@ -46,6 +46,7 @@ export default {
     subscribe: "اشترك",
   },
   newsletter: {
+    placeholderEmail: "البريد الإلكتروني",
     subscribeDisclaimer: "بمتابعتك، فإنك توافق على",
   },
   ourCompany: {
@@ -128,7 +129,7 @@ export default {
     placeholderPropertySize: "مساحة العقار (فدان)",
     placeholderLocation: "الموقع (القرية/المدينة)",
     placeholderServices: "الخدمات",
-    placeholderMessage: "يرجى وصف نشاطك بشكل موجز...",
+    placeholderMessage: "مزيد من التفاصيل حول طلبك...",
     acre: "فدان",
     submitRequest: "إرسال الطلب",
     sending: "جاري الإرسال...",

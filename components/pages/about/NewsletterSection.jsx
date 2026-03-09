@@ -28,6 +28,11 @@ export default function NewsletterSection({ newsletterData }) {
   if (!newsletterData) return null;
 
   const { title, description, image, email } = newsletterData || {};
+  const mailtoHref = email
+    ? email.startsWith("mailto:")
+      ? email
+      : `mailto:${email}`
+    : "#";
 
   return (
     <section className={styles.newsletterSection}>
@@ -63,13 +68,17 @@ export default function NewsletterSection({ newsletterData }) {
                 <div className={styles.inputGroup}>
                   <Input
                     type="email"
-                    placeholder={t("contactForm.placeholderEmail")}
+                    placeholder={t("newsletter.placeholderEmail")}
                     className={styles.emailInput}
-                    aria-label={t("contactForm.placeholderEmail")}
+                    aria-label={t("newsletter.placeholderEmail")}
                   />
-                  <Link href={email} passHref>
+                  <Link href={mailtoHref} passHref>
                     <CustomButton
-                      aria-label={`Subscribe via email to ${email}`}
+                      aria-label={
+                        email
+                          ? `Subscribe via email to ${email.replace(/^mailto:/i, "")}`
+                          : "Subscribe"
+                      }
                       style={{ width: "100%" }}
                     >
                       {t("aboutButtons.subscribe")}

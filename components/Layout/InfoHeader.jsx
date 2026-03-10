@@ -8,7 +8,8 @@ function getSlot(block) {
   if (block?.phoneNumbers?.length > 0) return 0;
   const v = (block?.info?.[0]?.value ?? "").toLowerCase();
   const t = (block?.title ?? "").toLowerCase();
-  if (/@|email|mail|ايميل|بريد|newsletter|subscribe/.test(v + " " + t)) return 1;
+  if (/@|email|mail|ايميل|بريد|newsletter|subscribe/.test(v + " " + t))
+    return 1;
   if (/address|location|map|عنوان|موقع/.test(t)) return 2;
   return -1;
 }
@@ -28,7 +29,10 @@ function toItem(block, slot) {
     const n1 = phones[1] ? (phones[1]?.number ?? "").toString().trim() : "";
     return {
       icon: block?.icon,
-      icons: phones.length >= 2 ? ["fi-rr-phone-rotary", "fi-brands-whatsapp"] : undefined,
+      icons:
+        phones.length >= 2
+          ? ["fi-rr-phone-rotary", "fi-brands-whatsapp"]
+          : undefined,
       text: n0,
       info: n1,
       textLink: n0 ? `tel:${n0.replace(/\D/g, "")}` : null,
@@ -42,20 +46,29 @@ function toItem(block, slot) {
   const value = (d?.value ?? "").trim();
   const link = d?.link ?? null;
   const value2 = infos[1] ? (infos[1]?.value ?? "").trim() : "";
+  // Email block (slot 1): show only the second email; fallback to first if no second
+  const isEmail = slot === 1;
+  const displayValue = isEmail ? value2 || value : value;
+  const displayLink = isEmail
+    ? value2
+      ? (infos[1]?.link ?? (value2 ? `mailto:${value2}` : null))
+      : link || (value ? `mailto:${value}` : null)
+    : link;
   return {
     icon: block?.icon,
     icons: undefined,
-    text: value,
-    info: value2,
-    textLink: link,
-    infoLink: infos[1]?.link ?? link,
+    text: displayValue,
+    info: isEmail ? "" : value2,
+    textLink: displayLink,
+    infoLink: isEmail ? null : (infos[1]?.link ?? link),
     desktopSize: 24,
     mobileSize: 24,
   };
 }
 
 function buildInfoItems(contactData) {
-  const data = Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
+  const data =
+    Array.isArray(contactData) && contactData[0] ? contactData[0] : contactData;
   if (!data?.info?.length) return [];
   const blocks = data.info;
   const slots = [null, null, null];
@@ -96,8 +109,14 @@ const InfoField = ({ item, fieldKey }) => {
 
 export default function InfoHeader({ socialMediaData, contactDataEn, contactDataAr }) {
   const { currentLang } = useLanguage();
-  const contactData = currentLang === "ar" ? (contactDataAr ?? contactDataEn) : (contactDataEn ?? contactDataAr);
-  const socialIcons = Array.isArray(socialMediaData) && socialMediaData.length > 0 ? socialMediaData : [];
+  const contactData =
+    currentLang === "ar"
+      ? (contactDataAr ?? contactDataEn)
+      : (contactDataEn ?? contactDataAr);
+  const socialIcons =
+    Array.isArray(socialMediaData) && socialMediaData.length > 0
+      ? socialMediaData
+      : [];
   const infoItems = buildInfoItems(contactData);
 
   return (

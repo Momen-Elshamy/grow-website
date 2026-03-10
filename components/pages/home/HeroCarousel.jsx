@@ -8,6 +8,7 @@ import { useLanguage } from "@/src/contexts/LanguageContext";
 import en from "@/src/translations/en/navigation";
 import ar from "@/src/translations/ar/navigation";
 import styles from "./HeroCarousel.module.css";
+import Link from "next/link";
 
 export default function CarouselComponent({ heroDetails }) {
   const carouselRef = useRef(null);
@@ -119,24 +120,28 @@ export default function CarouselComponent({ heroDetails }) {
                       }}
                       className={styles.buttonsContainer}
                     >
-                      <CustomButton
-                        href="/services"
-                        aria-label={
-                          t("heroButtons.exploreServices") + " - " + slide.title
-                        }
-                      >
-                        {t("heroButtons.exploreServices")}
-                      </CustomButton>
-                      <CustomButton
-                        href="/about"
-                        className={styles.aboutButton}
-                        icon={null}
-                        aria-label={
-                          t("heroButtons.aboutUs") + " - " + slide.title
-                        }
-                      >
-                        {t("heroButtons.aboutUs")}
-                      </CustomButton>
+                      <Link href="/services">
+                        <CustomButton
+                          aria-label={
+                            t("heroButtons.exploreServices") +
+                            " - " +
+                            slide.title
+                          }
+                        >
+                          {t("heroButtons.exploreServices")}
+                        </CustomButton>
+                      </Link>
+                      <Link href="/about">
+                        <CustomButton
+                          className={styles.aboutButton}
+                          icon={null}
+                          aria-label={
+                            t("heroButtons.aboutUs") + " - " + slide.title
+                          }
+                        >
+                          {t("heroButtons.aboutUs")}
+                        </CustomButton>
+                      </Link>
                     </motion.div>
                   </div>
                 </div>

@@ -1,4 +1,5 @@
 export default {
+  home: "Home",
   about: "About",
   solutions: "Solutions",
   services: "Services",

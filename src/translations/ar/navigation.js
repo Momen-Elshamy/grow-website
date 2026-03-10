@@ -1,4 +1,5 @@
 export default {
+  home: "الرئيسية",
   about: "من نحن",
   solutions: "الحلول",
   services: "الخدمات",
@@ -56,7 +57,7 @@ export default {
     company: "شركتنا",
     values: "قيمنا",
     mission: "الرؤية والرسالة",
-    experts: "التق بفريقنا",
+    experts: "تعرف بفريقنا",
     stories: "قصص النجاح",
   },
   solutionsChildren: {
@@ -82,11 +83,11 @@ export default {
     solutions: "الحلول",
     services: "الخدمات",
     description:
-      "التزامنا هو مساعدة المزارعين على الحصول على التقنيات التي يحتاجونها لحماية المحاصيل وتمكين مستقبل إنتاج الغذاء!",
+      "إلتزامنا هو مساعدة المزارعين على الحصول على التقنيات الى يحتاجونها لتعزيز الإنتاجية والمساهمة فى تحقيق مستقبل غذائى آمن!",
     aboutLinks: {
       values: "قيمنا",
       mission: "الرؤية والرسالة",
-      experts: "التق بفريقنا",
+      experts: "تعرف بفريقنا",
       stories: "قصص النجاح",
       contactUs: "اتصل بنا",
     },
@@ -126,7 +127,7 @@ export default {
     placeholderEmail: "البريد الإلكتروني",
     placeholderCompany: "اسم الشركة / صاحب المزرعة",
     placeholderPhone: "رقم الهاتف",
-    placeholderPropertySize: "مساحة العقار (فدان)",
+    placeholderPropertySize: "مساحة المزرعه (فدان)",
     placeholderLocation: "الموقع (القرية/المدينة)",
     placeholderServices: "الخدمات",
     placeholderMessage: "مزيد من التفاصيل حول طلبك...",

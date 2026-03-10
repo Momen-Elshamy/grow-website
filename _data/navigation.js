@@ -1,4 +1,5 @@
 export const navLinks = [
+  { name: "home", path: "/", hasDropdown: false },
   {
     name: "about",
     path: "/about",

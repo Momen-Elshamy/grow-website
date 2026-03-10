@@ -303,7 +303,12 @@ export default function Footer({
               <h3 className={styles.columnTitle}>{t("footer.quickContact")}</h3>
               <div className={styles.contactInfo}>
                 {addressItem && <InfoField item={addressItem} isInfo={false} />}
-                {emailItem && <InfoField item={emailItem} isInfo={false} />}
+                {emailItem && (
+                  <InfoField
+                    item={emailItem}
+                    isInfo={Boolean(emailItem.info)}
+                  />
+                )}
                 {lastPhoneItem && (
                   <InfoField item={lastPhoneItem} isInfo={true} />
                 )}

@@ -57,7 +57,7 @@ export default {
     company: "شركتنا",
     values: "قيمنا",
     mission: "الرؤية والرسالة",
-    experts: "تعرف بفريقنا",
+    experts: "تعرف على خبرائنا",
     stories: "قصص النجاح",
   },
   solutionsChildren: {
@@ -87,7 +87,7 @@ export default {
     aboutLinks: {
       values: "قيمنا",
       mission: "الرؤية والرسالة",
-      experts: "تعرف بفريقنا",
+      experts: "تعرف على خبرائنا",
       stories: "قصص النجاح",
       contactUs: "اتصل بنا",
     },

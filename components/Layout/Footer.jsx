@@ -194,11 +194,6 @@ export default function Footer({
 
   const bottomLinks = [
     { label: t("footer.bottomLinks.terms"), href: "/terms-and-conditions" },
-    {
-      label: t("footer.bottomLinks.sitemap"),
-      href: "https://maps.google.com/?q=A105+LINX+building,+Smart+Village,+12577+Giza,+Egypt",
-      external: true,
-    },
   ];
 
   const addressItem = infoItems.find((item) => item.slot === 2);

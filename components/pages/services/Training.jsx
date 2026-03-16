@@ -11,12 +11,14 @@ export default function Training({ ourServicesData }) {
 
   const { title, description, image, altImage, moreDescription, benefits } =
     service || {};
+  const imageUrl = image?.node?.sourceUrl;
+  const hasImage = !!imageUrl;
   return (
     <section id="training" className={styles.featuresSection}>
       <div className={styles.container}>
         <Row gutter={[60, 40]} align="middle">
           {/* Left Column: Farmer Image */}
-          <Col xs={24} lg={12}>
+          <Col xs={24} lg={hasImage ? 12 : 24}>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -28,18 +30,20 @@ export default function Training({ ourServicesData }) {
                 willChange: "transform, opacity",
               }}
             >
-              <div className={styles.imageContainer}>
-                <Image
-                  src={image.node.sourceUrl}
-                  alt={altImage || title}
-                  fill
-                  loading="lazy"
-                  quality={85}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className={styles.farmerImage}
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
+              {hasImage && (
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={imageUrl}
+                    alt={altImage || title}
+                    fill
+                    loading="lazy"
+                    quality={85}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className={styles.farmerImage}
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              )}
             </motion.div>
           </Col>
 

@@ -22,7 +22,12 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "www.grow-egypt.com",
-        pathname: "/wp-content/uploads/**",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "www.grow-egypt.com",
+        pathname: "/**",
       },
       {
         protocol: "https",
@@ -32,12 +37,22 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "cms.grow-egypt.com",
-        pathname: "/wp-content/uploads/**",
+        pathname: "/**",
       },
       {
         protocol: "http",
         hostname: "cms.grow-egypt.com",
-        pathname: "/wp-content/uploads/**"
+        pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "grow-egypt.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "grow-egypt.com",
+        pathname: "/**",
       },
     ],
     formats: ["image/webp", "image/avif"],

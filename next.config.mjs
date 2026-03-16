@@ -19,6 +19,11 @@ const nextConfig = {
         hostname: "grow-wordpress-2a16da-72-61-111-171.traefik.me",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.grow-egypt.com",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
     formats: ["image/webp", "image/avif"],
     qualities: [75, 80, 85, 90],

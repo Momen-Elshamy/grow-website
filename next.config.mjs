@@ -29,6 +29,16 @@ const nextConfig = {
         hostname: "72.61.111.171",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "cms.grow-egypt.com",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "http",
+        hostname: "cms.grow-egypt.com",
+        pathname: "/wp-content/uploads/**"
+      },
     ],
     formats: ["image/webp", "image/avif"],
     qualities: [75, 80, 85, 90],

@@ -25,6 +25,10 @@ export default function AboutHero({ heroData }) {
     };
   }, [currentLang]);
 
+  if (!heroData || !heroData.image || !heroData.image.node || !heroData.image.node.sourceUrl) {
+    return null;
+  }
+
   return (
     <section className={styles.heroSection}>
       <div className={styles.imageWrapper}>

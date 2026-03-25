@@ -10,7 +10,7 @@ if (!graphqlEndpoint) {
 }
 
 const httpLink = createHttpLink({
-   uri: graphqlEndpoint || "https://grow-wordpress-2a16da-72-61-111-171.traefik.me/graphql",
+   uri: graphqlEndpoint || "https://www.grow-egypt.com/graphql",
 });
 
 // Create auth link
